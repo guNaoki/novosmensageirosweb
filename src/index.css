@@ -47,9 +47,67 @@ body {
   animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
+/* Dark mode global overrides */
+html.dark {
+  color-scheme: dark;
+}
+
+html.dark body {
+  background-color: #030712;
+  color: #f1f5f9;
+}
+
+html.dark nav {
+  background-color: rgba(3, 7, 18, 0.9) !important;
+  border-color: rgba(30, 41, 59, 0.8) !important;
+}
+
+html.dark nav button {
+  color: #e2e8f0;
+}
+
+html.dark .bg-white {
+  background-color: #0f172a !important;
+  border-color: #1e293b !important;
+  color: #f1f5f9 !important;
+}
+
+html.dark .bg-slate-50 {
+  background-color: #030712 !important;
+  border-color: #1e293b !important;
+  color: #cbd5e1 !important;
+}
+
+html.dark .bg-slate-100, html.dark .bg-slate-100\/40, html.dark .bg-slate-100\/70 {
+  background-color: #0b1329 !important;
+  border-color: #1e293b !important;
+  color: #cbd5e1 !important;
+}
+
+html.dark .text-primary-dark {
+  color: #7dd3fc !important;
+}
+
+html.dark .text-slate-600, html.dark .text-slate-700 {
+  color: #cbd5e1 !important;
+}
+
+html.dark .text-slate-500 {
+  color: #94a3b8 !important;
+}
+
+html.dark .border-slate-100, html.dark .border-slate-200, html.dark .border-slate-200\/60, html.dark .border-slate-200\/80 {
+  border-color: #1e293b !important;
+}
+
 /* Grid and dot patterns */
 .bg-grid-pattern {
   background-image: radial-gradient(rgba(0, 77, 143, 0.05) 1.5px, transparent 1.5px);
+  background-size: 28px 28px;
+}
+
+html.dark .bg-grid-pattern {
+  background-image: radial-gradient(rgba(56, 189, 248, 0.08) 1.5px, transparent 1.5px);
   background-size: 28px 28px;
 }
 
