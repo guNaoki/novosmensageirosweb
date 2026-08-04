@@ -188,58 +188,58 @@ export default function Navbar({ currentRoute, onChangeRoute, darkMode, onToggle
 
       {/* Mobile Drawer Menu */}
       {mobileMenuOpen && (
-        <div className="md:hidden border-t border-slate-100 bg-white shadow-xl animate-fadeIn p-4 space-y-4">
+        <div className="md:hidden border-t border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-950 shadow-xl animate-fadeIn p-4 space-y-4">
           <div className="flex flex-col space-y-2">
             <button
               onClick={() => handleNavigate('#/')}
-              className="w-full text-left py-2.5 px-4 rounded-xl hover:bg-slate-50 font-semibold text-slate-600 hover:text-primary cursor-pointer text-sm"
+              className="w-full text-left py-2.5 px-4 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/80 font-semibold text-slate-700 dark:text-slate-200 hover:text-primary dark:hover:text-sky-400 cursor-pointer text-sm transition-colors"
             >
               Início (Acolhimento)
             </button>
             
-            <div className="border-t border-slate-50 my-1"></div>
+            <div className="border-t border-slate-100 dark:border-slate-800 my-1"></div>
             
-            <div className="px-4 py-1 text-slate-400 font-extrabold text-[10px] uppercase tracking-wider">Espiritismo</div>
+            <div className="px-4 py-1 text-slate-400 dark:text-slate-500 font-extrabold text-[10px] uppercase tracking-wider">Espiritismo</div>
             <button
               onClick={() => handleNavigate('#/', 'entender')}
-              className="w-full text-left py-2 px-6 rounded-xl hover:bg-slate-50 font-semibold text-slate-600 hover:text-primary cursor-pointer text-xs"
+              className="w-full text-left py-2 px-6 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/80 font-semibold text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-sky-400 cursor-pointer text-xs transition-colors"
             >
               Princípios Básicos
             </button>
             <button
               onClick={() => handleNavigate('#/', 'buscar-ajuda')}
-              className="w-full text-left py-2 px-6 rounded-xl hover:bg-slate-50 font-semibold text-slate-600 hover:text-primary cursor-pointer text-xs"
+              className="w-full text-left py-2 px-6 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/80 font-semibold text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-sky-400 cursor-pointer text-xs transition-colors"
             >
               Achar um Centro (FEB)
             </button>
             <button
               onClick={() => handleNavigate('#/', 'materiais')}
-              className="w-full text-left py-2 px-6 rounded-xl hover:bg-slate-50 font-semibold text-slate-600 hover:text-primary cursor-pointer text-xs"
+              className="w-full text-left py-2 px-6 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/80 font-semibold text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-sky-400 cursor-pointer text-xs transition-colors"
             >
               Materiais de Apoio
             </button>
             <button
               onClick={() => handleNavigate('#/', 'amor-ideal')}
-              className="w-full text-left py-2 px-6 rounded-xl hover:bg-slate-50 font-semibold text-slate-600 hover:text-primary cursor-pointer text-xs"
+              className="w-full text-left py-2 px-6 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/80 font-semibold text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-sky-400 cursor-pointer text-xs transition-colors"
             >
               Amor Ideal & Mei Mei
             </button>
 
-            <div className="border-t border-slate-50 my-1"></div>
+            <div className="border-t border-slate-100 dark:border-slate-800 my-1"></div>
 
-            <div className="px-4 py-1 text-slate-400 font-extrabold text-[10px] uppercase tracking-wider">O Projeto</div>
+            <div className="px-4 py-1 text-slate-400 dark:text-slate-500 font-extrabold text-[10px] uppercase tracking-wider">O Projeto</div>
             <button
               onClick={() => handleNavigate('#/resgate')}
-              className="w-full text-left py-2 px-6 rounded-xl hover:bg-slate-50 font-semibold text-slate-600 hover:text-primary cursor-pointer text-xs"
+              className="w-full text-left py-2 px-6 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/80 font-semibold text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-sky-400 cursor-pointer text-xs transition-colors"
             >
               Projeto Resgate
             </button>
           </div>
 
-          <div className="pt-4 border-t border-slate-100">
+          <div className="pt-4 border-t border-slate-100 dark:border-slate-800">
             <button
               onClick={() => handleNavigate('#/resgate', 'inscricao')}
-              className="w-full bg-primary hover:bg-primary-hover text-white text-center py-3.5 rounded-xl font-bold shadow-md cursor-pointer text-sm"
+              className="w-full bg-primary hover:bg-primary-hover text-white text-center py-3.5 rounded-xl font-bold shadow-md cursor-pointer text-sm transition-all"
             >
               Quero Ser Voluntário
             </button>
