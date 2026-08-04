@@ -65,7 +65,7 @@ export default function SpiritismPortal({ onChangeRoute }: SpiritismPortalProps)
       description: "A explicação das máximas morais de Jesus Cristo sob a ótica da Doutrina Espírita e sua aplicação na vida.",
       link: "https://www.luzespirita.org.br/leitura/pdf/l3.pdf",
       badge: "Livro PDF 📚",
-      imageUrl: "/materials/evangelho.jpg"
+      imageUrl: "/recursos/livros/evangelho.png"
     },
     {
       title: "O Livro dos Espíritos",
@@ -73,7 +73,7 @@ export default function SpiritismPortal({ onChangeRoute }: SpiritismPortalProps)
       description: "A obra filosófica fundamental do Espiritismo, escrita por Allan Kardec. Perguntas e respostas sobre as leis divinas.",
       link: "https://www.febnet.org.br/wp-content/uploads/2014/05/Livro-dos-Espiritos.pdf",
       badge: "Livro PDF 📚",
-      imageUrl: "/materials/espiritos.jpg"
+      imageUrl: "/recursos/livros/livroespiritos.png"
     },
     {
       title: "Nosso Lar (Filme)",
@@ -82,15 +82,15 @@ export default function SpiritismPortal({ onChangeRoute }: SpiritismPortalProps)
       link: "https://www.youtube.com/watch?v=kHR9A8TXIF4",
       badge: "Filme 🎬",
       platforms: ["Disney+", "YouTube"],
-      imageUrl: "/materials/nossolar_filme.jpg"
+      imageUrl: "/recursos/filmes/Nosso lar.png"
     },
     {
-      title: "Como Superar Obstáculos da Alma",
+      title: "Desequilíbrios Reais | Mayse Braga",
       category: 'lectures',
-      description: "Um direcionamento amoroso e prático sobre como enfrentar as dores íntimas, depressão e crises espirituais.",
+      description: "Como lidar com desequilíbrios emocionais e espirituais?",
       link: "https://www.youtube.com/watch?v=Gt_NkiM6Arc&list=PLI-OgasY7T5seUPtpX50sm9Olw7J3IKy4&index=4",
       badge: "Vídeo 🎤",
-      imageUrl: "https://images.unsplash.com/photo-1518241353330-0f7941c2d9b5?q=80&w=600&auto=format&fit=crop"
+      imageUrl: "/recursos/palestras/maysereais.png"
     },
     {
       title: "Chico Xavier",
@@ -99,7 +99,7 @@ export default function SpiritismPortal({ onChangeRoute }: SpiritismPortalProps)
       link: "https://www.youtube.com/watch?v=k3VsW_DmwMk",
       badge: "Filme 🎬",
       platforms: ["Amazon Prime", "YouTube"],
-      imageUrl: "/materials/chicoxavier_filme.jpg"
+      imageUrl: "/recursos/filmes/chico.png"
     },
     {
       title: "Nosso Lar (Livro)",
@@ -107,7 +107,7 @@ export default function SpiritismPortal({ onChangeRoute }: SpiritismPortalProps)
       description: "Pelo espírito André Luiz, psicografado por Chico Xavier. A clássica descrição da vida no mundo espiritual.",
       link: "https://www.oconsolador.com.br/linkfixo/bibliotecavirtual/chicoxavier/nossolar.pdf",
       badge: "Livro PDF 📚",
-      imageUrl: "/materials/nossolar_livro.jpg"
+      imageUrl: "/recursos/livros/nossolarlivro.png"
     },
     {
       title: "Violetas na Janela",
@@ -115,15 +115,15 @@ export default function SpiritismPortal({ onChangeRoute }: SpiritismPortalProps)
       description: "Relato comovente e acolhedor de Patrícia sobre sua desencarnação e a descoberta da vida após a morte.",
       link: "http://www.feluzecaridade.net/download/Violetas_na_Janela.pdf",
       badge: "Livro PDF 📚",
-      imageUrl: "/materials/violetas.jpg"
+      imageUrl: "/recursos/livros/violetas.png"
     },
     {
-      title: "Influência dos Espíritos em Nossas Vidas",
+      title: "Tudo é Pensamento | Mayse Braga",
       category: 'lectures',
-      description: "Palestra espírita abordando como o plano espiritual influencia diretamente nosso cotidiano e pensamentos.",
+      description: "Você já parou para pensar no poder dos seus pensamentos? Descubra nesta palestra espírita.",
       link: "https://www.youtube.com/watch?v=R4G9DWwIn9E&list=PLI-OgasY7T5seUPtpX50sm9Olw7J3IKy4&index=2",
       badge: "Vídeo 🎤",
-      imageUrl: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=600&auto=format&fit=crop"
+      imageUrl: "/recursos/palestras/maysepensamento.png"
     },
     {
       title: "O Livro dos Médiuns",
@@ -131,7 +131,7 @@ export default function SpiritismPortal({ onChangeRoute }: SpiritismPortalProps)
       description: "O guia prático para as manifestações, comunicação e sintonias com o plano invisível.",
       link: "https://gelcip.com/wp-content/uploads/2018/11/o-livro-dos-mediuns-JHP.pdf",
       badge: "Livro PDF 📚",
-      imageUrl: "/materials/mediuns.jpg"
+      imageUrl: "/recursos/livros/lviromediuns.png"
     },
     {
       title: "Predestinado: Arigó e o Espírito do Dr. Fritz",
@@ -140,15 +140,15 @@ export default function SpiritismPortal({ onChangeRoute }: SpiritismPortalProps)
       link: "https://www.youtube.com/watch?v=R4G9DWwIn9E&list=PLI-OgasY7T5seUPtpX50sm9Olw7J3IKy4&index=2",
       badge: "Filme 🎬",
       platforms: ["Netflix"],
-      imageUrl: "/materials/predestinado_filme.jpg"
+      imageUrl: "/recursos/filmes/predestinado.png"
     },
     {
-      title: "Despertar Espiritual e Influências Invisíveis",
+      title: "Chamado | Mayse Braga",
       category: 'lectures',
-      description: "Entenda os mecanismos das influências sutis e como sintonizar com correntes de paz e equilíbrio.",
+      description: "Entendendo as vozes interiores e a influência espiritual em nossas vidas.",
       link: "https://www.youtube.com/watch?v=2KVGuKMwdds&list=PLI-OgasY7T5seUPtpX50sm9Olw7J3IKy4&index=7",
       badge: "Vídeo 🎤",
-      imageUrl: "https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?q=80&w=600&auto=format&fit=crop"
+      imageUrl: "/recursos/palestras/maysechamados.png"
     },
     {
       title: "As Mães de Chico Xavier",
@@ -157,7 +157,7 @@ export default function SpiritismPortal({ onChangeRoute }: SpiritismPortalProps)
       link: "https://www.youtube.com/watch?v=R4G9DWwIn9E&list=PLI-OgasY7T5seUPtpX50sm9Olw7J3IKy4&index=2",
       badge: "Filme 🎬",
       platforms: ["Netflix"],
-      imageUrl: "/materials/maeschico_filme.jpg"
+      imageUrl: "/recursos/filmes/maesdechico.png"
     },
     {
       title: "Divaldo - O Mensageiro da Paz",
@@ -166,7 +166,7 @@ export default function SpiritismPortal({ onChangeRoute }: SpiritismPortalProps)
       link: "https://www.youtube.com/watch?v=R4G9DWwIn9E&list=PLI-OgasY7T5seUPtpX50sm9Olw7J3IKy4&index=2",
       badge: "Filme 🎬",
       platforms: ["Aluguel Digital", "Netflix"],
-      imageUrl: "/materials/divaldo_filme.jpg"
+      imageUrl: "/recursos/filmes/divaldo.png"
     }
   ];
 
