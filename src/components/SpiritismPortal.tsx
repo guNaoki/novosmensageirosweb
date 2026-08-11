@@ -486,7 +486,7 @@ export default function SpiritismPortal({ onChangeRoute }: SpiritismPortalProps)
                 Como encontrar uma Casa Espírita acolhedora?
               </h2>
               <p className="text-slate-600 text-sm leading-relaxed">
-                As Casas Espíritas oferecem **Atendimento Fraterno** (uma conversa acolhedora e privativa), palestras de esclarecimento e **passes magnéticos** de equilíbrio. Todos os atendimentos são inteiramente gratuitos.
+                As Casas Espíritas oferecem <strong className="font-bold text-slate-800 dark:text-slate-100">Atendimento Fraterno</strong> (uma conversa acolhedora e privativa), palestras de esclarecimento e <strong className="font-bold text-slate-800 dark:text-slate-100">passes magnéticos</strong> de equilíbrio. Todos os atendimentos são inteiramente gratuitos.
               </p>
             </div>
 
@@ -780,7 +780,7 @@ export default function SpiritismPortal({ onChangeRoute }: SpiritismPortalProps)
         <div className="max-w-4xl mx-auto px-4 text-center space-y-6 relative z-10">
           <h2 className="text-3xl font-extrabold tracking-tight">Quer fazer a diferença conosco voluntariamente?</h2>
           <p className="text-primary-light/90 max-w-2xl mx-auto text-sm leading-relaxed">
-            Se você já conhece a doutrina, representa uma Casa Espírita, atua profissionalmente como Psicólogo ou simplesmente deseja doar um pouco do seu tempo nas redes sociais para mapear dores e salvar vidas, conheça o nosso **Projeto de Resgate**.
+            Se você já conhece a doutrina, representa uma Casa Espírita, atua profissionalmente como Psicólogo ou simplesmente deseja doar um pouco do seu tempo nas redes sociais para mapear dores e salvar vidas, conheça o nosso <strong className="font-extrabold text-white">Projeto de Resgate</strong>.
           </p>
           <div className="pt-2">
             <button

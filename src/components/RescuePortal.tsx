@@ -214,7 +214,7 @@ export default function RescuePortal({ onChangeRoute }: RescuePortalProps) {
                 </div>
                 <h3 className="text-xl font-extrabold text-white">Por que precisamos de você?</h3>
                 <p className="text-sm text-slate-100 leading-relaxed font-medium">
-                  Hoje somos uma equipe de apenas <strong className="text-sky-300">8 voluntários</strong> ativos fazendo o trabalho de monitoramento, resposta inicial e direcionamento. A demanda é gigantesca e, se não crescermos agora, muitas vidas que pediram socorro ficarão sem resposta ou apoio.
+                  Hoje somos uma <strong className="text-sky-300">equipe enxuta</strong> de voluntários ativos fazendo o trabalho de monitoramento, resposta inicial e direcionamento. A demanda é gigantesca e, se não crescermos agora, muitas vidas que pediram socorro ficarão sem resposta ou apoio.
                 </p>
               </div>
               <div className="border-t border-white/20 pt-6 mt-6 relative z-10">
@@ -256,7 +256,7 @@ export default function RescuePortal({ onChangeRoute }: RescuePortalProps) {
               </div>
               <h3 className="text-lg font-extrabold text-primary-dark dark:text-white">Busca Ativa (TikTok)</h3>
               <p className="text-sm text-slate-700 dark:text-slate-300 leading-relaxed font-medium">
-                Utilizamos uma **conta dedicada no TikTok** (@acolhimentomensageiros) para mapear comentários de desespero e ideação suicida em posts virais, abordando as pessoas ativamente e em sigilo.
+                Utilizamos uma <strong className="font-extrabold text-primary-dark dark:text-white">conta dedicada no TikTok</strong> (@acolhimentomensageiros) para mapear comentários de desespero e ideação suicida em posts virais, abordando as pessoas ativamente e em sigilo.
               </p>
             </motion.div>
 

@@ -40,14 +40,14 @@ export default function HistoryPortal({ onChangeRoute }: HistoryPortalProps) {
     {
       year: "A Mobilização",
       title: "Os Primeiros Guardiões",
-      description: "Uma pequena equipe de 8 voluntários se reuniu de forma emergencial. Passamos a monitorar os comentários 24 horas por dia, enviando mensagens de resgate no direct e abrindo canais de escuta fraterna via WhatsApp.",
+      description: "Uma pequena equipe enxuta de voluntários se reuniu de forma emergencial. Passamos a monitorar os comentários 24 horas por dia, enviando mensagens de resgate no direct e abrindo canais de escuta fraterna via WhatsApp.",
       icon: Users,
       color: "bg-primary-light text-primary-dark"
     },
     {
       year: "O Futuro",
       title: "Expandindo os Horizontes",
-      description: "Com mais de 400 pessoas acolhidas e milhões de visualizações, a estrutura atual atingiu o limite. Decidimos criar esta plataforma para recrutar novos voluntários, parceiros clínicos e Casas Espíritas para ampliar esse farol de luz.",
+      description: "Com mais de 100 pessoas acolhidas e milhões de visualizações, a estrutura atual atingiu o limite. Decidimos criar esta plataforma para recrutar novos voluntários, parceiros clínicos e Casas Espíritas para ampliar esse farol de luz.",
       icon: Star,
       color: "bg-yellow-50 text-yellow-600"
     }
@@ -273,7 +273,7 @@ export default function HistoryPortal({ onChangeRoute }: HistoryPortalProps) {
         <div className="max-w-4xl mx-auto px-4 text-center space-y-6 relative z-10">
           <h2 className="text-3xl font-extrabold tracking-tight">Escreva o próximo capítulo conosco</h2>
           <p className="text-primary-light/80 max-w-xl mx-auto text-sm leading-relaxed">
-            Nossa equipe de 8 voluntários precisa crescer para continuarmos respondendo e salvando vidas nas redes sociais. Junte-se a nós como voluntário digital, psicólogo parceiro ou Casa Espírita física.
+            Nossa equipe enxuta de voluntários precisa crescer para continuarmos respondendo e salvando vidas nas redes sociais. Junte-se a nós como voluntário digital, psicólogo parceiro ou Casa Espírita física.
           </p>
           <div className="pt-4 flex flex-col sm:flex-row justify-center gap-4">
             <button
