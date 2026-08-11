@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { SOCIAL_STATS } from '../data/stats';
 import { 
   Heart, 
   MessageSquare, 
@@ -322,7 +323,7 @@ export default function SpiritismPortal({ onChangeRoute }: SpiritismPortalProps)
                     <div className="bg-primary/20 w-10 h-10 rounded-xl flex items-center justify-center text-sky-400 mb-3">
                       <Instagram className="w-5 h-5" />
                     </div>
-                    <div className="text-2xl font-black text-white">+60,2 mil</div>
+                    <div className="text-2xl font-black text-white">+{SOCIAL_STATS.instagramFollowers}</div>
                     <div className="text-xs font-bold text-slate-300 mt-1">Seguidores no Instagram</div>
                   </div>
 

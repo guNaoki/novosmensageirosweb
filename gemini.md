@@ -4,7 +4,7 @@ Gere e mantenha a aplicação web em React 19, utilizando Tailwind CSS para a es
 ### 🕊️ Conceito e Estrutura dos Projetos
 1. **Novos Mensageiros (Projeto Principal)**
    - Iniciativa espírita focada na divulgação de conteúdos, consolo, ensinamentos filosóficos e obras da Doutrina Espírita no ambiente digital (Instagram `@novosmensageiros`, TikTok, YouTube Shorts).
-   - Alcance e métricas: +42 mil seguidores no Instagram e +3.7M de visualizações no TikTok.
+   - Alcance e métricas: +68,9 mil seguidores no Instagram e +3.7M de visualizações no TikTok.
    - Objetivo do Portal Principal (`/`): Oferecer consolo diário, esclarecimentos espirituais, acervo de livros em PDF, palestras, filmes recomendados e mapa de casas espíritas.
 
 2. **Projeto de Resgate (Braço Ativo de Socorro Emergencial)**
@@ -25,7 +25,7 @@ Gere e mantenha a aplicação web em React 19, utilizando Tailwind CSS para a es
 ### 📐 Estrutura das Páginas (UX Storytelling)
 
 #### A. Portal Novos Mensageiros (`/`)
-1. **Hero Section:** Transmitir luz, consolo e alcance social (+42k Instagram, +3.7M TikTok). CTA para explorar acervo ou conhecer o Projeto de Resgate.
+1. **Hero Section:** Transmitir luz, consolo e alcance social (+68,9k Instagram, +3.7M TikTok). CTA para explorar acervo ou conhecer o Projeto de Resgate.
 2. **Gerador de Mensagem Diária:** Reflexão inspiradora aleatória.
 3. **Entenda o Espiritismo:** Cards dos princípios fundamentais.
 4. **Acervo de Recursos:** Abas interativas (Livros PDF, Palestras, Filmes).
