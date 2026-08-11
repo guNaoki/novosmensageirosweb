@@ -133,7 +133,7 @@ export default function RescuePortal({ onChangeRoute }: RescuePortalProps) {
                 <div className="p-5 space-y-4 text-left">
                   <div className="grid grid-cols-2 gap-3">
                     <div className="bg-slate-50 dark:bg-slate-800/80 p-3.5 rounded-2xl border border-slate-200/80 dark:border-slate-700">
-                      <div className="text-2xl font-black text-primary-dark dark:text-white font-sans">+400</div>
+                      <div className="text-2xl font-black text-primary-dark dark:text-white font-sans">+100</div>
                       <div className="text-xs font-bold text-slate-700 dark:text-slate-300 mt-0.5">Vidas amparadas no acolhimento direto</div>
                     </div>
 
@@ -197,7 +197,7 @@ export default function RescuePortal({ onChangeRoute }: RescuePortalProps) {
               </div>
               <div className="border-t border-slate-200 dark:border-slate-800 pt-6 mt-6">
                 <span className="text-xs font-bold text-slate-500 dark:text-slate-400 block uppercase tracking-wider">Desafio Atual</span>
-                <span className="text-sm font-extrabold text-slate-800 dark:text-slate-100 mt-1 block">Mais de 400 pessoas identificadas precisando de atenção fraterna direta nas últimas semanas.</span>
+                <span className="text-sm font-extrabold text-slate-800 dark:text-slate-100 mt-1 block">Mais de 100 pessoas identificadas precisando de atenção fraterna direta nas últimas semanas.</span>
               </div>
             </motion.div>
 
@@ -442,7 +442,7 @@ export default function RescuePortal({ onChangeRoute }: RescuePortalProps) {
               </span>
               <h3 className="text-base font-extrabold text-primary-dark dark:text-white">Expandindo os Horizontes</h3>
               <p className="text-slate-700 dark:text-slate-300 text-xs leading-relaxed font-medium">
-                Com mais de 400 pessoas acolhidas e milhões de visualizações, estruturamos essa plataforma para recrutar novos voluntários, parceiros clínicos e Casas Espíritas para ampliar esse farol de luz.
+                Com mais de 100 pessoas acolhidas e milhões de visualizações, estruturamos essa plataforma para recrutar novos voluntários, parceiros clínicos e Casas Espíritas para ampliar esse farol de luz.
               </p>
             </div>
           </div>

@@ -33,7 +33,7 @@ Gere e mantenha a aplicação web em React 19, utilizando Tailwind CSS para a es
 6. **Chamada em Destaque:** Apresentação do Projeto de Resgate com botão para se voluntariar.
 
 #### B. Landing Page do Projeto de Resgate (`/#/resgate`)
-1. **Hero Section:** Posicionamento de resgate e socorro emergencial ativo via conta dedicada TikTok. Card com métricas do resgate (+400 vidas amparadas, triagem de risco, rede de suporte).
+1. **Hero Section:** Posicionamento de resgate e socorro emergencial ativo via conta dedicada TikTok. Card com métricas do resgate (+100 vidas amparadas, triagem de risco, rede de suporte).
 2. **A Dor / O Contexto (O Iceberg):** Explicar que os comentários são apenas a ponta do iceberg e a necessidade de ampliação da equipe de voluntários.
 3. **Jornada do Acolhimento:** 4 passos (01. Busca e Contato Ativo, 02. Triagem e Nível de Risco, 03. Atendimento Fraterno, 04. Encaminhamento Psicológico e Espiritual).
 4. **Rede de Apoio:** 4 perfis de voluntariado (Psicólogos, Casas Espíritas, Atendimento Ativo, Pesquisadores).
