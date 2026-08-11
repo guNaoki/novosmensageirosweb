@@ -1,45 +1,45 @@
 Atue como um desenvolvedor Frontend Sênior e Especialista em UXUI. 
-Gere o código completo para um componente principal de Landing Page em React 19, utilizando Tailwind CSS para a estilização e estruturado para rodar no ambiente Bun. 
+Gere e mantenha a aplicação web em React 19, utilizando Tailwind CSS para a estilização e estruturado para rodar no ambiente Bun.
 
-O projeto se chama Novos Mensageiros - Projeto de Resgate. É uma iniciativa espírita que nasceu nas redes sociais (InstagramTikTok) para acolher e direcionar pessoas em sofrimento profundo, depressão ou ideação suicida que comentam em posts virais. O objetivo principal da landing page é RECRUTAR VOLUNTÁRIOS (casas espíritas, psicólogos e pessoas comuns para atendimento fraternopesquisa).
+### 🕊️ Conceito e Estrutura dos Projetos
+1. **Novos Mensageiros (Projeto Principal)**
+   - Iniciativa espírita focada na divulgação de conteúdos, consolo, ensinamentos filosóficos e obras da Doutrina Espírita no ambiente digital (Instagram `@novosmensageiros`, TikTok, YouTube Shorts).
+   - Alcance e métricas: +42 mil seguidores no Instagram e +3.7M de visualizações no TikTok.
+   - Objetivo do Portal Principal (`/`): Oferecer consolo diário, esclarecimentos espirituais, acervo de livros em PDF, palestras, filmes recomendados e mapa de casas espíritas.
+
+2. **Projeto de Resgate (Braço Ativo de Socorro Emergencial)**
+   - Braço especializado dos Novos Mensageiros focado na busca ativa e amparo a pessoas em sofrimento profundo ou ideação suicida.
+   - Operação: Utiliza uma **conta dedicada no TikTok** para identificar ativamente comentários de desespero em posts virais, analisar o nível de risco, iniciar diálogo fraterno e encaminhar para atendimento com Psicólogos e amparo nas Casas Espíritas.
+   - Objetivo da Landing Page de Resgate (`/#/resgate`): RECRUTAR VOLUNTÁRIOS (casas espíritas, psicólogos, voluntários para mensagens ativas e pesquisadores) e apresentar a jornada do acolhimento.
 
 ### 🛠️ Stack Técnica
-- React 19 (Componentes funcionais estruturados, uso de hooks nativos se necessário)
+- React 19 (Componentes funcionais estruturados, hooks nativos)
 - Tailwind CSS (Design moderno, limpo, responsivo e focado em legibilidade)
 - Lucide React (Ícones para suporte visual)
+- Framer Motion (Transições fluidas e micro-animações)
 
 ### 🎨 Identidade Visual & Estilo
-- Paleta de Cores Tons de azul (confiança, tranquilidade, espiritualidade), branco e cinza claro para as seções de texto. 
-- Estilo Interface acolhedora, limpa, humana e altamente profissional. Boa aplicação de espaçamentos (paddingmargin) para evitar fadiga visual.
+- Paleta de Cores: Tons de azul (confiança, tranquilidade, espiritualidade), branco e cinza claro para as seções de texto.
+- Estilo: Interface acolhedora, limpa, humana e altamente profissional. Boa aplicação de espaçamentos (padding/margin) para evitar fadiga visual.
 
-### 📐 Estrutura da Página (UX Storytelling)
+### 📐 Estrutura das Páginas (UX Storytelling)
 
-1. Header  Nav Logo Novos Mensageiros, link discreto para redes sociais e um botão CTA destacado Seja um Voluntário.
-2. Hero Section (O Propósito)
-   - Título impactante Mais do que conteúdos digitais, uma rede de resgate de vidas.
-   - Subtítulo O projeto Novos Mensageiros nasceu para divulgar o Espiritismo de forma leve. Mas quando nossos posts sobre depressão viralizaram, encontramos mais de 400 pessoas precisando de ajuda imediata. Não podíamos ficar parados.
-   - Métricas de Impacto (Cards rápidos) +42 mil seguidores no Instagram  3.7M de visualizações no TikTok.
-   - Botão de Ação Primário (CTA) Quero Ajudar a Salvar Vidas.
-3. A Dor  O Contexto (O Iceberg)
-   - Seção em tom cinza bem claro para contextualizar o problema. Explicar brevemente que os comentários nas redes sociais são apenas a ponta do iceberg e que a equipe atual (8 voluntários) precisa de reforços para não deixar ninguém sem resposta.
-4. A Jornada do Acolhimento (Passo a Passo)
-   - Fluxo visual (Linha do tempo ou Grid de 4 passos)
-     01. Contato Inicial (Identificação nas redes)
-     02. Atendimento Fraterno (Acolhimento inicial)
-     03. Tratamento Psicológico (Encaminhamento profissional)
-     04. Tratamento Espiritual (Suporte nas Casas Espíritas)
-5. Rede de Apoio (Como nos dividimos)
-   - Grid de 3 colunas mostrando quem pode ajudar
-     - Casas Espíritas Atendimento fraterno e acolhimento espiritual.
-     - Grupos de Psicólogos Encaminhamento profissional e suporte técnico.
-     - Voluntários Atendimento online, envio ativo de mensagens de resgate e pesquisas.
-6. CTA Final (Inscrição)
-   - Seção centralizada, acolhedora.
-   - Frase marcante Fora da caridade não há salvação. — Allan Kardec.
-   - Botão de alta relevância linkando para o Formulário de Inscrição.
-7. Footer Direitos autorais, créditos e link para o Instagram @novosmensageiros.
+#### A. Portal Novos Mensageiros (`/`)
+1. **Hero Section:** Transmitir luz, consolo e alcance social (+42k Instagram, +3.7M TikTok). CTA para explorar acervo ou conhecer o Projeto de Resgate.
+2. **Gerador de Mensagem Diária:** Reflexão inspiradora aleatória.
+3. **Entenda o Espiritismo:** Cards dos princípios fundamentais.
+4. **Acervo de Recursos:** Abas interativas (Livros PDF, Palestras, Filmes).
+5. **Encontre uma Casa Espírita:** Busca e direcionamento local.
+6. **Chamada em Destaque:** Apresentação do Projeto de Resgate com botão para se voluntariar.
+
+#### B. Landing Page do Projeto de Resgate (`/#/resgate`)
+1. **Hero Section:** Posicionamento de resgate e socorro emergencial ativo via conta dedicada TikTok. Card com métricas do resgate (+400 vidas amparadas, triagem de risco, rede de suporte).
+2. **A Dor / O Contexto (O Iceberg):** Explicar que os comentários são apenas a ponta do iceberg e a necessidade de ampliação da equipe de voluntários.
+3. **Jornada do Acolhimento:** 4 passos (01. Busca e Contato Ativo, 02. Triagem e Nível de Risco, 03. Atendimento Fraterno, 04. Encaminhamento Psicológico e Espiritual).
+4. **Rede de Apoio:** 4 perfis de voluntariado (Psicólogos, Casas Espíritas, Atendimento Ativo, Pesquisadores).
+5. **CTA de Inscrição:** Formulário de cadastro de voluntários ("Fora da caridade não há salvação").
 
 ### ⚠️ Requisitos de Código
-- Pode bibliotecas externas de animação (como magicUI e outras, desde que não sejam muito complexas e pesadas como o GSAP) (use transições nativas do Tailwind se necessário `transition-all duration-300`).
+- Manter transições nativas do Tailwind e Framer Motion (`transition-all duration-300`).
 - Garanta que o design seja totalmente responsivo (mobile-first usando `md` e `lg` do Tailwind).
-- Use placeholders para links e caminhos de imagens.
+- Manter o suporte a Dark Mode em todos os componentes.

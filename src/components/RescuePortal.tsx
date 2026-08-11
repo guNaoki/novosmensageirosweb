@@ -7,8 +7,7 @@ import {
   Shield, 
   Check, 
   AlertCircle, 
-  MapPin, 
-  Play
+  MapPin
 } from 'lucide-react';
 
 interface RescuePortalProps {
@@ -17,23 +16,6 @@ interface RescuePortalProps {
 
 export default function RescuePortal({ onChangeRoute }: RescuePortalProps) {
 
-  // Custom Instagram brand icon since brand icons are deprecated in lucide-react v1+
-  const Instagram = ({ className = "w-5 h-5" }: { className?: string }) => (
-    <svg 
-      xmlns="http://www.w3.org/2000/svg" 
-      viewBox="0 0 24 24" 
-      fill="none" 
-      stroke="currentColor" 
-      strokeWidth="2" 
-      strokeLinecap="round" 
-      strokeLinejoin="round" 
-      className={className}
-    >
-      <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
-      <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
-      <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
-    </svg>
-  );
 
   // Framer Motion Variants
   const fadeInUp = {
@@ -90,17 +72,17 @@ export default function RescuePortal({ onChangeRoute }: RescuePortalProps) {
                 variants={fadeInUp}
                 className="text-4xl md:text-5xl lg:text-6xl font-black text-white tracking-tight leading-tight"
               >
-                Mais do que conteúdos digitais, uma <span className="text-sky-400 relative inline-block hover:scale-[1.02] transition-all duration-300 cursor-default select-none">
-                  rede de resgate
+                Projeto de Resgate: Uma <span className="text-sky-400 relative inline-block hover:scale-[1.02] transition-all duration-300 cursor-default select-none">
+                  mão estendida
                   <span className="absolute bottom-1 left-0 w-full h-[6px] bg-sky-500/30 -z-10 rounded-full"></span>
-                </span> de vidas.
+                </span> no momento de maior dor.
               </motion.h1>
               
               <motion.p 
                 variants={fadeInUp}
                 className="text-lg text-slate-100 leading-relaxed max-w-2xl font-medium"
               >
-                O projeto Novos Mensageiros nasceu para divulgar o Espiritismo de forma leve. Mas quando nossos posts sobre depressão viralizaram, encontramos mais de 400 pessoas em sofrimento profundo precisando de ajuda imediata em comentários das redes sociais. Não podíamos ficar parados e criamos o **Projeto de Resgate**.
+                O <strong className="font-extrabold text-white">Projeto de Resgate</strong> é a frente de ação direta dos Novos Mensageiros. Conversamos com pessoas que estão com <em className="italic font-semibold text-sky-300">depressão</em>. Realizamos o atendimento dessas pessoas, triagem por nível de risco, diálogo fraterno e encaminhamento para profissionais especialistas.
               </motion.p>
               
               <motion.div 
@@ -121,60 +103,53 @@ export default function RescuePortal({ onChangeRoute }: RescuePortalProps) {
                   }}
                   className="inline-flex items-center justify-center bg-white/10 hover:bg-white/20 text-white border border-white/20 font-bold px-7 py-4 rounded-2xl transition-all duration-300 backdrop-blur-md transform hover:-translate-y-0.5 active:scale-95 cursor-pointer text-base"
                 >
-                  Ver Portal de Acolhimento
+                  Voltar ao Portal Principal
                 </button>
               </motion.div>
             </div>
 
-            {/* Metrics & Support Image Card */}
+            {/* Rescue Operational Metrics & Dedicated TikTok Card */}
             <motion.div 
               variants={fadeInUp}
               className="lg:col-span-5 relative animate-fadeIn"
             >
               <div className="absolute inset-0 bg-gradient-to-tr from-sky-500/20 to-primary/30 rounded-3xl blur-3xl -z-10"></div>
               
-              {/* Support Image Cover Card with Metrics */}
               <div className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200/80 dark:border-slate-800 shadow-2xl overflow-hidden group text-left">
-                <div className="relative h-48 w-full bg-slate-100 dark:bg-slate-800 overflow-hidden">
+                <div className="relative h-44 w-full bg-slate-100 dark:bg-slate-800 overflow-hidden">
                   <img 
                     src="https://images.pexels.com/photos/6146693/pexels-photo-6146693.jpeg" 
                     alt="Supportive Hands" 
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-black/20"></div>
-                  <div className="absolute bottom-3 left-3">
+                  <div className="absolute bottom-3 left-3 flex items-center gap-2">
                     <span className="text-xs font-black text-white bg-primary px-3 py-1 rounded-full uppercase tracking-wider shadow-md">
-                      Resgate e Acolhimento
+                      Operação Ativa de Socorro
                     </span>
                   </div>
                 </div>
                 
-                <div className="p-6 grid grid-cols-1 sm:grid-cols-2 gap-4 text-left">
-                  <div className="bg-slate-50 dark:bg-slate-800/80 p-4 rounded-2xl border border-slate-200/80 dark:border-slate-700 hover-lift">
-                    <div className="bg-primary/10 dark:bg-primary/20 w-10 h-10 rounded-xl flex items-center justify-center text-primary dark:text-sky-400 mb-3">
-                      <Instagram className="w-5 h-5" />
+                <div className="p-5 space-y-4 text-left">
+                  <div className="grid grid-cols-2 gap-3">
+                    <div className="bg-slate-50 dark:bg-slate-800/80 p-3.5 rounded-2xl border border-slate-200/80 dark:border-slate-700">
+                      <div className="text-2xl font-black text-primary-dark dark:text-white font-sans">+400</div>
+                      <div className="text-xs font-bold text-slate-700 dark:text-slate-300 mt-0.5">Vidas amparadas no acolhimento direto</div>
                     </div>
-                    <div className="text-2xl font-black text-primary-dark dark:text-white">+60,2 mil</div>
-                    <div className="text-xs font-bold text-slate-700 dark:text-slate-300 mt-1">Seguidores no Instagram</div>
+
+                    <div className="bg-slate-50 dark:bg-slate-800/80 p-3.5 rounded-2xl border border-slate-200/80 dark:border-slate-700">
+                      <div className="text-2xl font-black text-sky-500 dark:text-sky-400 font-sans">24/7</div>
+                      <div className="text-xs font-bold text-slate-700 dark:text-slate-300 mt-0.5">Mapeamento em posts virais</div>
+                    </div>
                   </div>
 
-                  <div className="bg-slate-50 dark:bg-slate-800/80 p-4 rounded-2xl border border-slate-200/80 dark:border-slate-700 hover-lift">
-                    <div className="bg-primary/10 dark:bg-primary/20 w-10 h-10 rounded-xl flex items-center justify-center text-primary dark:text-sky-400 mb-3">
-                      <Play className="w-5 h-5" />
+                  <div className="bg-slate-50 dark:bg-slate-800/80 p-3.5 rounded-2xl border border-slate-200/80 dark:border-slate-700 flex items-center gap-3">
+                    <div className="bg-red-100 dark:bg-red-950/60 w-9 h-9 rounded-xl flex items-center justify-center shrink-0">
+                      <Shield className="w-5 h-5 text-alert-red" />
                     </div>
-                    <div className="text-2xl font-black text-primary-dark dark:text-white">3.7M</div>
-                    <div className="text-xs font-bold text-slate-700 dark:text-slate-300 mt-1">Visualizações no TikTok</div>
-                  </div>
-
-                  <div className="bg-slate-50 dark:bg-slate-800/80 p-4 rounded-2xl border border-slate-200/80 dark:border-slate-700 hover-lift sm:col-span-2">
-                    <div className="flex items-center space-x-4">
-                      <div className="bg-red-50 dark:bg-red-950/50 w-10 h-10 rounded-xl flex items-center justify-center text-alert-red shrink-0 animate-pulse">
-                        <Heart className="w-5 h-5 fill-alert-red text-alert-red" />
-                      </div>
-                      <div>
-                        <div className="text-2xl font-black text-primary-dark dark:text-white font-sans">+400</div>
-                        <div className="text-xs font-bold text-slate-700 dark:text-slate-300 mt-0.5">Desabafos dolorosos de socorro acolhidos</div>
-                      </div>
+                    <div>
+                      <div className="text-xs font-extrabold text-slate-800 dark:text-white">Triagem por Nível de Risco</div>
+                      <div className="text-[11px] text-slate-600 dark:text-slate-300">Avaliação técnica e encaminhamento clínico/espiritual.</div>
                     </div>
                   </div>
                 </div>
@@ -191,8 +166,7 @@ export default function RescuePortal({ onChangeRoute }: RescuePortalProps) {
         <div className="absolute top-10 right-10 w-80 h-80 bg-red-500/10 rounded-full blur-3xl pointer-events-none -z-10 animate-pulse"></div>
         <div className="absolute bottom-10 left-10 w-96 h-96 bg-primary-light/30 dark:bg-primary/20 rounded-full blur-3xl pointer-events-none -z-10 animate-pulse delay-500"></div>
         <div className="max-w-4xl mx-auto px-4 text-center">
-          <div className="max-w-2xl mx-auto space-y-4 mb-16">
-            <span className="text-primary dark:text-sky-400 font-bold text-sm tracking-widest uppercase">O Iceberg das Redes Sociais</span>
+          <div className="max-w-2xl mx-auto space-y-3 mb-16">
             <h2 className="text-3xl md:text-4xl font-black text-primary-dark dark:text-white tracking-tight">
               Os comentários em nossos posts são apenas a ponta do iceberg.
             </h2>
@@ -258,8 +232,7 @@ export default function RescuePortal({ onChangeRoute }: RescuePortalProps) {
         <div className="absolute bottom-10 left-10 w-96 h-96 bg-primary-light/50 dark:bg-primary/20 rounded-full blur-3xl pointer-events-none -z-10 animate-pulse"></div>
         <div className="absolute top-10 right-10 w-80 h-80 bg-sky-100/40 dark:bg-sky-900/20 rounded-full blur-3xl pointer-events-none -z-10 animate-pulse delay-1000"></div>
         <div className="max-w-6xl mx-auto px-4">
-          <div className="text-center max-w-2xl mx-auto space-y-4 mb-16">
-            <span className="text-primary dark:text-sky-400 font-bold text-sm tracking-widest uppercase">Como o Projeto Funciona</span>
+          <div className="text-center max-w-2xl mx-auto space-y-3 mb-16">
             <h2 className="text-3xl md:text-4xl font-black text-primary-dark dark:text-white tracking-tight">
               A Jornada de Resgate e Acolhimento
             </h2>
@@ -279,11 +252,11 @@ export default function RescuePortal({ onChangeRoute }: RescuePortalProps) {
             <motion.div variants={cardVariants} className="bg-white dark:bg-slate-950 p-6 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-md space-y-4 text-left hover-lift">
               <div className="text-5xl font-black text-primary/20 dark:text-sky-400/20 tracking-widest">01</div>
               <div className="bg-primary/10 dark:bg-primary/30 text-primary dark:text-sky-400 w-11 h-11 rounded-xl flex items-center justify-center font-bold">
-                <Instagram className="w-5 h-5 text-primary dark:text-sky-400" />
+                <MessageSquare className="w-5 h-5 text-primary dark:text-sky-400" />
               </div>
-              <h3 className="text-lg font-extrabold text-primary-dark dark:text-white">Contato Inicial</h3>
+              <h3 className="text-lg font-extrabold text-primary-dark dark:text-white">Busca Ativa (TikTok)</h3>
               <p className="text-sm text-slate-700 dark:text-slate-300 leading-relaxed font-medium">
-                Mapeamos ativamente comentários em posts virais nas redes sociais, buscando sinais de sofrimento profundo, vazio e solidão extrema.
+                Utilizamos uma **conta dedicada no TikTok** (@acolhimentomensageiros) para mapear comentários de desespero e ideação suicida em posts virais, abordando as pessoas ativamente e em sigilo.
               </p>
             </motion.div>
 
@@ -291,11 +264,11 @@ export default function RescuePortal({ onChangeRoute }: RescuePortalProps) {
             <motion.div variants={cardVariants} className="bg-white dark:bg-slate-950 p-6 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-md space-y-4 text-left hover-lift">
               <div className="text-5xl font-black text-primary/20 dark:text-sky-400/20 tracking-widest">02</div>
               <div className="bg-primary/10 dark:bg-primary/30 text-primary dark:text-sky-400 w-11 h-11 rounded-xl flex items-center justify-center font-bold">
-                <MessageSquare className="w-5 h-5 text-primary dark:text-sky-400" />
+                <Shield className="w-5 h-5 text-primary dark:text-sky-400" />
               </div>
-              <h3 className="text-lg font-extrabold text-primary-dark dark:text-white">Atendimento Fraterno</h3>
+              <h3 className="text-lg font-extrabold text-primary-dark dark:text-white">Análise de Nível de Risco</h3>
               <p className="text-sm text-slate-700 dark:text-slate-300 leading-relaxed font-medium">
-                Entramos em contato ativo e humanizado. Abrimos uma escuta carinhosa, sem julgamentos, de forma totalmente online e segura no WhatsApp.
+                Analisamos a gravidade e o risco de cada relato. Iniciamos o diálogo fraterno e acolhedor para estabilizar o momento crítico e entender a necessidade real.
               </p>
             </motion.div>
 
@@ -331,8 +304,7 @@ export default function RescuePortal({ onChangeRoute }: RescuePortalProps) {
         {/* Ambient background glows */}
         <div className="absolute top-10 right-10 w-96 h-96 bg-primary-light/40 dark:bg-primary/20 rounded-full blur-3xl pointer-events-none -z-10 animate-pulse"></div>
         <div className="max-w-6xl mx-auto px-4">
-          <div className="text-center max-w-2xl mx-auto space-y-4 mb-16">
-            <span className="text-primary dark:text-sky-400 font-bold text-sm tracking-widest uppercase">Onde você se encaixa</span>
+          <div className="text-center max-w-2xl mx-auto space-y-3 mb-16">
             <h2 className="text-3xl md:text-4xl font-black text-primary-dark dark:text-white tracking-tight">
               A Nossa Rede de Amparo e Resgate
             </h2>
@@ -424,8 +396,7 @@ export default function RescuePortal({ onChangeRoute }: RescuePortalProps) {
       {/* 6. Nossa Trajetória e Linha do Tempo */}
       <section id="historia" className="py-16 md:py-24 bg-slate-50 dark:bg-slate-900 relative overflow-hidden bg-grid-pattern border-t border-slate-200 dark:border-slate-800">
         <div className="max-w-4xl mx-auto px-4 text-center">
-          <div className="max-w-2xl mx-auto space-y-4 mb-16">
-            <span className="text-primary dark:text-sky-400 font-bold text-sm tracking-widest uppercase">Nossa Trajetória</span>
+          <div className="max-w-2xl mx-auto space-y-3 mb-16">
             <h2 className="text-3xl md:text-4xl font-black text-primary-dark dark:text-white tracking-tight">
               A história por trás da Rede de Resgate
             </h2>
@@ -489,9 +460,6 @@ export default function RescuePortal({ onChangeRoute }: RescuePortalProps) {
             </div>
 
             <div className="space-y-3">
-              <span className="text-xs font-extrabold text-whatsapp bg-whatsapp/15 px-3.5 py-1 rounded-full uppercase tracking-wider">
-                Faça Parte do Resgate
-              </span>
               <h3 className="text-2xl md:text-3xl font-black text-primary-dark dark:text-white">Seja um Voluntário</h3>
               <p className="text-sm text-slate-700 dark:text-slate-200 leading-relaxed max-w-md mx-auto font-medium">
                 Para facilitar seu atendimento e integrar você rapidamente na nossa equipe de acolhimento, o processo de voluntariado é feito diretamente pelo nosso WhatsApp.
