@@ -27,7 +27,7 @@ Gere e mantenha a aplicação web em React 19, utilizando Tailwind CSS para a es
 #### A. Portal Novos Mensageiros (`/`)
 1. **Hero Section:** Transmitir luz, consolo e alcance social (+68,9k Instagram, +3.7M TikTok). CTA para explorar acervo ou conhecer o Projeto de Resgate.
 2. **Gerador de Mensagem Diária:** Reflexão inspiradora aleatória.
-3. **Entenda o Espiritismo:** Cards dos princípios fundamentais.
+3. **Entenda o Espiritismo:** Cards dos 5 princípios básicos (pilares) da doutrina.
 4. **Acervo de Recursos:** Abas interativas (Livros PDF, Palestras, Filmes).
 5. **Encontre uma Casa Espírita:** Busca e direcionamento local.
 6. **Chamada em Destaque:** Apresentação do Projeto de Resgate com botão para se voluntariar.

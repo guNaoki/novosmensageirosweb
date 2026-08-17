@@ -352,7 +352,7 @@ export default function SpiritismPortal({ onChangeRoute }: SpiritismPortalProps)
           <div className="max-w-3xl mx-auto space-y-4 mb-16">
             <span className="text-primary font-bold text-sm tracking-widest uppercase">Entendendo a Vida de Forma Lógica</span>
             <h2 className="text-3xl md:text-4xl font-extrabold text-primary-dark tracking-tight">
-              Os 4 Pilares da Doutrina Espírita simplificados
+              Os 5 Princípios Básicos (Pilares) da Doutrina Espírita
             </h2>
             <p className="text-slate-600 leading-relaxed">
               O Espiritismo une ciência, filosofia e moral para explicar de onde viemos, o que estamos fazendo aqui e para onde vamos.
@@ -364,7 +364,7 @@ export default function SpiritismPortal({ onChangeRoute }: SpiritismPortalProps)
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
             variants={staggerContainer}
-            className="grid grid-cols-1 md:grid-cols-2 gap-8 text-left"
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 text-left"
           >
             {/* Pillar 1 */}
             <motion.div 
@@ -374,9 +374,9 @@ export default function SpiritismPortal({ onChangeRoute }: SpiritismPortalProps)
             >
               <div className="space-y-3">
                 <div className="w-8 h-8 rounded-full bg-primary-light text-primary flex items-center justify-center font-bold text-sm">1</div>
-                <h3 className="text-lg font-bold text-primary-dark">Imortalidade da Alma</h3>
+                <h3 className="text-lg font-bold text-primary-dark">Existência de Deus</h3>
                 <p className="text-sm text-slate-500 leading-relaxed">
-                  A morte biológica é apenas a perda da vestimenta física. Nós continuamos vivos como espíritos no plano espiritual, mantendo nossa identidade, laços de afeto e memórias. Os laços de amor nunca morrem.
+                  Deus é a inteligência suprema e a causa primária de todas as coisas, sendo eterno, soberanamente justo e bom.
                 </p>
               </div>
             </motion.div>
@@ -389,9 +389,9 @@ export default function SpiritismPortal({ onChangeRoute }: SpiritismPortalProps)
             >
               <div className="space-y-3">
                 <div className="w-8 h-8 rounded-full bg-primary-light text-primary flex items-center justify-center font-bold text-sm">2</div>
-                <h3 className="text-lg font-bold text-primary-dark">Reencarnação e Evolução</h3>
+                <h3 className="text-lg font-bold text-primary-dark">Imortalidade da Alma</h3>
                 <p className="text-sm text-slate-500 leading-relaxed">
-                  Voltamos à vida corporal múltiplas vezes. A reencarnação não é um castigo, mas uma escola de bênçãos onde aprendemos com os erros do passado, adquirimos sabedoria e expandimos nossa capacidade de amar.
+                  O espírito sobrevive à morte do corpo físico, sendo o mundo espiritual a nossa origem e o nosso destino real.
                 </p>
               </div>
             </motion.div>
@@ -404,9 +404,9 @@ export default function SpiritismPortal({ onChangeRoute }: SpiritismPortalProps)
             >
               <div className="space-y-3">
                 <div className="w-8 h-8 rounded-full bg-primary-light text-primary flex items-center justify-center font-bold text-sm">3</div>
-                <h3 className="text-lg font-bold text-primary-dark">Lei de Ação e Reação</h3>
+                <h3 className="text-lg font-bold text-primary-dark">Pluralidade das Existências (Reencarnação)</h3>
                 <p className="text-sm text-slate-500 leading-relaxed">
-                  Somos 100% livres para escolher nossas atitudes, mas vinculados às consequências delas. Colhemos o bem que plantamos. Isso nos dá total controle e responsabilidade pela nossa própria evolução e futuro.
+                  Os espíritos voltam a nascer em novos corpos físicos várias vezes para aprender, reparar erros e evoluir moralmente.
                 </p>
               </div>
             </motion.div>
@@ -419,9 +419,24 @@ export default function SpiritismPortal({ onChangeRoute }: SpiritismPortalProps)
             >
               <div className="space-y-3">
                 <div className="w-8 h-8 rounded-full bg-primary-light text-primary flex items-center justify-center font-bold text-sm">4</div>
-                <h3 className="text-lg font-bold text-primary-dark">A Caridade como Roteiro</h3>
+                <h3 className="text-lg font-bold text-primary-dark">Comunicabilidade dos Espíritos (Mediunidade)</h3>
                 <p className="text-sm text-slate-500 leading-relaxed">
-                  Fazer o bem de forma ativa a nós mesmos e ao próximo é a essência do ensinamento de Jesus. A caridade material e moral (como o perdão, a tolerância e o consolo) é a chave definitiva da evolução.
+                  É a possibilidade de intercâmbio entre o mundo físico e o mundo espiritual por meio de pessoas médiuns.
+                </p>
+              </div>
+            </motion.div>
+
+            {/* Pillar 5 */}
+            <motion.div 
+              variants={cardVariants}
+              whileHover={{ y: -5, transition: { duration: 0.2 } }}
+              className="bg-slate-50 p-8 rounded-2xl border border-slate-100 flex flex-col justify-between md:col-span-2 lg:col-span-1"
+            >
+              <div className="space-y-3">
+                <div className="w-8 h-8 rounded-full bg-primary-light text-primary flex items-center justify-center font-bold text-sm">5</div>
+                <h3 className="text-lg font-bold text-primary-dark">Pluralidade dos Mundos Habitados</h3>
+                <p className="text-sm text-slate-500 leading-relaxed">
+                  Existem outros planetas além da Terra no universo que possuem vida e espíritos em diferentes estágios de evolução.
                 </p>
               </div>
             </motion.div>
