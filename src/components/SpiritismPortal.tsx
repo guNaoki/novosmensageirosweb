@@ -13,7 +13,15 @@ import {
   Sparkles,
   ExternalLink,
   ChevronDown,
-  ChevronUp
+  ChevronUp,
+  Search,
+  Star,
+  Globe,
+  Flame,
+  MessageCircle,
+  X,
+  Compass as CompassIcon,
+  ShieldAlert
 } from 'lucide-react';
 
 interface SpiritismPortalProps {
@@ -34,8 +42,9 @@ interface ResourceItem {
 
 export default function SpiritismPortal({ onChangeRoute }: SpiritismPortalProps) {
   const [activeTab, setActiveTab] = useState<TabType>('all');
+  const [searchTerm, setSearchTerm] = useState('');
   
-  // Hick's Law: Control showing all resources or only a limited number
+  // Control showing all resources or limited
   const [showAllResources, setShowAllResources] = useState(false);
   
   // Daily Quote state
@@ -171,11 +180,16 @@ export default function SpiritismPortal({ onChangeRoute }: SpiritismPortalProps)
     }
   ];
 
-  // Apply Hick's Law: Filtered resources based on tab
-  const filteredResources = resources.filter(item => activeTab === 'all' || item.category === activeTab);
+  // Filter resources based on active tab and search query
+  const filteredResources = resources.filter(item => {
+    const matchesTab = activeTab === 'all' || item.category === activeTab;
+    const matchesSearch = searchTerm.trim() === '' || 
+      item.title.toLowerCase().includes(searchTerm.toLowerCase()) || 
+      item.description.toLowerCase().includes(searchTerm.toLowerCase());
+    return matchesTab && matchesSearch;
+  });
   
-  // Apply Hick's Law: Limit displayed resources initially (e.g., to 3 items)
-  const displayedResources = showAllResources ? filteredResources : filteredResources.slice(0, 3);
+  const displayedResources = showAllResources ? filteredResources : filteredResources.slice(0, 6);
 
   // Framer Motion Variants
   const fadeInUp = {
@@ -229,19 +243,19 @@ export default function SpiritismPortal({ onChangeRoute }: SpiritismPortalProps)
   );
 
   return (
-    <div className="bg-slate-50 overflow-x-hidden">
+    <div className="bg-slate-50 dark:bg-slate-950 overflow-x-hidden transition-colors duration-300">
       
-      {/* 1. Hero Section */}
+      {/* 1. Hero Section (Apresentação Principal) */}
       <section className="relative pt-36 pb-24 lg:pt-44 lg:pb-32 text-white overflow-hidden bg-slate-950">
-        {/* Full-bleed background image with clear visibility and dark overlay gradient */}
+        {/* Full-bleed background image with dark overlay gradient */}
         <div className="absolute inset-0 -z-10 overflow-hidden">
           <img 
             src="https://images.unsplash.com/photo-1518837695005-2083093ee35b?q=80&w=1920&auto=format&fit=crop" 
             alt="Novos Mensageiros Background" 
-            className="w-full h-full object-cover opacity-55 scale-105 pointer-events-none"
+            className="w-full h-full object-cover opacity-50 scale-105 pointer-events-none"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-slate-950/70 via-slate-950/60 to-slate-950"></div>
-          <div className="absolute inset-0 bg-gradient-to-r from-slate-950/80 via-transparent to-slate-950/80"></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-slate-950/80 via-slate-950/70 to-slate-950"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-slate-950/85 via-transparent to-slate-950/85"></div>
         </div>
 
         {/* Ambient Gradient Glows */}
@@ -256,12 +270,21 @@ export default function SpiritismPortal({ onChangeRoute }: SpiritismPortalProps)
             className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center"
           >
             <div className="lg:col-span-7 space-y-8 text-left">
+              <motion.div 
+                variants={fadeInUp}
+                className="inline-flex items-center space-x-2 bg-sky-500/10 border border-sky-500/20 px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider text-sky-400 backdrop-blur-md"
+              >
+                <Sparkles className="w-3.5 h-3.5" />
+                <span>Novos Mensageiros — Portal Oficial</span>
+              </motion.div>
+
               <motion.h1 
                 variants={fadeInUp}
                 className="text-4xl sm:text-5xl md:text-6xl font-black text-white tracking-tight leading-tight"
               >
-                Novos Mensageiros: <span className="text-sky-400 relative inline-block hover:scale-[1.02] transition-all duration-300 cursor-default select-none">
-                  Luz e Espiritismo
+                Luz, Acolhimento e <br className="hidden sm:inline" />
+                <span className="text-sky-400 relative inline-block hover:scale-[1.02] transition-all duration-300 cursor-default select-none">
+                  Espiritismo
                   <span className="absolute bottom-1 left-0 w-full h-[6px] bg-sky-500/30 -z-10 rounded-full"></span>
                 </span> nas redes sociais.
               </motion.h1>
@@ -270,31 +293,42 @@ export default function SpiritismPortal({ onChangeRoute }: SpiritismPortalProps)
                 variants={fadeInUp}
                 className="text-base sm:text-lg text-slate-200 leading-relaxed max-w-2xl font-medium"
               >
-                Levamos ensinamentos da Doutrina Espírita de forma leve, profunda e acessível através de posts, vídeos e mensagens no Instagram, TikTok e YouTube Shorts. Um farol de esperança para quem busca respostas e consolo para a alma.
+                Levamos ensinamentos da Doutrina Espírita de forma leve, profunda e acolhedora no Instagram, TikTok e YouTube. Um farol de luz e amparo para o seu coração.
               </motion.p>
               
               <motion.div 
                 variants={fadeInUp}
-                className="flex flex-col sm:flex-row gap-4 pt-2 w-full sm:w-auto"
+                className="flex flex-wrap gap-4 pt-2 w-full sm:w-auto"
               >
                 <a 
                   href="https://wa.me/43991711228" 
                   target="_blank" 
                   rel="noopener noreferrer" 
-                  className="inline-flex items-center justify-center bg-whatsapp hover:bg-whatsapp-hover text-white font-extrabold px-7 py-4 rounded-2xl shadow-xl shadow-whatsapp/25 hover:shadow-2xl hover:shadow-whatsapp/35 transition-all duration-300 transform hover:-translate-y-0.5 active:scale-95 group text-base"
+                  className="inline-flex items-center justify-center bg-whatsapp hover:bg-whatsapp-hover text-white font-extrabold px-6 py-3.5 rounded-2xl shadow-xl shadow-whatsapp/25 hover:shadow-whatsapp/35 transition-all duration-300 transform hover:-translate-y-0.5 active:scale-95 text-sm"
                 >
-                  <MessageSquare className="w-5 h-5 mr-2.5 fill-white" />
+                  <MessageSquare className="w-4 h-4 mr-2 fill-white" />
                   Falar no WhatsApp (Acolhimento)
                 </a>
+
                 <button 
                   onClick={() => {
-                    onChangeRoute('#/resgate');
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                    const el = document.getElementById('nossa-historia');
+                    if (el) el.scrollIntoView({ behavior: 'smooth' });
                   }}
-                  className="inline-flex items-center justify-center bg-white/10 hover:bg-white/20 text-white border border-white/20 font-bold px-7 py-4 rounded-2xl transition-all duration-300 backdrop-blur-md transform hover:-translate-y-0.5 active:scale-95 text-base cursor-pointer"
+                  className="inline-flex items-center justify-center bg-white/10 hover:bg-white/20 text-white border border-white/20 font-bold px-6 py-3.5 rounded-2xl transition-all duration-300 backdrop-blur-md transform hover:-translate-y-0.5 active:scale-95 text-sm cursor-pointer"
                 >
-                  Conhecer o Projeto de Resgate
+                  Conhecer Nossa História
                   <ArrowRight className="w-4 h-4 ml-2" />
+                </button>
+
+                <button 
+                  onClick={() => {
+                    const el = document.getElementById('entender');
+                    if (el) el.scrollIntoView({ behavior: 'smooth' });
+                  }}
+                  className="inline-flex items-center justify-center bg-sky-500/20 hover:bg-sky-500/30 text-sky-300 border border-sky-500/30 font-bold px-5 py-3.5 rounded-2xl transition-all duration-300 backdrop-blur-md text-sm cursor-pointer"
+                >
+                  Aprender Espiritismo 📘
                 </button>
               </motion.div>
             </div>
@@ -302,7 +336,7 @@ export default function SpiritismPortal({ onChangeRoute }: SpiritismPortalProps)
             {/* Social Media Metrics Card */}
             <motion.div 
               variants={fadeInUp}
-              className="lg:col-span-5 relative animate-fadeIn"
+              className="lg:col-span-5 relative"
             >
               <div className="absolute inset-0 bg-gradient-to-tr from-sky-500/20 to-primary/30 rounded-3xl blur-3xl -z-10"></div>
               
@@ -342,19 +376,158 @@ export default function SpiritismPortal({ onChangeRoute }: SpiritismPortalProps)
         </div>
       </section>
 
-      {/* 2. O que é o Espiritismo Section */}
-      <section id="entender" className="py-20 md:py-24 bg-white border-y border-slate-200/50 relative bg-grid-pattern overflow-hidden">
+      {/* 2. NOSSA HISTÓRIA & PROPÓSITO (Integrado na Home) */}
+      <section id="nossa-historia" className="py-20 md:py-24 bg-white dark:bg-slate-900 border-b border-slate-200/50 dark:border-slate-800 relative overflow-hidden bg-grid-pattern">
+        <div className="max-w-6xl mx-auto px-4">
+          
+          <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
+            <span className="text-primary dark:text-sky-400 font-extrabold text-xs tracking-widest uppercase bg-primary/10 dark:bg-sky-500/10 px-3.5 py-1.5 rounded-full border border-primary/20 dark:border-sky-500/20 inline-block">
+              📜 Quem Somos & Como Nascemos
+            </span>
+            <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+              A história por trás dos Novos Mensageiros
+            </h2>
+            <p className="text-slate-600 dark:text-slate-300 text-sm md:text-base leading-relaxed">
+              Como um canal de divulgação da Doutrina Espírita nas redes sociais deparou-se com a urgência de acolher e salvar vidas no silêncio dos comentários digitais.
+            </p>
+          </div>
+
+          {/* Storytelling Cards Grid */}
+          <motion.div 
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            variants={staggerContainer}
+            className="grid grid-cols-1 md:grid-cols-3 gap-8 text-left mb-16"
+          >
+            {/* Step 1 */}
+            <motion.div 
+              variants={cardVariants}
+              whileHover={{ y: -5 }}
+              className="bg-slate-50 dark:bg-slate-800/80 p-8 rounded-3xl border border-slate-200/70 dark:border-slate-700/60 shadow-sm flex flex-col justify-between"
+            >
+              <div className="space-y-4">
+                <div className="w-12 h-12 rounded-2xl bg-sky-500/10 text-sky-600 dark:text-sky-400 flex items-center justify-center font-black text-lg border border-sky-500/20">
+                  <CompassIcon className="w-6 h-6 text-sky-500" />
+                </div>
+                <h3 className="text-xl font-extrabold text-slate-900 dark:text-white">1. Sementes Digitais</h3>
+                <p className="text-xs md:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                  O projeto nasceu com a missão simples de semear consolo, esperança e paz através de reflexões diárias da Doutrina Espírita no Instagram e TikTok.
+                </p>
+              </div>
+            </motion.div>
+
+            {/* Step 2 */}
+            <motion.div 
+              variants={cardVariants}
+              whileHover={{ y: -5 }}
+              className="bg-slate-50 dark:bg-slate-800/80 p-8 rounded-3xl border border-slate-200/70 dark:border-slate-700/60 shadow-sm flex flex-col justify-between"
+            >
+              <div className="space-y-4">
+                <div className="w-12 h-12 rounded-2xl bg-red-500/10 text-red-500 flex items-center justify-center font-black text-lg border border-red-500/20">
+                  <ShieldAlert className="w-6 h-6 text-red-500" />
+                </div>
+                <h3 className="text-xl font-extrabold text-slate-900 dark:text-white">2. A Ponta do Iceberg</h3>
+                <p className="text-xs md:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                  Ao viralizarmos conteúdos sobre o vazio da alma e a depressão, os comentários revelaram um pedido de socorro silencioso de centenas de pessoas em sofrimento profundo.
+                </p>
+              </div>
+            </motion.div>
+
+            {/* Step 3 */}
+            <motion.div 
+              variants={cardVariants}
+              whileHover={{ y: -5 }}
+              className="bg-slate-50 dark:bg-slate-800/80 p-8 rounded-3xl border border-slate-200/70 dark:border-slate-700/60 shadow-sm flex flex-col justify-between"
+            >
+              <div className="space-y-4">
+                <div className="w-12 h-12 rounded-2xl bg-emerald-500/10 text-emerald-500 flex items-center justify-center font-black text-lg border border-emerald-500/20">
+                  <Heart className="w-6 h-6 text-emerald-500 fill-emerald-500/20" />
+                </div>
+                <h3 className="text-xl font-extrabold text-slate-900 dark:text-white">3. A Corrente de Resgate</h3>
+                <p className="text-xs md:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                  Criamos uma operação de busca ativa e escuta fraterna para identificar desabafos, dar suporte imediato via WhatsApp e encaminhar para atendimento especializado.
+                </p>
+              </div>
+            </motion.div>
+          </motion.div>
+
+          {/* Social Proof Metric Banner */}
+          <div className="bg-slate-900 text-white p-8 md:p-10 rounded-3xl border border-slate-800 shadow-xl grid grid-cols-1 md:grid-cols-3 gap-8 text-center items-center">
+            <div className="space-y-1">
+              <div className="text-3xl md:text-4xl font-black text-sky-400">8 Voluntários</div>
+              <div className="text-xs text-slate-300 font-medium">Equipe atenta na triagem de mensagens</div>
+            </div>
+            <div className="space-y-1 border-y md:border-y-0 md:border-x border-slate-800 py-4 md:py-0">
+              <div className="text-3xl md:text-4xl font-black text-emerald-400">+400 Pessoas</div>
+              <div className="text-xs text-slate-300 font-medium">Acolhidas e orientadas no WhatsApp</div>
+            </div>
+            <div className="space-y-1">
+              <div className="text-3xl md:text-4xl font-black text-amber-400">3.7 Milhões</div>
+              <div className="text-xs text-slate-300 font-medium">De visualizações de luz nas redes</div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      {/* 3. Consolo Diário (Mensagem Inspiradora Aleatória) */}
+      <AnimatePresence mode="wait">
+        {quoteIndex !== null && (
+          <motion.section 
+            id="consolo-diario"
+            key="consolo-diario-section"
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            className="py-12 bg-slate-900 text-white relative overflow-hidden border-y border-slate-800"
+          >
+            <div className="max-w-4xl mx-auto px-4 text-center">
+              <motion.div 
+                key={quoteIndex}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.3 }}
+                className="space-y-4 py-8"
+              >
+                <span className="text-xs text-sky-400 bg-sky-500/20 px-3.5 py-1.5 rounded-full uppercase tracking-wider font-bold border border-sky-500/30">
+                  🕊️ Mensagem Para o Seu Coração
+                </span>
+                <blockquote className="text-xl md:text-2xl lg:text-3xl font-medium italic tracking-tight leading-relaxed max-w-3xl mx-auto text-slate-100">
+                  "{quotes[quoteIndex].text}"
+                </blockquote>
+                <cite className="block text-sm uppercase tracking-widest font-bold text-sky-300/80 not-italic">
+                  — {quotes[quoteIndex].author}
+                </cite>
+              </motion.div>
+              
+              <button
+                onClick={handleGenerateQuote}
+                className="mt-4 bg-white/10 hover:bg-white/20 text-white text-xs font-bold px-5 py-2.5 rounded-xl border border-white/15 transition-all duration-200 cursor-pointer"
+              >
+                Receber Outra Mensagem
+              </button>
+            </div>
+          </motion.section>
+        )}
+      </AnimatePresence>
+
+      {/* 4. O QUE É O ESPIRITISMO (Os 5 Princípios Básicos em Bento Grid) */}
+      <section id="entender" className="py-20 md:py-24 bg-slate-50 dark:bg-slate-950 border-y border-slate-200/50 dark:border-slate-800 relative bg-grid-pattern overflow-hidden">
         {/* Decorative background glows */}
-        <div className="absolute top-10 left-10 w-80 h-80 bg-primary-light/60 rounded-full blur-3xl pointer-events-none -z-10 animate-pulse"></div>
-        <div className="absolute bottom-10 right-10 w-96 h-96 bg-primary-light/50 rounded-full blur-3xl pointer-events-none -z-10 animate-pulse delay-700"></div>
-        <div className="max-w-5xl mx-auto px-4 text-center">
+        <div className="absolute top-10 left-10 w-80 h-80 bg-sky-200/30 dark:bg-sky-500/10 rounded-full blur-3xl pointer-events-none -z-10 animate-pulse"></div>
+        <div className="absolute bottom-10 right-10 w-96 h-96 bg-primary/10 rounded-full blur-3xl pointer-events-none -z-10 animate-pulse delay-700"></div>
+        <div className="max-w-6xl mx-auto px-4 text-center">
           
           <div className="max-w-3xl mx-auto space-y-4 mb-16">
-            <span className="text-primary font-bold text-sm tracking-widest uppercase">Entendendo a Vida de Forma Lógica</span>
-            <h2 className="text-3xl md:text-4xl font-extrabold text-primary-dark tracking-tight">
+            <span className="text-primary dark:text-sky-400 font-extrabold text-xs tracking-widest uppercase bg-primary/10 dark:bg-sky-500/10 px-3.5 py-1.5 rounded-full border border-primary/20 dark:border-sky-500/20 inline-block">
+              📘 Entendendo a Vida de Forma Lógica
+            </span>
+            <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
               Os 5 Princípios Básicos (Pilares) da Doutrina Espírita
             </h2>
-            <p className="text-slate-600 leading-relaxed">
+            <p className="text-slate-600 dark:text-slate-300 leading-relaxed text-sm md:text-base">
               O Espiritismo une ciência, filosofia e moral para explicar de onde viemos, o que estamos fazendo aqui e para onde vamos.
             </p>
           </div>
@@ -370,12 +543,14 @@ export default function SpiritismPortal({ onChangeRoute }: SpiritismPortalProps)
             <motion.div 
               variants={cardVariants}
               whileHover={{ y: -5, transition: { duration: 0.2 } }}
-              className="bg-slate-50 p-8 rounded-2xl border border-slate-100 flex flex-col justify-between"
+              className="bg-white dark:bg-slate-900 p-8 rounded-3xl border border-slate-200/70 dark:border-slate-800 shadow-sm flex flex-col justify-between"
             >
               <div className="space-y-3">
-                <div className="w-8 h-8 rounded-full bg-primary-light text-primary flex items-center justify-center font-bold text-sm">1</div>
-                <h3 className="text-lg font-bold text-primary-dark">Existência de Deus</h3>
-                <p className="text-sm text-slate-500 leading-relaxed">
+                <div className="w-10 h-10 rounded-xl bg-sky-500/10 text-sky-600 dark:text-sky-400 flex items-center justify-center font-bold text-sm border border-sky-500/20">
+                  <Star className="w-5 h-5 text-sky-500" />
+                </div>
+                <h3 className="text-lg font-extrabold text-slate-900 dark:text-white">1. Existência de Deus</h3>
+                <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
                   Deus é a inteligência suprema e a causa primária de todas as coisas, sendo eterno, soberanamente justo e bom.
                 </p>
               </div>
@@ -385,12 +560,14 @@ export default function SpiritismPortal({ onChangeRoute }: SpiritismPortalProps)
             <motion.div 
               variants={cardVariants}
               whileHover={{ y: -5, transition: { duration: 0.2 } }}
-              className="bg-slate-50 p-8 rounded-2xl border border-slate-100 flex flex-col justify-between"
+              className="bg-white dark:bg-slate-900 p-8 rounded-3xl border border-slate-200/70 dark:border-slate-800 shadow-sm flex flex-col justify-between"
             >
               <div className="space-y-3">
-                <div className="w-8 h-8 rounded-full bg-primary-light text-primary flex items-center justify-center font-bold text-sm">2</div>
-                <h3 className="text-lg font-bold text-primary-dark">Imortalidade da Alma</h3>
-                <p className="text-sm text-slate-500 leading-relaxed">
+                <div className="w-10 h-10 rounded-xl bg-sky-500/10 text-sky-600 dark:text-sky-400 flex items-center justify-center font-bold text-sm border border-sky-500/20">
+                  <Flame className="w-5 h-5 text-sky-500" />
+                </div>
+                <h3 className="text-lg font-extrabold text-slate-900 dark:text-white">2. Imortalidade da Alma</h3>
+                <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
                   O espírito sobrevive à morte do corpo físico, sendo o mundo espiritual a nossa origem e o nosso destino real.
                 </p>
               </div>
@@ -400,12 +577,14 @@ export default function SpiritismPortal({ onChangeRoute }: SpiritismPortalProps)
             <motion.div 
               variants={cardVariants}
               whileHover={{ y: -5, transition: { duration: 0.2 } }}
-              className="bg-slate-50 p-8 rounded-2xl border border-slate-100 flex flex-col justify-between"
+              className="bg-white dark:bg-slate-900 p-8 rounded-3xl border border-slate-200/70 dark:border-slate-800 shadow-sm flex flex-col justify-between"
             >
               <div className="space-y-3">
-                <div className="w-8 h-8 rounded-full bg-primary-light text-primary flex items-center justify-center font-bold text-sm">3</div>
-                <h3 className="text-lg font-bold text-primary-dark">Pluralidade das Existências (Reencarnação)</h3>
-                <p className="text-sm text-slate-500 leading-relaxed">
+                <div className="w-10 h-10 rounded-xl bg-sky-500/10 text-sky-600 dark:text-sky-400 flex items-center justify-center font-bold text-sm border border-sky-500/20">
+                  <CompassIcon className="w-5 h-5 text-sky-500" />
+                </div>
+                <h3 className="text-lg font-extrabold text-slate-900 dark:text-white">3. Pluralidade das Existências (Reencarnação)</h3>
+                <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
                   Os espíritos voltam a nascer em novos corpos físicos várias vezes para aprender, reparar erros e evoluir moralmente.
                 </p>
               </div>
@@ -415,12 +594,14 @@ export default function SpiritismPortal({ onChangeRoute }: SpiritismPortalProps)
             <motion.div 
               variants={cardVariants}
               whileHover={{ y: -5, transition: { duration: 0.2 } }}
-              className="bg-slate-50 p-8 rounded-2xl border border-slate-100 flex flex-col justify-between"
+              className="bg-white dark:bg-slate-900 p-8 rounded-3xl border border-slate-200/70 dark:border-slate-800 shadow-sm flex flex-col justify-between"
             >
               <div className="space-y-3">
-                <div className="w-8 h-8 rounded-full bg-primary-light text-primary flex items-center justify-center font-bold text-sm">4</div>
-                <h3 className="text-lg font-bold text-primary-dark">Comunicabilidade dos Espíritos (Mediunidade)</h3>
-                <p className="text-sm text-slate-500 leading-relaxed">
+                <div className="w-10 h-10 rounded-xl bg-sky-500/10 text-sky-600 dark:text-sky-400 flex items-center justify-center font-bold text-sm border border-sky-500/20">
+                  <MessageCircle className="w-5 h-5 text-sky-500" />
+                </div>
+                <h3 className="text-lg font-extrabold text-slate-900 dark:text-white">4. Comunicabilidade dos Espíritos (Mediunidade)</h3>
+                <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
                   É a possibilidade de intercâmbio entre o mundo físico e o mundo espiritual por meio de pessoas médiuns.
                 </p>
               </div>
@@ -430,12 +611,14 @@ export default function SpiritismPortal({ onChangeRoute }: SpiritismPortalProps)
             <motion.div 
               variants={cardVariants}
               whileHover={{ y: -5, transition: { duration: 0.2 } }}
-              className="bg-slate-50 p-8 rounded-2xl border border-slate-100 flex flex-col justify-between md:col-span-2 lg:col-span-1"
+              className="bg-white dark:bg-slate-900 p-8 rounded-3xl border border-slate-200/70 dark:border-slate-800 shadow-sm flex flex-col justify-between md:col-span-2 lg:col-span-1"
             >
               <div className="space-y-3">
-                <div className="w-8 h-8 rounded-full bg-primary-light text-primary flex items-center justify-center font-bold text-sm">5</div>
-                <h3 className="text-lg font-bold text-primary-dark">Pluralidade dos Mundos Habitados</h3>
-                <p className="text-sm text-slate-500 leading-relaxed">
+                <div className="w-10 h-10 rounded-xl bg-sky-500/10 text-sky-600 dark:text-sky-400 flex items-center justify-center font-bold text-sm border border-sky-500/20">
+                  <Globe className="w-5 h-5 text-sky-500" />
+                </div>
+                <h3 className="text-lg font-extrabold text-slate-900 dark:text-white">5. Pluralidade dos Mundos Habitados</h3>
+                <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
                   Existem outros planetas além da Terra no universo que possuem vida e espíritos em diferentes estágios de evolução.
                 </p>
               </div>
@@ -444,217 +627,45 @@ export default function SpiritismPortal({ onChangeRoute }: SpiritismPortalProps)
         </div>
       </section>
 
-      {/* 3. Interactive Quote Section (Consolo Diário) */}
-      <AnimatePresence mode="wait">
-        {quoteIndex !== null && (
-          <motion.section 
-            id="consolo-diario"
-            key="consolo-diario-section"
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            className="py-12 bg-primary-dark text-white relative overflow-hidden"
-          >
-            <div className="max-w-4xl mx-auto px-4 text-center">
-              <motion.div 
-                key={quoteIndex}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -10 }}
-                transition={{ duration: 0.3 }}
-                className="space-y-4 py-8"
-              >
-                <span className="text-xs text-primary-light bg-primary/30 px-3 py-1 rounded-full uppercase tracking-wider font-bold">
-                  Mensagem Para o Seu Coração
-                </span>
-                <blockquote className="text-xl md:text-2xl lg:text-3xl font-medium italic tracking-tight leading-relaxed max-w-3xl mx-auto">
-                  "{quotes[quoteIndex].text}"
-                </blockquote>
-                <cite className="block text-sm uppercase tracking-widest font-bold text-primary-light/80 not-italic">
-                  — {quotes[quoteIndex].author}
-                </cite>
-              </motion.div>
-              
-              <button
-                onClick={handleGenerateQuote}
-                className="mt-4 bg-white/10 hover:bg-white/20 text-white text-xs font-bold px-4 py-2.5 rounded-lg border border-white/10 transition-all duration-200 cursor-pointer"
-              >
-                Receber Outra Mensagem
-              </button>
-            </div>
-          </motion.section>
-        )}
-      </AnimatePresence>
-
-      {/* 4. Find a Spiritist Center (FEB Link & Guide) */}
-      <section id="buscar-ajuda" className="py-20 md:py-24 bg-slate-50 border-b border-slate-200/35 relative overflow-hidden bg-grid-pattern">
-        {/* Ambient background glows */}
-        <div className="absolute top-1/4 right-5 w-96 h-96 bg-primary-light/60 rounded-full blur-3xl pointer-events-none -z-10 animate-pulse"></div>
-        <div className="max-w-4xl mx-auto px-4">
-          <div className="bg-white rounded-3xl border border-slate-200/60 shadow-xl p-8 md:p-12 text-left relative overflow-hidden space-y-8">
-            <div className="absolute right-0 top-0 translate-x-8 -translate-y-8 text-primary/5 pointer-events-none">
-              <MapPin className="w-64 h-64" />
-            </div>
-
-            <div className="space-y-4 max-w-2xl relative z-10">
-              <span className="text-primary font-bold text-sm tracking-wider uppercase">Procure Amparo Perto de Você</span>
-              <h2 className="text-3xl font-extrabold text-primary-dark tracking-tight">
-                Como encontrar uma Casa Espírita acolhedora?
-              </h2>
-              <p className="text-slate-600 text-sm leading-relaxed">
-                As Casas Espíritas oferecem <strong className="font-bold text-slate-800 dark:text-slate-100">Atendimento Fraterno</strong> (uma conversa acolhedora e privativa), palestras de esclarecimento e <strong className="font-bold text-slate-800 dark:text-slate-100">passes magnéticos</strong> de equilíbrio. Todos os atendimentos são inteiramente gratuitos.
-              </p>
-            </div>
-
-            {/* FEB Link & Direct Search Guide Cards */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 relative z-10">
-              {/* Card 1: Google Maps Guide */}
-              <div className="bg-slate-50 p-6 rounded-2xl border border-slate-200/80 space-y-3">
-                <div className="bg-primary/10 text-primary w-10 h-10 rounded-xl flex items-center justify-center font-bold">
-                  1
-                </div>
-                <h3 className="text-lg font-bold text-primary-dark">Busca no Google Maps</h3>
-                <p className="text-xs text-slate-500 leading-relaxed">
-                  Abra o Google Maps e pesquise por <strong>"Centro Espírita" + nome da sua cidade ou bairro</strong> para ver localizações, rotas e horários de funcionamento.
-                </p>
-              </div>
-
-              {/* Card 2: FEB National Directory */}
-              <div className="bg-slate-50 p-6 rounded-2xl border border-slate-200/80 space-y-3 flex flex-col justify-between">
-                <div className="space-y-3">
-                  <div className="bg-primary/10 text-primary w-10 h-10 rounded-xl flex items-center justify-center font-bold">
-                    2
-                  </div>
-                  <h3 className="text-lg font-bold text-primary-dark">Federação Espírita Brasileira (FEB)</h3>
-                  <p className="text-xs text-slate-500 leading-relaxed">
-                    A FEB reúne o cadastro oficial de federações estaduais e casas espíritas filiadas em todo o território nacional.
-                  </p>
-                </div>
-                <div className="pt-2">
-                  <a
-                    href="https://www.febnet.org.br/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center bg-primary hover:bg-primary-hover text-white font-bold text-xs px-5 py-3 rounded-xl transition-all duration-300 shadow-md hover:shadow-lg w-full"
-                  >
-                    Acessar Portal Oficial da FEB
-                    <ExternalLink className="w-4 h-4 ml-2" />
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            {/* Need immediate WhatsApp guide */}
-            <div className="pt-6 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-4">
-              <span className="text-xs text-slate-500 font-medium">Não achou ou prefere que a gente te ajude?</span>
-              <a
-                href="https://wa.me/43991711228"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-xs font-extrabold text-whatsapp hover:text-whatsapp-hover flex items-center gap-1 group"
-              >
-                Mande uma mensagem e nós pesquisamos um centro pertinho para você
-                <ArrowRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-0.5" />
-              </a>
-            </div>
-
-          </div>
-        </div>
-      </section>
-
-      {/* 5. Projeto Amor Ideal & Mei Mei Section */}
-      <section id="amor-ideal" className="py-20 md:py-24 bg-white border-b border-slate-200/50 relative overflow-hidden bg-grid-pattern">
-        <div className="max-w-5xl mx-auto px-4 text-center">
-          <div className="max-w-2xl mx-auto space-y-3 mb-14">
-            <h2 className="text-3xl md:text-4xl font-extrabold text-primary-dark tracking-tight">
-              Amor Ideal e Centro Espírita Mei Mei
-            </h2>
-            <p className="text-slate-600 text-sm leading-relaxed font-medium">
-              Iniciativas dedicadas à fraternidade, acolhimento espiritual e disseminação de amor e caridade para transformar vidas.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-left">
-            {/* Card 1: Amor Ideal */}
-            <div className="bg-slate-50 p-8 rounded-3xl border border-slate-200/80 shadow-md space-y-6 hover-lift flex flex-col justify-between group">
-              <div className="space-y-4">
-                <div className="h-16 flex items-center">
-                  <div className="bg-white p-3 rounded-2xl border border-slate-200/90 shadow-sm inline-flex items-center justify-center">
-                    <img 
-                      src="/amorideal.png" 
-                      alt="Projeto Amor Ideal" 
-                      className="h-10 w-auto object-contain max-w-full transform group-hover:scale-105 transition-transform duration-300"
-                    />
-                  </div>
-                </div>
-                <h3 className="text-xl font-extrabold text-primary-dark">Projeto Amor Ideal</h3>
-                <p className="text-sm text-slate-600 leading-relaxed font-medium">
-                  Uma obra dedicada ao amparo fraterno, fortalecimento de laços de afeto e promoção da caridade ativa na sociedade.
-                </p>
-              </div>
-              <div className="pt-4 border-t border-slate-200/70">
-                <a 
-                  href="https://www.amorideal.org.br/" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center text-sm font-extrabold text-primary hover:text-primary-hover group/link"
-                >
-                  Conhecer o Projeto Amor Ideal
-                  <ExternalLink className="w-4 h-4 ml-1.5 transition-transform duration-300 group-hover/link:translate-x-0.5" />
-                </a>
-              </div>
-            </div>
-
-            {/* Card 2: Centro Espírita Mei Mei */}
-            <div className="bg-slate-50 p-8 rounded-3xl border border-slate-200/80 shadow-md space-y-6 hover-lift flex flex-col justify-between group">
-              <div className="space-y-4">
-                <div className="h-16 flex items-center">
-                  <div className="bg-white p-3 rounded-2xl border border-slate-200/90 shadow-sm inline-flex items-center justify-center">
-                    <img 
-                      src="/meimei.png" 
-                      alt="Centro Espírita Mei Mei" 
-                      className="h-10 w-auto object-contain max-w-full transform group-hover:scale-105 transition-transform duration-300"
-                    />
-                  </div>
-                </div>
-                <h3 className="text-xl font-extrabold text-primary-dark">Centro Espírita Mei Mei</h3>
-                <p className="text-sm text-slate-600 leading-relaxed font-medium">
-                  Instituição dedicada ao estudo espírita, palestras consoladoras, passe e trabalhos assistenciais inspirados no espírito Mei Mei.
-                </p>
-              </div>
-              <div className="pt-4 border-t border-slate-200/70">
-                <a 
-                  href="https://www.centroespiritameimei.com.br/" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center text-sm font-extrabold text-primary hover:text-primary-hover group/link"
-                >
-                  Visitar Centro Espírita Mei Mei
-                  <ExternalLink className="w-4 h-4 ml-1.5 transition-transform duration-300 group-hover/link:translate-x-0.5" />
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 6. Recommended Resources Section (Materiais Consoladores) */}
-      <section id="materiais" className="py-20 md:py-24 bg-primary-light/10 border-y border-primary-light/20 relative bg-grid-pattern overflow-hidden">
-        {/* Ambient background glows */}
-        <div className="absolute top-10 left-10 w-96 h-96 bg-sky-100/30 rounded-full blur-3xl pointer-events-none -z-10 animate-pulse"></div>
-        <div className="absolute bottom-10 right-10 w-96 h-96 bg-primary-light/20 rounded-full blur-3xl pointer-events-none -z-10 animate-pulse delay-500"></div>
+      {/* 5. ACERVO DE MATERIAIS RECOMENDADOS (Com Busca ao Vivo) */}
+      <section id="materiais" className="py-20 md:py-24 bg-white dark:bg-slate-900 border-y border-slate-200/50 dark:border-slate-800 relative overflow-hidden bg-grid-pattern">
         <div className="max-w-6xl mx-auto px-4">
-          <div className="text-center max-w-2xl mx-auto space-y-4 mb-12">
-            <span className="text-primary font-bold text-sm tracking-widest uppercase">Luz, Conforto e Informação</span>
-            <h2 className="text-3xl md:text-4xl font-extrabold text-primary-dark tracking-tight">
+          
+          <div className="text-center max-w-2xl mx-auto space-y-4 mb-10">
+            <span className="text-primary dark:text-sky-400 font-extrabold text-xs tracking-widest uppercase bg-primary/10 dark:bg-sky-500/10 px-3.5 py-1.5 rounded-full border border-primary/20 dark:border-sky-500/20 inline-block">
+              📚 Luz, Conforto e Informação
+            </span>
+            <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
               Materiais Gratuitos Recomendados
             </h2>
-            <p className="text-slate-600">
-              Assista a palestras, leia obras fundamentais em PDF ou veja indicações de filmes inspiradores sobre a vida além da matéria.
+            <p className="text-slate-600 dark:text-slate-300 text-sm">
+              Assista a palestras, leia obras fundamentais em PDF ou veja indicações de filmes inspiradores sobre a vida espiritual.
             </p>
           </div>
 
-          {/* Interactive resource category tabs */}
+          {/* Interactive Live Search Bar */}
+          <div className="max-w-md mx-auto mb-8 relative">
+            <div className="relative flex items-center">
+              <Search className="w-5 h-5 text-slate-400 absolute left-4 pointer-events-none" />
+              <input
+                type="text"
+                placeholder="Pesquisar por título ou palavra-chave (ex: Kardec, Nosso Lar)..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="w-full pl-12 pr-10 py-3.5 rounded-2xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-white placeholder-slate-400 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-primary dark:focus:ring-sky-400 transition-all shadow-inner"
+              />
+              {searchTerm && (
+                <button
+                  onClick={() => setSearchTerm('')}
+                  className="absolute right-3 p-1 rounded-full text-slate-400 hover:text-slate-600 dark:hover:text-white"
+                >
+                  <X className="w-4 h-4" />
+                </button>
+              )}
+            </div>
+          </div>
+
+          {/* Category Tabs */}
           <div className="flex flex-wrap justify-center gap-2 mb-10">
             {(['all', 'lectures', 'books', 'movies'] as const).map((tab) => {
               const labelMap = {
@@ -671,12 +682,12 @@ export default function SpiritismPortal({ onChangeRoute }: SpiritismPortalProps)
                   key={tab}
                   onClick={() => {
                     setActiveTab(tab);
-                    setShowAllResources(false); // Reset Hick's Law show all limit on tab change
+                    setShowAllResources(false);
                   }}
-                  className={`relative inline-flex items-center px-4 py-2.5 rounded-xl text-sm font-bold transition-all duration-200 cursor-pointer overflow-hidden ${
+                  className={`relative inline-flex items-center px-4 py-2.5 rounded-xl text-xs md:text-sm font-bold transition-all duration-200 cursor-pointer ${
                     isSelected 
-                      ? 'bg-primary text-white shadow-md' 
-                      : 'bg-white text-slate-600 border border-slate-200 hover:border-slate-300'
+                      ? 'bg-primary dark:bg-sky-500 text-white shadow-md' 
+                      : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:border-slate-300'
                   }`}
                 >
                   {tab !== 'all' && <Icon className="w-4 h-4 mr-1.5" />}
@@ -689,7 +700,7 @@ export default function SpiritismPortal({ onChangeRoute }: SpiritismPortalProps)
           {/* Resources Grid */}
           <motion.div 
             layout
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 text-left"
           >
             <AnimatePresence mode="popLayout">
               {displayedResources.map((item) => (
@@ -698,62 +709,57 @@ export default function SpiritismPortal({ onChangeRoute }: SpiritismPortalProps)
                   initial={{ opacity: 0, scale: 0.95 }}
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.95 }}
-                  transition={{ duration: 0.4 }}
+                  transition={{ duration: 0.3 }}
                   key={item.title}
-                  className="bg-white rounded-2xl border border-slate-200/50 shadow-sm flex flex-col justify-between hover-lift text-left overflow-hidden group"
+                  className="bg-slate-50 dark:bg-slate-800/80 rounded-2xl border border-slate-200/70 dark:border-slate-700/60 shadow-sm flex flex-col justify-between hover-lift overflow-hidden group"
                 >
                   <div className="flex flex-col">
-                    {/* Cover/Placeholder Image with Zoom Effect */}
-                    <div className="relative aspect-video w-full overflow-hidden bg-slate-100">
+                    <div className="relative aspect-video w-full overflow-hidden bg-slate-100 dark:bg-slate-900">
                       <img 
                         src={item.imageUrl} 
                         alt={item.title} 
                         className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                         loading="lazy"
                       />
-                      
-                      {/* Floating Category Badge */}
                       <div className="absolute top-3 left-3 z-10">
-                        <span className="text-[11px] font-bold text-primary-dark bg-white/95 backdrop-blur-sm px-2.5 py-1 rounded-full shadow-sm flex items-center gap-1.5 border border-slate-100">
-                          {item.category === 'books' && <BookMarked className="w-3.5 h-3.5 text-primary" />}
-                          {item.category === 'lectures' && <Video className="w-3.5 h-3.5 text-primary" />}
-                          {item.category === 'movies' && <Film className="w-3.5 h-3.5 text-primary" />}
+                        <span className="text-[11px] font-bold text-slate-800 dark:text-slate-100 bg-white/90 dark:bg-slate-900/90 backdrop-blur-sm px-2.5 py-1 rounded-full shadow-sm flex items-center gap-1.5 border border-slate-100 dark:border-slate-800">
+                          {item.category === 'books' && <BookMarked className="w-3.5 h-3.5 text-primary dark:text-sky-400" />}
+                          {item.category === 'lectures' && <Video className="w-3.5 h-3.5 text-primary dark:text-sky-400" />}
+                          {item.category === 'movies' && <Film className="w-3.5 h-3.5 text-primary dark:text-sky-400" />}
                           {item.badge}
                         </span>
                       </div>
                     </div>
 
-                    {/* Card Content */}
                     <div className="p-6 space-y-3">
-                      <h4 className="text-lg font-bold text-primary-dark leading-snug group-hover:text-primary transition-colors duration-200">
+                      <h4 className="text-base font-bold text-slate-900 dark:text-white leading-snug group-hover:text-primary dark:group-hover:text-sky-400 transition-colors">
                         {item.title}
                       </h4>
-                      <p className="text-sm text-slate-500 leading-relaxed line-clamp-3">
+                      <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed line-clamp-3">
                         {item.description}
                       </p>
                     </div>
                   </div>
 
-                  {/* Card Footer Actions */}
                   <div className="px-6 pb-6 pt-0 flex flex-col mt-auto">
                     {item.platforms && (
                       <div className="flex flex-wrap gap-1.5 mb-4">
                         {item.platforms.map((plat, pidx) => (
-                          <span key={pidx} className="text-[10px] font-bold text-slate-500 bg-slate-100 border border-slate-200 px-2 py-0.5 rounded">
+                          <span key={pidx} className="text-[10px] font-bold text-slate-500 dark:text-slate-400 bg-slate-200/60 dark:bg-slate-700/60 border border-slate-300/60 dark:border-slate-600/60 px-2 py-0.5 rounded">
                             {plat}
                           </span>
                         ))}
                       </div>
                     )}
-                    <div className="border-t border-slate-100 pt-4 w-full">
+                    <div className="border-t border-slate-200/60 dark:border-slate-700/60 pt-4 w-full">
                       <a 
                         href={item.link} 
                         target="_blank" 
                         rel="noopener noreferrer"
-                        className="inline-flex items-center text-sm font-bold text-primary hover:text-primary-hover group/link"
+                        className="inline-flex items-center text-xs font-extrabold text-primary dark:text-sky-400 hover:text-primary-hover group/link"
                       >
                         {item.category === 'books' ? 'Acessar Livro (PDF)' : item.category === 'movies' ? 'Onde Assistir' : 'Assistir Palestra'}
-                        <ExternalLink className="w-4 h-4 ml-1.5 transition-transform duration-300 group-hover/link:translate-x-0.5" />
+                        <ExternalLink className="w-3.5 h-3.5 ml-1.5 transition-transform duration-300 group-hover/link:translate-x-0.5" />
                       </a>
                     </div>
                   </div>
@@ -762,12 +768,19 @@ export default function SpiritismPortal({ onChangeRoute }: SpiritismPortalProps)
             </AnimatePresence>
           </motion.div>
 
-          {/* Hick's Law: "Ver mais" toggle button to prevent choice overload */}
-          {filteredResources.length > 3 && (
-            <motion.div layout className="mt-12 text-center">
+          {/* Fallback state when search yields no results */}
+          {displayedResources.length === 0 && (
+            <div className="py-12 text-center text-slate-500 dark:text-slate-400 text-sm">
+              Nenhum material encontrado para "<span className="font-semibold">{searchTerm}</span>". Tente pesquisar com outros termos.
+            </div>
+          )}
+
+          {/* "Ver mais" toggle button */}
+          {filteredResources.length > 6 && (
+            <motion.div layout className="mt-10 text-center">
               <button
                 onClick={() => setShowAllResources(!showAllResources)}
-                className="inline-flex items-center justify-center bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 font-bold px-6 py-3 rounded-xl transition-all duration-200 cursor-pointer shadow-sm text-sm"
+                className="inline-flex items-center justify-center bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 font-bold px-6 py-3 rounded-xl transition-all duration-200 cursor-pointer shadow-sm text-xs"
               >
                 {showAllResources ? (
                   <>
@@ -776,7 +789,7 @@ export default function SpiritismPortal({ onChangeRoute }: SpiritismPortalProps)
                   </>
                 ) : (
                   <>
-                    Mostrar Mais Recursos ({filteredResources.length - 3} itens)
+                    Mostrar Mais Recursos ({filteredResources.length - 6} itens)
                     <ChevronDown className="w-4 h-4 ml-1.5" />
                   </>
                 )}
@@ -787,16 +800,147 @@ export default function SpiritismPortal({ onChangeRoute }: SpiritismPortalProps)
         </div>
       </section>
 
-      {/* 6. Recruiting Call to Action (Transição para Resgate) */}
-      <section className="bg-primary-dark text-white py-16 relative overflow-hidden">
+      {/* 6. ENCONTRAR UMA CASA ESPÍRITA */}
+      <section id="buscar-ajuda" className="py-20 md:py-24 bg-slate-50 dark:bg-slate-950 border-b border-slate-200/50 dark:border-slate-800 relative overflow-hidden bg-grid-pattern">
+        <div className="max-w-4xl mx-auto px-4">
+          <div className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200/70 dark:border-slate-800 shadow-xl p-8 md:p-12 text-left relative overflow-hidden space-y-8">
+            <div className="absolute right-0 top-0 translate-x-8 -translate-y-8 text-primary/5 dark:text-sky-400/5 pointer-events-none">
+              <MapPin className="w-64 h-64" />
+            </div>
+
+            <div className="space-y-4 max-w-2xl relative z-10">
+              <span className="text-primary dark:text-sky-400 font-extrabold text-xs tracking-wider uppercase">Procure Amparo Perto de Você</span>
+              <h2 className="text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+                Como encontrar uma Casa Espírita acolhedora?
+              </h2>
+              <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
+                As Casas Espíritas oferecem <strong className="font-bold text-slate-800 dark:text-slate-100">Atendimento Fraterno</strong> (conversa privativa e acolhedora), palestras explicativas e <strong className="font-bold text-slate-800 dark:text-slate-100">passes magnéticos</strong> de reequilíbrio. Todos os serviços são 100% gratuitos.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 relative z-10">
+              <div className="bg-slate-50 dark:bg-slate-800/60 p-6 rounded-2xl border border-slate-200/70 dark:border-slate-700/60 space-y-3">
+                <div className="bg-primary/10 text-primary dark:text-sky-400 w-10 h-10 rounded-xl flex items-center justify-center font-bold">
+                  1
+                </div>
+                <h3 className="text-base font-bold text-slate-900 dark:text-white">Busca no Google Maps</h3>
+                <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+                  Pesquise no Google Maps por <strong>"Centro Espírita" + sua cidade ou bairro</strong> para ver rotas e horários de funcionamento.
+                </p>
+              </div>
+
+              <div className="bg-slate-50 dark:bg-slate-800/60 p-6 rounded-2xl border border-slate-200/70 dark:border-slate-700/60 space-y-3 flex flex-col justify-between">
+                <div className="space-y-3">
+                  <div className="bg-primary/10 text-primary dark:text-sky-400 w-10 h-10 rounded-xl flex items-center justify-center font-bold">
+                    2
+                  </div>
+                  <h3 className="text-base font-bold text-slate-900 dark:text-white">Federação Espírita Brasileira (FEB)</h3>
+                  <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+                    A FEB reúne o cadastro oficial de casas espíritas filiadas em todo o Brasil.
+                  </p>
+                </div>
+                <div className="pt-2">
+                  <a
+                    href="https://www.febnet.org.br/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center bg-primary hover:bg-primary-hover text-white font-bold text-xs px-5 py-3 rounded-xl transition-all duration-300 shadow-md w-full"
+                  >
+                    Acessar Portal Oficial da FEB
+                    <ExternalLink className="w-4 h-4 ml-2" />
+                  </a>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      {/* 7. PROJETOS PARCEIROS (Amor Ideal & Mei Mei) */}
+      <section id="amor-ideal" className="py-20 md:py-24 bg-white dark:bg-slate-900 border-b border-slate-200/50 dark:border-slate-800 relative overflow-hidden bg-grid-pattern">
+        <div className="max-w-5xl mx-auto px-4 text-center">
+          <div className="max-w-2xl mx-auto space-y-3 mb-14">
+            <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+              Amor Ideal e Centro Espírita Mei Mei
+            </h2>
+            <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed font-medium">
+              Iniciativas dedicadas à fraternidade, acolhimento espiritual e disseminação de amor ativo.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-left">
+            <div className="bg-slate-50 dark:bg-slate-800/80 p-8 rounded-3xl border border-slate-200/70 dark:border-slate-700/60 shadow-md space-y-6 hover-lift flex flex-col justify-between group">
+              <div className="space-y-4">
+                <div className="h-16 flex items-center">
+                  <div className="bg-white p-3 rounded-2xl border border-slate-200/90 shadow-sm inline-flex items-center justify-center">
+                    <img 
+                      src="/amorideal.png" 
+                      alt="Projeto Amor Ideal" 
+                      className="h-10 w-auto object-contain max-w-full transform group-hover:scale-105 transition-transform duration-300"
+                    />
+                  </div>
+                </div>
+                <h3 className="text-xl font-extrabold text-slate-900 dark:text-white">Projeto Amor Ideal</h3>
+                <p className="text-xs md:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                  Uma obra dedicada ao amparo fraterno, fortalecimento de laços de afeto e promoção da caridade ativa na sociedade.
+                </p>
+              </div>
+              <div className="pt-4 border-t border-slate-200/70 dark:border-slate-700">
+                <a 
+                  href="https://www.amorideal.org.br/" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center text-xs font-extrabold text-primary dark:text-sky-400 hover:text-primary-hover group/link"
+                >
+                  Conhecer o Projeto Amor Ideal
+                  <ExternalLink className="w-4 h-4 ml-1.5 transition-transform duration-300 group-hover/link:translate-x-0.5" />
+                </a>
+              </div>
+            </div>
+
+            <div className="bg-slate-50 dark:bg-slate-800/80 p-8 rounded-3xl border border-slate-200/70 dark:border-slate-700/60 shadow-md space-y-6 hover-lift flex flex-col justify-between group">
+              <div className="space-y-4">
+                <div className="h-16 flex items-center">
+                  <div className="bg-white p-3 rounded-2xl border border-slate-200/90 shadow-sm inline-flex items-center justify-center">
+                    <img 
+                      src="/meimei.png" 
+                      alt="Centro Espírita Mei Mei" 
+                      className="h-10 w-auto object-contain max-w-full transform group-hover:scale-105 transition-transform duration-300"
+                    />
+                  </div>
+                </div>
+                <h3 className="text-xl font-extrabold text-slate-900 dark:text-white">Centro Espírita Mei Mei</h3>
+                <p className="text-xs md:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                  Instituição dedicada ao estudo espírita, palestras consoladoras, passe e trabalhos assistenciais inspirados no espírito Mei Mei.
+                </p>
+              </div>
+              <div className="pt-4 border-t border-slate-200/70 dark:border-slate-700">
+                <a 
+                  href="https://www.centroespiritameimei.com.br/" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center text-xs font-extrabold text-primary dark:text-sky-400 hover:text-primary-hover group/link"
+                >
+                  Visitar Centro Espírita Mei Mei
+                  <ExternalLink className="w-4 h-4 ml-1.5 transition-transform duration-300 group-hover/link:translate-x-0.5" />
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 8. RECRUITING CALL TO ACTION (Transição para Resgate) */}
+      <section className="bg-slate-900 text-white py-16 relative overflow-hidden border-t border-slate-800">
         <div className="absolute right-0 bottom-0 translate-x-20 translate-y-20 opacity-5">
           <Heart className="w-96 h-96 fill-white" />
         </div>
         
         <div className="max-w-4xl mx-auto px-4 text-center space-y-6 relative z-10">
           <h2 className="text-3xl font-extrabold tracking-tight">Quer fazer a diferença conosco voluntariamente?</h2>
-          <p className="text-primary-light/90 max-w-2xl mx-auto text-sm leading-relaxed">
-            Se você já conhece a doutrina, representa uma Casa Espírita, atua profissionalmente como Psicólogo ou simplesmente deseja doar um pouco do seu tempo nas redes sociais para mapear dores e salvar vidas, conheça o nosso <strong className="font-extrabold text-white">Projeto de Resgate</strong>.
+          <p className="text-slate-300 max-w-2xl mx-auto text-sm leading-relaxed">
+            Se você deseja doar um pouco do seu tempo nas redes sociais para mapear dores e salvar vidas, seja como voluntário digital, Psicólogo parceiro ou Casa Espírita, conheça o nosso <strong className="font-extrabold text-white">Projeto de Resgate</strong>.
           </p>
           <div className="pt-2">
             <button
@@ -804,7 +948,7 @@ export default function SpiritismPortal({ onChangeRoute }: SpiritismPortalProps)
                 onChangeRoute('#/resgate');
                 window.scrollTo({ top: 0, behavior: 'smooth' });
               }}
-              className="inline-flex items-center justify-center bg-primary hover:bg-primary-hover text-white font-extrabold px-6 py-3 rounded-xl shadow-lg border border-primary-light/10 transition-all duration-300 cursor-pointer"
+              className="inline-flex items-center justify-center bg-primary hover:bg-primary-hover text-white font-extrabold px-6 py-3 rounded-xl shadow-lg border border-sky-400/20 transition-all duration-300 cursor-pointer"
             >
               Conhecer o Projeto de Resgate
               <ArrowRight className="w-4 h-4 ml-2" />

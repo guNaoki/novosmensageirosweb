@@ -71,7 +71,15 @@ export default function Navbar({ currentRoute, onChangeRoute, darkMode, onToggle
               Início
             </button>
 
-            {/* Link 2: Espiritismo Dropdown */}
+            {/* Link 2: Nossa História */}
+            <button
+              onClick={() => handleNavigate('#/', 'nossa-historia')}
+              className="hover:text-primary dark:hover:text-sky-400 transition-colors cursor-pointer py-2 text-slate-600 dark:text-slate-200"
+            >
+              Nossa História
+            </button>
+
+            {/* Link 3: Espiritismo Dropdown */}
             <div className="relative">
               <button
                 onClick={() => toggleDropdown('espiritismo')}
@@ -80,7 +88,7 @@ export default function Navbar({ currentRoute, onChangeRoute, darkMode, onToggle
                   activeDropdown === 'espiritismo' ? 'text-primary dark:text-sky-400' : ''
                 }`}
               >
-                Espiritismo
+                Aprender Espiritismo
                 <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${activeDropdown === 'espiritismo' ? 'rotate-180' : ''}`} />
               </button>
               
@@ -95,7 +103,14 @@ export default function Navbar({ currentRoute, onChangeRoute, darkMode, onToggle
                     className="w-full flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800 transition text-slate-700 dark:text-slate-200 hover:text-primary dark:hover:text-sky-400 cursor-pointer text-xs font-bold"
                   >
                     <HelpCircle className="w-4 h-4 text-primary dark:text-sky-400" />
-                    Princípios Básicos
+                    5 Princípios Básicos
+                  </button>
+                  <button
+                    onClick={() => handleNavigate('#/', 'materiais')}
+                    className="w-full flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800 transition text-slate-700 dark:text-slate-200 hover:text-primary dark:hover:text-sky-400 cursor-pointer text-xs font-bold"
+                  >
+                    <Star className="w-4 h-4 text-primary dark:text-sky-400" />
+                    Livros, Vídeos & Filmes
                   </button>
                   <button
                     onClick={() => handleNavigate('#/', 'buscar-ajuda')}
@@ -103,13 +118,6 @@ export default function Navbar({ currentRoute, onChangeRoute, darkMode, onToggle
                   >
                     <Compass className="w-4 h-4 text-primary dark:text-sky-400" />
                     Achar um Centro (FEB)
-                  </button>
-                  <button
-                    onClick={() => handleNavigate('#/', 'materiais')}
-                    className="w-full flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800 transition text-slate-700 dark:text-slate-200 hover:text-primary dark:hover:text-sky-400 cursor-pointer text-xs font-bold"
-                  >
-                    <Star className="w-4 h-4 text-primary dark:text-sky-400" />
-                    Materiais de Apoio
                   </button>
                   <button
                     onClick={() => handleNavigate('#/', 'amor-ideal')}
@@ -122,14 +130,14 @@ export default function Navbar({ currentRoute, onChangeRoute, darkMode, onToggle
               )}
             </div>
 
-            {/* Link 3: O Projeto (Single unified route) */}
+            {/* Link 4: O Projeto (Single unified route) */}
             <button
               onClick={() => handleNavigate('#/resgate')}
               className={`hover:text-primary dark:hover:text-sky-400 transition-colors cursor-pointer py-2 ${
                 currentRoute === '#/resgate' ? 'text-primary dark:text-sky-400 border-b-2 border-primary dark:border-sky-400' : ''
               }`}
             >
-              O Projeto Resgate
+              Projeto Resgate
             </button>
           </div>
 
@@ -195,6 +203,12 @@ export default function Navbar({ currentRoute, onChangeRoute, darkMode, onToggle
               className="w-full text-left py-2.5 px-4 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/80 font-semibold text-slate-700 dark:text-slate-200 hover:text-primary dark:hover:text-sky-400 cursor-pointer text-sm transition-colors"
             >
               Início (Acolhimento)
+            </button>
+            <button
+              onClick={() => handleNavigate('#/', 'nossa-historia')}
+              className="w-full text-left py-2.5 px-4 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/80 font-semibold text-slate-700 dark:text-slate-200 hover:text-primary dark:hover:text-sky-400 cursor-pointer text-sm transition-colors"
+            >
+              Nossa História
             </button>
             
             <div className="border-t border-slate-100 dark:border-slate-800 my-1"></div>
