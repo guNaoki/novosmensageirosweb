@@ -229,7 +229,7 @@ export default function SpiritismPortal({ onChangeRoute }: SpiritismPortalProps)
   );
 
   return (
-    <div className="bg-slate-50 overflow-x-hidden">
+    <div className="bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-100 transition-colors duration-300 overflow-x-hidden">
       
       {/* 1. Hero Section */}
       <section className="relative pt-36 pb-24 lg:pt-44 lg:pb-32 text-white overflow-hidden bg-slate-950">

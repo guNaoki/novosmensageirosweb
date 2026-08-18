@@ -39,7 +39,7 @@ export default function RescuePortal({ onChangeRoute }: RescuePortalProps) {
   };
 
   return (
-    <div className="bg-slate-50 overflow-x-hidden">
+    <div className="bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-100 transition-colors duration-300 overflow-x-hidden">
       
       {/* 2. Hero Section (O Propósito) */}
       <section id="proposito" className="relative pt-32 pb-16 lg:pt-40 lg:pb-24 bg-slate-950 text-white overflow-hidden">
