@@ -343,18 +343,18 @@ export default function SpiritismPortal({ onChangeRoute }: SpiritismPortalProps)
       </section>
 
       {/* 2. O que é o Espiritismo Section */}
-      <section id="entender" className="py-20 md:py-24 bg-white border-y border-slate-200/50 relative bg-grid-pattern overflow-hidden">
+      <section id="entender" className="py-20 md:py-24 bg-white dark:bg-slate-950 border-y border-slate-200/50 dark:border-slate-800 relative bg-grid-pattern overflow-hidden">
         {/* Decorative background glows */}
-        <div className="absolute top-10 left-10 w-80 h-80 bg-primary-light/60 rounded-full blur-3xl pointer-events-none -z-10 animate-pulse"></div>
-        <div className="absolute bottom-10 right-10 w-96 h-96 bg-primary-light/50 rounded-full blur-3xl pointer-events-none -z-10 animate-pulse delay-700"></div>
+        <div className="absolute top-10 left-10 w-80 h-80 bg-primary-light/60 dark:bg-primary/20 rounded-full blur-3xl pointer-events-none -z-10 animate-pulse"></div>
+        <div className="absolute bottom-10 right-10 w-96 h-96 bg-primary-light/50 dark:bg-sky-500/10 rounded-full blur-3xl pointer-events-none -z-10 animate-pulse delay-700"></div>
         <div className="max-w-5xl mx-auto px-4 text-center">
           
           <div className="max-w-3xl mx-auto space-y-4 mb-16">
-            <span className="text-primary font-bold text-sm tracking-widest uppercase">Entendendo a Vida de Forma Lógica</span>
-            <h2 className="text-3xl md:text-4xl font-extrabold text-primary-dark tracking-tight">
+            <span className="text-primary dark:text-sky-400 font-bold text-sm tracking-widest uppercase">Entendendo a Vida de Forma Lógica</span>
+            <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
               Os 5 Princípios Básicos (Pilares) da Doutrina Espírita
             </h2>
-            <p className="text-slate-600 leading-relaxed">
+            <p className="text-slate-600 dark:text-slate-300 leading-relaxed">
               O Espiritismo une ciência, filosofia e moral para explicar de onde viemos, o que estamos fazendo aqui e para onde vamos.
             </p>
           </div>
@@ -370,12 +370,12 @@ export default function SpiritismPortal({ onChangeRoute }: SpiritismPortalProps)
             <motion.div 
               variants={cardVariants}
               whileHover={{ y: -5, transition: { duration: 0.2 } }}
-              className="bg-slate-50 p-8 rounded-2xl border border-slate-100 flex flex-col justify-between"
+              className="bg-slate-50 dark:bg-slate-900 p-8 rounded-2xl border border-slate-200/80 dark:border-slate-800 flex flex-col justify-between"
             >
               <div className="space-y-3">
-                <div className="w-8 h-8 rounded-full bg-primary-light text-primary flex items-center justify-center font-bold text-sm">1</div>
-                <h3 className="text-lg font-bold text-primary-dark">Existência de Deus</h3>
-                <p className="text-sm text-slate-500 leading-relaxed">
+                <div className="w-8 h-8 rounded-full bg-primary-light dark:bg-sky-500/20 text-primary dark:text-sky-400 flex items-center justify-center font-bold text-sm">1</div>
+                <h3 className="text-lg font-bold text-slate-900 dark:text-white">Existência de Deus</h3>
+                <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
                   Deus é a inteligência suprema e a causa primária de todas as coisas, sendo eterno, soberanamente justo e bom.
                 </p>
               </div>
@@ -385,12 +385,12 @@ export default function SpiritismPortal({ onChangeRoute }: SpiritismPortalProps)
             <motion.div 
               variants={cardVariants}
               whileHover={{ y: -5, transition: { duration: 0.2 } }}
-              className="bg-slate-50 p-8 rounded-2xl border border-slate-100 flex flex-col justify-between"
+              className="bg-slate-50 dark:bg-slate-900 p-8 rounded-2xl border border-slate-200/80 dark:border-slate-800 flex flex-col justify-between"
             >
               <div className="space-y-3">
-                <div className="w-8 h-8 rounded-full bg-primary-light text-primary flex items-center justify-center font-bold text-sm">2</div>
-                <h3 className="text-lg font-bold text-primary-dark">Imortalidade da Alma</h3>
-                <p className="text-sm text-slate-500 leading-relaxed">
+                <div className="w-8 h-8 rounded-full bg-primary-light dark:bg-sky-500/20 text-primary dark:text-sky-400 flex items-center justify-center font-bold text-sm">2</div>
+                <h3 className="text-lg font-bold text-slate-900 dark:text-white">Imortalidade da Alma</h3>
+                <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
                   O espírito sobrevive à morte do corpo físico, sendo o mundo espiritual a nossa origem e o nosso destino real.
                 </p>
               </div>
@@ -400,12 +400,12 @@ export default function SpiritismPortal({ onChangeRoute }: SpiritismPortalProps)
             <motion.div 
               variants={cardVariants}
               whileHover={{ y: -5, transition: { duration: 0.2 } }}
-              className="bg-slate-50 p-8 rounded-2xl border border-slate-100 flex flex-col justify-between"
+              className="bg-slate-50 dark:bg-slate-900 p-8 rounded-2xl border border-slate-200/80 dark:border-slate-800 flex flex-col justify-between"
             >
               <div className="space-y-3">
-                <div className="w-8 h-8 rounded-full bg-primary-light text-primary flex items-center justify-center font-bold text-sm">3</div>
-                <h3 className="text-lg font-bold text-primary-dark">Pluralidade das Existências (Reencarnação)</h3>
-                <p className="text-sm text-slate-500 leading-relaxed">
+                <div className="w-8 h-8 rounded-full bg-primary-light dark:bg-sky-500/20 text-primary dark:text-sky-400 flex items-center justify-center font-bold text-sm">3</div>
+                <h3 className="text-lg font-bold text-slate-900 dark:text-white">Pluralidade das Existências (Reencarnação)</h3>
+                <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
                   Os espíritos voltam a nascer em novos corpos físicos várias vezes para aprender, reparar erros e evoluir moralmente.
                 </p>
               </div>
@@ -415,12 +415,12 @@ export default function SpiritismPortal({ onChangeRoute }: SpiritismPortalProps)
             <motion.div 
               variants={cardVariants}
               whileHover={{ y: -5, transition: { duration: 0.2 } }}
-              className="bg-slate-50 p-8 rounded-2xl border border-slate-100 flex flex-col justify-between"
+              className="bg-slate-50 dark:bg-slate-900 p-8 rounded-2xl border border-slate-200/80 dark:border-slate-800 flex flex-col justify-between"
             >
               <div className="space-y-3">
-                <div className="w-8 h-8 rounded-full bg-primary-light text-primary flex items-center justify-center font-bold text-sm">4</div>
-                <h3 className="text-lg font-bold text-primary-dark">Comunicabilidade dos Espíritos (Mediunidade)</h3>
-                <p className="text-sm text-slate-500 leading-relaxed">
+                <div className="w-8 h-8 rounded-full bg-primary-light dark:bg-sky-500/20 text-primary dark:text-sky-400 flex items-center justify-center font-bold text-sm">4</div>
+                <h3 className="text-lg font-bold text-slate-900 dark:text-white">Comunicabilidade dos Espíritos (Mediunidade)</h3>
+                <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
                   É a possibilidade de intercâmbio entre o mundo físico e o mundo espiritual por meio de pessoas médiuns.
                 </p>
               </div>
@@ -430,12 +430,12 @@ export default function SpiritismPortal({ onChangeRoute }: SpiritismPortalProps)
             <motion.div 
               variants={cardVariants}
               whileHover={{ y: -5, transition: { duration: 0.2 } }}
-              className="bg-slate-50 p-8 rounded-2xl border border-slate-100 flex flex-col justify-between md:col-span-2 lg:col-span-1"
+              className="bg-slate-50 dark:bg-slate-900 p-8 rounded-2xl border border-slate-200/80 dark:border-slate-800 flex flex-col justify-between md:col-span-2 lg:col-span-1"
             >
               <div className="space-y-3">
-                <div className="w-8 h-8 rounded-full bg-primary-light text-primary flex items-center justify-center font-bold text-sm">5</div>
-                <h3 className="text-lg font-bold text-primary-dark">Pluralidade dos Mundos Habitados</h3>
-                <p className="text-sm text-slate-500 leading-relaxed">
+                <div className="w-8 h-8 rounded-full bg-primary-light dark:bg-sky-500/20 text-primary dark:text-sky-400 flex items-center justify-center font-bold text-sm">5</div>
+                <h3 className="text-lg font-bold text-slate-900 dark:text-white">Pluralidade dos Mundos Habitados</h3>
+                <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
                   Existem outros planetas além da Terra no universo que possuem vida e espíritos em diferentes estágios de evolução.
                 </p>
               </div>
@@ -453,7 +453,7 @@ export default function SpiritismPortal({ onChangeRoute }: SpiritismPortalProps)
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="py-12 bg-primary-dark text-white relative overflow-hidden"
+            className="py-12 bg-slate-900 dark:bg-slate-900 text-white relative overflow-hidden"
           >
             <div className="max-w-4xl mx-auto px-4 text-center">
               <motion.div 
@@ -464,13 +464,13 @@ export default function SpiritismPortal({ onChangeRoute }: SpiritismPortalProps)
                 transition={{ duration: 0.3 }}
                 className="space-y-4 py-8"
               >
-                <span className="text-xs text-primary-light bg-primary/30 px-3 py-1 rounded-full uppercase tracking-wider font-bold">
+                <span className="text-xs text-sky-400 bg-sky-500/20 px-3 py-1 rounded-full uppercase tracking-wider font-bold">
                   Mensagem Para o Seu Coração
                 </span>
                 <blockquote className="text-xl md:text-2xl lg:text-3xl font-medium italic tracking-tight leading-relaxed max-w-3xl mx-auto">
                   "{quotes[quoteIndex].text}"
                 </blockquote>
-                <cite className="block text-sm uppercase tracking-widest font-bold text-primary-light/80 not-italic">
+                <cite className="block text-sm uppercase tracking-widest font-bold text-sky-300/80 not-italic">
                   — {quotes[quoteIndex].author}
                 </cite>
               </motion.div>
@@ -487,21 +487,21 @@ export default function SpiritismPortal({ onChangeRoute }: SpiritismPortalProps)
       </AnimatePresence>
 
       {/* 4. Find a Spiritist Center (FEB Link & Guide) */}
-      <section id="buscar-ajuda" className="py-20 md:py-24 bg-slate-50 border-b border-slate-200/35 relative overflow-hidden bg-grid-pattern">
+      <section id="buscar-ajuda" className="py-20 md:py-24 bg-slate-50 dark:bg-slate-950 border-b border-slate-200/35 dark:border-slate-800 relative overflow-hidden bg-grid-pattern">
         {/* Ambient background glows */}
-        <div className="absolute top-1/4 right-5 w-96 h-96 bg-primary-light/60 rounded-full blur-3xl pointer-events-none -z-10 animate-pulse"></div>
+        <div className="absolute top-1/4 right-5 w-96 h-96 bg-primary-light/60 dark:bg-sky-500/10 rounded-full blur-3xl pointer-events-none -z-10 animate-pulse"></div>
         <div className="max-w-4xl mx-auto px-4">
-          <div className="bg-white rounded-3xl border border-slate-200/60 shadow-xl p-8 md:p-12 text-left relative overflow-hidden space-y-8">
-            <div className="absolute right-0 top-0 translate-x-8 -translate-y-8 text-primary/5 pointer-events-none">
+          <div className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200/60 dark:border-slate-800 shadow-xl p-8 md:p-12 text-left relative overflow-hidden space-y-8">
+            <div className="absolute right-0 top-0 translate-x-8 -translate-y-8 text-primary/5 dark:text-sky-400/5 pointer-events-none">
               <MapPin className="w-64 h-64" />
             </div>
 
             <div className="space-y-4 max-w-2xl relative z-10">
-              <span className="text-primary font-bold text-sm tracking-wider uppercase">Procure Amparo Perto de Você</span>
-              <h2 className="text-3xl font-extrabold text-primary-dark tracking-tight">
+              <span className="text-primary dark:text-sky-400 font-bold text-sm tracking-wider uppercase">Procure Amparo Perto de Você</span>
+              <h2 className="text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
                 Como encontrar uma Casa Espírita acolhedora?
               </h2>
-              <p className="text-slate-600 text-sm leading-relaxed">
+              <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
                 As Casas Espíritas oferecem <strong className="font-bold text-slate-800 dark:text-slate-100">Atendimento Fraterno</strong> (uma conversa acolhedora e privativa), palestras de esclarecimento e <strong className="font-bold text-slate-800 dark:text-slate-100">passes magnéticos</strong> de equilíbrio. Todos os atendimentos são inteiramente gratuitos.
               </p>
             </div>
@@ -509,24 +509,24 @@ export default function SpiritismPortal({ onChangeRoute }: SpiritismPortalProps)
             {/* FEB Link & Direct Search Guide Cards */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 relative z-10">
               {/* Card 1: Google Maps Guide */}
-              <div className="bg-slate-50 p-6 rounded-2xl border border-slate-200/80 space-y-3">
-                <div className="bg-primary/10 text-primary w-10 h-10 rounded-xl flex items-center justify-center font-bold">
+              <div className="bg-slate-50 dark:bg-slate-800/60 p-6 rounded-2xl border border-slate-200/80 dark:border-slate-700 space-y-3">
+                <div className="bg-primary/10 dark:bg-sky-500/20 text-primary dark:text-sky-400 w-10 h-10 rounded-xl flex items-center justify-center font-bold">
                   1
                 </div>
-                <h3 className="text-lg font-bold text-primary-dark">Busca no Google Maps</h3>
-                <p className="text-xs text-slate-500 leading-relaxed">
+                <h3 className="text-lg font-bold text-slate-900 dark:text-white">Busca no Google Maps</h3>
+                <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
                   Abra o Google Maps e pesquise por <strong>"Centro Espírita" + nome da sua cidade ou bairro</strong> para ver localizações, rotas e horários de funcionamento.
                 </p>
               </div>
 
               {/* Card 2: FEB National Directory */}
-              <div className="bg-slate-50 p-6 rounded-2xl border border-slate-200/80 space-y-3 flex flex-col justify-between">
+              <div className="bg-slate-50 dark:bg-slate-800/60 p-6 rounded-2xl border border-slate-200/80 dark:border-slate-700 space-y-3 flex flex-col justify-between">
                 <div className="space-y-3">
-                  <div className="bg-primary/10 text-primary w-10 h-10 rounded-xl flex items-center justify-center font-bold">
+                  <div className="bg-primary/10 dark:bg-sky-500/20 text-primary dark:text-sky-400 w-10 h-10 rounded-xl flex items-center justify-center font-bold">
                     2
                   </div>
-                  <h3 className="text-lg font-bold text-primary-dark">Federação Espírita Brasileira (FEB)</h3>
-                  <p className="text-xs text-slate-500 leading-relaxed">
+                  <h3 className="text-lg font-bold text-slate-900 dark:text-white">Federação Espírita Brasileira (FEB)</h3>
+                  <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
                     A FEB reúne o cadastro oficial de federações estaduais e casas espíritas filiadas em todo o território nacional.
                   </p>
                 </div>
@@ -545,8 +545,8 @@ export default function SpiritismPortal({ onChangeRoute }: SpiritismPortalProps)
             </div>
 
             {/* Need immediate WhatsApp guide */}
-            <div className="pt-6 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-4">
-              <span className="text-xs text-slate-500 font-medium">Não achou ou prefere que a gente te ajude?</span>
+            <div className="pt-6 border-t border-slate-100 dark:border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-4">
+              <span className="text-xs text-slate-500 dark:text-slate-400 font-medium">Não achou ou prefere que a gente te ajude?</span>
               <a
                 href="https://wa.me/43991711228"
                 target="_blank"
@@ -563,20 +563,20 @@ export default function SpiritismPortal({ onChangeRoute }: SpiritismPortalProps)
       </section>
 
       {/* 5. Projeto Amor Ideal & Mei Mei Section */}
-      <section id="amor-ideal" className="py-20 md:py-24 bg-white border-b border-slate-200/50 relative overflow-hidden bg-grid-pattern">
+      <section id="amor-ideal" className="py-20 md:py-24 bg-white dark:bg-slate-900 border-b border-slate-200/50 dark:border-slate-800 relative overflow-hidden bg-grid-pattern">
         <div className="max-w-5xl mx-auto px-4 text-center">
           <div className="max-w-2xl mx-auto space-y-3 mb-14">
-            <h2 className="text-3xl md:text-4xl font-extrabold text-primary-dark tracking-tight">
+            <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
               Amor Ideal e Centro Espírita Mei Mei
             </h2>
-            <p className="text-slate-600 text-sm leading-relaxed font-medium">
+            <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed font-medium">
               Iniciativas dedicadas à fraternidade, acolhimento espiritual e disseminação de amor e caridade para transformar vidas.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-left">
             {/* Card 1: Amor Ideal */}
-            <div className="bg-slate-50 p-8 rounded-3xl border border-slate-200/80 shadow-md space-y-6 hover-lift flex flex-col justify-between group">
+            <div className="bg-slate-50 dark:bg-slate-800/80 p-8 rounded-3xl border border-slate-200/80 dark:border-slate-700 shadow-md space-y-6 hover-lift flex flex-col justify-between group">
               <div className="space-y-4">
                 <div className="h-16 flex items-center">
                   <div className="bg-white p-3 rounded-2xl border border-slate-200/90 shadow-sm inline-flex items-center justify-center">
@@ -587,17 +587,17 @@ export default function SpiritismPortal({ onChangeRoute }: SpiritismPortalProps)
                     />
                   </div>
                 </div>
-                <h3 className="text-xl font-extrabold text-primary-dark">Projeto Amor Ideal</h3>
-                <p className="text-sm text-slate-600 leading-relaxed font-medium">
+                <h3 className="text-xl font-extrabold text-slate-900 dark:text-white">Projeto Amor Ideal</h3>
+                <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-medium">
                   Uma obra dedicada ao amparo fraterno, fortalecimento de laços de afeto e promoção da caridade ativa na sociedade.
                 </p>
               </div>
-              <div className="pt-4 border-t border-slate-200/70">
+              <div className="pt-4 border-t border-slate-200/70 dark:border-slate-700">
                 <a 
                   href="https://www.amorideal.org.br/" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="inline-flex items-center text-sm font-extrabold text-primary hover:text-primary-hover group/link"
+                  className="inline-flex items-center text-sm font-extrabold text-primary dark:text-sky-400 hover:text-primary-hover group/link"
                 >
                   Conhecer o Projeto Amor Ideal
                   <ExternalLink className="w-4 h-4 ml-1.5 transition-transform duration-300 group-hover/link:translate-x-0.5" />
@@ -606,7 +606,7 @@ export default function SpiritismPortal({ onChangeRoute }: SpiritismPortalProps)
             </div>
 
             {/* Card 2: Centro Espírita Mei Mei */}
-            <div className="bg-slate-50 p-8 rounded-3xl border border-slate-200/80 shadow-md space-y-6 hover-lift flex flex-col justify-between group">
+            <div className="bg-slate-50 dark:bg-slate-800/80 p-8 rounded-3xl border border-slate-200/80 dark:border-slate-700 shadow-md space-y-6 hover-lift flex flex-col justify-between group">
               <div className="space-y-4">
                 <div className="h-16 flex items-center">
                   <div className="bg-white p-3 rounded-2xl border border-slate-200/90 shadow-sm inline-flex items-center justify-center">
@@ -617,17 +617,17 @@ export default function SpiritismPortal({ onChangeRoute }: SpiritismPortalProps)
                     />
                   </div>
                 </div>
-                <h3 className="text-xl font-extrabold text-primary-dark">Centro Espírita Mei Mei</h3>
-                <p className="text-sm text-slate-600 leading-relaxed font-medium">
+                <h3 className="text-xl font-extrabold text-slate-900 dark:text-white">Centro Espírita Mei Mei</h3>
+                <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-medium">
                   Instituição dedicada ao estudo espírita, palestras consoladoras, passe e trabalhos assistenciais inspirados no espírito Mei Mei.
                 </p>
               </div>
-              <div className="pt-4 border-t border-slate-200/70">
+              <div className="pt-4 border-t border-slate-200/70 dark:border-slate-700">
                 <a 
                   href="https://www.centroespiritameimei.com.br/" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="inline-flex items-center text-sm font-extrabold text-primary hover:text-primary-hover group/link"
+                  className="inline-flex items-center text-sm font-extrabold text-primary dark:text-sky-400 hover:text-primary-hover group/link"
                 >
                   Visitar Centro Espírita Mei Mei
                   <ExternalLink className="w-4 h-4 ml-1.5 transition-transform duration-300 group-hover/link:translate-x-0.5" />
@@ -639,17 +639,17 @@ export default function SpiritismPortal({ onChangeRoute }: SpiritismPortalProps)
       </section>
 
       {/* 6. Recommended Resources Section (Materiais Consoladores) */}
-      <section id="materiais" className="py-20 md:py-24 bg-primary-light/10 border-y border-primary-light/20 relative bg-grid-pattern overflow-hidden">
+      <section id="materiais" className="py-20 md:py-24 bg-slate-50 dark:bg-slate-950 border-y border-slate-200/50 dark:border-slate-800 relative bg-grid-pattern overflow-hidden">
         {/* Ambient background glows */}
-        <div className="absolute top-10 left-10 w-96 h-96 bg-sky-100/30 rounded-full blur-3xl pointer-events-none -z-10 animate-pulse"></div>
-        <div className="absolute bottom-10 right-10 w-96 h-96 bg-primary-light/20 rounded-full blur-3xl pointer-events-none -z-10 animate-pulse delay-500"></div>
+        <div className="absolute top-10 left-10 w-96 h-96 bg-sky-100/30 dark:bg-sky-500/10 rounded-full blur-3xl pointer-events-none -z-10 animate-pulse"></div>
+        <div className="absolute bottom-10 right-10 w-96 h-96 bg-primary-light/20 dark:bg-primary/10 rounded-full blur-3xl pointer-events-none -z-10 animate-pulse delay-500"></div>
         <div className="max-w-6xl mx-auto px-4">
           <div className="text-center max-w-2xl mx-auto space-y-4 mb-12">
-            <span className="text-primary font-bold text-sm tracking-widest uppercase">Luz, Conforto e Informação</span>
-            <h2 className="text-3xl md:text-4xl font-extrabold text-primary-dark tracking-tight">
+            <span className="text-primary dark:text-sky-400 font-bold text-sm tracking-widest uppercase">Luz, Conforto e Informação</span>
+            <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
               Materiais Gratuitos Recomendados
             </h2>
-            <p className="text-slate-600">
+            <p className="text-slate-600 dark:text-slate-300">
               Assista a palestras, leia obras fundamentais em PDF ou veja indicações de filmes inspiradores sobre a vida além da matéria.
             </p>
           </div>
@@ -671,12 +671,12 @@ export default function SpiritismPortal({ onChangeRoute }: SpiritismPortalProps)
                   key={tab}
                   onClick={() => {
                     setActiveTab(tab);
-                    setShowAllResources(false); // Reset Hick's Law show all limit on tab change
+                    setShowAllResources(false);
                   }}
                   className={`relative inline-flex items-center px-4 py-2.5 rounded-xl text-sm font-bold transition-all duration-200 cursor-pointer overflow-hidden ${
                     isSelected 
-                      ? 'bg-primary text-white shadow-md' 
-                      : 'bg-white text-slate-600 border border-slate-200 hover:border-slate-300'
+                      ? 'bg-primary dark:bg-sky-500 text-white shadow-md' 
+                      : 'bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:border-slate-300'
                   }`}
                 >
                   {tab !== 'all' && <Icon className="w-4 h-4 mr-1.5" />}
@@ -700,11 +700,11 @@ export default function SpiritismPortal({ onChangeRoute }: SpiritismPortalProps)
                   exit={{ opacity: 0, scale: 0.95 }}
                   transition={{ duration: 0.4 }}
                   key={item.title}
-                  className="bg-white rounded-2xl border border-slate-200/50 shadow-sm flex flex-col justify-between hover-lift text-left overflow-hidden group"
+                  className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200/50 dark:border-slate-800 shadow-sm flex flex-col justify-between hover-lift text-left overflow-hidden group"
                 >
                   <div className="flex flex-col">
                     {/* Cover/Placeholder Image with Zoom Effect */}
-                    <div className="relative aspect-video w-full overflow-hidden bg-slate-100">
+                    <div className="relative aspect-video w-full overflow-hidden bg-slate-100 dark:bg-slate-800">
                       <img 
                         src={item.imageUrl} 
                         alt={item.title} 
@@ -714,10 +714,10 @@ export default function SpiritismPortal({ onChangeRoute }: SpiritismPortalProps)
                       
                       {/* Floating Category Badge */}
                       <div className="absolute top-3 left-3 z-10">
-                        <span className="text-[11px] font-bold text-primary-dark bg-white/95 backdrop-blur-sm px-2.5 py-1 rounded-full shadow-sm flex items-center gap-1.5 border border-slate-100">
-                          {item.category === 'books' && <BookMarked className="w-3.5 h-3.5 text-primary" />}
-                          {item.category === 'lectures' && <Video className="w-3.5 h-3.5 text-primary" />}
-                          {item.category === 'movies' && <Film className="w-3.5 h-3.5 text-primary" />}
+                        <span className="text-[11px] font-bold text-slate-800 dark:text-slate-100 bg-white/95 dark:bg-slate-900/95 backdrop-blur-sm px-2.5 py-1 rounded-full shadow-sm flex items-center gap-1.5 border border-slate-100 dark:border-slate-800">
+                          {item.category === 'books' && <BookMarked className="w-3.5 h-3.5 text-primary dark:text-sky-400" />}
+                          {item.category === 'lectures' && <Video className="w-3.5 h-3.5 text-primary dark:text-sky-400" />}
+                          {item.category === 'movies' && <Film className="w-3.5 h-3.5 text-primary dark:text-sky-400" />}
                           {item.badge}
                         </span>
                       </div>
@@ -725,10 +725,10 @@ export default function SpiritismPortal({ onChangeRoute }: SpiritismPortalProps)
 
                     {/* Card Content */}
                     <div className="p-6 space-y-3">
-                      <h4 className="text-lg font-bold text-primary-dark leading-snug group-hover:text-primary transition-colors duration-200">
+                      <h4 className="text-lg font-bold text-slate-900 dark:text-white leading-snug group-hover:text-primary dark:group-hover:text-sky-400 transition-colors duration-200">
                         {item.title}
                       </h4>
-                      <p className="text-sm text-slate-500 leading-relaxed line-clamp-3">
+                      <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed line-clamp-3">
                         {item.description}
                       </p>
                     </div>
@@ -739,18 +739,18 @@ export default function SpiritismPortal({ onChangeRoute }: SpiritismPortalProps)
                     {item.platforms && (
                       <div className="flex flex-wrap gap-1.5 mb-4">
                         {item.platforms.map((plat, pidx) => (
-                          <span key={pidx} className="text-[10px] font-bold text-slate-500 bg-slate-100 border border-slate-200 px-2 py-0.5 rounded">
+                          <span key={pidx} className="text-[10px] font-bold text-slate-500 dark:text-slate-400 bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-2 py-0.5 rounded">
                             {plat}
                           </span>
                         ))}
                       </div>
                     )}
-                    <div className="border-t border-slate-100 pt-4 w-full">
+                    <div className="border-t border-slate-100 dark:border-slate-800 pt-4 w-full">
                       <a 
                         href={item.link} 
                         target="_blank" 
                         rel="noopener noreferrer"
-                        className="inline-flex items-center text-sm font-bold text-primary hover:text-primary-hover group/link"
+                        className="inline-flex items-center text-sm font-bold text-primary dark:text-sky-400 hover:text-primary-hover group/link"
                       >
                         {item.category === 'books' ? 'Acessar Livro (PDF)' : item.category === 'movies' ? 'Onde Assistir' : 'Assistir Palestra'}
                         <ExternalLink className="w-4 h-4 ml-1.5 transition-transform duration-300 group-hover/link:translate-x-0.5" />
@@ -767,7 +767,7 @@ export default function SpiritismPortal({ onChangeRoute }: SpiritismPortalProps)
             <motion.div layout className="mt-12 text-center">
               <button
                 onClick={() => setShowAllResources(!showAllResources)}
-                className="inline-flex items-center justify-center bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 font-bold px-6 py-3 rounded-xl transition-all duration-200 cursor-pointer shadow-sm text-sm"
+                className="inline-flex items-center justify-center bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 font-bold px-6 py-3 rounded-xl transition-all duration-200 cursor-pointer shadow-sm text-sm"
               >
                 {showAllResources ? (
                   <>
@@ -788,14 +788,14 @@ export default function SpiritismPortal({ onChangeRoute }: SpiritismPortalProps)
       </section>
 
       {/* 6. Recruiting Call to Action (Transição para Resgate) */}
-      <section className="bg-primary-dark text-white py-16 relative overflow-hidden">
+      <section className="bg-slate-900 dark:bg-slate-950 text-white py-16 relative overflow-hidden border-t border-slate-800">
         <div className="absolute right-0 bottom-0 translate-x-20 translate-y-20 opacity-5">
           <Heart className="w-96 h-96 fill-white" />
         </div>
         
         <div className="max-w-4xl mx-auto px-4 text-center space-y-6 relative z-10">
           <h2 className="text-3xl font-extrabold tracking-tight">Quer fazer a diferença conosco voluntariamente?</h2>
-          <p className="text-primary-light/90 max-w-2xl mx-auto text-sm leading-relaxed">
+          <p className="text-slate-300 dark:text-slate-300 max-w-2xl mx-auto text-sm leading-relaxed">
             Se você já conhece a doutrina, representa uma Casa Espírita, atua profissionalmente como Psicólogo ou simplesmente deseja doar um pouco do seu tempo nas redes sociais para mapear dores e salvar vidas, conheça o nosso <strong className="font-extrabold text-white">Projeto de Resgate</strong>.
           </p>
           <div className="pt-2">
