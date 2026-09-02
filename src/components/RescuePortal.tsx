@@ -41,24 +41,24 @@ export default function RescuePortal({ onChangeRoute }: RescuePortalProps) {
     <div className="bg-slate-50 dark:bg-slate-950 overflow-x-hidden transition-colors duration-300">
       
       {/* 2. Hero Section (O Propósito) */}
-      <section id="proposito" className="relative pt-32 pb-16 lg:pt-40 lg:pb-24 bg-gradient-to-b from-sky-100/70 via-blue-50/40 to-slate-50 dark:from-slate-950/70 dark:via-slate-950/85 dark:to-slate-950 text-slate-900 dark:text-white overflow-hidden transition-colors duration-300">
+      <section id="proposito" className="relative pt-32 pb-16 lg:pt-40 lg:pb-24 bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-white overflow-hidden transition-colors duration-300">
         {/* Full-bleed background image with clear overlay */}
-        <div className="absolute inset-0 -z-20 overflow-hidden">
+        <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
           <img 
             src="https://images.unsplash.com/photo-1516880711640-ef7db81be3e1?q=80&w=1600&auto=format&fit=crop" 
             alt="Supportive hands background" 
-            className="w-full h-full object-cover opacity-15 dark:opacity-50 mix-blend-multiply dark:mix-blend-screen scale-105 pointer-events-none"
+            className="w-full h-full object-cover opacity-25 dark:opacity-40 mix-blend-multiply dark:mix-blend-screen scale-105 pointer-events-none"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-sky-50/80 via-sky-50/90 to-slate-50 dark:from-slate-950/70 dark:via-slate-950/85 dark:to-slate-950"></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-sky-50/70 via-sky-50/80 to-slate-50 dark:from-slate-950/70 dark:via-slate-950/85 dark:to-slate-950"></div>
           {/* Subtle grid pattern overlay */}
           <div className="absolute inset-0 bg-grid-pattern dark:bg-grid-dark opacity-35"></div>
         </div>
 
         {/* Ambient Gradient Glows */}
-        <div className="ambient-glow top-20 left-10 w-96 h-96 bg-primary/20 dark:bg-primary/40 pointer-events-none"></div>
-        <div className="ambient-glow bottom-20 right-10 w-[450px] h-[450px] bg-sky-500/15 dark:bg-sky-500/25 pointer-events-none" style={{ animationDelay: '-4s' }}></div>
+        <div className="ambient-glow top-20 left-10 w-96 h-96 bg-primary/20 dark:bg-primary/40 pointer-events-none z-0"></div>
+        <div className="ambient-glow bottom-20 right-10 w-[450px] h-[450px] bg-sky-500/15 dark:bg-sky-500/25 pointer-events-none z-0" style={{ animationDelay: '-4s' }}></div>
 
-        <div className="max-w-6xl mx-auto px-4">
+        <div className="max-w-6xl mx-auto px-4 relative z-10">
           <motion.div 
             initial="hidden"
             animate="visible"

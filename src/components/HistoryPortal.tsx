@@ -70,13 +70,13 @@ export default function HistoryPortal({ onChangeRoute }: HistoryPortalProps) {
     <div className="bg-slate-50 dark:bg-slate-950 overflow-x-hidden text-left transition-colors duration-300">
       
       {/* 1. Hero Section with parallax-style background */}
-      <section className="relative pt-36 pb-24 lg:pt-44 lg:pb-36 bg-gradient-to-b from-sky-100/70 via-blue-50/40 to-slate-50 dark:from-slate-950/60 dark:via-slate-950/90 dark:to-slate-950 text-slate-900 dark:text-white overflow-hidden transition-colors duration-300">
+      <section className="relative pt-36 pb-24 lg:pt-44 lg:pb-36 bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-white overflow-hidden transition-colors duration-300">
         {/* Full-bleed background image with overlay */}
-        <div className="absolute inset-0 -z-20 overflow-hidden">
+        <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
           <img 
             src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1600&auto=format&fit=crop" 
             alt="History pathway background" 
-            className="w-full h-full object-cover opacity-15 dark:opacity-35 mix-blend-multiply dark:mix-blend-screen scale-105 pointer-events-none"
+            className="w-full h-full object-cover opacity-25 dark:opacity-35 mix-blend-multiply dark:mix-blend-screen scale-105 pointer-events-none"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-sky-50/80 via-sky-50/90 to-slate-50 dark:from-slate-950/60 dark:via-slate-950/90 dark:to-slate-950"></div>
           {/* Subtle grid pattern overlay */}
@@ -84,9 +84,9 @@ export default function HistoryPortal({ onChangeRoute }: HistoryPortalProps) {
         </div>
 
         {/* Ambient Gradient Glows */}
-        <div className="ambient-glow top-10 right-1/4 w-[350px] h-[350px] bg-primary/20 dark:bg-primary/30 rounded-full blur-[120px] -z-10 animate-pulse pointer-events-none"></div>
+        <div className="ambient-glow top-10 right-1/4 w-[350px] h-[350px] bg-primary/20 dark:bg-primary/30 rounded-full blur-[120px] z-0 animate-pulse pointer-events-none"></div>
 
-        <div className="max-w-6xl mx-auto px-4">
+        <div className="max-w-6xl mx-auto px-4 relative z-10">
           <motion.div 
             initial="hidden"
             animate="visible"
