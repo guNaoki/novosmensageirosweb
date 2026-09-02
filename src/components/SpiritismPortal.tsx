@@ -51,20 +51,20 @@ export default function SpiritismPortal({ onChangeRoute }: SpiritismPortalProps)
   const heroRef = useRef<HTMLDivElement>(null);
   const principiosRef = useRef<HTMLDivElement>(null);
 
-  // Parallax transforms for Hero (Progress relative to viewport)
+  // Parallax transforms for Hero (Movimento ampliado e perceptivel)
   const { scrollYProgress: heroProgress } = useScroll({
     target: heroRef,
     offset: ["start start", "end start"]
   });
-  const heroBgY = useTransform(heroProgress, [0, 1], ["0%", "35%"]);
-  const heroParticlesY = useTransform(heroProgress, [0, 1], ["0%", "-25%"]);
+  const heroBgY = useTransform(heroProgress, [0, 1], ["0px", "420px"]);
+  const heroParticlesY = useTransform(heroProgress, [0, 1], ["0px", "-160px"]);
 
   // Parallax transforms for 5 Princípios
   const { scrollYProgress: principiosProgress } = useScroll({
     target: principiosRef,
     offset: ["start end", "end start"]
   });
-  const principiosBgY = useTransform(principiosProgress, [0, 1], ["-20%", "20%"]);
+  const principiosBgY = useTransform(principiosProgress, [0, 1], ["-160px", "160px"]);
 
   // Contact Form state (Fale Conosco pelo Site)
   const [contactSubmitted, setContactSubmitted] = useState(false);
@@ -89,7 +89,6 @@ export default function SpiritismPortal({ onChangeRoute }: SpiritismPortalProps)
         'principios',
         'buscar-ajuda',
         'nossa-historia',
-        'feed-instagram',
         'materiais',
         'fale-conosco',
         'amor-ideal'
@@ -126,7 +125,6 @@ export default function SpiritismPortal({ onChangeRoute }: SpiritismPortalProps)
     { id: 'principios', label: '5 Princípios' },
     { id: 'buscar-ajuda', label: 'Achar Centro' },
     { id: 'nossa-historia', label: 'História' },
-    { id: 'feed-instagram', label: 'Posts Instagram' },
     { id: 'materiais', label: 'Materiais' },
     { id: 'fale-conosco', label: 'Fale Conosco' },
     { id: 'amor-ideal', label: 'Parceiros' }
@@ -294,7 +292,7 @@ export default function SpiritismPortal({ onChangeRoute }: SpiritismPortalProps)
     </svg>
   );
 
-  // Custom TikTok brand icon
+  // Custom TikTok brand icon (official Simple Icons path)
   const TikTok = ({ className = "w-5 h-5" }: { className?: string }) => (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -302,7 +300,7 @@ export default function SpiritismPortal({ onChangeRoute }: SpiritismPortalProps)
       fill="currentColor"
       className={className}
     >
-      <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 1 1-5.2-1.74 2.89 2.89 0 0 1 2.31-1.42V8.92a6.34 6.34 0 0 0-5.06 6.16 6.34 6.34 1 0 11.4-3.83V8.12a8.27 8.27 0 0 0 4.77 1.52V6.19a4.85 4.85 0 0 1-1-.5z" />
+      <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z" />
     </svg>
   );
 
@@ -419,10 +417,10 @@ export default function SpiritismPortal({ onChangeRoute }: SpiritismPortalProps)
         ref={heroRef}
         className="relative pt-32 pb-8 sm:pt-36 sm:pb-12 lg:pt-40 lg:pb-14 text-slate-900 dark:text-white overflow-hidden bg-slate-50 dark:bg-[#040d1f] transition-colors duration-300"
       >
-        {/* Layer 1: Parallax Cloud Background Image (Expansão de altura para movimento real) */}
+        {/* Layer 1: Parallax Cloud Background Image (Expansão de altura para movimento real e amplo) */}
         <motion.div
           style={{ y: heroBgY }}
-          className="absolute -top-[15%] left-0 right-0 h-[135%] z-0 pointer-events-none will-change-transform"
+          className="absolute -top-[40%] left-0 right-0 h-[180%] z-0 pointer-events-none will-change-transform"
         >
           <img
             src="/imagens-pagina/ceunuvem1.webp"
@@ -468,10 +466,10 @@ export default function SpiritismPortal({ onChangeRoute }: SpiritismPortalProps)
 
               <motion.h1
                 variants={fadeInUp}
-                className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-slate-900 dark:text-white tracking-tight leading-[1.12]"
+                className="text-4xl sm:text-5xl md:text-5xl lg:text-6xl font-black text-slate-900 dark:text-white tracking-tight leading-[1.08] sm:leading-[1.12]"
               >
                 Novos Mensageiros: <br className="hidden sm:inline" />
-                <span className="text-primary dark:text-sky-400 relative inline-block">
+                <span className="text-sky-600 dark:text-sky-300 relative inline-block drop-shadow-sm">
                   Luz e Espiritismo
                 </span> nas redes sociais.
               </motion.h1>
@@ -605,47 +603,49 @@ export default function SpiritismPortal({ onChangeRoute }: SpiritismPortalProps)
 
 
       {/* ========================================================= */}
-      {/* 2. CITAÇÃO ALLAN KARDEC (Em substituição às métricas)      */}
+      {/* 2. CITAÇÃO ALLAN KARDEC                                    */}
       {/* ========================================================= */}
       <section
         id="frase-kardec"
-        className="py-12 sm:py-16 md:py-20 bg-slate-50 dark:bg-[#040d1f] relative z-10 transition-colors duration-300 text-center"
+        className="py-10 sm:py-14 bg-slate-50 dark:bg-[#040d1f] relative z-10 transition-colors duration-300 text-center overflow-hidden"
       >
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 relative">
+        {/* Ambient celestial glow / fru-fru atmosférico */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[340px] sm:w-[520px] h-[180px] bg-sky-400/15 dark:bg-sky-400/20 rounded-full blur-3xl pointer-events-none animate-pulse -z-10"></div>
+        <div className="absolute top-1/2 left-1/3 -translate-y-1/2 w-[240px] h-[140px] bg-primary/10 dark:bg-blue-600/15 rounded-full blur-2xl pointer-events-none -z-10" style={{ animationDelay: '-2s' }}></div>
+
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 relative">
           <motion.div
-            initial={{ opacity: 0, y: 18 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-60px" }}
-            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+            initial={{ opacity: 0, y: 14, scale: 0.98 }}
+            whileInView={{ opacity: 1, y: 0, scale: 1 }}
+            viewport={{ once: true, margin: "-40px" }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             className="relative flex flex-col items-center justify-center"
           >
-            {/* Aspas Estilizadas em Grande Formato */}
-            <div className="text-5xl sm:text-6xl md:text-7xl font-serif text-sky-500/30 dark:text-sky-400/40 leading-none select-none -mb-5 sm:-mb-6 filter drop-shadow-[0_0_15px_rgba(56,189,248,0.25)]">
+            {/* Aspas estilizadas com glow celestial */}
+            <div className="text-4xl sm:text-5xl font-serif text-sky-500/40 dark:text-sky-300/50 leading-none select-none -mb-3 sm:-mb-4 filter drop-shadow-[0_0_12px_rgba(56,189,248,0.35)]">
               “
             </div>
 
-            {/* Frase em Destaque */}
-            <blockquote className="relative z-10 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-slate-900 dark:text-white tracking-tight leading-tight max-w-3xl drop-shadow-sm px-2">
-              <span className="bg-gradient-to-r from-slate-900 via-sky-900 to-slate-900 dark:from-white dark:via-sky-200 dark:to-white bg-clip-text text-transparent">
+            {/* Frase com gradiente de luz e drop shadow celestial */}
+            <blockquote className="relative z-10 text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black tracking-tight leading-snug px-2">
+              <span className="bg-gradient-to-r from-slate-900 via-sky-800 to-slate-900 dark:from-white dark:via-sky-200 dark:to-white bg-clip-text text-transparent drop-shadow-[0_2px_15px_rgba(56,189,248,0.2)]">
                 Fora da caridade não há salvação.
               </span>
             </blockquote>
 
-            {/* Autor e Obra */}
-            <div className="mt-4 sm:mt-5 flex flex-wrap items-center justify-center gap-1.5 sm:gap-2">
-              <span className="text-xs sm:text-sm font-extrabold text-primary dark:text-sky-400 tracking-wider uppercase">
+            {/* Autor com estilo refinado */}
+            <div className="mt-3.5 sm:mt-4 flex items-center justify-center gap-2">
+              <span className="h-px w-6 sm:w-10 bg-gradient-to-r from-transparent to-sky-400/60 dark:to-sky-400/80"></span>
+              <cite className="text-xs sm:text-sm font-extrabold text-sky-700 dark:text-sky-300 tracking-wider uppercase not-italic">
                 Allan Kardec
-              </span>
-              <span className="text-slate-400 dark:text-slate-600">•</span>
-              <cite className="text-xs sm:text-sm font-medium text-slate-500 dark:text-slate-400 not-italic">
-                O Evangelho Segundo o Espiritismo
               </cite>
+              <span className="h-px w-6 sm:w-10 bg-gradient-to-l from-transparent to-sky-400/60 dark:to-sky-400/80"></span>
             </div>
-
-            {/* Divisor Luminoso Sutil */}
-            <div className="mt-6 sm:mt-8 w-20 h-0.5 bg-gradient-to-r from-transparent via-sky-400/50 dark:via-sky-400/70 to-transparent rounded-full"></div>
           </motion.div>
         </div>
+
+        {/* Gradient de transição suave para a seção dos Princípios */}
+        <div className="absolute bottom-0 left-0 right-0 h-24 sm:h-32 bg-gradient-to-b from-transparent via-slate-50/80 to-slate-50 dark:via-[#040d1f]/50 dark:to-slate-950 pointer-events-none"></div>
       </section>
 
 
@@ -655,12 +655,12 @@ export default function SpiritismPortal({ onChangeRoute }: SpiritismPortalProps)
       <section
         id="principios"
         ref={principiosRef}
-        className="py-16 md:py-24 bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-white relative overflow-hidden border-b border-slate-200/70 dark:border-slate-800 transition-colors duration-300"
+        className="py-16 md:py-24 bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-white relative overflow-hidden transition-colors duration-300"
       >
-        {/* Parallax Cloud Background */}
+        {/* Parallax Cloud Background (Movimento ampliado) */}
         <motion.div
           style={{ y: principiosBgY }}
-          className="absolute -top-[15%] left-0 right-0 h-[135%] z-0 pointer-events-none will-change-transform"
+          className="absolute -top-[40%] left-0 right-0 h-[180%] z-0 pointer-events-none will-change-transform"
         >
           <img
             src="/imagens-pagina/ceunuvem2.webp"
@@ -677,11 +677,8 @@ export default function SpiritismPortal({ onChangeRoute }: SpiritismPortalProps)
 
         <div className="max-w-6xl mx-auto px-4 relative z-10">
 
-          {/* Header Sóbrio e Humano */}
-          <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
-            <span className="text-primary dark:text-sky-400 font-extrabold text-xs tracking-widest uppercase bg-primary-light dark:bg-sky-500/10 px-4 py-1.5 rounded-full border border-primary/20 dark:border-sky-500/20 inline-block">
-              Fundamentos da Doutrina Espírita
-            </span>
+          {/* Header Sóbrio e Humano (Sem badges artificiais) */}
+          <div className="text-center max-w-3xl mx-auto space-y-3 mb-16">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight text-primary-dark dark:text-white">
               Os 5 Princípios Básicos
             </h2>
@@ -755,10 +752,7 @@ export default function SpiritismPortal({ onChangeRoute }: SpiritismPortalProps)
               <MapPin className="w-64 h-64" />
             </div>
 
-            <div className="space-y-4 max-w-2xl relative z-10">
-              <span className="text-sky-600 dark:text-sky-400 font-extrabold text-xs tracking-wider uppercase bg-sky-500/10 px-3.5 py-1.5 rounded-full border border-sky-500/20 inline-block">
-                Procure Amparo Perto de Você
-              </span>
+            <div className="space-y-3 max-w-2xl relative z-10">
               <h2 className="text-3xl font-black text-slate-900 dark:text-white tracking-tight">
                 Como encontrar uma Casa Espírita acolhedora?
               </h2>
@@ -818,10 +812,7 @@ export default function SpiritismPortal({ onChangeRoute }: SpiritismPortalProps)
       >
         <div className="max-w-6xl mx-auto px-4">
 
-          <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
-            <span className="text-sky-600 dark:text-sky-400 font-extrabold text-xs tracking-widest uppercase bg-sky-500/10 px-4 py-1.5 rounded-full border border-sky-500/20 inline-block">
-              Quem Somos e Como Nascemos
-            </span>
+          <div className="text-center max-w-3xl mx-auto space-y-3 mb-16">
             <h2 className="text-3xl md:text-4xl font-black text-slate-900 dark:text-white tracking-tight">
               A história por trás dos Novos Mensageiros
             </h2>
@@ -894,211 +885,15 @@ export default function SpiritismPortal({ onChangeRoute }: SpiritismPortalProps)
       </section>
 
 
-      {/* ========================================================= */}
-      {/* 6. INSTAGRAM POSTS SHOWCASE */}
-      {/* ========================================================= */}
+      {/* 6. INSTAGRAM POSTS SHOWCASE (Ocultado temporariamente para testes) */}
+      {/* 
       <section
         id="feed-instagram"
         className="py-16 md:py-24 bg-slate-100/70 dark:bg-slate-950 border-b border-slate-200/60 dark:border-slate-800 relative overflow-hidden"
       >
-        <div className="max-w-6xl mx-auto px-4">
-          <div className="text-center max-w-2xl mx-auto space-y-3 mb-12">
-            <span className="text-sky-600 dark:text-sky-400 font-extrabold text-xs tracking-widest uppercase bg-sky-500/10 px-3.5 py-1.5 rounded-full border border-sky-500/20 inline-flex items-center gap-1.5">
-              <Instagram className="w-3.5 h-3.5" />
-              Conteúdo no Instagram
-            </span>
-            <h2 className="text-3xl md:text-4xl font-black text-slate-900 dark:text-white tracking-tight">
-              O Espiritismo no seu feed de forma acolhedora
-            </h2>
-            <p className="text-slate-600 dark:text-slate-300 text-sm md:text-base leading-relaxed">
-              Publicamos diariamente vídeos, reflexões de André Luiz, esclarecimentos espirituais e ensinamentos da Doutrina Espírita em formato leve e consolador.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
-            {/* Post 1: André Luiz */}
-            <motion.div
-              whileHover={{ y: -6 }}
-              className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200/80 dark:border-slate-800 shadow-xl overflow-hidden flex flex-col justify-between group"
-            >
-              <div className="p-4 flex items-center justify-between border-b border-slate-100 dark:border-slate-800">
-                <div className="flex items-center space-x-3">
-                  <img src="/logo-mensageiros.webp" alt="Novos Mensageiros" className="w-9 h-9 rounded-full bg-slate-100 p-1 border border-slate-200 dark:border-slate-700" />
-                  <div>
-                    <span className="text-xs font-black text-slate-900 dark:text-white flex items-center gap-1.5">
-                      novosmensageiros
-                      <span className="w-3.5 h-3.5 bg-sky-500/20 rounded-full flex items-center justify-center border border-sky-400/40">
-                        <Check className="w-2.5 h-2.5 text-sky-400" />
-                      </span>
-                    </span>
-                    <span className="text-[10px] text-slate-400 block">Instagram • Canal Espírita</span>
-                  </div>
-                </div>
-                <Instagram className="w-4 h-4 text-slate-400" />
-              </div>
-
-              <div className="relative aspect-square w-full overflow-hidden bg-slate-950">
-                <img
-                  src="/posts/post_andre_luiz.webp"
-                  alt="3 Frases de André Luiz"
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                />
-              </div>
-
-              <div className="p-5 space-y-3 bg-white dark:bg-slate-900">
-                <div className="flex items-center justify-between text-slate-400">
-                  <div className="flex items-center space-x-3">
-                    <Heart className="w-5 h-5 text-red-500 fill-red-500" />
-                    <MessageSquare className="w-5 h-5" />
-                  </div>
-                  <span className="text-[11px] font-bold text-sky-600 dark:text-sky-400 bg-sky-50 dark:bg-sky-950 px-2.5 py-0.5 rounded-full">
-                    Gotas de Sabedoria
-                  </span>
-                </div>
-                <p className="text-xs font-bold text-slate-800 dark:text-slate-200 line-clamp-2">
-                  "3 frases de André Luiz que nos ensinam a viver"
-                </p>
-                <div className="pt-2 border-t border-slate-100 dark:border-slate-800">
-                  <a
-                    href="https://www.instagram.com/novosmensageiros"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center justify-between w-full text-xs font-extrabold text-primary dark:text-sky-400 hover:text-primary-hover transition-colors"
-                  >
-                    <span>Ver no Instagram</span>
-                    <ExternalLink className="w-3.5 h-3.5" />
-                  </a>
-                </div>
-              </div>
-            </motion.div>
-
-            {/* Post 2: Nosso Lar */}
-            <motion.div
-              whileHover={{ y: -6 }}
-              className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200/80 dark:border-slate-800 shadow-xl overflow-hidden flex flex-col justify-between group"
-            >
-              <div className="p-4 flex items-center justify-between border-b border-slate-100 dark:border-slate-800">
-                <div className="flex items-center space-x-3">
-                  <img src="/logo-mensageiros.webp" alt="Novos Mensageiros" className="w-9 h-9 rounded-full bg-slate-100 p-1 border border-slate-200 dark:border-slate-700" />
-                  <div>
-                    <span className="text-xs font-black text-slate-900 dark:text-white flex items-center gap-1.5">
-                      novosmensageiros
-                      <span className="w-3.5 h-3.5 bg-sky-500/20 rounded-full flex items-center justify-center border border-sky-400/40">
-                        <Check className="w-2.5 h-2.5 text-sky-400" />
-                      </span>
-                    </span>
-                    <span className="text-[10px] text-slate-400 block">Instagram • Colônias Espirituais</span>
-                  </div>
-                </div>
-                <Instagram className="w-4 h-4 text-slate-400" />
-              </div>
-
-              <div className="relative aspect-square w-full overflow-hidden bg-slate-950">
-                <img
-                  src="/posts/post_nosso_lar.webp"
-                  alt="Colônias Espirituais Nosso Lar"
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                />
-              </div>
-
-              <div className="p-5 space-y-3 bg-white dark:bg-slate-900">
-                <div className="flex items-center justify-between text-slate-400">
-                  <div className="flex items-center space-x-3">
-                    <Heart className="w-5 h-5 text-red-500 fill-red-500" />
-                    <MessageSquare className="w-5 h-5" />
-                  </div>
-                  <span className="text-[11px] font-bold text-sky-600 dark:text-sky-400 bg-sky-50 dark:bg-sky-950 px-2.5 py-0.5 rounded-full">
-                    Esclarecimento
-                  </span>
-                </div>
-                <p className="text-xs font-bold text-slate-800 dark:text-slate-200 line-clamp-2">
-                  "Vem comigo entender como funcionam as Colônias Espirituais!"
-                </p>
-                <div className="pt-2 border-t border-slate-100 dark:border-slate-800">
-                  <a
-                    href="https://www.instagram.com/novosmensageiros"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center justify-between w-full text-xs font-extrabold text-primary dark:text-sky-400 hover:text-primary-hover transition-colors"
-                  >
-                    <span>Ver no Instagram</span>
-                    <ExternalLink className="w-3.5 h-3.5" />
-                  </a>
-                </div>
-              </div>
-            </motion.div>
-
-            {/* Post 3: Allan Kardec */}
-            <motion.div
-              whileHover={{ y: -6 }}
-              className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200/80 dark:border-slate-800 shadow-xl overflow-hidden flex flex-col justify-between group"
-            >
-              <div className="p-4 flex items-center justify-between border-b border-slate-100 dark:border-slate-800">
-                <div className="flex items-center space-x-3">
-                  <img src="/logo-mensageiros.webp" alt="Novos Mensageiros" className="w-9 h-9 rounded-full bg-slate-100 p-1 border border-slate-200 dark:border-slate-700" />
-                  <div>
-                    <span className="text-xs font-black text-slate-900 dark:text-white flex items-center gap-1.5">
-                      novosmensageiros
-                      <span className="w-3.5 h-3.5 bg-sky-500/20 rounded-full flex items-center justify-center border border-sky-400/40">
-                        <Check className="w-2.5 h-2.5 text-sky-400" />
-                      </span>
-                    </span>
-                    <span className="text-[10px] text-slate-400 block">Instagram • Allan Kardec</span>
-                  </div>
-                </div>
-                <Instagram className="w-4 h-4 text-slate-400" />
-              </div>
-
-              <div className="relative aspect-square w-full overflow-hidden bg-slate-950">
-                <img
-                  src="/posts/post_kardec.webp"
-                  alt="Allan Kardec Estático"
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                />
-              </div>
-
-              <div className="p-5 space-y-3 bg-white dark:bg-slate-900">
-                <div className="flex items-center justify-between text-slate-400">
-                  <div className="flex items-center space-x-3">
-                    <Heart className="w-5 h-5 text-red-500 fill-red-500" />
-                    <MessageSquare className="w-5 h-5" />
-                  </div>
-                  <span className="text-[11px] font-bold text-sky-600 dark:text-sky-400 bg-sky-50 dark:bg-sky-950 px-2.5 py-0.5 rounded-full">
-                    Doutrina
-                  </span>
-                </div>
-                <p className="text-xs font-bold text-slate-800 dark:text-slate-200 line-clamp-2">
-                  "Fora da caridade não há salvação — Allan Kardec"
-                </p>
-                <div className="pt-2 border-t border-slate-100 dark:border-slate-800">
-                  <a
-                    href="https://www.instagram.com/novosmensageiros"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center justify-between w-full text-xs font-extrabold text-primary dark:text-sky-400 hover:text-primary-hover transition-colors"
-                  >
-                    <span>Ver no Instagram</span>
-                    <ExternalLink className="w-3.5 h-3.5" />
-                  </a>
-                </div>
-              </div>
-            </motion.div>
-          </div>
-
-          <div className="mt-12 text-center">
-            <a
-              href="https://www.instagram.com/novosmensageiros"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-extrabold px-8 py-4 rounded-2xl shadow-xl shadow-pink-500/20 transition-all duration-300 transform hover:-translate-y-0.5 active:scale-95 gap-2 text-sm"
-            >
-              <Instagram className="w-5 h-5" />
-              Siga o @novosmensageiros no Instagram (+{SOCIAL_STATS.instagramFollowers} seguidores)
-              <ExternalLink className="w-4 h-4 ml-1" />
-            </a>
-          </div>
-        </div>
+        ...
       </section>
+      */}
 
 
       {/* ========================================================= */}
@@ -1110,10 +905,7 @@ export default function SpiritismPortal({ onChangeRoute }: SpiritismPortalProps)
       >
         <div className="max-w-6xl mx-auto px-4">
 
-          <div className="text-center max-w-2xl mx-auto space-y-4 mb-10">
-            <span className="text-sky-600 dark:text-sky-400 font-extrabold text-xs tracking-widest uppercase bg-sky-500/10 px-4 py-1.5 rounded-full border border-sky-500/20 inline-block">
-              Luz, Conforto e Informação
-            </span>
+          <div className="text-center max-w-2xl mx-auto space-y-3 mb-10">
             <h2 className="text-3xl md:text-4xl font-black text-slate-900 dark:text-white tracking-tight">
               Materiais Gratuitos Recomendados
             </h2>
@@ -1290,9 +1082,6 @@ export default function SpiritismPortal({ onChangeRoute }: SpiritismPortalProps)
           <div className="bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 rounded-3xl shadow-xl p-8 md:p-12 text-left space-y-6 relative overflow-hidden">
 
             <div className="space-y-2 text-center md:text-left">
-              <span className="text-xs font-extrabold text-sky-600 dark:text-sky-400 uppercase tracking-widest bg-sky-500/10 px-3.5 py-1.5 rounded-full inline-block">
-                Mensagem Direta pelo Site
-              </span>
               <h2 className="text-2xl md:text-3xl font-black text-slate-900 dark:text-white tracking-tight">
                 Fale Conosco pelo Site
               </h2>

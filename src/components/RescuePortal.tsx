@@ -411,9 +411,9 @@ export default function RescuePortal({ onChangeRoute }: RescuePortalProps) {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-left mb-12">
             <div className="bg-white dark:bg-slate-900 p-6 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-md space-y-3">
-              <span className="text-xs font-black text-primary dark:text-sky-400 uppercase bg-primary/10 dark:bg-sky-950 px-3 py-1 rounded-full">
+              <div className="text-xs font-extrabold text-primary dark:text-sky-400 uppercase tracking-wider">
                 01. O Despertar
-              </span>
+              </div>
               <h3 className="text-base font-extrabold text-primary-dark dark:text-white">Sementes Digitais</h3>
               <p className="text-slate-700 dark:text-slate-300 text-xs leading-relaxed font-medium">
                 O projeto Novos Mensageiros foi criado com o propósito de divulgar o Espiritismo de forma leve e acolhedora nas redes sociais (Instagram e TikTok), levando gotas de esperança para o cotidiano.
@@ -421,9 +421,9 @@ export default function RescuePortal({ onChangeRoute }: RescuePortalProps) {
             </div>
 
             <div className="bg-white dark:bg-slate-900 p-6 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-md space-y-3">
-              <span className="text-xs font-black text-alert-red uppercase bg-red-100 dark:bg-red-950/60 px-3 py-1 rounded-full">
+              <div className="text-xs font-extrabold text-alert-red uppercase tracking-wider">
                 02. O Sinal de Alerta
-              </span>
+              </div>
               <h3 className="text-base font-extrabold text-primary-dark dark:text-white">A Ponta do Iceberg</h3>
               <p className="text-slate-700 dark:text-slate-300 text-xs leading-relaxed font-medium">
                 Ao publicarmos conteúdos voltados para a depressão e o vazio da alma, os posts viralizaram. Nos comentários, identificamos um grito silencioso: centenas de desabafos de pessoas em sofrimento profundo.
@@ -431,9 +431,9 @@ export default function RescuePortal({ onChangeRoute }: RescuePortalProps) {
             </div>
 
             <div className="bg-white dark:bg-slate-900 p-6 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-md space-y-3">
-              <span className="text-xs font-black text-primary dark:text-sky-400 uppercase bg-primary/10 dark:bg-sky-950 px-3 py-1 rounded-full">
+              <div className="text-xs font-extrabold text-primary dark:text-sky-400 uppercase tracking-wider">
                 03. A Mobilização
-              </span>
+              </div>
               <h3 className="text-base font-extrabold text-primary-dark dark:text-white">Os Primeiros Guardiões</h3>
               <p className="text-slate-700 dark:text-slate-300 text-xs leading-relaxed font-medium">
                 Uma pequena equipe de voluntários se reuniu emergencialmente para monitorar os comentários, enviando mensagens de resgate no direct e abrindo canais de escuta fraterna via WhatsApp.
@@ -441,9 +441,9 @@ export default function RescuePortal({ onChangeRoute }: RescuePortalProps) {
             </div>
 
             <div className="bg-white dark:bg-slate-900 p-6 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-md space-y-3">
-              <span className="text-xs font-black text-emerald-600 dark:text-emerald-400 uppercase bg-emerald-100 dark:bg-emerald-950/60 px-3 py-1 rounded-full">
+              <div className="text-xs font-extrabold text-emerald-600 dark:text-emerald-400 uppercase tracking-wider">
                 04. O Futuro
-              </span>
+              </div>
               <h3 className="text-base font-extrabold text-primary-dark dark:text-white">Expandindo os Horizontes</h3>
               <p className="text-slate-700 dark:text-slate-300 text-xs leading-relaxed font-medium">
                 Com mais de 100 pessoas acolhidas e milhões de visualizações, estruturamos essa plataforma para recrutar novos voluntários, parceiros clínicos e Casas Espíritas para ampliar esse farol de luz.

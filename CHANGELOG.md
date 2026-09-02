@@ -7,7 +7,28 @@ Todas as alterações notáveis deste projeto são documentadas neste arquivo, s
 
 ---
 
-## [2.2.0] — 2026-09-01 *(Versão Atual)*
+## [2.3.0] — 2026-09-02 *(Versão Atual)*
+
+### 🌟 Reforço de Paralaxe, Acento Celeste, Glow em Kardec e Remoção de Badges de IA (MINOR)
+* **Efeito de Paralaxe Amplo e Marcante**:
+  - Deslocamento de paralaxe do Hero ampliado para 420px com partículas em -160px e contêiner expandido (`h-[180%] -top-[40%]`), gerando profundidade notável a cada rolagem.
+  - Seção dos 5 Princípios com deslocamento de paralaxe de -160px a +160px.
+* **Acento Celeste no Título**:
+  - Troca do acento no título do Hero de amarelo para azul celeste harmônico (`text-sky-600 dark:text-sky-300`).
+* **Título Hero com Maior Presença no Mobile**:
+  - Aumento da tipografia do título no celular para `text-4xl sm:text-5xl` com entrelinha otimizada `leading-[1.08]`.
+* **Citação de Allan Kardec com Efeito Luminoso (Glow & Fru-Fru)**:
+  - Aspas estilizadas com brilho celestial (`filter drop-shadow-[0_0_12px_rgba(56,189,248,0.35)]`).
+  - Frase com gradiente sutil luminoso e efeito de luz suave de fundo (`blur-3xl`, pulso atmosférico).
+  - Linhas translúcidas delimitando a autoria *Allan Kardec*.
+* **Remoção de Todos os Badges Arredondados de IA**:
+  - Eliminados todos os contêineres e spans artificiais arredondados estilo IA em todas as páginas (`SpiritismPortal`, `HistoryPortal`, `RescuePortal`).
+* **Ocultação da Seção de Posts do Instagram**:
+  - Seção do Instagram ocultada da página principal e do sumário lateral para o envio da versão de testes.
+
+---
+
+## [2.2.0] — 2026-09-01
 
 ### 🌟 Redesenho do Hero Mobile, Frase de Kardec e Paralaxe Real (MINOR)
 * **Hero Mobile Focado & Cards de Redes Sociais em Grid 2x1**:

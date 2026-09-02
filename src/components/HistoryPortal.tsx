@@ -1,6 +1,6 @@
 import { useRef } from 'react';
 import { motion, useScroll, useSpring } from 'framer-motion';
-import { Heart, Compass, Users, Sparkles, ArrowRight, Star } from 'lucide-react';
+import { Heart, Compass, Users, ArrowRight, Star } from 'lucide-react';
 import Button from './ui/Button';
 
 interface HistoryPortalProps {
@@ -95,13 +95,6 @@ export default function HistoryPortal({ onChangeRoute }: HistoryPortalProps) {
           >
             {/* Left Content Column */}
             <div className="lg:col-span-7 space-y-6 text-left relative z-10">
-              <motion.div 
-                variants={fadeInUp}
-                className="inline-flex items-center space-x-2 bg-primary-light dark:bg-white/10 border border-primary/20 dark:border-white/10 px-3.5 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider text-primary-dark dark:text-primary-light"
-              >
-                <Sparkles className="w-3.5 h-3.5" />
-                <span>Nossa Trajetória</span>
-              </motion.div>
 
               <motion.h1 
                 variants={fadeInUp}
@@ -181,9 +174,6 @@ export default function HistoryPortal({ onChangeRoute }: HistoryPortalProps) {
           <div className="grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
             
             <div className="md:col-span-6 space-y-6">
-              <span className="text-xs font-extrabold text-primary dark:text-sky-400 uppercase tracking-widest block bg-primary-light dark:bg-sky-950 px-3.5 py-1.5 rounded-full inline-block border border-primary/20 dark:border-sky-500/20">
-                O Propósito Invisível
-              </span>
               <h2 className="text-3xl font-extrabold text-primary-dark dark:text-white tracking-tight leading-tight">
                 De um post no TikTok ao resgate de uma alma em aflição.
               </h2>
@@ -228,10 +218,7 @@ export default function HistoryPortal({ onChangeRoute }: HistoryPortalProps) {
         <div className="absolute top-1/4 right-5 w-[400px] h-[400px] bg-primary-light/50 dark:bg-primary/20 rounded-full blur-3xl pointer-events-none -z-10 animate-pulse"></div>
         <div className="absolute bottom-10 left-10 w-80 h-80 bg-sky-100/30 dark:bg-sky-900/20 rounded-full blur-3xl pointer-events-none -z-10 animate-pulse delay-1000"></div>
         <div className="max-w-4xl mx-auto px-4">
-          <div className="text-center max-w-2xl mx-auto space-y-4 mb-16">
-            <span className="text-primary dark:text-sky-400 font-extrabold text-xs tracking-widest uppercase bg-primary-light dark:bg-sky-950 px-3.5 py-1.5 rounded-full inline-block border border-primary/20 dark:border-sky-500/20">
-              Linha do Tempo
-            </span>
+          <div className="text-center max-w-2xl mx-auto space-y-3 mb-16">
             <h2 className="text-3xl font-extrabold text-primary-dark dark:text-white tracking-tight">
               A evolução do nosso trabalho
             </h2>
