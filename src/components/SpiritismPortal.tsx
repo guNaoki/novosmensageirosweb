@@ -51,22 +51,17 @@ export default function SpiritismPortal({ onChangeRoute }: SpiritismPortalProps)
   const heroRef = useRef<HTMLDivElement>(null);
   const principiosRef = useRef<HTMLDivElement>(null);
 
-  // Parallax transforms for Hero & Atmosphere
+  // Parallax transforms for Hero
   const { scrollY } = useScroll();
-  const heroParticlesY = useTransform(scrollY, [0, 800], [0, -110]);
-
-  // Floating Foreground Clouds Parallax (multi-plane depth)
-  const fgCloudY = useTransform(scrollY, [0, 800], [0, -80]);
-  const fgCloudX = useTransform(scrollY, [0, 800], [0, 35]);
-  const fgClusterY = useTransform(scrollY, [0, 800], [0, -140]);
-  const fgClusterX = useTransform(scrollY, [0, 800], [0, -25]);
+  const heroBgY = useTransform(scrollY, [0, 700], [0, 160]);
+  const heroParticlesY = useTransform(scrollY, [0, 700], [0, -100]);
 
   // Parallax transforms for 5 Princípios
   const { scrollYProgress: principiosProgress } = useScroll({
     target: principiosRef,
     offset: ["start end", "end start"]
   });
-  const principiosCloudY = useTransform(principiosProgress, [0, 1], [-40, 40]);
+  const principiosBgY = useTransform(principiosProgress, [0, 1], [-60, 60]);
 
   // Contact Form state (Fale Conosco pelo Site)
   const [contactSubmitted, setContactSubmitted] = useState(false);
@@ -419,35 +414,30 @@ export default function SpiritismPortal({ onChangeRoute }: SpiritismPortalProps)
       <section
         id="hero"
         ref={heroRef}
-        className="relative pt-32 pb-6 sm:pt-36 sm:pb-8 lg:pt-40 lg:pb-10 text-slate-900 dark:text-white overflow-hidden bg-gradient-to-b from-sky-400/15 via-sky-100/25 to-slate-50 dark:from-[#020617] dark:via-[#07132c] dark:to-[#020617] transition-colors duration-500"
+        className="relative pt-36 pb-12 lg:pt-44 lg:pb-16 text-slate-900 dark:text-white overflow-hidden bg-slate-50 dark:bg-[#040d1f] transition-colors duration-300"
       >
-        {/* Layer 1: Atmospheric Deep Sky Canvas (Sem fotos com nuvens duplicadas) */}
-        <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
-          {/* Subtle cosmic grid pattern */}
-          <div className="absolute inset-0 bg-grid-pattern dark:bg-grid-dark opacity-25"></div>
-          
-          {/* Ambient Celestial Glows */}
-          <div className="ambient-glow top-8 left-1/4 w-[450px] h-[450px] bg-sky-400/20 dark:bg-sky-500/15 pointer-events-none"></div>
-          <div className="ambient-glow bottom-4 right-1/4 w-[500px] h-[500px] bg-primary/15 dark:bg-indigo-600/15 pointer-events-none" style={{ animationDelay: '-4s' }}></div>
-        </div>
-
-        {/* Layer 2: Floating Upper/Side Cloud Cluster (Parallax Layer) */}
+        {/* Layer 1: Parallax Cloud Background Image */}
         <motion.div
-          style={{ y: fgClusterY, x: fgClusterX }}
-          className="absolute -top-10 -right-20 sm:-right-6 md:right-8 w-[300px] sm:w-[450px] lg:w-[560px] pointer-events-none z-0 opacity-80 dark:opacity-30 dark:brightness-125 select-none"
+          style={{ y: heroBgY }}
+          className="absolute inset-0 z-0 overflow-hidden pointer-events-none"
         >
           <img
-            src="/imagens-pagina/nuvem-cluster.webp"
-            alt=""
-            className="w-full h-auto"
+            src="/imagens-pagina/ceunuvem1.webp"
+            alt="Nuvens de fundo celestial"
+            className="w-full h-[125%] object-cover object-center opacity-75 dark:opacity-45 dark:brightness-105 dark:contrast-115 dark:mix-blend-screen scale-105"
           />
+          <div className="absolute inset-0 bg-gradient-to-b from-sky-50/40 via-transparent to-slate-50 dark:from-[#040d1f]/60 dark:via-transparent dark:to-slate-950"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-sky-50/50 via-transparent to-sky-50/50 dark:from-[#040d1f]/60 dark:via-transparent dark:to-[#040d1f]/60"></div>
         </motion.div>
 
-        {/* Layer 3: Cosmic Particles & Drifting Stardust */}
+        {/* Layer 2: Cosmic Particles & Drifting Stardust */}
         <motion.div
           style={{ y: heroParticlesY }}
           className="absolute inset-0 z-0 pointer-events-none overflow-hidden"
         >
+          {/* Subtle grid pattern */}
+          <div className="absolute inset-0 bg-grid-pattern dark:bg-grid-dark opacity-30"></div>
+
           {/* Floating stardust motes */}
           <div className="absolute top-1/6 left-1/12 w-2 h-2 bg-sky-400 dark:bg-sky-300 rounded-full animate-drift-1 blur-[0.5px]"></div>
           <div className="absolute top-1/4 left-1/4 w-3 h-3 bg-sky-300/60 dark:bg-sky-200/60 rounded-full animate-drift-2 blur-[1px]"></div>
@@ -457,6 +447,10 @@ export default function SpiritismPortal({ onChangeRoute }: SpiritismPortalProps)
           <div className="absolute top-3/4 right-1/3 w-2.5 h-2.5 bg-blue-300/70 dark:bg-blue-200/70 rounded-full animate-drift-2 blur-[0.5px]"></div>
           <div className="absolute top-1/5 right-1/12 w-1.5 h-1.5 bg-sky-500 dark:bg-sky-400 rounded-full animate-drift-1"></div>
           <div className="absolute top-4/5 left-1/6 w-2 h-2 bg-sky-300/60 dark:bg-white/60 rounded-full animate-drift-2"></div>
+
+          {/* Ambient Glows */}
+          <div className="ambient-glow top-12 left-1/4 w-[420px] h-[420px] bg-sky-500/15 dark:bg-sky-500/20 pointer-events-none"></div>
+          <div className="ambient-glow bottom-10 right-1/4 w-[480px] h-[480px] bg-primary/15 dark:bg-primary/30 pointer-events-none" style={{ animationDelay: '-4s' }}></div>
         </motion.div>
 
         <div className="max-w-6xl mx-auto px-4 relative z-10">
@@ -464,10 +458,10 @@ export default function SpiritismPortal({ onChangeRoute }: SpiritismPortalProps)
             initial="hidden"
             animate="visible"
             variants={staggerContainer}
-            className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-8 items-center"
+            className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center"
           >
             {/* Left Content Column */}
-            <div className="lg:col-span-7 space-y-5 sm:space-y-6 text-left">
+            <div className="lg:col-span-7 space-y-6 sm:space-y-7 text-left">
 
               <motion.h1
                 variants={fadeInUp}
@@ -489,7 +483,7 @@ export default function SpiritismPortal({ onChangeRoute }: SpiritismPortalProps)
               {/* Clean Action Buttons */}
               <motion.div
                 variants={fadeInUp}
-                className="flex flex-wrap items-center gap-3 pt-1"
+                className="flex flex-wrap items-center gap-3.5 pt-1"
               >
                 {/* WhatsApp Button */}
                 <Button
@@ -526,18 +520,18 @@ export default function SpiritismPortal({ onChangeRoute }: SpiritismPortalProps)
               {/* Backlight glow */}
               <div className="absolute inset-0 bg-gradient-to-tr from-sky-500/20 via-primary/20 to-purple-500/15 dark:from-sky-500/25 dark:via-primary/30 dark:to-purple-500/20 rounded-full blur-3xl -z-10 animate-pulse"></div>
 
-              <div className="w-full max-w-md relative space-y-3 sm:space-y-4">
+              <div className="w-full max-w-md relative space-y-4">
 
                 {/* Floating Badge 1: Instagram */}
                 <motion.div
-                  className="animate-float-1 bg-white/90 dark:bg-slate-900/80 backdrop-blur-xl border border-slate-200/80 dark:border-white/15 rounded-2xl sm:rounded-3xl p-4 sm:p-5 shadow-xl hover:border-pink-500/50 transition-all duration-300 text-left relative overflow-hidden group"
+                  className="animate-float-1 bg-white/95 dark:bg-slate-900/80 backdrop-blur-xl border border-slate-200/90 dark:border-white/15 rounded-3xl p-5 shadow-2xl hover:border-pink-500/50 transition-all duration-300 text-left relative overflow-hidden group"
                 >
                   <div className="absolute -right-6 -bottom-6 w-28 h-28 bg-gradient-to-br from-purple-600/20 to-pink-600/20 rounded-full blur-2xl pointer-events-none"></div>
 
-                  <div className="flex items-center justify-between mb-2 sm:mb-3">
-                    <div className="flex items-center space-x-2.5 sm:space-x-3">
-                      <div className="w-9 h-9 sm:w-11 sm:h-11 rounded-xl sm:rounded-2xl bg-gradient-to-tr from-[#f09433] via-[#dc2743] to-[#bc1888] flex items-center justify-center text-white shadow-lg shadow-pink-500/25">
-                        <Instagram className="w-5 h-5 sm:w-6 sm:h-6" />
+                  <div className="flex items-center justify-between mb-3">
+                    <div className="flex items-center space-x-3">
+                      <div className="w-11 h-11 rounded-2xl bg-gradient-to-tr from-[#f09433] via-[#dc2743] to-[#bc1888] flex items-center justify-center text-white shadow-lg shadow-pink-500/25">
+                        <Instagram className="w-6 h-6" />
                       </div>
                       <div>
                         <div className="text-xs font-bold text-slate-800 dark:text-slate-300 flex items-center gap-1.5">
@@ -549,54 +543,54 @@ export default function SpiritismPortal({ onChangeRoute }: SpiritismPortalProps)
                         <div className="text-[10px] text-slate-500 dark:text-slate-400 font-medium">Instagram Oficial</div>
                       </div>
                     </div>
-                    <span className="text-[9px] sm:text-[10px] font-extrabold uppercase tracking-wider text-pink-600 dark:text-pink-400 bg-pink-500/10 px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-full border border-pink-500/20">
+                    <span className="text-[10px] font-extrabold uppercase tracking-wider text-pink-600 dark:text-pink-400 bg-pink-500/10 px-2.5 py-1 rounded-full border border-pink-500/20">
                       Rede Ativa
                     </span>
                   </div>
 
                   <div className="flex items-baseline space-x-2">
-                    <span className="text-2xl sm:text-4xl font-black text-slate-900 dark:text-white tracking-tight">
+                    <span className="text-3xl sm:text-4xl font-black text-slate-900 dark:text-white tracking-tight">
                       +{SOCIAL_STATS.instagramFollowers}
                     </span>
                     <span className="text-xs font-bold text-slate-600 dark:text-slate-300">
                       seguidores engajados
                     </span>
                   </div>
-                  <p className="text-[10px] sm:text-[11px] text-slate-500 dark:text-slate-400 mt-1">
+                  <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-1">
                     Reflexões diárias, carrosséis doutrinários e apoio nos comentários.
                   </p>
                 </motion.div>
 
                 {/* Floating Badge 2: TikTok & Shorts */}
                 <motion.div
-                  className="animate-float-2 bg-white/90 dark:bg-slate-900/80 backdrop-blur-xl border border-slate-200/80 dark:border-white/15 rounded-2xl sm:rounded-3xl p-4 sm:p-5 shadow-xl hover:border-sky-500/50 transition-all duration-300 text-left relative overflow-hidden group ml-0 sm:ml-6"
+                  className="animate-float-2 bg-white/95 dark:bg-slate-900/80 backdrop-blur-xl border border-slate-200/90 dark:border-white/15 rounded-3xl p-5 shadow-2xl hover:border-sky-500/50 transition-all duration-300 text-left relative overflow-hidden group ml-0 sm:ml-6"
                 >
                   <div className="absolute -right-6 -bottom-6 w-28 h-28 bg-gradient-to-br from-sky-500/20 to-blue-600/20 rounded-full blur-2xl pointer-events-none"></div>
 
-                  <div className="flex items-center justify-between mb-2 sm:mb-3">
-                    <div className="flex items-center space-x-2.5 sm:space-x-3">
-                      <div className="w-9 h-9 sm:w-11 sm:h-11 rounded-xl sm:rounded-2xl bg-slate-900 dark:bg-slate-800 border border-slate-700 flex items-center justify-center text-sky-400 shadow-lg">
-                        <TikTok className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
+                  <div className="flex items-center justify-between mb-3">
+                    <div className="flex items-center space-x-3">
+                      <div className="w-11 h-11 rounded-2xl bg-slate-900 dark:bg-slate-800 border border-slate-700 flex items-center justify-center text-sky-400 shadow-lg">
+                        <TikTok className="w-5 h-5 text-white" />
                       </div>
                       <div>
                         <div className="text-xs font-bold text-slate-800 dark:text-slate-300">Vídeos Curtos e Shorts</div>
                         <div className="text-[10px] text-slate-500 dark:text-slate-400 font-medium">TikTok e YouTube</div>
                       </div>
                     </div>
-                    <span className="text-[9px] sm:text-[10px] font-extrabold uppercase tracking-wider text-sky-600 dark:text-sky-400 bg-sky-500/10 px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-full border border-sky-500/20">
+                    <span className="text-[10px] font-extrabold uppercase tracking-wider text-sky-600 dark:text-sky-400 bg-sky-500/10 px-2.5 py-1 rounded-full border border-sky-500/20">
                       Impacto
                     </span>
                   </div>
 
                   <div className="flex items-baseline space-x-2">
-                    <span className="text-2xl sm:text-4xl font-black text-primary dark:text-sky-400 tracking-tight">
+                    <span className="text-3xl sm:text-4xl font-black text-primary dark:text-sky-400 tracking-tight">
                       {getCleanNumber(SOCIAL_STATS.tiktokViews)}
                     </span>
                     <span className="text-xs font-bold text-slate-600 dark:text-slate-300">
                       de visualizações
                     </span>
                   </div>
-                  <p className="text-[10px] sm:text-[11px] text-slate-500 dark:text-slate-400 mt-1">
+                  <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-1">
                     Ensinamentos consoladores que alcançam corações em momentos de dor.
                   </p>
                 </motion.div>
@@ -606,84 +600,59 @@ export default function SpiritismPortal({ onChangeRoute }: SpiritismPortalProps)
           </motion.div>
         </div>
 
-        {/* Layer 4: Foreground Floating Parallax Cloud Bank (Crosses smoothly over metrics) */}
-        <motion.div
-          style={{ y: fgCloudY, x: fgCloudX }}
-          className="absolute -bottom-8 sm:-bottom-14 md:-bottom-20 left-1/2 -translate-x-1/2 w-[140%] sm:w-[120%] md:w-[108%] max-w-none pointer-events-none z-20 animate-cloud-drift select-none"
-        >
-          <img
-            src="/imagens-pagina/nuvem-transparente.webp"
-            alt="Nuvem flutuante em primeiro plano"
-            className="w-full h-auto opacity-80 sm:opacity-90 dark:opacity-35 dark:brightness-125 dark:drop-shadow-[0_0_30px_rgba(56,189,248,0.3)]"
-          />
-        </motion.div>
-
-        {/* Soft bottom transition blend */}
-        <div className="absolute bottom-0 left-0 right-0 h-16 sm:h-24 bg-gradient-to-b from-transparent to-slate-50 dark:to-[#020617] pointer-events-none z-10"></div>
+        {/* Transição suave na base do Hero */}
+        <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-b from-transparent to-slate-50 dark:to-slate-950 pointer-events-none"></div>
       </section>
 
 
       {/* ========================================================= */}
-      {/* 2. SEÇÃO DE MÉTRICAS (Opção B: Tipografia Editorial Aberta) */}
+      {/* 2. SEÇÃO DE MÉTRICAS (Opção B: Tipografia Editorial 100% Aberta) */}
       {/* ========================================================= */}
       <section
         id="impacto"
-        className="py-3 sm:py-5 md:py-6 bg-slate-50 dark:bg-[#020617] relative z-20 transition-colors duration-300"
+        className="py-10 md:py-14 bg-slate-50 dark:bg-slate-950 relative z-10 transition-colors duration-300"
       >
-        <div className="max-w-5xl mx-auto px-3 sm:px-4">
-          {/* Faixa aberta e limpa com divisores sutis (Sem cara de IA / sem caixas arredondadas genéricas) */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 divide-y sm:divide-y-0 sm:divide-x divide-slate-200/80 dark:divide-white/10 py-2.5 sm:py-3.5 px-3 sm:px-6 rounded-2xl bg-white/60 dark:bg-slate-900/40 backdrop-blur-md border border-slate-200/60 dark:border-white/5 shadow-xs">
+        <div className="max-w-6xl mx-auto px-4">
+          <div className="grid grid-cols-2 md:grid-cols-4 divide-y md:divide-y-0 md:divide-x divide-slate-300/50 dark:divide-slate-800/80">
             
             {/* Metric 1 */}
-            <div className="py-2 sm:py-0 px-2 sm:px-4 text-center flex flex-col items-center justify-center">
-              <div className="flex items-center gap-1.5 mb-0.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-pink-500 shadow-[0_0_8px_rgba(236,72,153,0.8)]"></span>
-                <span className="text-xl sm:text-2xl md:text-3xl font-black text-slate-900 dark:text-white tracking-tight leading-none">
-                  +{SOCIAL_STATS.instagramFollowers}
-                </span>
+            <div className="py-5 md:py-0 px-4 text-center flex flex-col items-center justify-center">
+              <div className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-900 dark:text-white tracking-tight leading-none drop-shadow-sm">
+                +{SOCIAL_STATS.instagramFollowers}
               </div>
-              <span className="text-[10px] sm:text-[11px] md:text-xs text-slate-600 dark:text-slate-400 font-medium">
+              <div className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 font-semibold mt-2">
                 Seguidores no Instagram
-              </span>
+              </div>
             </div>
 
             {/* Metric 2 */}
-            <div className="py-2 sm:py-0 px-2 sm:px-4 text-center flex flex-col items-center justify-center">
-              <div className="flex items-center gap-1.5 mb-0.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-sky-400 shadow-[0_0_8px_rgba(56,189,248,0.8)]"></span>
-                <span className="text-xl sm:text-2xl md:text-3xl font-black text-primary dark:text-sky-400 tracking-tight leading-none">
-                  {getCleanNumber(SOCIAL_STATS.tiktokViews)}
-                </span>
+            <div className="py-5 md:py-0 px-4 text-center flex flex-col items-center justify-center">
+              <div className="text-3xl sm:text-4xl md:text-5xl font-black text-primary dark:text-sky-400 tracking-tight leading-none drop-shadow-sm">
+                {getCleanNumber(SOCIAL_STATS.tiktokViews)}
               </div>
-              <span className="text-[10px] sm:text-[11px] md:text-xs text-slate-600 dark:text-slate-400 font-medium">
+              <div className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 font-semibold mt-2">
                 Visualizações nos Vídeos
-              </span>
+              </div>
             </div>
 
             {/* Metric 3 */}
-            <div className="py-2 sm:py-0 px-2 sm:px-4 text-center flex flex-col items-center justify-center">
-              <div className="flex items-center gap-1.5 mb-0.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.8)]"></span>
-                <span className="text-xl sm:text-2xl md:text-3xl font-black text-emerald-600 dark:text-emerald-400 tracking-tight leading-none">
-                  {getCleanNumber(SOCIAL_STATS.volunteersCount)}
-                </span>
+            <div className="py-5 md:py-0 px-4 text-center flex flex-col items-center justify-center">
+              <div className="text-3xl sm:text-4xl md:text-5xl font-black text-emerald-600 dark:text-emerald-400 tracking-tight leading-none drop-shadow-sm">
+                {getCleanNumber(SOCIAL_STATS.volunteersCount)}
               </div>
-              <span className="text-[10px] sm:text-[11px] md:text-xs text-slate-600 dark:text-slate-400 font-medium">
+              <div className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 font-semibold mt-2">
                 Voluntários na Triagem
-              </span>
+              </div>
             </div>
 
             {/* Metric 4 */}
-            <div className="py-2 sm:py-0 px-2 sm:px-4 text-center flex flex-col items-center justify-center">
-              <div className="flex items-center gap-1.5 mb-0.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-amber-400 shadow-[0_0_8px_rgba(251,191,36,0.8)]"></span>
-                <span className="text-xl sm:text-2xl md:text-3xl font-black text-amber-600 dark:text-amber-400 tracking-tight leading-none">
-                  {getCleanNumber(SOCIAL_STATS.peopleHelped)}
-                </span>
+            <div className="py-5 md:py-0 px-4 text-center flex flex-col items-center justify-center">
+              <div className="text-3xl sm:text-4xl md:text-5xl font-black text-amber-500 dark:text-amber-400 tracking-tight leading-none drop-shadow-sm">
+                {getCleanNumber(SOCIAL_STATS.peopleHelped)}
               </div>
-              <span className="text-[10px] sm:text-[11px] md:text-xs text-slate-600 dark:text-slate-400 font-medium">
+              <div className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 font-semibold mt-2">
                 Pessoas Acolhidas
-              </span>
+              </div>
             </div>
 
           </div>
@@ -692,23 +661,28 @@ export default function SpiritismPortal({ onChangeRoute }: SpiritismPortalProps)
 
 
       {/* ========================================================= */}
-      {/* 3. OS 5 PILARES (Fundo Parallax Aprimorado + Transição Suave) */}
+      {/* 3. OS 5 PILARES (Fundo Nuvem ceunuvem2 + Parallax Limpo) */}
       {/* ========================================================= */}
       <section
         id="principios"
         ref={principiosRef}
-        className="py-16 md:py-28 bg-slate-50 dark:bg-[#020617] text-slate-900 dark:text-white relative overflow-hidden border-b border-slate-200/70 dark:border-slate-800 transition-colors duration-300"
+        className="py-16 md:py-24 bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-white relative overflow-hidden border-b border-slate-200/70 dark:border-slate-800 transition-colors duration-300"
       >
-        {/* Ambient Top Glow */}
-        <div className="ambient-glow top-8 right-10 w-96 h-96 bg-sky-500/10 pointer-events-none z-0"></div>
-
-        {/* Floating subtle cloud mist in principles */}
+        {/* Parallax Cloud Background */}
         <motion.div
-          style={{ y: principiosCloudY }}
-          className="absolute -top-10 left-0 w-80 sm:w-96 pointer-events-none z-0 opacity-40 dark:opacity-20 select-none"
+          style={{ y: principiosBgY }}
+          className="absolute inset-0 z-0 overflow-hidden pointer-events-none"
         >
-          <img src="/imagens-pagina/nuvem-cluster.webp" alt="" className="w-full h-auto" />
+          <img
+            src="/imagens-pagina/ceunuvem2.webp"
+            alt="Nuvens de fundo dos 5 pilares"
+            className="w-full h-[125%] object-cover object-center opacity-75 dark:opacity-45 dark:brightness-105 dark:contrast-115 dark:mix-blend-screen scale-105"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-slate-50/70 via-slate-50/20 to-slate-50 dark:from-slate-950/70 dark:via-slate-950/20 dark:to-slate-950"></div>
         </motion.div>
+
+        {/* Ambient Glow */}
+        <div className="ambient-glow top-20 right-10 w-96 h-96 bg-sky-500/10 pointer-events-none z-0"></div>
 
 
 

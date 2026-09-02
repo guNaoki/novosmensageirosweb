@@ -7,7 +7,24 @@ Todas as alterações notáveis deste projeto são documentadas neste arquivo, s
 
 ---
 
-## [2.1.0] — 2026-09-01 *(Versão Atual)*
+## [2.1.1] — 2026-09-01 *(Versão Atual)*
+
+### 🛠️ Ajustes Finos & Refinamento Visual (PATCH)
+* **Restauração dos Fundos Originais com Paralaxe Limpo**:
+  - Restauração de `ceunuvem1.webp` e `ceunuvem2.webp` com efeito de paralaxe fluido de scroll.
+  - Opacidade de 45% a 50% no modo escuro com iluminação celestial e azul do céu bem visível.
+  - Remoção de qualquer camada flutuante extra que gerasse sombras sobre os botões.
+* **Métricas 100% Abertas (Opção B - Tipografia Editorial)**:
+  - Totalmente sem caixas ou contêineres fechados em volta.
+  - Números imponentes (`text-3xl sm:text-4xl md:text-5xl font-black`) com divisores verticais finos e translúcidos.
+* **Equalização de Espaçamentos**:
+  - Distâncias simétricas e harmônicas entre o Hero, as Métricas e a seção de 5 Princípios, sem quebras secas.
+* **Ajuste de Escala do Logo & Branding**:
+  - Aumento proporcional do tamanho da logo e tipografia na Navbar.
+
+---
+
+## [2.1.0] — 2026-09-01
 
 ### 🎨 Melhorias Visuais & Paralaxe (MINOR)
 * **Fundo Celestial Puro & Paralaxe em Camadas**:

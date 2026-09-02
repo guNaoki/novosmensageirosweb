@@ -52,9 +52,9 @@ export default function Navbar({ currentRoute, onChangeRoute, darkMode, onToggle
               <img 
                 src="/logo-mensageiros.webp" 
                 alt="Novos Mensageiros" 
-                className="h-10 w-auto object-contain transform hover:scale-105 transition-transform duration-200" 
+                className="h-11 sm:h-12 w-auto object-contain transform hover:scale-105 transition-transform duration-200" 
               />
-              <span className="font-extrabold text-xl tracking-tight text-primary-dark dark:text-white select-none text-left">
+              <span className="font-black text-xl sm:text-2xl tracking-tight text-primary-dark dark:text-white select-none text-left">
                 Novos<span className="text-primary dark:text-sky-400">Mensageiros</span>
               </span>
             </button>
