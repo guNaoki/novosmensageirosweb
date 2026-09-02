@@ -415,9 +415,9 @@ export default function SpiritismPortal({ onChangeRoute }: SpiritismPortalProps)
       <section
         id="hero"
         ref={heroRef}
-        className="relative pt-32 pb-8 sm:pt-36 sm:pb-12 lg:pt-40 lg:pb-14 text-slate-900 dark:text-white overflow-hidden bg-slate-50 dark:bg-[#040d1f] transition-colors duration-300"
+        className="relative pt-32 pb-8 sm:pt-36 sm:pb-12 lg:pt-40 lg:pb-14 text-slate-900 dark:text-white overflow-hidden bg-gradient-to-b from-sky-100/70 via-blue-50/40 to-slate-50 dark:from-[#06152e]/90 dark:via-[#091e42]/65 dark:to-[#040d1f] transition-colors duration-300"
       >
-        {/* Layer 1: Parallax Cloud Background Image (Expansão de altura para movimento real e amplo) */}
+        {/* Layer 1: Parallax Cloud Background Image */}
         <motion.div
           style={{ y: heroBgY }}
           className="absolute -top-[40%] left-0 right-0 h-[180%] z-0 pointer-events-none will-change-transform"
@@ -425,10 +425,10 @@ export default function SpiritismPortal({ onChangeRoute }: SpiritismPortalProps)
           <img
             src="/imagens-pagina/ceunuvem1.webp"
             alt="Nuvens de fundo celestial"
-            className="w-full h-full object-cover object-center opacity-75 dark:opacity-45 dark:brightness-105 dark:contrast-115 dark:mix-blend-screen"
+            className="w-full h-full object-cover object-center opacity-30 dark:opacity-60 mix-blend-multiply dark:mix-blend-screen scale-105"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-sky-50/40 via-transparent to-slate-50/90 dark:from-[#040d1f]/60 dark:via-transparent dark:to-[#040d1f]/90"></div>
-          <div className="absolute inset-0 bg-gradient-to-r from-sky-50/50 via-transparent to-sky-50/50 dark:from-[#040d1f]/60 dark:via-transparent dark:to-[#040d1f]/60"></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-sky-50/70 via-sky-50/20 to-slate-50 dark:from-[#06152e]/85 dark:via-[#091e42]/50 dark:to-[#040d1f]"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-sky-50/80 via-transparent to-sky-50/80 dark:from-[#040d1f]/85 dark:via-transparent dark:to-[#040d1f]/85"></div>
         </motion.div>
 
         {/* Layer 2: Cosmic Particles & Drifting Stardust */}
@@ -657,7 +657,7 @@ export default function SpiritismPortal({ onChangeRoute }: SpiritismPortalProps)
         ref={principiosRef}
         className="py-16 md:py-24 bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-white relative overflow-hidden transition-colors duration-300"
       >
-        {/* Parallax Cloud Background (Movimento ampliado) */}
+        {/* Parallax Cloud Background */}
         <motion.div
           style={{ y: principiosBgY }}
           className="absolute -top-[40%] left-0 right-0 h-[180%] z-0 pointer-events-none will-change-transform"
@@ -665,9 +665,9 @@ export default function SpiritismPortal({ onChangeRoute }: SpiritismPortalProps)
           <img
             src="/imagens-pagina/ceunuvem2.webp"
             alt="Nuvens de fundo dos 5 pilares"
-            className="w-full h-full object-cover object-center opacity-75 dark:opacity-45 dark:brightness-105 dark:contrast-115 dark:mix-blend-screen"
+            className="w-full h-full object-cover object-center opacity-25 dark:opacity-50 mix-blend-multiply dark:mix-blend-screen scale-105"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-slate-50 dark:from-[#040d1f] via-slate-50/30 to-slate-50 dark:via-slate-950/30 dark:to-slate-950"></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-slate-50/70 via-slate-50/30 to-slate-50 dark:from-slate-950/85 dark:via-slate-950/60 dark:to-slate-950"></div>
         </motion.div>
 
         {/* Ambient Glow */}

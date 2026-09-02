@@ -7,7 +7,16 @@ Todas as alterações notáveis deste projeto são documentadas neste arquivo, s
 
 ---
 
-## [2.3.0] — 2026-09-02 *(Versão Atual)*
+## [2.3.1] — 2026-09-02 *(Versão Atual)*
+
+### 🎨 Restauração do Fundo Celestial Original (PATCH)
+* **Fundo Celestial & Atmosfera de Nuvem Reestabelecidos**:
+  - Restauração dos degradês profundos originais (`dark:from-[#06152e]/90 dark:via-[#091e42]/65 dark:to-[#040d1f]`) e das camadas de blending (`mix-blend-screen`, opacidade de 60% e vinhetas suaves).
+  - Seção dos 5 Princípios reajustada com a fusão atmosférica celestial original.
+
+---
+
+## [2.3.0] — 2026-09-02
 
 ### 🌟 Reforço de Paralaxe, Acento Celeste, Glow em Kardec e Remoção de Badges de IA (MINOR)
 * **Efeito de Paralaxe Amplo e Marcante**:
