@@ -7,7 +7,17 @@ Todas as alterações notáveis deste projeto são documentadas neste arquivo, s
 
 ---
 
-## [2.3.1] — 2026-09-02 *(Versão Atual)*
+## [2.3.2] — 2026-09-02 *(Versão Atual)*
+
+### ✨ Animação Tipográfica Sutil em Kardec e Ajuste Fino (PATCH)
+* **Substituição do Efeito de Glow por Revelação Tipográfica Editorial**:
+  - Removidos os halos de glow genéricos da frase de Kardec.
+  - Implementada revelação de palavras escalonada com desfoque orgânico suave via Framer Motion.
+  - Aspas `“` com flutuação sutil contínua e divisores translúcidos elegantes.
+
+---
+
+## [2.3.1] — 2026-09-02
 
 ### 🎨 Restauração do Fundo Celestial Original (PATCH)
 * **Fundo Celestial & Atmosfera de Nuvem Reestabelecidos**:

@@ -607,40 +607,73 @@ export default function SpiritismPortal({ onChangeRoute }: SpiritismPortalProps)
       {/* ========================================================= */}
       <section
         id="frase-kardec"
-        className="py-10 sm:py-14 bg-slate-50 dark:bg-[#040d1f] relative z-10 transition-colors duration-300 text-center overflow-hidden"
+        className="py-12 sm:py-16 bg-slate-50 dark:bg-[#040d1f] relative z-10 transition-colors duration-300 text-center overflow-hidden"
       >
-        {/* Ambient celestial glow / fru-fru atmosférico */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[340px] sm:w-[520px] h-[180px] bg-sky-400/15 dark:bg-sky-400/20 rounded-full blur-3xl pointer-events-none animate-pulse -z-10"></div>
-        <div className="absolute top-1/2 left-1/3 -translate-y-1/2 w-[240px] h-[140px] bg-primary/10 dark:bg-blue-600/15 rounded-full blur-2xl pointer-events-none -z-10" style={{ animationDelay: '-2s' }}></div>
-
         <div className="max-w-3xl mx-auto px-4 sm:px-6 relative">
           <motion.div
-            initial={{ opacity: 0, y: 14, scale: 0.98 }}
-            whileInView={{ opacity: 1, y: 0, scale: 1 }}
-            viewport={{ once: true, margin: "-40px" }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-50px" }}
+            variants={{
+              hidden: { opacity: 0 },
+              visible: {
+                opacity: 1,
+                transition: { staggerChildren: 0.08, delayChildren: 0.1 }
+              }
+            }}
             className="relative flex flex-col items-center justify-center"
           >
-            {/* Aspas estilizadas com glow celestial */}
-            <div className="text-4xl sm:text-5xl font-serif text-sky-500/40 dark:text-sky-300/50 leading-none select-none -mb-3 sm:-mb-4 filter drop-shadow-[0_0_12px_rgba(56,189,248,0.35)]">
+            {/* Aspas estilizadas flutuantes com movimento orgânico */}
+            <motion.div
+              animate={{ y: [-3, 3, -3] }}
+              transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+              className="text-4xl sm:text-5xl font-serif text-sky-500/40 dark:text-sky-400/40 leading-none select-none mb-1 cursor-default"
+            >
               “
-            </div>
+            </motion.div>
 
-            {/* Frase com gradiente de luz e drop shadow celestial */}
-            <blockquote className="relative z-10 text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black tracking-tight leading-snug px-2">
-              <span className="bg-gradient-to-r from-slate-900 via-sky-800 to-slate-900 dark:from-white dark:via-sky-200 dark:to-white bg-clip-text text-transparent drop-shadow-[0_2px_15px_rgba(56,189,248,0.2)]">
-                Fora da caridade não há salvação.
-              </span>
+            {/* Frase com revelação de palavras e tipografia editorial sóbria */}
+            <blockquote className="relative z-10 text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight leading-snug px-2 flex flex-wrap justify-center gap-x-2.5 gap-y-1 text-slate-800 dark:text-slate-100">
+              {[
+                { word: "Fora", highlight: false },
+                { word: "da", highlight: false },
+                { word: "caridade", highlight: true },
+                { word: "não", highlight: false },
+                { word: "há", highlight: false },
+                { word: "salvação.", highlight: false }
+              ].map((item, idx) => (
+                <motion.span
+                  key={idx}
+                  variants={{
+                    hidden: { opacity: 0, y: 12, filter: "blur(4px)" },
+                    visible: {
+                      opacity: 1,
+                      y: 0,
+                      filter: "blur(0px)",
+                      transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] }
+                    }
+                  }}
+                  className={item.highlight ? "text-sky-600 dark:text-sky-300 font-extrabold" : "font-bold"}
+                >
+                  {item.word}
+                </motion.span>
+              ))}
             </blockquote>
 
-            {/* Autor com estilo refinado */}
-            <div className="mt-3.5 sm:mt-4 flex items-center justify-center gap-2">
-              <span className="h-px w-6 sm:w-10 bg-gradient-to-r from-transparent to-sky-400/60 dark:to-sky-400/80"></span>
-              <cite className="text-xs sm:text-sm font-extrabold text-sky-700 dark:text-sky-300 tracking-wider uppercase not-italic">
+            {/* Autor com linhas finas e acabamento requintado */}
+            <motion.div
+              variants={{
+                hidden: { opacity: 0, y: 8 },
+                visible: { opacity: 1, y: 0, transition: { duration: 0.6, delay: 0.5 } }
+              }}
+              className="mt-4 flex items-center justify-center gap-3 text-slate-500 dark:text-slate-400"
+            >
+              <span className="h-px w-8 sm:w-12 bg-slate-200 dark:bg-slate-700/80"></span>
+              <cite className="text-xs sm:text-sm font-semibold tracking-wider uppercase not-italic text-slate-600 dark:text-slate-300">
                 Allan Kardec
               </cite>
-              <span className="h-px w-6 sm:w-10 bg-gradient-to-l from-transparent to-sky-400/60 dark:to-sky-400/80"></span>
-            </div>
+              <span className="h-px w-8 sm:w-12 bg-slate-200 dark:bg-slate-700/80"></span>
+            </motion.div>
           </motion.div>
         </div>
 
