@@ -39,7 +39,16 @@ Gere e mantenha a aplicação web em React 19, utilizando Tailwind CSS para a es
 4. **Rede de Apoio:** 4 perfis de voluntariado (Psicólogos, Casas Espíritas, Atendimento Ativo, Pesquisadores).
 5. **CTA de Inscrição:** Formulário de cadastro de voluntários ("Fora da caridade não há salvação").
 
-### ⚠️ Requisitos de Código
+### ⚠️ Requisitos de Código & Padrões do Projeto
+- **Versionamento Semântico (`MAJOR.MINOR.PATCH`)**:
+  - `MAJOR` (ex: `2.0.0`): Grandes reformulações de arquitetura/design.
+  - `MINOR` (ex: `2.1.0`): Novas páginas, seções ou recursos.
+  - `PATCH` (ex: `2.0.1`): Correções de bugs pontuais e ajustes finos.
+- **Padrão de Mensagens de Commit (Conventional Commits)**:
+  - Formato: `tipo(escopo): descrição concisa` (ex: `fix(hero): corrigir z-index do background`).
+  - Tipos: `feat`, `fix`, `refactor`, `perf`, `style`, `docs`.
 - Manter transições nativas do Tailwind e Framer Motion (`transition-all duration-300`).
 - Garanta que o design seja totalmente responsivo (mobile-first usando `md` e `lg` do Tailwind).
 - Manter o suporte a Dark Mode em todos os componentes.
+- Manter o runtime e gerenciador de pacotes **Bun** para todos os comandos de desenvolvimento e build.
+- Registrar alterações relevantes no [`CHANGELOG.md`](./CHANGELOG.md).

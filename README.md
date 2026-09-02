@@ -68,6 +68,29 @@ Os arquivos prontos para deploy estarão na pasta `dist/`.
 
 ---
 
+## 🏷️ Controle de Versão e Padrão de Commits
+
+O projeto adota o **[Semantic Versioning (SemVer)](https://semver.org/lang/pt-BR/)** no formato `MAJOR.MINOR.PATCH` (ex: `2.0.0`):
+
+| Posição | Tipo | Quando incrementar? | Exemplo |
+| :--- | :--- | :--- | :--- |
+| **1º Número (`MAJOR`)** | Grande Atualização | Reestruturações completas de design/arquitetura, quebra de compatibilidade ou marcos principais (ex: migração da v1 legada para v2 com Tailwind v4 e WebP). | `1.0.0` ➔ `2.0.0` |
+| **2º Número (`MINOR`)** | Média Atualização | Adição de novas seções, páginas, recursos ou fluxos funcionais sem quebrar a estrutura. | `2.0.0` ➔ `2.1.0` |
+| **3º Número (`PATCH`)** | Pequena Atualização | Correções pontuais de bugs, ajustes finos de CSS/layout, textos e otimizações menores. | `2.0.0` ➔ `2.0.1` |
+
+### 📝 Convenção de Commits (Conventional Commits)
+Para manter o histórico do repositório limpo e organizado:
+* `feat(escopo): descrição` — Nova funcionalidade ou seção adicionada.
+* `fix(escopo): descrição` — Correção de bug ou erro de renderização.
+* `refactor(escopo): descrição` — Reestruturação de código/estilos sem alteração de comportamento.
+* `perf(escopo): descrição` — Melhorias de performance e otimização (ex: conversão WebP).
+* `style(escopo): descrição` — Ajustes cosméticos e de formatação.
+* `docs(escopo): descrição` — Alterações em arquivos de documentação.
+
+Consulte o histórico detalhado em [`CHANGELOG.md`](./CHANGELOG.md).
+
+---
+
 ## 🤝 Como Contribuir
 
 Seja com código, design, divulgação ou voluntariado, toda ajuda é bem-vinda.
