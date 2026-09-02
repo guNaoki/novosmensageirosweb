@@ -2,9 +2,9 @@
 <html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/png" href="/favicon.png?v=3" />
-    <link rel="shortcut icon" href="/favicon.ico?v=3" />
-    <link rel="apple-touch-icon" href="/favicon.png?v=3" />
+    <link rel="icon" type="image/webp" href="/favicon.webp?v=4" />
+    <link rel="shortcut icon" href="/favicon.webp?v=4" />
+    <link rel="apple-touch-icon" href="/favicon.webp?v=4" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
     <!-- Primary Meta Tags -->
@@ -12,19 +12,32 @@
     <meta name="title" content="Novos Mensageiros — Portal de Acolhimento e Projeto Resgate" />
     <meta name="description" content="Iniciativa voltada ao acolhimento fraterno, consolo espiritual e resgate de vidas a partir do ambiente digital. Conheça o Espiritismo e faça parte da nossa rede de apoio voluntária." />
     <meta name="theme-color" content="#004d8f" />
+    <script>
+      (function() {
+        try {
+          var saved = localStorage.getItem('theme');
+          var isDark = saved ? saved === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+          if (isDark) {
+            document.documentElement.classList.add('dark');
+          } else {
+            document.documentElement.classList.remove('dark');
+          }
+        } catch (e) {}
+      })();
+    </script>
 
     <!-- Open Graph / Facebook / WhatsApp -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://novosmensageiros.com.br/" />
     <meta property="og:title" content="Novos Mensageiros — Portal de Acolhimento e Projeto Resgate" />
     <meta property="og:description" content="Mapeando a dor nas redes digitais e aproximando corações ao amparo de amor, luz e consolo espiritual. Seja um voluntário." />
-    <meta property="og:image" content="/Logo mensageiros.png" />
+    <meta property="og:image" content="/logo-mensageiros.webp" />
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:title" content="Novos Mensageiros — Portal de Acolhimento e Resgate" />
     <meta property="twitter:description" content="Mapeando a dor nas redes digitais e aproximando corações ao amparo de amor e luz. Seja um voluntário." />
-    <meta property="twitter:image" content="/Logo mensageiros.png" />
+    <meta property="twitter:image" content="/logo-mensageiros.webp" />
   </head>
   <body>
     <div id="root"></div>

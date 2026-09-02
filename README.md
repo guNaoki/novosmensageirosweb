@@ -57,7 +57,7 @@ bun install
 ```bash
 bun run dev
 ```
-Acesse `http://localhost:5173` no seu navegador.
+Acesse `http://localhost:5180` no seu navegador.
 
 ### 4. Build de produção
 Para gerar a versão otimizada para publicação:

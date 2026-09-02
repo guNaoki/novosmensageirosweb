@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Heart, ChevronDown, Menu, X, Compass, HelpCircle, Star, Sun, Moon } from 'lucide-react';
+import Button from './ui/Button';
 
 interface NavbarProps {
   currentRoute: string;
@@ -38,7 +39,7 @@ export default function Navbar({ currentRoute, onChangeRoute, darkMode, onToggle
   };
 
   return (
-    <nav className="fixed w-full z-50 bg-white/90 dark:bg-slate-950/90 backdrop-blur-md border-b border-slate-100 dark:border-slate-800 transition-all duration-300 shadow-sm">
+    <nav className="fixed w-full z-50 bg-white/90 dark:bg-slate-950/90 backdrop-blur-md border-b border-slate-200/70 dark:border-slate-800 transition-colors duration-300 shadow-xs">
       <div className="max-w-6xl mx-auto px-4">
         <div className="flex justify-between items-center h-20">
           
@@ -49,23 +50,23 @@ export default function Navbar({ currentRoute, onChangeRoute, darkMode, onToggle
               className="flex items-center space-x-3 cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary/20 rounded-lg p-1"
             >
               <img 
-                src="/Logo mensageiros.png" 
+                src="/logo-mensageiros.webp" 
                 alt="Novos Mensageiros" 
                 className="h-10 w-auto object-contain transform hover:scale-105 transition-transform duration-200" 
               />
-              <span className="font-extrabold text-xl tracking-tight text-primary-dark dark:text-sky-300 select-none text-left">
+              <span className="font-extrabold text-xl tracking-tight text-primary-dark dark:text-white select-none text-left">
                 Novos<span className="text-primary dark:text-sky-400">Mensageiros</span>
               </span>
             </button>
           </div>
 
           {/* Center: Desktop Navigation Links */}
-          <div className="hidden md:flex space-x-8 items-center font-semibold text-sm text-slate-600 dark:text-slate-200">
+          <div className="hidden md:flex space-x-8 items-center font-semibold text-sm text-slate-700 dark:text-slate-200">
             {/* Link 1: Início */}
             <button
               onClick={() => handleNavigate('#/')}
               className={`hover:text-primary dark:hover:text-sky-400 transition-colors cursor-pointer py-2 ${
-                currentRoute === '#/' ? 'text-primary dark:text-sky-400 border-b-2 border-primary dark:border-sky-400' : ''
+                currentRoute === '#/' ? 'text-primary dark:text-sky-400 border-b-2 border-primary dark:border-sky-400 font-bold' : ''
               }`}
             >
               Início
@@ -73,8 +74,10 @@ export default function Navbar({ currentRoute, onChangeRoute, darkMode, onToggle
 
             {/* Link 2: Nossa História */}
             <button
-              onClick={() => handleNavigate('#/', 'nossa-historia')}
-              className="hover:text-primary dark:hover:text-sky-400 transition-colors cursor-pointer py-2 text-slate-600 dark:text-slate-200"
+              onClick={() => handleNavigate('#/historia')}
+              className={`hover:text-primary dark:hover:text-sky-400 transition-colors cursor-pointer py-2 ${
+                currentRoute === '#/historia' ? 'text-primary dark:text-sky-400 border-b-2 border-primary dark:border-sky-400 font-bold' : 'text-slate-700 dark:text-slate-200'
+              }`}
             >
               Nossa História
             </button>
@@ -85,7 +88,7 @@ export default function Navbar({ currentRoute, onChangeRoute, darkMode, onToggle
                 onClick={() => toggleDropdown('espiritismo')}
                 onMouseEnter={() => setActiveDropdown('espiritismo')}
                 className={`flex items-center gap-1 hover:text-primary dark:hover:text-sky-400 transition-colors cursor-pointer py-2 ${
-                  activeDropdown === 'espiritismo' ? 'text-primary dark:text-sky-400' : ''
+                  activeDropdown === 'espiritismo' ? 'text-primary dark:text-sky-400 font-bold' : ''
                 }`}
               >
                 Aprender Espiritismo
@@ -95,35 +98,35 @@ export default function Navbar({ currentRoute, onChangeRoute, darkMode, onToggle
               {/* Dropdown Card */}
               {activeDropdown === 'espiritismo' && (
                 <div 
-                  className="absolute left-0 mt-2 w-56 rounded-2xl bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 shadow-xl p-2.5 animate-fadeIn z-50 text-left"
+                  className="absolute left-0 mt-2 w-56 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xl p-2.5 animate-fadeIn z-50 text-left"
                   onMouseLeave={() => setActiveDropdown(null)}
                 >
                   <button
-                    onClick={() => handleNavigate('#/', 'entender')}
-                    className="w-full flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800 transition text-slate-700 dark:text-slate-200 hover:text-primary dark:hover:text-sky-400 cursor-pointer text-xs font-bold"
+                    onClick={() => handleNavigate('#/', 'principios')}
+                    className="w-full flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 transition text-slate-700 dark:text-slate-200 hover:text-primary dark:hover:text-sky-400 cursor-pointer text-xs font-bold"
                   >
-                    <HelpCircle className="w-4 h-4 text-primary dark:text-sky-400" />
+                    <HelpCircle className="w-4 h-4 text-primary dark:text-sky-400 shrink-0" />
                     5 Princípios Básicos
                   </button>
                   <button
                     onClick={() => handleNavigate('#/', 'materiais')}
-                    className="w-full flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800 transition text-slate-700 dark:text-slate-200 hover:text-primary dark:hover:text-sky-400 cursor-pointer text-xs font-bold"
+                    className="w-full flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 transition text-slate-700 dark:text-slate-200 hover:text-primary dark:hover:text-sky-400 cursor-pointer text-xs font-bold"
                   >
-                    <Star className="w-4 h-4 text-primary dark:text-sky-400" />
+                    <Star className="w-4 h-4 text-primary dark:text-sky-400 shrink-0" />
                     Livros, Vídeos & Filmes
                   </button>
                   <button
                     onClick={() => handleNavigate('#/', 'buscar-ajuda')}
-                    className="w-full flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800 transition text-slate-700 dark:text-slate-200 hover:text-primary dark:hover:text-sky-400 cursor-pointer text-xs font-bold"
+                    className="w-full flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 transition text-slate-700 dark:text-slate-200 hover:text-primary dark:hover:text-sky-400 cursor-pointer text-xs font-bold"
                   >
-                    <Compass className="w-4 h-4 text-primary dark:text-sky-400" />
+                    <Compass className="w-4 h-4 text-primary dark:text-sky-400 shrink-0" />
                     Achar um Centro (FEB)
                   </button>
                   <button
                     onClick={() => handleNavigate('#/', 'amor-ideal')}
-                    className="w-full flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800 transition text-slate-700 dark:text-slate-200 hover:text-primary dark:hover:text-sky-400 cursor-pointer text-xs font-bold"
+                    className="w-full flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 transition text-slate-700 dark:text-slate-200 hover:text-primary dark:hover:text-sky-400 cursor-pointer text-xs font-bold"
                   >
-                    <Heart className="w-4 h-4 text-primary dark:text-sky-400" />
+                    <Heart className="w-4 h-4 text-primary dark:text-sky-400 shrink-0" />
                     Amor Ideal & Mei Mei
                   </button>
                 </div>
@@ -134,7 +137,7 @@ export default function Navbar({ currentRoute, onChangeRoute, darkMode, onToggle
             <button
               onClick={() => handleNavigate('#/resgate')}
               className={`hover:text-primary dark:hover:text-sky-400 transition-colors cursor-pointer py-2 ${
-                currentRoute === '#/resgate' ? 'text-primary dark:text-sky-400 border-b-2 border-primary dark:border-sky-400' : ''
+                currentRoute === '#/resgate' ? 'text-primary dark:text-sky-400 border-b-2 border-primary dark:border-sky-400 font-bold' : ''
               }`}
             >
               Projeto Resgate
@@ -147,9 +150,9 @@ export default function Navbar({ currentRoute, onChangeRoute, darkMode, onToggle
             {onToggleDarkMode && (
               <button
                 onClick={onToggleDarkMode}
-                className="p-2.5 rounded-xl text-slate-600 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all duration-200 cursor-pointer focus:outline-none"
+                className="p-2.5 rounded-xl text-slate-600 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all duration-200 cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary/20"
                 title={darkMode ? "Ativar Modo Claro" : "Ativar Modo Escuro"}
-                aria-label="Alternar Modo Escuro"
+                aria-label={darkMode ? "Ativar Modo Claro" : "Ativar Modo Escuro"}
               >
                 {darkMode ? (
                   <Sun className="w-5 h-5 text-amber-400 transition-transform duration-300 hover:rotate-45" />
@@ -159,12 +162,14 @@ export default function Navbar({ currentRoute, onChangeRoute, darkMode, onToggle
               </button>
             )}
 
-            <button 
+            <Button
+              variant="primary"
+              size="md"
               onClick={() => handleNavigate('#/resgate', 'inscricao')}
-              className="px-5 py-2.5 bg-primary hover:bg-primary-hover text-white text-xs font-extrabold rounded-xl shadow-lg shadow-primary/20 hover:shadow-primary/35 hover:scale-[1.03] active:scale-95 transition duration-200 whitespace-nowrap cursor-pointer"
+              className="whitespace-nowrap"
             >
               Quero Ser Voluntário
-            </button>
+            </Button>
           </div>
 
           {/* Mobile Menu Button & Dark Mode */}
@@ -172,8 +177,8 @@ export default function Navbar({ currentRoute, onChangeRoute, darkMode, onToggle
             {onToggleDarkMode && (
               <button
                 onClick={onToggleDarkMode}
-                className="p-2 rounded-xl text-slate-600 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
-                aria-label="Alternar Modo Escuro"
+                className="p-2 rounded-xl text-slate-600 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors cursor-pointer"
+                aria-label={darkMode ? "Ativar Modo Claro" : "Ativar Modo Escuro"}
               >
                 {darkMode ? (
                   <Sun className="w-5 h-5 text-amber-400" />
@@ -185,7 +190,8 @@ export default function Navbar({ currentRoute, onChangeRoute, darkMode, onToggle
 
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 rounded-xl text-slate-500 dark:text-slate-200 hover:text-primary hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors"
+              className="p-2 rounded-xl text-slate-600 dark:text-slate-200 hover:text-primary hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors cursor-pointer"
+              aria-label="Abrir Menu de Navegação"
             >
               {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
@@ -196,67 +202,69 @@ export default function Navbar({ currentRoute, onChangeRoute, darkMode, onToggle
 
       {/* Mobile Drawer Menu */}
       {mobileMenuOpen && (
-        <div className="md:hidden border-t border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-950 shadow-xl animate-fadeIn p-4 space-y-4">
+        <div className="md:hidden border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 shadow-xl animate-fadeIn p-4 space-y-4">
           <div className="flex flex-col space-y-2">
             <button
               onClick={() => handleNavigate('#/')}
-              className="w-full text-left py-2.5 px-4 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/80 font-semibold text-slate-700 dark:text-slate-200 hover:text-primary dark:hover:text-sky-400 cursor-pointer text-sm transition-colors"
+              className="w-full text-left py-2.5 px-4 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 font-semibold text-slate-800 dark:text-slate-200 hover:text-primary dark:hover:text-sky-400 cursor-pointer text-sm transition-colors"
             >
               Início (Acolhimento)
             </button>
             <button
               onClick={() => handleNavigate('#/', 'nossa-historia')}
-              className="w-full text-left py-2.5 px-4 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/80 font-semibold text-slate-700 dark:text-slate-200 hover:text-primary dark:hover:text-sky-400 cursor-pointer text-sm transition-colors"
+              className="w-full text-left py-2.5 px-4 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 font-semibold text-slate-800 dark:text-slate-200 hover:text-primary dark:hover:text-sky-400 cursor-pointer text-sm transition-colors"
             >
               Nossa História
             </button>
             
-            <div className="border-t border-slate-100 dark:border-slate-800 my-1"></div>
+            <div className="border-t border-slate-200 dark:border-slate-800 my-1"></div>
             
             <div className="px-4 py-1 text-slate-400 dark:text-slate-500 font-extrabold text-[10px] uppercase tracking-wider">Espiritismo</div>
             <button
-              onClick={() => handleNavigate('#/', 'entender')}
-              className="w-full text-left py-2 px-6 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/80 font-semibold text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-sky-400 cursor-pointer text-xs transition-colors"
+              onClick={() => handleNavigate('#/', 'principios')}
+              className="w-full text-left py-2 px-6 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 font-semibold text-slate-700 dark:text-slate-300 hover:text-primary dark:hover:text-sky-400 cursor-pointer text-xs transition-colors"
             >
-              Princípios Básicos
+              5 Princípios Básicos
             </button>
             <button
               onClick={() => handleNavigate('#/', 'buscar-ajuda')}
-              className="w-full text-left py-2 px-6 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/80 font-semibold text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-sky-400 cursor-pointer text-xs transition-colors"
+              className="w-full text-left py-2 px-6 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 font-semibold text-slate-700 dark:text-slate-300 hover:text-primary dark:hover:text-sky-400 cursor-pointer text-xs transition-colors"
             >
               Achar um Centro (FEB)
             </button>
             <button
               onClick={() => handleNavigate('#/', 'materiais')}
-              className="w-full text-left py-2 px-6 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/80 font-semibold text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-sky-400 cursor-pointer text-xs transition-colors"
+              className="w-full text-left py-2 px-6 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 font-semibold text-slate-700 dark:text-slate-300 hover:text-primary dark:hover:text-sky-400 cursor-pointer text-xs transition-colors"
             >
               Materiais de Apoio
             </button>
             <button
               onClick={() => handleNavigate('#/', 'amor-ideal')}
-              className="w-full text-left py-2 px-6 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/80 font-semibold text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-sky-400 cursor-pointer text-xs transition-colors"
+              className="w-full text-left py-2 px-6 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 font-semibold text-slate-700 dark:text-slate-300 hover:text-primary dark:hover:text-sky-400 cursor-pointer text-xs transition-colors"
             >
               Amor Ideal & Mei Mei
             </button>
 
-            <div className="border-t border-slate-100 dark:border-slate-800 my-1"></div>
+            <div className="border-t border-slate-200 dark:border-slate-800 my-1"></div>
 
             <div className="px-4 py-1 text-slate-400 dark:text-slate-500 font-extrabold text-[10px] uppercase tracking-wider">O Projeto</div>
             <button
               onClick={() => handleNavigate('#/resgate')}
-              className="w-full text-left py-2 px-6 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/80 font-semibold text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-sky-400 cursor-pointer text-xs transition-colors"
+              className="w-full text-left py-2 px-6 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 font-semibold text-slate-700 dark:text-slate-300 hover:text-primary dark:hover:text-sky-400 cursor-pointer text-xs transition-colors"
             >
               Projeto Resgate
             </button>
           </div>
 
-          <div className="pt-4 border-t border-slate-100 dark:border-slate-800">
-            <button
+          <div className="pt-4 border-t border-slate-200 dark:border-slate-800">
+            <Button
+              variant="primary"
+              size="md"
               onClick={() => handleNavigate('#/resgate', 'inscricao')}
-              className="w-full bg-primary hover:bg-primary-hover text-white text-center py-3.5 rounded-xl font-bold shadow-md cursor-pointer text-sm transition-all"
+              className="w-full py-3.5"
             >
               Quero Ser Voluntário
-            </button>
+            </Button>
           </div>
         </div>
       )}

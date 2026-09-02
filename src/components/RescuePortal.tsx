@@ -9,14 +9,13 @@ import {
   AlertCircle, 
   MapPin
 } from 'lucide-react';
+import Button from './ui/Button';
 
 interface RescuePortalProps {
   onChangeRoute: (route: string) => void;
 }
 
 export default function RescuePortal({ onChangeRoute }: RescuePortalProps) {
-
-
   // Framer Motion Variants
   const fadeInUp = {
     hidden: { opacity: 0, y: 25 },
@@ -39,25 +38,25 @@ export default function RescuePortal({ onChangeRoute }: RescuePortalProps) {
   };
 
   return (
-    <div className="bg-slate-50 overflow-x-hidden">
+    <div className="bg-slate-50 dark:bg-slate-950 overflow-x-hidden transition-colors duration-300">
       
       {/* 2. Hero Section (O Propósito) */}
-      <section id="proposito" className="relative pt-32 pb-16 lg:pt-40 lg:pb-24 bg-slate-950 text-white overflow-hidden">
-        {/* Full-bleed background image with clear dark overlay */}
+      <section id="proposito" className="relative pt-32 pb-16 lg:pt-40 lg:pb-24 bg-gradient-to-b from-sky-100/70 via-blue-50/40 to-slate-50 dark:from-slate-950/70 dark:via-slate-950/85 dark:to-slate-950 text-slate-900 dark:text-white overflow-hidden transition-colors duration-300">
+        {/* Full-bleed background image with clear overlay */}
         <div className="absolute inset-0 -z-20 overflow-hidden">
           <img 
             src="https://images.unsplash.com/photo-1516880711640-ef7db81be3e1?q=80&w=1600&auto=format&fit=crop" 
             alt="Supportive hands background" 
-            className="w-full h-full object-cover opacity-50 mix-blend-screen scale-105 pointer-events-none"
+            className="w-full h-full object-cover opacity-15 dark:opacity-50 mix-blend-multiply dark:mix-blend-screen scale-105 pointer-events-none"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-slate-950/70 via-slate-950/85 to-slate-950"></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-sky-50/80 via-sky-50/90 to-slate-50 dark:from-slate-950/70 dark:via-slate-950/85 dark:to-slate-950"></div>
           {/* Subtle grid pattern overlay */}
-          <div className="absolute inset-0 bg-grid-dark opacity-35"></div>
+          <div className="absolute inset-0 bg-grid-pattern dark:bg-grid-dark opacity-35"></div>
         </div>
 
-        {/* Ambient Gradient Glows (using custom floatGlow classes) */}
-        <div className="ambient-glow top-20 left-10 w-96 h-96 bg-primary/40 pointer-events-none"></div>
-        <div className="ambient-glow bottom-20 right-10 w-[450px] h-[450px] bg-sky-500/25 pointer-events-none" style={{ animationDelay: '-4s' }}></div>
+        {/* Ambient Gradient Glows */}
+        <div className="ambient-glow top-20 left-10 w-96 h-96 bg-primary/20 dark:bg-primary/40 pointer-events-none"></div>
+        <div className="ambient-glow bottom-20 right-10 w-[450px] h-[450px] bg-sky-500/15 dark:bg-sky-500/25 pointer-events-none" style={{ animationDelay: '-4s' }}></div>
 
         <div className="max-w-6xl mx-auto px-4">
           <motion.div 
@@ -70,45 +69,50 @@ export default function RescuePortal({ onChangeRoute }: RescuePortalProps) {
             <div className="lg:col-span-7 space-y-6 text-left">
               <motion.h1 
                 variants={fadeInUp}
-                className="text-4xl md:text-5xl lg:text-6xl font-black text-white tracking-tight leading-tight"
+                className="text-4xl md:text-5xl lg:text-6xl font-black text-slate-900 dark:text-white tracking-tight leading-tight"
               >
-                Projeto de Resgate: Uma <span className="text-sky-400 relative inline-block hover:scale-[1.02] transition-all duration-300 cursor-default select-none">
+                Projeto de Resgate: Uma <span className="text-primary dark:text-sky-400 relative inline-block hover:scale-[1.02] transition-all duration-300 cursor-default select-none">
                   mão estendida
-                  <span className="absolute bottom-1 left-0 w-full h-[6px] bg-sky-500/30 -z-10 rounded-full"></span>
+                  <span className="absolute bottom-1 left-0 w-full h-[6px] bg-primary/20 dark:bg-sky-500/30 -z-10 rounded-full"></span>
                 </span> no momento de maior dor.
               </motion.h1>
               
               <motion.p 
                 variants={fadeInUp}
-                className="text-lg text-slate-100 leading-relaxed max-w-2xl font-medium"
+                className="text-lg text-slate-700 dark:text-slate-100 leading-relaxed max-w-2xl font-medium"
               >
-                O <strong className="font-extrabold text-white">Projeto de Resgate</strong> é a frente de ação direta dos Novos Mensageiros. Conversamos com pessoas que estão com <em className="italic font-semibold text-sky-300">depressão</em>. Realizamos o atendimento dessas pessoas, triagem por nível de risco, diálogo fraterno e encaminhamento para profissionais especialistas.
+                O <strong className="font-extrabold text-slate-900 dark:text-white">Projeto de Resgate</strong> é a frente de ação direta dos Novos Mensageiros. Conversamos com pessoas que estão com <em className="italic font-semibold text-primary dark:text-sky-300">depressão</em>. Realizamos o atendimento dessas pessoas, triagem por nível de risco, diálogo fraterno e encaminhamento para profissionais especialistas.
               </motion.p>
               
               <motion.div 
                 variants={fadeInUp}
                 className="flex flex-col sm:flex-row gap-4 pt-2"
               >
-                <a 
-                  href="#inscricao" 
-                  className="inline-flex items-center justify-center bg-primary hover:bg-primary-hover text-white font-extrabold px-7 py-4 rounded-2xl shadow-xl shadow-primary/30 hover:shadow-2xl hover:shadow-primary/45 transition-all duration-300 transform hover:-translate-y-0.5 active:scale-95 group text-base"
+                <Button
+                  variant="primary"
+                  size="lg"
+                  iconRight={<ArrowRight className="w-5 h-5 ml-1" />}
+                  onClick={() => {
+                    const el = document.getElementById('inscricao');
+                    if (el) el.scrollIntoView({ behavior: 'smooth' });
+                  }}
                 >
                   Quero Ajudar a Salvar Vidas
-                  <ArrowRight className="w-5 h-5 ml-2 transition-transform duration-300 group-hover:translate-x-1" />
-                </a>
-                <button 
+                </Button>
+                <Button
+                  variant="secondary"
+                  size="lg"
                   onClick={() => {
                     onChangeRoute('#/');
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                   }}
-                  className="inline-flex items-center justify-center bg-white/10 hover:bg-white/20 text-white border border-white/20 font-bold px-7 py-4 rounded-2xl transition-all duration-300 backdrop-blur-md transform hover:-translate-y-0.5 active:scale-95 cursor-pointer text-base"
                 >
                   Voltar ao Portal Principal
-                </button>
+                </Button>
               </motion.div>
             </div>
 
-            {/* Rescue Operational Metrics & Dedicated TikTok Card */}
+            {/* Rescue Operational Metrics Card */}
             <motion.div 
               variants={fadeInUp}
               className="lg:col-span-5 relative animate-fadeIn"
@@ -133,12 +137,12 @@ export default function RescuePortal({ onChangeRoute }: RescuePortalProps) {
                 <div className="p-5 space-y-4 text-left">
                   <div className="grid grid-cols-2 gap-3">
                     <div className="bg-slate-50 dark:bg-slate-800/80 p-3.5 rounded-2xl border border-slate-200/80 dark:border-slate-700">
-                      <div className="text-2xl font-black text-primary-dark dark:text-white font-sans">+100</div>
+                      <div className="text-sm font-black text-primary-dark dark:text-white font-sans">100 - escolher métrica</div>
                       <div className="text-xs font-bold text-slate-700 dark:text-slate-300 mt-0.5">Vidas amparadas no acolhimento direto</div>
                     </div>
 
                     <div className="bg-slate-50 dark:bg-slate-800/80 p-3.5 rounded-2xl border border-slate-200/80 dark:border-slate-700">
-                      <div className="text-2xl font-black text-sky-500 dark:text-sky-400 font-sans">24/7</div>
+                      <div className="text-sm font-black text-sky-600 dark:text-sky-400 font-sans">24/7 - escolher métrica</div>
                       <div className="text-xs font-bold text-slate-700 dark:text-slate-300 mt-0.5">Mapeamento em posts virais</div>
                     </div>
                   </div>
@@ -161,7 +165,7 @@ export default function RescuePortal({ onChangeRoute }: RescuePortalProps) {
       </section>
 
       {/* 3. A Dor / O Contexto (O Iceberg) */}
-      <section id="dor" className="py-16 md:py-24 bg-white dark:bg-slate-950 border-y border-slate-200/60 dark:border-slate-800 relative overflow-hidden bg-grid-pattern">
+      <section id="dor" className="py-16 md:py-24 bg-white dark:bg-slate-950 border-y border-slate-200/70 dark:border-slate-800 relative overflow-hidden bg-grid-pattern transition-colors duration-300">
         {/* Ambient background glows */}
         <div className="absolute top-10 right-10 w-80 h-80 bg-red-500/10 rounded-full blur-3xl pointer-events-none -z-10 animate-pulse"></div>
         <div className="absolute bottom-10 left-10 w-96 h-96 bg-primary-light/30 dark:bg-primary/20 rounded-full blur-3xl pointer-events-none -z-10 animate-pulse delay-500"></div>
@@ -227,7 +231,7 @@ export default function RescuePortal({ onChangeRoute }: RescuePortalProps) {
       </section>
 
       {/* 4. A Jornada do Acolhimento (Passo a Passo) */}
-      <section id="jornada" className="py-16 md:py-24 bg-slate-50 dark:bg-slate-900 relative overflow-hidden bg-grid-pattern">
+      <section id="jornada" className="py-16 md:py-24 bg-slate-50 dark:bg-slate-950 relative overflow-hidden bg-grid-pattern transition-colors duration-300">
         {/* Ambient background glows */}
         <div className="absolute bottom-10 left-10 w-96 h-96 bg-primary-light/50 dark:bg-primary/20 rounded-full blur-3xl pointer-events-none -z-10 animate-pulse"></div>
         <div className="absolute top-10 right-10 w-80 h-80 bg-sky-100/40 dark:bg-sky-900/20 rounded-full blur-3xl pointer-events-none -z-10 animate-pulse delay-1000"></div>
@@ -249,9 +253,9 @@ export default function RescuePortal({ onChangeRoute }: RescuePortalProps) {
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 relative"
           >
             {/* Step 1 */}
-            <motion.div variants={cardVariants} className="bg-white dark:bg-slate-950 p-6 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-md space-y-4 text-left hover-lift">
+            <motion.div variants={cardVariants} className="bg-white dark:bg-slate-900 p-6 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-md space-y-4 text-left hover-lift">
               <div className="text-5xl font-black text-primary/20 dark:text-sky-400/20 tracking-widest">01</div>
-              <div className="bg-primary/10 dark:bg-primary/30 text-primary dark:text-sky-400 w-11 h-11 rounded-xl flex items-center justify-center font-bold">
+              <div className="bg-primary/10 dark:bg-sky-500/20 text-primary dark:text-sky-400 w-11 h-11 rounded-xl flex items-center justify-center font-bold">
                 <MessageSquare className="w-5 h-5 text-primary dark:text-sky-400" />
               </div>
               <h3 className="text-lg font-extrabold text-primary-dark dark:text-white">Busca Ativa (TikTok)</h3>
@@ -261,9 +265,9 @@ export default function RescuePortal({ onChangeRoute }: RescuePortalProps) {
             </motion.div>
 
             {/* Step 2 */}
-            <motion.div variants={cardVariants} className="bg-white dark:bg-slate-950 p-6 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-md space-y-4 text-left hover-lift">
+            <motion.div variants={cardVariants} className="bg-white dark:bg-slate-900 p-6 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-md space-y-4 text-left hover-lift">
               <div className="text-5xl font-black text-primary/20 dark:text-sky-400/20 tracking-widest">02</div>
-              <div className="bg-primary/10 dark:bg-primary/30 text-primary dark:text-sky-400 w-11 h-11 rounded-xl flex items-center justify-center font-bold">
+              <div className="bg-primary/10 dark:bg-sky-500/20 text-primary dark:text-sky-400 w-11 h-11 rounded-xl flex items-center justify-center font-bold">
                 <Shield className="w-5 h-5 text-primary dark:text-sky-400" />
               </div>
               <h3 className="text-lg font-extrabold text-primary-dark dark:text-white">Análise de Nível de Risco</h3>
@@ -273,9 +277,9 @@ export default function RescuePortal({ onChangeRoute }: RescuePortalProps) {
             </motion.div>
 
             {/* Step 3 */}
-            <motion.div variants={cardVariants} className="bg-white dark:bg-slate-950 p-6 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-md space-y-4 text-left hover-lift">
+            <motion.div variants={cardVariants} className="bg-white dark:bg-slate-900 p-6 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-md space-y-4 text-left hover-lift">
               <div className="text-5xl font-black text-primary/20 dark:text-sky-400/20 tracking-widest">03</div>
-              <div className="bg-primary/10 dark:bg-primary/30 text-primary dark:text-sky-400 w-11 h-11 rounded-xl flex items-center justify-center font-bold">
+              <div className="bg-primary/10 dark:bg-sky-500/20 text-primary dark:text-sky-400 w-11 h-11 rounded-xl flex items-center justify-center font-bold">
                 <Shield className="w-5 h-5 text-primary dark:text-sky-400" />
               </div>
               <h3 className="text-lg font-extrabold text-primary-dark dark:text-white">Apoio Clínico</h3>
@@ -285,9 +289,9 @@ export default function RescuePortal({ onChangeRoute }: RescuePortalProps) {
             </motion.div>
 
             {/* Step 4 */}
-            <motion.div variants={cardVariants} className="bg-white dark:bg-slate-950 p-6 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-md space-y-4 text-left hover-lift">
+            <motion.div variants={cardVariants} className="bg-white dark:bg-slate-900 p-6 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-md space-y-4 text-left hover-lift">
               <div className="text-5xl font-black text-primary/20 dark:text-sky-400/20 tracking-widest">04</div>
-              <div className="bg-primary/10 dark:bg-primary/30 text-primary dark:text-sky-400 w-11 h-11 rounded-xl flex items-center justify-center font-bold">
+              <div className="bg-primary/10 dark:bg-sky-500/20 text-primary dark:text-sky-400 w-11 h-11 rounded-xl flex items-center justify-center font-bold">
                 <Heart className="w-5 h-5 text-primary dark:text-sky-400" />
               </div>
               <h3 className="text-lg font-extrabold text-primary-dark dark:text-white">Acolhimento Físico</h3>
@@ -300,7 +304,7 @@ export default function RescuePortal({ onChangeRoute }: RescuePortalProps) {
       </section>
 
       {/* 5. Rede de Apoio (Como nos dividimos) */}
-      <section id="apoio" className="py-16 md:py-24 bg-white dark:bg-slate-950 border-t border-slate-200 dark:border-slate-800 relative overflow-hidden bg-grid-pattern">
+      <section id="apoio" className="py-16 md:py-24 bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 relative overflow-hidden bg-grid-pattern transition-colors duration-300">
         {/* Ambient background glows */}
         <div className="absolute top-10 right-10 w-96 h-96 bg-primary-light/40 dark:bg-primary/20 rounded-full blur-3xl pointer-events-none -z-10 animate-pulse"></div>
         <div className="max-w-6xl mx-auto px-4">
@@ -321,9 +325,9 @@ export default function RescuePortal({ onChangeRoute }: RescuePortalProps) {
             className="grid grid-cols-1 lg:grid-cols-3 gap-8 text-left"
           >
             {/* Column 1 - Casas Espíritas */}
-            <motion.div variants={cardVariants} className="bg-slate-50 dark:bg-slate-900 p-8 rounded-3xl border border-slate-200 dark:border-slate-800 hover-lift shadow-md flex flex-col justify-between">
+            <motion.div variants={cardVariants} className="bg-slate-50 dark:bg-slate-800/80 p-8 rounded-3xl border border-slate-200 dark:border-slate-700 hover-lift shadow-md flex flex-col justify-between">
               <div className="space-y-4">
-                <div className="bg-primary/10 dark:bg-primary/30 text-primary dark:text-sky-400 w-12 h-12 rounded-2xl flex items-center justify-center font-bold">
+                <div className="bg-primary/10 dark:bg-sky-500/20 text-primary dark:text-sky-400 w-12 h-12 rounded-2xl flex items-center justify-center font-bold">
                   <MapPin className="w-6 h-6 text-primary dark:text-sky-400" />
                 </div>
                 <h3 className="text-xl font-extrabold text-primary-dark dark:text-white">Casas Espíritas</h3>
@@ -331,7 +335,7 @@ export default function RescuePortal({ onChangeRoute }: RescuePortalProps) {
                   Oferecem atendimento fraterno presencial, suporte de passes magnéticos, fluidoterapia e reintegração da pessoa a uma comunidade de acolhimento físico na localidade onde reside.
                 </p>
               </div>
-              <ul className="space-y-2.5 text-xs font-bold text-slate-700 dark:text-slate-200 border-t border-slate-200 dark:border-slate-800 pt-6 mt-6">
+              <ul className="space-y-2.5 text-xs font-bold text-slate-700 dark:text-slate-200 border-t border-slate-200 dark:border-slate-700 pt-6 mt-6">
                 <li className="flex items-center"><Check className="w-4 h-4 text-primary dark:text-sky-400 mr-2 shrink-0" /> Acolhimento presencial na região</li>
                 <li className="flex items-center"><Check className="w-4 h-4 text-primary dark:text-sky-400 mr-2 shrink-0" /> Encaminhamento a reuniões</li>
                 <li className="flex items-center"><Check className="w-4 h-4 text-primary dark:text-sky-400 mr-2 shrink-0" /> Suporte espiritual dedicado</li>
@@ -339,9 +343,9 @@ export default function RescuePortal({ onChangeRoute }: RescuePortalProps) {
             </motion.div>
 
             {/* Column 2 - Psicólogos */}
-            <motion.div variants={cardVariants} className="bg-slate-50 dark:bg-slate-900 p-8 rounded-3xl border border-slate-200 dark:border-slate-800 hover-lift shadow-md flex flex-col justify-between">
+            <motion.div variants={cardVariants} className="bg-slate-50 dark:bg-slate-800/80 p-8 rounded-3xl border border-slate-200 dark:border-slate-700 hover-lift shadow-md flex flex-col justify-between">
               <div className="space-y-4">
-                <div className="bg-primary/10 dark:bg-primary/30 text-primary dark:text-sky-400 w-12 h-12 rounded-2xl flex items-center justify-center font-bold">
+                <div className="bg-primary/10 dark:bg-sky-500/20 text-primary dark:text-sky-400 w-12 h-12 rounded-2xl flex items-center justify-center font-bold">
                   <Shield className="w-6 h-6 text-primary dark:text-sky-400" />
                 </div>
                 <h3 className="text-xl font-extrabold text-primary-dark dark:text-white">Psicólogos e Profissionais</h3>
@@ -349,7 +353,7 @@ export default function RescuePortal({ onChangeRoute }: RescuePortalProps) {
                   Oferecem escuta profissional orientadora, triagem psicológica preliminar de suporte clínico e direcionam as pessoas para serviços públicos de saúde mental quando necessário.
                 </p>
               </div>
-              <ul className="space-y-2.5 text-xs font-bold text-slate-700 dark:text-slate-200 border-t border-slate-200 dark:border-slate-800 pt-6 mt-6">
+              <ul className="space-y-2.5 text-xs font-bold text-slate-700 dark:text-slate-200 border-t border-slate-200 dark:border-slate-700 pt-6 mt-6">
                 <li className="flex items-center"><Check className="w-4 h-4 text-primary dark:text-sky-400 mr-2 shrink-0" /> Atendimento voluntário online</li>
                 <li className="flex items-center"><Check className="w-4 h-4 text-primary dark:text-sky-400 mr-2 shrink-0" /> Orientação de casos graves</li>
                 <li className="flex items-center"><Check className="w-4 h-4 text-primary dark:text-sky-400 mr-2 shrink-0" /> Supervisão técnica da equipe</li>
@@ -357,9 +361,9 @@ export default function RescuePortal({ onChangeRoute }: RescuePortalProps) {
             </motion.div>
 
             {/* Column 3 - Voluntários Gerais */}
-            <motion.div variants={cardVariants} className="bg-slate-50 dark:bg-slate-900 p-8 rounded-3xl border border-slate-200 dark:border-slate-800 hover-lift shadow-md flex flex-col justify-between">
+            <motion.div variants={cardVariants} className="bg-slate-50 dark:bg-slate-800/80 p-8 rounded-3xl border border-slate-200 dark:border-slate-700 hover-lift shadow-md flex flex-col justify-between">
               <div className="space-y-4">
-                <div className="bg-primary/10 dark:bg-primary/30 text-primary dark:text-sky-400 w-12 h-12 rounded-2xl flex items-center justify-center font-bold">
+                <div className="bg-primary/10 dark:bg-sky-500/20 text-primary dark:text-sky-400 w-12 h-12 rounded-2xl flex items-center justify-center font-bold">
                   <Users className="w-6 h-6 text-primary dark:text-sky-400" />
                 </div>
                 <h3 className="text-xl font-extrabold text-primary-dark dark:text-white">Voluntários (Mensageiros Digitais)</h3>
@@ -367,7 +371,7 @@ export default function RescuePortal({ onChangeRoute }: RescuePortalProps) {
                   Pessoas comuns dedicadas a ler os comentários, enviar as primeiras mensagens acolhedoras via direct, encaminhar para atendimento de WhatsApp e pesquisar links úteis.
                 </p>
               </div>
-              <ul className="space-y-2.5 text-xs font-bold text-slate-700 dark:text-slate-200 border-t border-slate-200 dark:border-slate-800 pt-6 mt-6">
+              <ul className="space-y-2.5 text-xs font-bold text-slate-700 dark:text-slate-200 border-t border-slate-200 dark:border-slate-700 pt-6 mt-6">
                 <li className="flex items-center"><Check className="w-4 h-4 text-primary dark:text-sky-400 mr-2 shrink-0" /> Mapeamento ativo de redes</li>
                 <li className="flex items-center"><Check className="w-4 h-4 text-primary dark:text-sky-400 mr-2 shrink-0" /> Envio de mensagens de resgate</li>
                 <li className="flex items-center"><Check className="w-4 h-4 text-primary dark:text-sky-400 mr-2 shrink-0" /> Suporte operacional online</li>
@@ -378,23 +382,23 @@ export default function RescuePortal({ onChangeRoute }: RescuePortalProps) {
       </section>
 
       {/* Allan Kardec Quote section */}
-      <section className="bg-primary-dark text-white py-16 md:py-20 relative overflow-hidden border-y border-slate-800">
+      <section className="bg-primary text-white py-16 md:py-20 relative overflow-hidden border-y border-primary-hover/50 dark:bg-slate-900 dark:border-slate-800 transition-colors duration-300">
         <div className="max-w-4xl mx-auto px-4 text-center space-y-6 relative z-10">
-          <div className="bg-white/15 w-12 h-12 rounded-full flex items-center justify-center mx-auto text-sky-300">
-            <Heart className="w-6 h-6 fill-sky-300 text-sky-300" />
+          <div className="bg-white/15 w-12 h-12 rounded-full flex items-center justify-center mx-auto text-sky-200 dark:text-sky-300">
+            <Heart className="w-6 h-6 fill-sky-200 dark:fill-sky-300 text-sky-200 dark:text-sky-300" />
           </div>
           <blockquote className="text-2xl md:text-3xl font-extrabold italic tracking-tight leading-relaxed max-w-3xl mx-auto text-white">
             "Fora da caridade não há salvação."
           </blockquote>
-          <cite className="block text-sm uppercase tracking-widest font-extrabold text-sky-300 not-italic">
+          <cite className="block text-sm uppercase tracking-widest font-extrabold text-sky-200 dark:text-sky-300 not-italic">
             — Allan Kardec
           </cite>
         </div>
-        <div className="absolute inset-0 bg-primary/20 pointer-events-none"></div>
+        <div className="absolute inset-0 bg-white/5 pointer-events-none"></div>
       </section>
 
       {/* 6. Nossa Trajetória e Linha do Tempo */}
-      <section id="historia" className="py-16 md:py-24 bg-slate-50 dark:bg-slate-900 relative overflow-hidden bg-grid-pattern border-t border-slate-200 dark:border-slate-800">
+      <section id="historia" className="py-16 md:py-24 bg-slate-50 dark:bg-slate-950 relative overflow-hidden bg-grid-pattern border-t border-slate-200 dark:border-slate-800 transition-colors duration-300">
         <div className="max-w-4xl mx-auto px-4 text-center">
           <div className="max-w-2xl mx-auto space-y-3 mb-16">
             <h2 className="text-3xl md:text-4xl font-black text-primary-dark dark:text-white tracking-tight">
@@ -406,7 +410,7 @@ export default function RescuePortal({ onChangeRoute }: RescuePortalProps) {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-left mb-12">
-            <div className="bg-white dark:bg-slate-950 p-6 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-md space-y-3">
+            <div className="bg-white dark:bg-slate-900 p-6 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-md space-y-3">
               <span className="text-xs font-black text-primary dark:text-sky-400 uppercase bg-primary/10 dark:bg-sky-950 px-3 py-1 rounded-full">
                 01. O Despertar
               </span>
@@ -416,7 +420,7 @@ export default function RescuePortal({ onChangeRoute }: RescuePortalProps) {
               </p>
             </div>
 
-            <div className="bg-white dark:bg-slate-950 p-6 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-md space-y-3">
+            <div className="bg-white dark:bg-slate-900 p-6 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-md space-y-3">
               <span className="text-xs font-black text-alert-red uppercase bg-red-100 dark:bg-red-950/60 px-3 py-1 rounded-full">
                 02. O Sinal de Alerta
               </span>
@@ -426,7 +430,7 @@ export default function RescuePortal({ onChangeRoute }: RescuePortalProps) {
               </p>
             </div>
 
-            <div className="bg-white dark:bg-slate-950 p-6 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-md space-y-3">
+            <div className="bg-white dark:bg-slate-900 p-6 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-md space-y-3">
               <span className="text-xs font-black text-primary dark:text-sky-400 uppercase bg-primary/10 dark:bg-sky-950 px-3 py-1 rounded-full">
                 03. A Mobilização
               </span>
@@ -436,7 +440,7 @@ export default function RescuePortal({ onChangeRoute }: RescuePortalProps) {
               </p>
             </div>
 
-            <div className="bg-white dark:bg-slate-950 p-6 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-md space-y-3">
+            <div className="bg-white dark:bg-slate-900 p-6 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-md space-y-3">
               <span className="text-xs font-black text-emerald-600 dark:text-emerald-400 uppercase bg-emerald-100 dark:bg-emerald-950/60 px-3 py-1 rounded-full">
                 04. O Futuro
               </span>
@@ -449,41 +453,43 @@ export default function RescuePortal({ onChangeRoute }: RescuePortalProps) {
         </div>
       </section>
 
-      {/* 7. CTA Final & Inscrição (WhatsApp Button Direct) */}
-      <section id="inscricao" className="py-16 md:py-24 bg-white dark:bg-slate-950 border-t border-slate-200 dark:border-slate-800 relative overflow-hidden bg-grid-pattern">
+      {/* 7. CTA Final & Inscrição (Simples e Direto) */}
+      <section id="inscricao" className="py-16 md:py-24 bg-white dark:bg-slate-950 border-t border-slate-200 dark:border-slate-800 relative overflow-hidden bg-grid-pattern transition-colors duration-300">
         {/* Ambient background glows */}
         <div className="absolute top-1/4 left-5 w-80 h-80 bg-primary-light/65 dark:bg-primary/20 rounded-full blur-3xl pointer-events-none -z-10 animate-pulse"></div>
         <div className="max-w-xl mx-auto px-4">
           <div className="bg-slate-50 dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 rounded-3xl shadow-2xl p-8 md:p-10 text-center space-y-6 relative overflow-hidden">
             <div className="w-16 h-16 bg-whatsapp/15 text-whatsapp rounded-2xl flex items-center justify-center mx-auto mb-2">
-              <MessageSquare className="w-8 h-8" />
+              <MessageSquare className="w-8 h-8 fill-whatsapp" />
             </div>
 
             <div className="space-y-3">
-              <h3 className="text-2xl md:text-3xl font-black text-primary-dark dark:text-white">Seja um Voluntário</h3>
-              <p className="text-sm text-slate-700 dark:text-slate-200 leading-relaxed max-w-md mx-auto font-medium">
-                Para facilitar seu atendimento e integrar você rapidamente na nossa equipe de acolhimento, o processo de voluntariado é feito diretamente pelo nosso WhatsApp.
+              <h3 className="text-2xl md:text-3xl font-black text-slate-900 dark:text-white">Seja um Voluntário</h3>
+              <p className="text-sm text-slate-700 dark:text-slate-300 leading-relaxed max-w-md mx-auto font-medium">
+                Converse diretamente com nossa equipe via WhatsApp para tirar dúvidas e integrar a Rede de Resgate.
               </p>
             </div>
 
             <div className="pt-2">
-              <a 
-                href="https://wa.me/43991711228?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20gostaria%20de%20me%20voluntariar%20no%20Projeto%20Novos%20Mensageiros."
+              <Button
+                variant="whatsapp"
+                size="lg"
+                as="a"
+                href="https://wa.me/43991711228?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20gostaria%20de%20me%20voluntariar%20no%20Projeto%20Resgate."
                 target="_blank"
-                rel="noopener noreferrer"
-                className="w-full bg-whatsapp hover:bg-whatsapp-hover text-white font-extrabold py-4 px-6 rounded-2xl shadow-xl shadow-whatsapp/30 hover:shadow-2xl hover:shadow-whatsapp/40 transition-all duration-300 cursor-pointer flex items-center justify-center gap-3 text-base transform hover:-translate-y-0.5 active:scale-95 group"
+                className="w-full"
+                iconLeft={<MessageSquare className="w-5 h-5 fill-white mr-1" />}
+                iconRight={<ArrowRight className="w-5 h-5 ml-1" />}
               >
-                <MessageSquare className="w-6 h-6 fill-white" />
                 Conversar no WhatsApp para Ser Voluntário
-                <ArrowRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" />
-              </a>
+              </Button>
             </div>
 
             <div className="pt-4 border-t border-slate-200 dark:border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-600 dark:text-slate-400 font-medium">
               <span>Canal oficial de atendimento de voluntários</span>
               <a 
                 href="https://www.tiktok.com/@acolhimentomensageiros?is_from_webapp=1&sender_device=pc"
-                target="_blank"
+                target="_blank" 
                 rel="noopener noreferrer"
                 className="text-primary dark:text-sky-400 hover:underline font-extrabold"
               >

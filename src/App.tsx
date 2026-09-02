@@ -1,15 +1,18 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Analytics } from '@vercel/analytics/react';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import SpiritismPortal from './components/SpiritismPortal';
 import RescuePortal from './components/RescuePortal';
+import HistoryPortal from './components/HistoryPortal';
 
 function App() {
   const [route, setRoute] = useState(() => {
     // Get initial route from hash
     const initialHash = window.location.hash;
-    if (initialHash === '#/resgate' || initialHash === '#/historia') return '#/resgate';
+    if (initialHash === '#/resgate') return '#/resgate';
+    if (initialHash === '#/historia') return '#/historia';
     return '#/';
   });
 
@@ -36,8 +39,10 @@ function App() {
   useEffect(() => {
     const handleHashChange = () => {
       const currentHash = window.location.hash;
-      if (currentHash === '#/resgate' || currentHash === '#/historia') {
+      if (currentHash.startsWith('#/resgate')) {
         setRoute('#/resgate');
+      } else if (currentHash.startsWith('#/historia')) {
+        setRoute('#/historia');
       } else {
         setRoute('#/');
       }
@@ -81,6 +86,18 @@ function App() {
             </motion.div>
           )}
 
+          {route === '#/historia' && (
+            <motion.div
+              key="history-portal"
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -12 }}
+              transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] }}
+            >
+              <HistoryPortal onChangeRoute={handleRouteChange} />
+            </motion.div>
+          )}
+
           {route === '#/' && (
             <motion.div
               key="spiritism-portal"
@@ -97,6 +114,9 @@ function App() {
 
       {/* Dynamic Shared Footer */}
       <Footer currentRoute={route} onChangeRoute={handleRouteChange} />
+
+      {/* Vercel Analytics */}
+      <Analytics />
     </div>
   );
 }

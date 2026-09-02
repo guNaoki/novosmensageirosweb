@@ -55,7 +55,7 @@ export default function Footer({ currentRoute, onChangeRoute }: FooterProps) {
           <div className="flex flex-col items-center md:items-start gap-2 text-center md:text-left">
             <div className="flex items-center space-x-3">
               <img 
-                src="/Logo mensageiros.png" 
+                src="/logo-mensageiros.webp" 
                 alt="Novos Mensageiros" 
                 className="h-9 w-auto object-contain" 
               />
