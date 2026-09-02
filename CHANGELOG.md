@@ -7,7 +7,27 @@ Todas as alterações notáveis deste projeto são documentadas neste arquivo, s
 
 ---
 
-## [2.1.1] — 2026-09-01 *(Versão Atual)*
+## [2.2.0] — 2026-09-01 *(Versão Atual)*
+
+### 🌟 Redesenho do Hero Mobile, Frase de Kardec e Paralaxe Real (MINOR)
+* **Hero Mobile Focado & Cards de Redes Sociais em Grid 2x1**:
+  - Ajuste na tipografia e peso do título para destaque e leitura harmoniosa no celular.
+  - Cards de Instagram e TikTok dispostos lado a lado em 2 colunas no celular (`grid grid-cols-2 lg:grid-cols-1`), compactos e sem ocupar a tela inteira.
+  - Badge do TikTok atualizado com o degradê oficial da marca (ciano/preto/magenta) e ícone estilizado no mesmo padrão do Instagram.
+* **Citação de Allan Kardec (Substituição das Métricas)**:
+  - *"Fora da caridade não há salvação"* em destaque com aspas estilizadas em grande formato, animação sutil e autoria (*— Allan Kardec, O Evangelho Segundo o Espiritismo*).
+* **Paralaxe 100% Funcional e Visível no Scroll**:
+  - Configuração do `useScroll` atrelado ao progresso da seção (`scrollYProgress` com `[0%, 35%]`) e contêiner expandido (`h-[135%] -top-[15%]`), garantindo deslocamento real ao rolar a página.
+* **Transição Atmosférica Contínua no Desktop**:
+  - Fusão direta entre o Hero e a Citação, eliminando cortes secos e quebras duras antes dos 5 Princípios.
+* **Favicon e Logo Full-Bleed**:
+  - Removidas margens transparentes excessivas do favicon e da logo, garantindo preenchimento 100% na aba do navegador.
+* **Sumário Lateral Desktop Aprimorado**:
+  - Atualização do item para a Citação de Kardec e recálculo da posição via `getBoundingClientRect()`, sem saltos ou travamentos.
+
+---
+
+## [2.1.1] — 2026-09-01
 
 ### 🛠️ Ajustes Finos & Refinamento Visual (PATCH)
 * **Restauração dos Fundos Originais com Paralaxe Limpo**:
