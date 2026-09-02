@@ -162,5 +162,22 @@ html.dark .bg-grid-pattern {
   animation: floatBadge2 7s ease-in-out infinite 1s;
 }
 
+@keyframes cloudDriftSlow {
+  0% {
+    transform: translateX(0px) translateY(0px) scale(1);
+  }
+  50% {
+    transform: translateX(16px) translateY(-6px) scale(1.02);
+  }
+  100% {
+    transform: translateX(0px) translateY(0px) scale(1);
+  }
+}
+
+.animate-cloud-drift {
+  animation: cloudDriftSlow 20s ease-in-out infinite;
+}
+
+
 
 

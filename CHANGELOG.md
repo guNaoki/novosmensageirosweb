@@ -1,4 +1,4 @@
-﻿# 📜 Registro de Alterações (CHANGELOG)
+# 📜 Registro de Alterações (CHANGELOG)
 
 Todas as alterações notáveis deste projeto são documentadas neste arquivo, seguindo a convenção de **[Versionamento Semântico (SemVer)](https://semver.org/lang/pt-BR/)**:
 * **`MAJOR` (X.0.0)**: Grandes marcos, reestruturações completas e redesigns.
@@ -7,7 +7,23 @@ Todas as alterações notáveis deste projeto são documentadas neste arquivo, s
 
 ---
 
-## [2.0.0] — 2026-09-01 *(Versão Atual)*
+## [2.1.0] — 2026-09-01 *(Versão Atual)*
+
+### 🎨 Melhorias Visuais & Paralaxe (MINOR)
+* **Fundo Celestial Puro & Paralaxe em Camadas**:
+  - Remoção de fundos com nuvens estáticas duplicadas, substituindo por gradiente cósmico puro no Hero.
+  - Implementação de camadas de nuvens transparentes WebP (`nuvem-transparente.webp` e `nuvem-cluster.webp`) com profundidade de paralaxe multi-plano via Framer Motion.
+* **Transição Fluida entre Seções**:
+  - Eliminação de cortes secos e do espaçamento excessivo entre o Hero, Métricas e 5 Princípios.
+* **Novo Formato de Métricas (Opção B - Tipografia Editorial)**:
+  - Eliminação do padrão genérico de caixas arredondadas ("cara de IA").
+  - Criação de uma faixa editorial aberta, limpa e translúcida com divisores sutis e indicadores luminosos.
+* **Transparência no Header (Navbar)**:
+  - Adição de leve translucidez com `backdrop-blur-xl` e `bg-white/75 dark:bg-slate-950/75` para integração com o restante da atmosfera da página.
+
+---
+
+## [2.0.0] — 2026-09-01
 
 ### 🚀 Grandes Mudanças & Refatoração (MAJOR)
 * **Padronização Tailwind CSS v4**:

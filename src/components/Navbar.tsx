@@ -39,7 +39,7 @@ export default function Navbar({ currentRoute, onChangeRoute, darkMode, onToggle
   };
 
   return (
-    <nav className="fixed w-full z-50 bg-white/90 dark:bg-slate-950/90 backdrop-blur-md border-b border-slate-200/70 dark:border-slate-800 transition-colors duration-300 shadow-xs">
+    <nav className="fixed w-full z-50 bg-white/75 dark:bg-slate-950/75 backdrop-blur-xl border-b border-slate-200/60 dark:border-white/10 transition-colors duration-300 shadow-xs">
       <div className="max-w-6xl mx-auto px-4">
         <div className="flex justify-between items-center h-20">
           
