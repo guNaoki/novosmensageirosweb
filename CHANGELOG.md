@@ -7,7 +7,20 @@ Todas as alterações notáveis deste projeto são documentadas neste arquivo, s
 
 ---
 
-## [2.3.2] — 2026-09-02 *(Versão Atual)*
+## [2.4.0] — 2026-09-04 *(Versão Atual)*
+
+### 🚀 Lançamento Produção: Canal WhatsApp 100% Funcional e Sincronização Main (MINOR)
+* **Atendimento Fraterno & Contato 100% WhatsApp**:
+  - Remoção do formulário local estático sem backend e substituição por cartão de contato direto via WhatsApp com mensagem pré-formatada.
+  - Destaques de acolhimento (100% gratuito, confidencial e sem julgamentos).
+* **Ícone Oficial do TikTok no Rodapé**:
+  - Atualização do path SVG do TikTok no `Footer` para o padrão oficial de marca.
+* **Consolidação do Redesign para Produção**:
+  - Unificação de todas as melhorias visuais, paralaxe, responsividade mobile e tipografia refinada para lançamento na branch `main`.
+
+---
+
+## [2.3.2] — 2026-09-02
 
 ### ✨ Animação Tipográfica Sutil em Kardec e Ajuste Fino (PATCH)
 * **Substituição do Efeito de Glow por Revelação Tipográfica Editorial**:

@@ -3,7 +3,6 @@ import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion'
 import { SOCIAL_STATS } from '../data/stats';
 import {
   Heart,
-  MessageSquare,
   Video,
   BookOpen,
   Film,
@@ -65,17 +64,6 @@ export default function SpiritismPortal({ onChangeRoute }: SpiritismPortalProps)
     offset: ["start end", "end start"]
   });
   const principiosBgY = useTransform(principiosProgress, [0, 1], ["-160px", "160px"]);
-
-  // Contact Form state (Fale Conosco pelo Site)
-  const [contactSubmitted, setContactSubmitted] = useState(false);
-  const [contactForm, setContactForm] = useState({ name: '', email: '', subject: 'Dúvida Espiritual', message: '' });
-
-  const handleContactSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (contactForm.name && contactForm.message) {
-      setContactSubmitted(true);
-    }
-  };
 
   // Control showing all resources or limited
   const [showAllResources, setShowAllResources] = useState(false);
@@ -1105,110 +1093,58 @@ export default function SpiritismPortal({ onChangeRoute }: SpiritismPortalProps)
 
 
       {/* ========================================================= */}
-      {/* 8. FALE CONOSCO (Mensagem Direta pelo Site) */}
+      {/* 8. FALE CONOSCO (Atendimento Fraterno & WhatsApp)         */}
       {/* ========================================================= */}
       <section
         id="fale-conosco"
         className="py-20 md:py-28 bg-slate-50 dark:bg-slate-950 border-t border-slate-200/60 dark:border-slate-800 relative overflow-hidden bg-grid-pattern"
       >
         <div className="max-w-3xl mx-auto px-4">
-          <div className="bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 rounded-3xl shadow-xl p-8 md:p-12 text-left space-y-6 relative overflow-hidden">
-
-            <div className="space-y-2 text-center md:text-left">
+          <div className="bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 rounded-3xl shadow-xl p-8 md:p-12 text-center space-y-6 relative overflow-hidden">
+            
+            {/* Header */}
+            <div className="space-y-3 max-w-xl mx-auto">
+              <div className="w-14 h-14 bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 rounded-2xl flex items-center justify-center mx-auto mb-2 border border-emerald-500/20">
+                <WhatsAppIcon className="w-7 h-7 fill-emerald-600 dark:fill-emerald-400" />
+              </div>
               <h2 className="text-2xl md:text-3xl font-black text-slate-900 dark:text-white tracking-tight">
-                Fale Conosco pelo Site
+                Fale Conosco no WhatsApp
               </h2>
-              <p className="text-xs md:text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-medium">
-                Envie suas dúvidas, reflexões ou mensagens diretamente para a equipe dos Novos Mensageiros sem precisar abrir o WhatsApp.
+              <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-normal">
+                Precisa de uma conversa fraterna, apoio emocional ou esclarecimento sobre a Doutrina Espírita? Nossa equipe de voluntários está disponível para te ouvir com carinho, respeito e discrição.
               </p>
             </div>
 
-            {contactSubmitted ? (
-              <motion.div
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                className="bg-emerald-50 dark:bg-emerald-950/60 border border-emerald-200 dark:border-emerald-800 p-8 rounded-2xl text-center space-y-3"
+            {/* Direct WhatsApp Action Button */}
+            <div className="pt-2 max-w-md mx-auto">
+              <Button
+                variant="whatsapp"
+                size="lg"
+                as="a"
+                href="https://wa.me/43991711228?text=Ol%C3%A1!%20Gostaria%20de%20conversar%20com%20a%20equipe%20dos%20Novos%20Mensageiros."
+                target="_blank"
+                className="w-full text-sm sm:text-base py-4 shadow-lg shadow-emerald-500/20"
+                iconLeft={<WhatsAppIcon className="w-5 h-5 fill-white mr-1.5" />}
               >
-                <div className="w-12 h-12 bg-emerald-100 dark:bg-emerald-900 text-emerald-600 dark:text-emerald-400 rounded-full flex items-center justify-center mx-auto text-xl font-bold">
-                  <Check className="w-6 h-6 text-emerald-600 dark:text-emerald-400" />
-                </div>
-                <h3 className="text-lg font-extrabold text-emerald-900 dark:text-emerald-200">Mensagem Enviada com Sucesso!</h3>
-                <p className="text-xs text-emerald-700 dark:text-emerald-300">
-                  Obrigado, {contactForm.name}! Sua mensagem foi registrada em nossa plataforma e nossa equipe responderá em breve.
-                </p>
-                <button
-                  onClick={() => {
-                    setContactSubmitted(false);
-                    setContactForm({ name: '', email: '', subject: 'Dúvida Espiritual', message: '' });
-                  }}
-                  className="mt-2 text-xs font-bold text-emerald-700 dark:text-emerald-300 underline cursor-pointer"
-                >
-                  Enviar outra mensagem
-                </button>
-              </motion.div>
-            ) : (
-              <form onSubmit={handleContactSubmit} className="space-y-4">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div className="space-y-1.5">
-                    <label className="text-xs font-extrabold text-slate-700 dark:text-slate-200">Seu Nome</label>
-                    <input
-                      type="text"
-                      required
-                      placeholder="Como gostaria de ser chamado(a)?"
-                      value={contactForm.name}
-                      onChange={(e) => setContactForm({ ...contactForm, name: e.target.value })}
-                      className="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-white text-xs md:text-sm focus:outline-none focus:ring-2 focus:ring-sky-400"
-                    />
-                  </div>
-                  <div className="space-y-1.5">
-                    <label className="text-xs font-extrabold text-slate-700 dark:text-slate-200">E-mail ou Contato (Opcional)</label>
-                    <input
-                      type="text"
-                      placeholder="Seu e-mail ou redes para retorno..."
-                      value={contactForm.email}
-                      onChange={(e) => setContactForm({ ...contactForm, email: e.target.value })}
-                      className="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-white text-xs md:text-sm focus:outline-none focus:ring-2 focus:ring-sky-400"
-                    />
-                  </div>
-                </div>
+                Conversar no WhatsApp (Atendimento Fraterno)
+              </Button>
+            </div>
 
-                <div className="space-y-1.5">
-                  <label className="text-xs font-extrabold text-slate-700 dark:text-slate-200">Assunto / Motivo do Contato</label>
-                  <select
-                    value={contactForm.subject}
-                    onChange={(e) => setContactForm({ ...contactForm, subject: e.target.value })}
-                    className="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-white text-xs md:text-sm focus:outline-none focus:ring-2 focus:ring-sky-400"
-                  >
-                    <option value="Dúvida Espiritual">Dúvida sobre o Espiritismo</option>
-                    <option value="Pedido de Oração">Pedido de Oração ou Vibração</option>
-                    <option value="Sugestão">Sugestão de Tema para Vídeos</option>
-                    <option value="Outro">Outro Assunto</option>
-                  </select>
-                </div>
-
-                <div className="space-y-1.5">
-                  <label className="text-xs font-extrabold text-slate-700 dark:text-slate-200">Sua Mensagem</label>
-                  <textarea
-                    required
-                    rows={4}
-                    placeholder="Escreva seu texto ou mensagem aqui..."
-                    value={contactForm.message}
-                    onChange={(e) => setContactForm({ ...contactForm, message: e.target.value })}
-                    className="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-white text-xs md:text-sm focus:outline-none focus:ring-2 focus:ring-sky-400"
-                  ></textarea>
-                </div>
-
-                <Button
-                  type="submit"
-                  variant="primary"
-                  size="lg"
-                  className="w-full"
-                  iconLeft={<MessageSquare className="w-4 h-4 mr-1" />}
-                >
-                  Enviar Mensagem pelo Site
-                </Button>
-              </form>
-            )}
+            {/* Highlights */}
+            <div className="pt-4 border-t border-slate-100 dark:border-slate-800/80 grid grid-cols-1 sm:grid-cols-3 gap-3 text-left">
+              <div className="flex items-center gap-2 text-xs text-slate-600 dark:text-slate-400">
+                <Check className="w-4 h-4 text-emerald-500 shrink-0" />
+                <span>100% gratuito</span>
+              </div>
+              <div className="flex items-center gap-2 text-xs text-slate-600 dark:text-slate-400">
+                <Check className="w-4 h-4 text-emerald-500 shrink-0" />
+                <span>Conversa confidencial</span>
+              </div>
+              <div className="flex items-center gap-2 text-xs text-slate-600 dark:text-slate-400">
+                <Check className="w-4 h-4 text-emerald-500 shrink-0" />
+                <span>Acolhimento sem julgamentos</span>
+              </div>
+            </div>
 
           </div>
         </div>
