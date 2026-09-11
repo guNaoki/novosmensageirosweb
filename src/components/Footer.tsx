@@ -89,6 +89,15 @@ export default function Footer({ currentRoute, onChangeRoute }: FooterProps) {
               >
                 Projeto Resgate
               </button>
+              <button 
+                onClick={() => {
+                  onChangeRoute('#/links');
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }}
+                className={`hover:text-white transition-colors cursor-pointer ${currentRoute === '#/links' ? 'text-white underline decoration-primary underline-offset-4' : ''}`}
+              >
+                Links Úteis
+              </button>
             </div>
 
             {/* Social Media Links */}
