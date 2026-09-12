@@ -6,6 +6,7 @@ import Footer from './components/Footer';
 import SpiritismPortal from './components/SpiritismPortal';
 import RescuePortal from './components/RescuePortal';
 import HistoryPortal from './components/HistoryPortal';
+import LinksPortal from './components/LinksPortal';
 
 function App() {
   const [route, setRoute] = useState(() => {
@@ -13,6 +14,7 @@ function App() {
     const initialHash = window.location.hash;
     if (initialHash === '#/resgate') return '#/resgate';
     if (initialHash === '#/historia') return '#/historia';
+    if (initialHash === '#/links' || initialHash === '#/bio') return '#/links';
     return '#/';
   });
 
@@ -43,6 +45,8 @@ function App() {
         setRoute('#/resgate');
       } else if (currentHash.startsWith('#/historia')) {
         setRoute('#/historia');
+      } else if (currentHash.startsWith('#/links') || currentHash.startsWith('#/bio')) {
+        setRoute('#/links');
       } else {
         setRoute('#/');
       }
@@ -61,19 +65,39 @@ function App() {
     setRoute(newRoute);
   };
 
+  const isLinksRoute = route === '#/links';
+
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-100 flex flex-col font-sans selection:bg-primary selection:text-white transition-colors duration-300">
-      {/* Dynamic Navbar */}
-      <Navbar 
-        currentRoute={route} 
-        onChangeRoute={handleRouteChange}
-        darkMode={darkMode}
-        onToggleDarkMode={toggleDarkMode}
-      />
+      {/* Dynamic Navbar (hidden on links/bio page for a distraction-free Linktree experience) */}
+      {!isLinksRoute && (
+        <Navbar 
+          currentRoute={route} 
+          onChangeRoute={handleRouteChange}
+          darkMode={darkMode}
+          onToggleDarkMode={toggleDarkMode}
+        />
+      )}
 
       {/* Main Portals Content with smooth page transition animations */}
       <main className="flex-grow relative">
         <AnimatePresence mode="wait">
+          {route === '#/links' && (
+            <motion.div
+              key="links-portal"
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -12 }}
+              transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] }}
+            >
+              <LinksPortal 
+                onChangeRoute={handleRouteChange}
+                darkMode={darkMode}
+                onToggleDarkMode={toggleDarkMode}
+              />
+            </motion.div>
+          )}
+
           {route === '#/resgate' && (
             <motion.div
               key="rescue-portal"
@@ -112,8 +136,10 @@ function App() {
         </AnimatePresence>
       </main>
 
-      {/* Dynamic Shared Footer */}
-      <Footer currentRoute={route} onChangeRoute={handleRouteChange} />
+      {/* Dynamic Shared Footer (hidden on links page as it has its own compact footer) */}
+      {!isLinksRoute && (
+        <Footer currentRoute={route} onChangeRoute={handleRouteChange} />
+      )}
 
       {/* Vercel Analytics */}
       <Analytics />

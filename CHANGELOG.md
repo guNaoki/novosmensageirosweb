@@ -7,7 +7,23 @@ Todas as alterações notáveis deste projeto são documentadas neste arquivo, s
 
 ---
 
-## [2.4.0] — 2026-09-04 *(Versão Atual)*
+## [2.5.0] — 2026-09-11 *(Versão Atual)*
+
+### 🔗 Nova Página de Links (Linktree / Bio) Mobile-First (MINOR)
+* **Página de Links Otimizada para Redes Sociais (`#/links` e `#/bio`)**:
+  - Nova landing page focada estilo Linktree, desenvolvida com abordagem 100% mobile-first.
+  - Card Hero em destaque com gradiente e animação de brilho direcionando ao **Formulário de Voluntariado**.
+  - Acesso direto ao Site Oficial (`#/`), ao Projeto Resgate (`#/resgate`) e à Nossa História (`#/historia`).
+  - Barra inferior compacta com links diretos para Instagram, TikTok e YouTube.
+  - Header minimalista com alternador de Dark/Light mode e botão para retornar ao site.
+  - Experiência livre de distrações sem a barra de navegação completa para maximizar conversão a partir das redes sociais.
+* **Fundo Parallaxe na Linha do Tempo de Nossa História**:
+  - Imagem de união das mãos convertida em WebP ultra-otimizada (`maos-unidas.webp`).
+  - Efeito suave de paralaxe reativo ao scroll integrado à seção "A evolução do nosso trabalho".
+
+---
+
+## [2.4.0] — 2026-09-04
 
 ### 🚀 Lançamento Produção: Canal WhatsApp 100% Funcional e Sincronização Main (MINOR)
 * **Atendimento Fraterno & Contato 100% WhatsApp**:

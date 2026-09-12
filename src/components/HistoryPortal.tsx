@@ -1,5 +1,5 @@
 import { useRef } from 'react';
-import { motion, useScroll, useSpring } from 'framer-motion';
+import { motion, useScroll, useSpring, useTransform } from 'framer-motion';
 import { Heart, Compass, Users, ArrowRight, Star } from 'lucide-react';
 import Button from './ui/Button';
 
@@ -8,6 +8,14 @@ interface HistoryPortalProps {
 }
 
 export default function HistoryPortal({ onChangeRoute }: HistoryPortalProps) {
+  const sectionRef = useRef<HTMLElement>(null);
+  const { scrollYProgress: sectionProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"]
+  });
+
+  const parallaxBgY = useTransform(sectionProgress, [0, 1], ["-120px", "120px"]);
+
   const timelineRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: timelineRef,
@@ -76,9 +84,9 @@ export default function HistoryPortal({ onChangeRoute }: HistoryPortalProps) {
           <img 
             src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1600&auto=format&fit=crop" 
             alt="History pathway background" 
-            className="w-full h-full object-cover opacity-25 dark:opacity-35 mix-blend-multiply dark:mix-blend-screen scale-105 pointer-events-none"
+            className="w-full h-full object-cover opacity-30 dark:opacity-65 mix-blend-multiply dark:mix-blend-screen scale-105 pointer-events-none"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-sky-50/80 via-sky-50/90 to-slate-50 dark:from-slate-950/60 dark:via-slate-950/90 dark:to-slate-950"></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-sky-50/50 via-sky-50/50 to-slate-50 dark:from-slate-950/60 dark:via-slate-950/90 dark:to-slate-950"></div>
           {/* Subtle grid pattern overlay */}
           <div className="absolute inset-0 bg-grid-pattern dark:bg-grid-dark opacity-35"></div>
         </div>
@@ -170,54 +178,41 @@ export default function HistoryPortal({ onChangeRoute }: HistoryPortalProps) {
         {/* Ambient background glows */}
         <div className="absolute top-10 left-10 w-96 h-96 bg-primary-light/45 dark:bg-primary/20 rounded-full blur-3xl pointer-events-none -z-10 animate-pulse"></div>
         <div className="absolute bottom-10 right-10 w-[400px] h-[400px] bg-sky-100/30 dark:bg-sky-900/20 rounded-full blur-3xl pointer-events-none -z-10 animate-pulse delay-700"></div>
-        <div className="max-w-4xl mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
-            
-            <div className="md:col-span-6 space-y-6">
-              <h2 className="text-3xl font-extrabold text-primary-dark dark:text-white tracking-tight leading-tight">
-                De um post no TikTok ao resgate de uma alma em aflição.
-              </h2>
-              <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
-                As redes sociais são repletas de filtros e aparências, mas as caixas de comentários contam outra história. Percebemos que, ao publicar mensagens consoladoras, centenas de pessoas se sentiam confortáveis para tirar a máscara do sorriso e revelar suas dores mais profundas.
-              </p>
-              <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
-                Compreendemos que nossa missão deveria ir muito além do conteúdo. Era preciso criar um canal de escuta ativo e imediato para guiar essas pessoas de volta à esperança e ao equilíbrio emocional.
-              </p>
-            </div>
-
-            <div className="md:col-span-6">
-              <div className="bg-slate-50 dark:bg-slate-800/80 p-8 rounded-3xl border border-slate-200/80 dark:border-slate-700 shadow-xl space-y-6">
-                <div className="flex items-center space-x-4">
-                  <div className="text-xl md:text-2xl font-black text-primary dark:text-sky-400">8 - escolher métrica</div>
-                  <div className="text-xs font-semibold text-slate-600 dark:text-slate-300 uppercase tracking-wider">
-                    Voluntários ativos na triagem inicial
-                  </div>
-                </div>
-                <div className="flex items-center space-x-4">
-                  <div className="text-xl md:text-2xl font-black text-primary dark:text-sky-400">400 - escolher métrica</div>
-                  <div className="text-xs font-semibold text-slate-600 dark:text-slate-300 uppercase tracking-wider">
-                    Pessoas direcionadas ao acolhimento
-                  </div>
-                </div>
-                <div className="flex items-center space-x-4">
-                  <div className="text-xl md:text-2xl font-black text-primary dark:text-sky-400">3.7M - escolher métrica</div>
-                  <div className="text-xs font-semibold text-slate-600 dark:text-slate-300 uppercase tracking-wider">
-                    Visualizações nos canais de divulgação
-                  </div>
-                </div>
-              </div>
-            </div>
-
-          </div>
+        <div className="max-w-3xl mx-auto px-4 text-center space-y-6">
+          <h2 className="text-3xl md:text-4xl font-extrabold text-primary-dark dark:text-white tracking-tight leading-tight">
+            De um post no TikTok ao resgate de uma alma em aflição.
+          </h2>
+          <p className="text-slate-600 dark:text-slate-300 text-sm md:text-base leading-relaxed">
+            As redes sociais são repletas de filtros e aparências, mas as caixas de comentários contam outra história. Percebemos que, ao publicar mensagens consoladoras, centenas de pessoas se sentiam confortáveis para tirar a máscara do sorriso e revelar suas dores mais profundas.
+          </p>
+          <p className="text-slate-600 dark:text-slate-300 text-sm md:text-base leading-relaxed">
+            Compreendemos que nossa missão deveria ir muito além do conteúdo. Era preciso criar um canal de escuta ativo e imediato para guiar essas pessoas de volta à esperança e ao equilíbrio emocional.
+          </p>
         </div>
       </section>
 
       {/* 3. Timeline / A Jornada Histórica */}
-      <section className="py-20 md:py-28 bg-slate-50 dark:bg-slate-950 border-y border-slate-200/70 dark:border-slate-800 relative overflow-hidden bg-grid-pattern transition-colors duration-300">
+      <section 
+        ref={sectionRef}
+        className="py-20 md:py-28 bg-slate-50 dark:bg-slate-950 border-y border-slate-200/70 dark:border-slate-800 relative overflow-hidden bg-grid-pattern transition-colors duration-300"
+      >
+        {/* Parallax Hands Background */}
+        <motion.div
+          style={{ y: parallaxBgY }}
+          className="absolute -top-[25%] left-0 right-0 h-[150%] z-0 pointer-events-none will-change-transform"
+        >
+          <img
+            src="/imagens-pagina/maos-unidas.webp"
+            alt="Mãos unidas em união e acolhimento"
+            className="w-full h-full object-cover object-center opacity-85 dark:opacity-85 mix-blend-multiply dark:mix-blend-screen scale-105"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-slate-50/90 via-slate-50/70 to-slate-50 dark:from-slate-950/90 dark:via-slate-950/75 dark:to-slate-950"></div>
+        </motion.div>
+
         {/* Ambient background glows */}
         <div className="absolute top-1/4 right-5 w-[400px] h-[400px] bg-primary-light/50 dark:bg-primary/20 rounded-full blur-3xl pointer-events-none -z-10 animate-pulse"></div>
         <div className="absolute bottom-10 left-10 w-80 h-80 bg-sky-100/30 dark:bg-sky-900/20 rounded-full blur-3xl pointer-events-none -z-10 animate-pulse delay-1000"></div>
-        <div className="max-w-4xl mx-auto px-4">
+        <div className="max-w-4xl mx-auto px-4 relative z-10">
           <div className="text-center max-w-2xl mx-auto space-y-3 mb-16">
             <h2 className="text-3xl font-extrabold text-primary-dark dark:text-white tracking-tight">
               A evolução do nosso trabalho

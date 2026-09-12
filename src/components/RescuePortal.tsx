@@ -137,12 +137,12 @@ export default function RescuePortal({ onChangeRoute }: RescuePortalProps) {
                 <div className="p-5 space-y-4 text-left">
                   <div className="grid grid-cols-2 gap-3">
                     <div className="bg-slate-50 dark:bg-slate-800/80 p-3.5 rounded-2xl border border-slate-200/80 dark:border-slate-700">
-                      <div className="text-sm font-black text-primary-dark dark:text-white font-sans">100 - escolher métrica</div>
+                      <div className="text-sm font-black text-primary-dark dark:text-white font-sans">+100</div>
                       <div className="text-xs font-bold text-slate-700 dark:text-slate-300 mt-0.5">Vidas amparadas no acolhimento direto</div>
                     </div>
 
                     <div className="bg-slate-50 dark:bg-slate-800/80 p-3.5 rounded-2xl border border-slate-200/80 dark:border-slate-700">
-                      <div className="text-sm font-black text-sky-600 dark:text-sky-400 font-sans">24/7 - escolher métrica</div>
+                      <div className="text-sm font-black text-sky-600 dark:text-sky-400 font-sans">24/7</div>
                       <div className="text-xs font-bold text-slate-700 dark:text-slate-300 mt-0.5">Mapeamento em posts virais</div>
                     </div>
                   </div>
