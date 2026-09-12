@@ -554,7 +554,7 @@ export default function SpiritismPortal({ onChangeRoute }: SpiritismPortalProps)
             >
               Novos Mensageiros: <br />
               <span className="font-serif italic font-normal text-primary dark:text-sky-300">
-                Luz e Consolo
+                Luz e Acolhimento
               </span> nas redes digitais.
             </motion.h1>
 
