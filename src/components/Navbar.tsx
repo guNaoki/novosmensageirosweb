@@ -39,22 +39,22 @@ export default function Navbar({ currentRoute, onChangeRoute, darkMode, onToggle
   };
 
   return (
-    <nav className="fixed w-full z-50 bg-white/75 dark:bg-slate-950/75 backdrop-blur-xl border-b border-slate-200/60 dark:border-white/10 transition-colors duration-300 shadow-xs">
+    <nav className="fixed w-full z-50 bg-white/80 dark:bg-slate-950/80 backdrop-blur-md border-b border-slate-200/70 dark:border-white/10 transition-colors duration-300 shadow-xs">
       <div className="max-w-6xl mx-auto px-4">
-        <div className="flex justify-between items-center h-20">
+        <div className="flex justify-between items-center h-16 sm:h-18">
           
           {/* Left: Logo */}
           <div className="flex-shrink-0 flex items-center gap-2">
             <button 
               onClick={() => handleNavigate('#/')}
-              className="flex items-center space-x-3 cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary/20 rounded-lg p-1"
+              className="flex items-center space-x-2.5 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-xl p-1"
             >
               <img 
                 src="/logo-mensageiros.webp" 
                 alt="Novos Mensageiros" 
-                className="h-11 sm:h-12 w-auto object-contain transform hover:scale-105 transition-transform duration-200" 
+                className="h-9 sm:h-10 w-auto object-contain transform hover:scale-105 transition-transform duration-200" 
               />
-              <span className="font-black text-xl sm:text-2xl tracking-tight text-primary-dark dark:text-white select-none text-left">
+              <span className="font-extrabold text-lg sm:text-xl tracking-tight text-primary-dark dark:text-white select-none text-left">
                 Novos<span className="text-primary dark:text-sky-400">Mensageiros</span>
               </span>
             </button>

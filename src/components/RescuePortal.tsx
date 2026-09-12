@@ -1,7 +1,6 @@
 import { motion } from 'framer-motion';
 import { 
   Heart, 
-  MessageSquare, 
   ArrowRight, 
   Users, 
   Shield, 
@@ -10,6 +9,53 @@ import {
   MapPin
 } from 'lucide-react';
 import Button from './ui/Button';
+
+// =========================================================
+// BESPOKE CARE TRACK SVGs (Trilha Contínua do Acolhimento)
+// =========================================================
+
+const CareTrackVector = () => (
+  <div className="hidden lg:block absolute top-[52px] left-[10%] right-[10%] z-0 pointer-events-none">
+    <svg className="w-full h-8 overflow-visible" viewBox="0 0 900 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 12 H900" stroke="currentColor" strokeWidth="2" strokeDasharray="6 6" className="text-sky-300/80 dark:text-sky-700/60" />
+      <circle cx="0" cy="12" r="5" fill="#0284c7" />
+      <circle cx="300" cy="12" r="5" fill="#0284c7" />
+      <circle cx="600" cy="12" r="5" fill="#e11d48" />
+      <circle cx="900" cy="12" r="5" fill="#059669" />
+    </svg>
+  </div>
+);
+
+const SearchHearVector = () => (
+  <svg viewBox="0 0 48 48" fill="none" className="w-8 h-8 text-sky-600 dark:text-sky-400">
+    <circle cx="22" cy="22" r="14" stroke="currentColor" strokeWidth="2" className="opacity-80" />
+    <path d="M32 32l9 9" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" />
+    <path d="M16 22c1.5-2.5 4.5-2.5 6 0s4.5 2.5 6 0" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+    <circle cx="22" cy="22" r="3.5" fill="currentColor" fillOpacity="0.2" />
+  </svg>
+);
+
+const TriagemVector = () => (
+  <svg viewBox="0 0 48 48" fill="none" className="w-8 h-8 text-sky-600 dark:text-sky-400">
+    <path d="M24 6l16 6v12c0 10.5-7 18-16 21-9-3-16-10.5-16-21V12l16-6z" stroke="currentColor" strokeWidth="2" fill="currentColor" fillOpacity="0.1" />
+    <path d="M17 24l5 5 9-9" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+  </svg>
+);
+
+const ApoioClinicoVector = () => (
+  <svg viewBox="0 0 48 48" fill="none" className="w-8 h-8 text-rose-500 dark:text-rose-400">
+    <path d="M24 40s-14-8.5-14-19a9.5 9.5 0 0119-4.5 9.5 9.5 0 0119 4.5c0 10.5-14 19-14 19z" stroke="currentColor" strokeWidth="2" fill="currentColor" fillOpacity="0.1" />
+    <path d="M24 21v10M19 26h10" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" />
+  </svg>
+);
+
+const AcolhimentoFisicoVector = () => (
+  <svg viewBox="0 0 48 48" fill="none" className="w-8 h-8 text-emerald-600 dark:text-emerald-400">
+    <path d="M8 38V21l16-12 16 12v17a2 2 0 01-2 2H10a2 2 0 01-2-2z" stroke="currentColor" strokeWidth="2" fill="currentColor" fillOpacity="0.1" />
+    <path d="M18 40v-10a6 6 0 0112 0v10" stroke="currentColor" strokeWidth="2" />
+    <circle cx="24" cy="18" r="3" fill="currentColor" />
+  </svg>
+);
 
 interface RescuePortalProps {
   onChangeRoute: (route: string) => void;
@@ -41,22 +87,18 @@ export default function RescuePortal({ onChangeRoute }: RescuePortalProps) {
     <div className="bg-slate-50 dark:bg-slate-950 overflow-x-hidden transition-colors duration-300">
       
       {/* 2. Hero Section (O Propósito) */}
-      <section id="proposito" className="relative pt-32 pb-16 lg:pt-40 lg:pb-24 bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-white overflow-hidden transition-colors duration-300">
+      <section id="proposito" className="relative pt-28 pb-16 lg:pt-36 lg:pb-24 bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-white overflow-hidden transition-colors duration-300">
         {/* Full-bleed background image with clear overlay */}
         <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
           <img 
             src="https://images.unsplash.com/photo-1516880711640-ef7db81be3e1?q=80&w=1600&auto=format&fit=crop" 
-            alt="Supportive hands background" 
-            className="w-full h-full object-cover opacity-25 dark:opacity-40 mix-blend-multiply dark:mix-blend-screen scale-105 pointer-events-none"
+            alt="Mãos acolhedoras" 
+            className="w-full h-full object-cover opacity-20 dark:opacity-35 mix-blend-multiply dark:mix-blend-screen scale-105 pointer-events-none"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-sky-50/70 via-sky-50/80 to-slate-50 dark:from-slate-950/70 dark:via-slate-950/85 dark:to-slate-950"></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-sky-50/70 via-sky-50/80 to-slate-50 dark:from-slate-950/75 dark:via-slate-950/90 dark:to-slate-950"></div>
           {/* Subtle grid pattern overlay */}
           <div className="absolute inset-0 bg-grid-pattern dark:bg-grid-dark opacity-35"></div>
         </div>
-
-        {/* Ambient Gradient Glows */}
-        <div className="ambient-glow top-20 left-10 w-96 h-96 bg-primary/20 dark:bg-primary/40 pointer-events-none z-0"></div>
-        <div className="ambient-glow bottom-20 right-10 w-[450px] h-[450px] bg-sky-500/15 dark:bg-sky-500/25 pointer-events-none z-0" style={{ animationDelay: '-4s' }}></div>
 
         <div className="max-w-6xl mx-auto px-4 relative z-10">
           <motion.div 
@@ -117,43 +159,44 @@ export default function RescuePortal({ onChangeRoute }: RescuePortalProps) {
               variants={fadeInUp}
               className="lg:col-span-5 relative animate-fadeIn"
             >
-              <div className="absolute inset-0 bg-gradient-to-tr from-sky-500/20 to-primary/30 rounded-3xl blur-3xl -z-10"></div>
+              <div className="absolute inset-0 bg-gradient-to-tr from-sky-500/10 to-primary/20 rounded-2xl blur-2xl -z-10"></div>
               
-              <div className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200/80 dark:border-slate-800 shadow-2xl overflow-hidden group text-left">
+              <div className="bg-[#FAFBFD] dark:bg-[#0B132B]/85 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 shadow-sm overflow-hidden text-left">
                 <div className="relative h-44 w-full bg-slate-100 dark:bg-slate-800 overflow-hidden">
                   <img 
                     src="https://images.pexels.com/photos/6146693/pexels-photo-6146693.jpeg" 
                     alt="Supportive Hands" 
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-black/20"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/30 to-transparent"></div>
                   <div className="absolute bottom-3 left-3 flex items-center gap-2">
-                    <span className="text-xs font-black text-white bg-primary px-3 py-1 rounded-full uppercase tracking-wider shadow-md">
-                      Operação Ativa de Socorro
-                    </span>
+                    <div className="flex items-center gap-2 bg-slate-900/80 backdrop-blur-sm text-white px-3 py-1.5 rounded-lg text-xs font-medium tracking-wide">
+                      <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                      Operação de Acolhimento Fraterno
+                    </div>
                   </div>
                 </div>
                 
-                <div className="p-5 space-y-4 text-left">
+                <div className="p-5 space-y-3.5 text-left">
                   <div className="grid grid-cols-2 gap-3">
-                    <div className="bg-slate-50 dark:bg-slate-800/80 p-3.5 rounded-2xl border border-slate-200/80 dark:border-slate-700">
-                      <div className="text-sm font-black text-primary-dark dark:text-white font-sans">+100</div>
-                      <div className="text-xs font-bold text-slate-700 dark:text-slate-300 mt-0.5">Vidas amparadas no acolhimento direto</div>
+                    <div className="bg-white dark:bg-[#080E21] p-3.5 rounded-xl border border-slate-200/60 dark:border-slate-800/60">
+                      <div className="font-serif text-lg font-bold text-slate-900 dark:text-white">+100</div>
+                      <div className="text-xs font-semibold text-slate-600 dark:text-slate-300 mt-0.5">Vidas amparadas no acolhimento direto</div>
                     </div>
 
-                    <div className="bg-slate-50 dark:bg-slate-800/80 p-3.5 rounded-2xl border border-slate-200/80 dark:border-slate-700">
-                      <div className="text-sm font-black text-sky-600 dark:text-sky-400 font-sans">24/7</div>
-                      <div className="text-xs font-bold text-slate-700 dark:text-slate-300 mt-0.5">Mapeamento em posts virais</div>
+                    <div className="bg-white dark:bg-[#080E21] p-3.5 rounded-xl border border-slate-200/60 dark:border-slate-800/60">
+                      <div className="font-serif text-lg font-bold text-sky-600 dark:text-sky-400">24/7</div>
+                      <div className="text-xs font-semibold text-slate-600 dark:text-slate-300 mt-0.5">Mapeamento em posts virais</div>
                     </div>
                   </div>
 
-                  <div className="bg-slate-50 dark:bg-slate-800/80 p-3.5 rounded-2xl border border-slate-200/80 dark:border-slate-700 flex items-center gap-3">
-                    <div className="bg-red-100 dark:bg-red-950/60 w-9 h-9 rounded-xl flex items-center justify-center shrink-0">
-                      <Shield className="w-5 h-5 text-alert-red" />
+                  <div className="bg-white dark:bg-[#080E21] p-3.5 rounded-xl border border-slate-200/60 dark:border-slate-800/60 flex items-center gap-3">
+                    <div className="bg-rose-500/10 text-rose-500 w-9 h-9 rounded-lg flex items-center justify-center shrink-0">
+                      <Shield className="w-5 h-5 text-rose-500" />
                     </div>
                     <div>
-                      <div className="text-xs font-extrabold text-slate-800 dark:text-white">Triagem por Nível de Risco</div>
-                      <div className="text-[11px] text-slate-600 dark:text-slate-300">Avaliação técnica e encaminhamento clínico/espiritual.</div>
+                      <div className="text-xs font-bold text-slate-900 dark:text-white">Triagem por Nível de Risco</div>
+                      <div className="text-[11px] text-slate-500 dark:text-slate-400">Avaliação técnica e encaminhamento clínico/espiritual.</div>
                     </div>
                   </div>
                 </div>
@@ -166,15 +209,12 @@ export default function RescuePortal({ onChangeRoute }: RescuePortalProps) {
 
       {/* 3. A Dor / O Contexto (O Iceberg) */}
       <section id="dor" className="py-16 md:py-24 bg-white dark:bg-slate-950 border-y border-slate-200/70 dark:border-slate-800 relative overflow-hidden bg-grid-pattern transition-colors duration-300">
-        {/* Ambient background glows */}
-        <div className="absolute top-10 right-10 w-80 h-80 bg-red-500/10 rounded-full blur-3xl pointer-events-none -z-10 animate-pulse"></div>
-        <div className="absolute bottom-10 left-10 w-96 h-96 bg-primary-light/30 dark:bg-primary/20 rounded-full blur-3xl pointer-events-none -z-10 animate-pulse delay-500"></div>
         <div className="max-w-4xl mx-auto px-4 text-center">
           <div className="max-w-2xl mx-auto space-y-3 mb-16">
-            <h2 className="text-3xl md:text-4xl font-black text-primary-dark dark:text-white tracking-tight">
+            <h2 className="text-3xl md:text-4xl font-extrabold text-primary-dark dark:text-white tracking-tight">
               Os comentários em nossos posts são apenas a ponta do iceberg.
             </h2>
-            <p className="text-slate-700 dark:text-slate-300 text-base leading-relaxed font-medium">
+            <p className="text-slate-700 dark:text-slate-300 text-base leading-relaxed font-normal">
               Vídeos curtos de 30 segundos alcançam milhões, mas no silêncio do campo de comentários, milhares de pessoas desabafam sobre depressão, vazio existencial e ideação suicida.
             </p>
           </div>
@@ -188,131 +228,195 @@ export default function RescuePortal({ onChangeRoute }: RescuePortalProps) {
           >
             <motion.div 
               variants={cardVariants}
-              className="bg-slate-50 dark:bg-slate-900 p-8 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-md flex flex-col justify-between"
+              className="bg-[#FAFBFD] dark:bg-[#0B132B]/85 p-7 sm:p-8 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between"
             >
               <div className="space-y-4">
-                <div className="bg-red-100 dark:bg-red-950/60 text-alert-red w-12 h-12 rounded-xl flex items-center justify-center">
-                  <AlertCircle className="w-6 h-6 text-alert-red" />
+                <div className="w-12 h-12 rounded-xl bg-rose-500/10 text-rose-500 flex items-center justify-center">
+                  <AlertCircle className="w-6 h-6 text-rose-500" />
                 </div>
-                <h3 className="text-xl font-extrabold text-primary-dark dark:text-white">A Realidade Oculta</h3>
-                <p className="text-sm text-slate-700 dark:text-slate-300 leading-relaxed font-medium">
+                <h3 className="text-xl font-extrabold text-slate-900 dark:text-white">A Realidade Oculta</h3>
+                <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-normal">
                   Por trás de cada visualização ou curtida, muitas vezes há um grito silencioso por socorro. Quando um post viraliza, surgem centenas de desabafos de pessoas em sofrimento profundo no meio de mensagens comuns.
                 </p>
               </div>
-              <div className="border-t border-slate-200 dark:border-slate-800 pt-6 mt-6">
-                <span className="text-xs font-bold text-slate-500 dark:text-slate-400 block uppercase tracking-wider">Desafio Atual</span>
-                <span className="text-sm font-extrabold text-slate-800 dark:text-slate-100 mt-1 block">Mais de 100 pessoas identificadas precisando de atenção fraterna direta nas últimas semanas.</span>
+              <div className="border-t border-slate-200/60 dark:border-slate-800/80 pt-6 mt-6">
+                <span className="font-serif text-xs font-bold text-slate-500 dark:text-slate-400 block uppercase tracking-wider">Desafio Atual</span>
+                <span className="text-sm font-bold text-slate-800 dark:text-slate-100 mt-1 block">Mais de 100 pessoas identificadas precisando de atenção fraterna direta nas últimas semanas.</span>
               </div>
             </motion.div>
 
             <motion.div 
               variants={cardVariants}
-              className="bg-primary-dark text-white p-8 rounded-3xl shadow-xl flex flex-col justify-between relative overflow-hidden border border-primary-hover/50"
+              className="bg-gradient-to-br from-[#0D2847] to-[#0A1B30] dark:from-[#0B1A2E] dark:to-[#050D18] text-white p-7 sm:p-8 rounded-2xl shadow-sm border border-sky-500/20 flex flex-col justify-between relative overflow-hidden"
             >
-              <div className="absolute right-0 bottom-0 translate-x-12 translate-y-12 opacity-10">
+              <div className="absolute right-0 bottom-0 translate-x-12 translate-y-12 opacity-5 pointer-events-none">
                 <Heart className="w-64 h-64 fill-white text-white" />
               </div>
               <div className="space-y-4 relative z-10">
-                <div className="bg-white/15 text-white w-12 h-12 rounded-xl flex items-center justify-center">
+                <div className="w-12 h-12 rounded-xl bg-white/10 text-white flex items-center justify-center">
                   <Users className="w-6 h-6 text-white" />
                 </div>
                 <h3 className="text-xl font-extrabold text-white">Por que precisamos de você?</h3>
-                <p className="text-sm text-slate-100 leading-relaxed font-medium">
-                  Hoje somos uma <strong className="text-sky-300">equipe enxuta</strong> de voluntários ativos fazendo o trabalho de monitoramento, resposta inicial e direcionamento. A demanda é gigantesca e, se não crescermos agora, muitas vidas que pediram socorro ficarão sem resposta ou apoio.
+                <p className="text-sm text-slate-200 leading-relaxed font-normal">
+                  Hoje somos uma <strong className="text-sky-300 font-semibold">equipe enxuta</strong> de voluntários ativos fazendo o trabalho de monitoramento, resposta inicial e direcionamento. A demanda é gigantesca e, se não crescermos agora, muitas vidas que pediram socorro ficarão sem resposta ou apoio.
                 </p>
               </div>
-              <div className="border-t border-white/20 pt-6 mt-6 relative z-10">
-                <span className="text-xs font-bold text-sky-300 block uppercase tracking-wider">A Meta do Resgate</span>
-                <span className="text-sm font-extrabold text-white mt-1 block">Garantir que 100% dos comentários com ideação dolorosa recebam um acolhimento imediato, sigiloso e humano.</span>
+              <div className="border-t border-white/15 pt-6 mt-6 relative z-10">
+                <span className="font-serif text-xs font-bold text-sky-300 block uppercase tracking-wider">A Meta do Resgate</span>
+                <span className="text-sm font-bold text-white mt-1 block">Garantir que 100% dos comentários com ideação dolorosa recebam um acolhimento imediato, sigiloso e humano.</span>
               </div>
             </motion.div>
           </motion.div>
         </div>
       </section>
 
-      {/* 4. A Jornada do Acolhimento (Passo a Passo) */}
+      {/* 4. A Jornada do Acolhimento (Trilha Contínua Ilustrada em SVG) */}
       <section id="jornada" className="py-16 md:py-24 bg-slate-50 dark:bg-slate-950 relative overflow-hidden bg-grid-pattern transition-colors duration-300">
-        {/* Ambient background glows */}
-        <div className="absolute bottom-10 left-10 w-96 h-96 bg-primary-light/50 dark:bg-primary/20 rounded-full blur-3xl pointer-events-none -z-10 animate-pulse"></div>
-        <div className="absolute top-10 right-10 w-80 h-80 bg-sky-100/40 dark:bg-sky-900/20 rounded-full blur-3xl pointer-events-none -z-10 animate-pulse delay-1000"></div>
-        <div className="max-w-6xl mx-auto px-4">
+        <div className="max-w-6xl mx-auto px-4 relative">
           <div className="text-center max-w-2xl mx-auto space-y-3 mb-16">
-            <h2 className="text-3xl md:text-4xl font-black text-primary-dark dark:text-white tracking-tight">
-              A Jornada de Resgate e Acolhimento
+            <h2 className="text-3xl md:text-4xl font-extrabold text-primary-dark dark:text-white tracking-tight">
+              A Trilha do Acolhimento e Resgate
             </h2>
-            <p className="text-slate-700 dark:text-slate-300 text-base font-medium">
-              Nossa rede atua de forma proativa e contínua para encontrar a dor onde ela estiver nas redes sociais e direcioná-la para a luz do amparo.
+            <p className="text-slate-700 dark:text-slate-300 text-base font-normal">
+              Nossa rede atua de forma proativa para encontrar a dor onde ela estiver nas redes sociais e direcioná-la para a luz do amparo fraternal.
             </p>
           </div>
 
-          <motion.div 
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
-            variants={staggerContainer}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 relative"
-          >
-            {/* Step 1 */}
-            <motion.div variants={cardVariants} className="bg-white dark:bg-slate-900 p-6 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-md space-y-4 text-left hover-lift">
-              <div className="text-5xl font-black text-primary/20 dark:text-sky-400/20 tracking-widest">01</div>
-              <div className="bg-primary/10 dark:bg-sky-500/20 text-primary dark:text-sky-400 w-11 h-11 rounded-xl flex items-center justify-center font-bold">
-                <MessageSquare className="w-5 h-5 text-primary dark:text-sky-400" />
-              </div>
-              <h3 className="text-lg font-extrabold text-primary-dark dark:text-white">Busca Ativa (TikTok)</h3>
-              <p className="text-sm text-slate-700 dark:text-slate-300 leading-relaxed font-medium">
-                Utilizamos uma <strong className="font-extrabold text-primary-dark dark:text-white">conta dedicada no TikTok</strong> (@acolhimentomensageiros) para mapear comentários de desespero e ideação suicida em posts virais, abordando as pessoas ativamente e em sigilo.
-              </p>
-            </motion.div>
+          <div className="relative">
+            {/* SVG Connecting Track (Desktop) */}
+            <CareTrackVector />
 
-            {/* Step 2 */}
-            <motion.div variants={cardVariants} className="bg-white dark:bg-slate-900 p-6 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-md space-y-4 text-left hover-lift">
-              <div className="text-5xl font-black text-primary/20 dark:text-sky-400/20 tracking-widest">02</div>
-              <div className="bg-primary/10 dark:bg-sky-500/20 text-primary dark:text-sky-400 w-11 h-11 rounded-xl flex items-center justify-center font-bold">
-                <Shield className="w-5 h-5 text-primary dark:text-sky-400" />
-              </div>
-              <h3 className="text-lg font-extrabold text-primary-dark dark:text-white">Análise de Nível de Risco</h3>
-              <p className="text-sm text-slate-700 dark:text-slate-300 leading-relaxed font-medium">
-                Analisamos a gravidade e o risco de cada relato. Iniciamos o diálogo fraterno e acolhedor para estabilizar o momento crítico e entender a necessidade real.
-              </p>
-            </motion.div>
+            <motion.div 
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-100px" }}
+              variants={staggerContainer}
+              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 relative z-10"
+            >
+              {/* Step 1 */}
+              <motion.div 
+                variants={cardVariants} 
+                className="bg-[#FAFBFD] dark:bg-[#0B132B]/85 p-6 sm:p-7 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 shadow-sm hover:shadow-md hover:border-sky-500/30 transition-all duration-300 flex flex-col justify-between text-left group"
+              >
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between">
+                    <span className="font-serif text-sm font-bold text-sky-600 dark:text-sky-400 uppercase tracking-wider">
+                      01
+                    </span>
+                    <div className="p-2 rounded-xl bg-sky-500/10 text-sky-600 dark:text-sky-400">
+                      <SearchHearVector />
+                    </div>
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-extrabold text-slate-900 dark:text-white group-hover:text-primary dark:group-hover:text-sky-400 transition-colors">
+                      Busca Ativa
+                    </h3>
+                    <p className="text-xs font-semibold text-slate-500 dark:text-slate-400 mt-0.5">
+                      Mapeamento Digital
+                    </p>
+                  </div>
+                  <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-normal border-t border-slate-200/60 dark:border-slate-800/80 pt-3">
+                    Mapeamos comentários de desespero e ideação nos vídeos das redes, abordando cada pessoa com carinho, respeito e absoluto sigilo.
+                  </p>
+                </div>
+              </motion.div>
 
-            {/* Step 3 */}
-            <motion.div variants={cardVariants} className="bg-white dark:bg-slate-900 p-6 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-md space-y-4 text-left hover-lift">
-              <div className="text-5xl font-black text-primary/20 dark:text-sky-400/20 tracking-widest">03</div>
-              <div className="bg-primary/10 dark:bg-sky-500/20 text-primary dark:text-sky-400 w-11 h-11 rounded-xl flex items-center justify-center font-bold">
-                <Shield className="w-5 h-5 text-primary dark:text-sky-400" />
-              </div>
-              <h3 className="text-lg font-extrabold text-primary-dark dark:text-white">Apoio Clínico</h3>
-              <p className="text-sm text-slate-700 dark:text-slate-300 leading-relaxed font-medium">
-                Casos que demonstram sofrimento psiquiátrico grave são imediatamente encaminhados ao nosso grupo de psicólogos clínicos voluntários parceiros.
-              </p>
-            </motion.div>
+              {/* Step 2 */}
+              <motion.div 
+                variants={cardVariants} 
+                className="bg-[#FAFBFD] dark:bg-[#0B132B]/85 p-6 sm:p-7 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 shadow-sm hover:shadow-md hover:border-sky-500/30 transition-all duration-300 flex flex-col justify-between text-left group"
+              >
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between">
+                    <span className="font-serif text-sm font-bold text-sky-600 dark:text-sky-400 uppercase tracking-wider">
+                      02
+                    </span>
+                    <div className="p-2 rounded-xl bg-sky-500/10 text-sky-600 dark:text-sky-400">
+                      <TriagemVector />
+                    </div>
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-extrabold text-slate-900 dark:text-white group-hover:text-primary dark:group-hover:text-sky-400 transition-colors">
+                      Triagem Fraterna
+                    </h3>
+                    <p className="text-xs font-semibold text-slate-500 dark:text-slate-400 mt-0.5">
+                      Avaliação & Escuta
+                    </p>
+                  </div>
+                  <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-normal border-t border-slate-200/60 dark:border-slate-800/80 pt-3">
+                    Avaliamos a urgência emocional e iniciamos o diálogo acolhedor para estabilizar o sofrimento imediato e identificar a necessidade real.
+                  </p>
+                </div>
+              </motion.div>
 
-            {/* Step 4 */}
-            <motion.div variants={cardVariants} className="bg-white dark:bg-slate-900 p-6 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-md space-y-4 text-left hover-lift">
-              <div className="text-5xl font-black text-primary/20 dark:text-sky-400/20 tracking-widest">04</div>
-              <div className="bg-primary/10 dark:bg-sky-500/20 text-primary dark:text-sky-400 w-11 h-11 rounded-xl flex items-center justify-center font-bold">
-                <Heart className="w-5 h-5 text-primary dark:text-sky-400" />
-              </div>
-              <h3 className="text-lg font-extrabold text-primary-dark dark:text-white">Acolhimento Físico</h3>
-              <p className="text-sm text-slate-700 dark:text-slate-300 leading-relaxed font-medium">
-                Conectamos a pessoa de forma afetuosa com Casas Espíritas físicas em sua região geográfica para passes, tratamento de fluidos e estudos presenciais.
-              </p>
+              {/* Step 3 */}
+              <motion.div 
+                variants={cardVariants} 
+                className="bg-[#FAFBFD] dark:bg-[#0B132B]/85 p-6 sm:p-7 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 shadow-sm hover:shadow-md hover:border-rose-500/30 transition-all duration-300 flex flex-col justify-between text-left group"
+              >
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between">
+                    <span className="font-serif text-sm font-bold text-rose-600 dark:text-rose-400 uppercase tracking-wider">
+                      03
+                    </span>
+                    <div className="p-2 rounded-xl bg-rose-500/10 text-rose-600 dark:text-rose-400">
+                      <ApoioClinicoVector />
+                    </div>
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-extrabold text-slate-900 dark:text-white group-hover:text-rose-600 dark:group-hover:text-rose-400 transition-colors">
+                      Apoio Clínico
+                    </h3>
+                    <p className="text-xs font-semibold text-rose-600 dark:text-rose-400/90 mt-0.5">
+                      Suporte com Psicólogos
+                    </p>
+                  </div>
+                  <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-normal border-t border-slate-200/60 dark:border-slate-800/80 pt-3">
+                    Casos de sofrimento psiquiátrico grave recebem acolhimento e orientação de psicólogos voluntários parceiros para suporte qualificado.
+                  </p>
+                </div>
+              </motion.div>
+
+              {/* Step 4 */}
+              <motion.div 
+                variants={cardVariants} 
+                className="bg-[#FAFBFD] dark:bg-[#0B132B]/85 p-6 sm:p-7 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 shadow-sm hover:shadow-md hover:border-emerald-500/30 transition-all duration-300 flex flex-col justify-between text-left group"
+              >
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between">
+                    <span className="font-serif text-sm font-bold text-emerald-600 dark:text-emerald-400 uppercase tracking-wider">
+                      04
+                    </span>
+                    <div className="p-2 rounded-xl bg-emerald-500/10 text-emerald-600 dark:text-emerald-400">
+                      <AcolhimentoFisicoVector />
+                    </div>
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-extrabold text-slate-900 dark:text-white group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">
+                      Acolhimento Físico
+                    </h3>
+                    <p className="text-xs font-semibold text-emerald-600 dark:text-emerald-400/90 mt-0.5">
+                      Ponte com Centros Espíritas
+                    </p>
+                  </div>
+                  <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-normal border-t border-slate-200/60 dark:border-slate-800/80 pt-3">
+                    Conectamos afetuosamente a pessoa com Casas Espíritas na sua cidade para atendimento fraterno presencial, fluidoterapia e comunidade viva.
+                  </p>
+                </div>
+              </motion.div>
             </motion.div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* 5. Rede de Apoio (Como nos dividimos) */}
       <section id="apoio" className="py-16 md:py-24 bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 relative overflow-hidden bg-grid-pattern transition-colors duration-300">
-        {/* Ambient background glows */}
-        <div className="absolute top-10 right-10 w-96 h-96 bg-primary-light/40 dark:bg-primary/20 rounded-full blur-3xl pointer-events-none -z-10 animate-pulse"></div>
         <div className="max-w-6xl mx-auto px-4">
           <div className="text-center max-w-2xl mx-auto space-y-3 mb-16">
-            <h2 className="text-3xl md:text-4xl font-black text-primary-dark dark:text-white tracking-tight">
+            <h2 className="text-3xl md:text-4xl font-extrabold text-primary-dark dark:text-white tracking-tight">
               A Nossa Rede de Amparo e Resgate
             </h2>
-            <p className="text-slate-700 dark:text-slate-300 text-base font-medium">
+            <p className="text-slate-700 dark:text-slate-300 text-base font-normal">
               Cada perfil tem um papel essencial no resgate de vidas. Veja como você ou sua organização podem colaborar.
             </p>
           </div>
@@ -325,17 +429,17 @@ export default function RescuePortal({ onChangeRoute }: RescuePortalProps) {
             className="grid grid-cols-1 lg:grid-cols-3 gap-8 text-left"
           >
             {/* Column 1 - Casas Espíritas */}
-            <motion.div variants={cardVariants} className="bg-slate-50 dark:bg-slate-800/80 p-8 rounded-3xl border border-slate-200 dark:border-slate-700 hover-lift shadow-md flex flex-col justify-between">
+            <motion.div variants={cardVariants} className="bg-[#FAFBFD] dark:bg-[#0B132B]/85 p-7 sm:p-8 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 shadow-sm hover:shadow-md hover:border-sky-500/30 transition-all duration-300 flex flex-col justify-between">
               <div className="space-y-4">
-                <div className="bg-primary/10 dark:bg-sky-500/20 text-primary dark:text-sky-400 w-12 h-12 rounded-2xl flex items-center justify-center font-bold">
-                  <MapPin className="w-6 h-6 text-primary dark:text-sky-400" />
+                <div className="bg-sky-500/10 dark:bg-sky-500/20 text-primary dark:text-sky-400 w-11 h-11 rounded-xl flex items-center justify-center font-bold">
+                  <MapPin className="w-5 h-5 text-primary dark:text-sky-400" />
                 </div>
                 <h3 className="text-xl font-extrabold text-primary-dark dark:text-white">Casas Espíritas</h3>
-                <p className="text-sm text-slate-700 dark:text-slate-300 leading-relaxed font-medium">
+                <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-normal">
                   Oferecem atendimento fraterno presencial, suporte de passes magnéticos, fluidoterapia e reintegração da pessoa a uma comunidade de acolhimento físico na localidade onde reside.
                 </p>
               </div>
-              <ul className="space-y-2.5 text-xs font-bold text-slate-700 dark:text-slate-200 border-t border-slate-200 dark:border-slate-700 pt-6 mt-6">
+              <ul className="space-y-2.5 text-xs font-semibold text-slate-700 dark:text-slate-200 border-t border-slate-200/60 dark:border-slate-800/80 pt-5 mt-6">
                 <li className="flex items-center"><Check className="w-4 h-4 text-primary dark:text-sky-400 mr-2 shrink-0" /> Acolhimento presencial na região</li>
                 <li className="flex items-center"><Check className="w-4 h-4 text-primary dark:text-sky-400 mr-2 shrink-0" /> Encaminhamento a reuniões</li>
                 <li className="flex items-center"><Check className="w-4 h-4 text-primary dark:text-sky-400 mr-2 shrink-0" /> Suporte espiritual dedicado</li>
@@ -343,17 +447,17 @@ export default function RescuePortal({ onChangeRoute }: RescuePortalProps) {
             </motion.div>
 
             {/* Column 2 - Psicólogos */}
-            <motion.div variants={cardVariants} className="bg-slate-50 dark:bg-slate-800/80 p-8 rounded-3xl border border-slate-200 dark:border-slate-700 hover-lift shadow-md flex flex-col justify-between">
+            <motion.div variants={cardVariants} className="bg-[#FAFBFD] dark:bg-[#0B132B]/85 p-7 sm:p-8 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 shadow-sm hover:shadow-md hover:border-sky-500/30 transition-all duration-300 flex flex-col justify-between">
               <div className="space-y-4">
-                <div className="bg-primary/10 dark:bg-sky-500/20 text-primary dark:text-sky-400 w-12 h-12 rounded-2xl flex items-center justify-center font-bold">
-                  <Shield className="w-6 h-6 text-primary dark:text-sky-400" />
+                <div className="bg-sky-500/10 dark:bg-sky-500/20 text-primary dark:text-sky-400 w-11 h-11 rounded-xl flex items-center justify-center font-bold">
+                  <Shield className="w-5 h-5 text-primary dark:text-sky-400" />
                 </div>
                 <h3 className="text-xl font-extrabold text-primary-dark dark:text-white">Psicólogos e Profissionais</h3>
-                <p className="text-sm text-slate-700 dark:text-slate-300 leading-relaxed font-medium">
+                <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-normal">
                   Oferecem escuta profissional orientadora, triagem psicológica preliminar de suporte clínico e direcionam as pessoas para serviços públicos de saúde mental quando necessário.
                 </p>
               </div>
-              <ul className="space-y-2.5 text-xs font-bold text-slate-700 dark:text-slate-200 border-t border-slate-200 dark:border-slate-700 pt-6 mt-6">
+              <ul className="space-y-2.5 text-xs font-semibold text-slate-700 dark:text-slate-200 border-t border-slate-200/60 dark:border-slate-800/80 pt-5 mt-6">
                 <li className="flex items-center"><Check className="w-4 h-4 text-primary dark:text-sky-400 mr-2 shrink-0" /> Atendimento voluntário online</li>
                 <li className="flex items-center"><Check className="w-4 h-4 text-primary dark:text-sky-400 mr-2 shrink-0" /> Orientação de casos graves</li>
                 <li className="flex items-center"><Check className="w-4 h-4 text-primary dark:text-sky-400 mr-2 shrink-0" /> Supervisão técnica da equipe</li>
@@ -361,19 +465,19 @@ export default function RescuePortal({ onChangeRoute }: RescuePortalProps) {
             </motion.div>
 
             {/* Column 3 - Voluntários Gerais */}
-            <motion.div variants={cardVariants} className="bg-slate-50 dark:bg-slate-800/80 p-8 rounded-3xl border border-slate-200 dark:border-slate-700 hover-lift shadow-md flex flex-col justify-between">
+            <motion.div variants={cardVariants} className="bg-[#FAFBFD] dark:bg-[#0B132B]/85 p-7 sm:p-8 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 shadow-sm hover:shadow-md hover:border-sky-500/30 transition-all duration-300 flex flex-col justify-between">
               <div className="space-y-4">
-                <div className="bg-primary/10 dark:bg-sky-500/20 text-primary dark:text-sky-400 w-12 h-12 rounded-2xl flex items-center justify-center font-bold">
-                  <Users className="w-6 h-6 text-primary dark:text-sky-400" />
+                <div className="bg-sky-500/10 dark:bg-sky-500/20 text-primary dark:text-sky-400 w-11 h-11 rounded-xl flex items-center justify-center font-bold">
+                  <Users className="w-5 h-5 text-primary dark:text-sky-400" />
                 </div>
-                <h3 className="text-xl font-extrabold text-primary-dark dark:text-white">Voluntários (Mensageiros Digitais)</h3>
-                <p className="text-sm text-slate-700 dark:text-slate-300 leading-relaxed font-medium">
-                  Pessoas comuns dedicadas a ler os comentários, enviar as primeiras mensagens acolhedoras via direct, encaminhar para atendimento de WhatsApp e pesquisar links úteis.
+                <h3 className="text-xl font-extrabold text-primary-dark dark:text-white">Voluntários Digitais</h3>
+                <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-normal">
+                  Pessoas dedicadas a ler os comentários, enviar as primeiras mensagens acolhedoras via direct, encaminhar para atendimento de WhatsApp e pesquisar links úteis.
                 </p>
               </div>
-              <ul className="space-y-2.5 text-xs font-bold text-slate-700 dark:text-slate-200 border-t border-slate-200 dark:border-slate-700 pt-6 mt-6">
+              <ul className="space-y-2.5 text-xs font-semibold text-slate-700 dark:text-slate-200 border-t border-slate-200/60 dark:border-slate-800/80 pt-5 mt-6">
                 <li className="flex items-center"><Check className="w-4 h-4 text-primary dark:text-sky-400 mr-2 shrink-0" /> Mapeamento ativo de redes</li>
-                <li className="flex items-center"><Check className="w-4 h-4 text-primary dark:text-sky-400 mr-2 shrink-0" /> Envio de mensagens de resgate</li>
+                <li className="flex items-center"><Check className="w-4 h-4 text-primary dark:text-sky-400 mr-2 shrink-0" /> Envio de mensagens de acolhimento</li>
                 <li className="flex items-center"><Check className="w-4 h-4 text-primary dark:text-sky-400 mr-2 shrink-0" /> Suporte operacional online</li>
               </ul>
             </motion.div>
@@ -387,12 +491,16 @@ export default function RescuePortal({ onChangeRoute }: RescuePortalProps) {
           <div className="bg-white/15 w-12 h-12 rounded-full flex items-center justify-center mx-auto text-sky-200 dark:text-sky-300">
             <Heart className="w-6 h-6 fill-sky-200 dark:fill-sky-300 text-sky-200 dark:text-sky-300" />
           </div>
-          <blockquote className="text-2xl md:text-3xl font-extrabold italic tracking-tight leading-relaxed max-w-3xl mx-auto text-white">
+          <blockquote className="font-serif text-2xl md:text-3xl font-bold italic tracking-tight leading-relaxed max-w-3xl mx-auto text-white">
             "Fora da caridade não há salvação."
           </blockquote>
-          <cite className="block text-sm uppercase tracking-widest font-extrabold text-sky-200 dark:text-sky-300 not-italic">
-            — Allan Kardec
-          </cite>
+          <div className="flex items-center justify-center gap-3 text-sky-200 dark:text-sky-300">
+            <span className="h-px w-8 bg-sky-200/40 dark:bg-sky-400/40"></span>
+            <cite className="text-xs uppercase tracking-widest font-extrabold not-italic">
+              Allan Kardec
+            </cite>
+            <span className="h-px w-8 bg-sky-200/40 dark:bg-sky-400/40"></span>
+          </div>
         </div>
         <div className="absolute inset-0 bg-white/5 pointer-events-none"></div>
       </section>
@@ -401,51 +509,51 @@ export default function RescuePortal({ onChangeRoute }: RescuePortalProps) {
       <section id="historia" className="py-16 md:py-24 bg-slate-50 dark:bg-slate-950 relative overflow-hidden bg-grid-pattern border-t border-slate-200 dark:border-slate-800 transition-colors duration-300">
         <div className="max-w-4xl mx-auto px-4 text-center">
           <div className="max-w-2xl mx-auto space-y-3 mb-16">
-            <h2 className="text-3xl md:text-4xl font-black text-primary-dark dark:text-white tracking-tight">
+            <h2 className="text-3xl md:text-4xl font-extrabold text-primary-dark dark:text-white tracking-tight">
               A história por trás da Rede de Resgate
             </h2>
-            <p className="text-slate-700 dark:text-slate-300 text-base font-medium">
+            <p className="text-slate-700 dark:text-slate-300 text-base font-normal">
               Como um canal de divulgação espírita nas redes sociais deparou-se com a urgência de acolher e salvar vidas no silêncio dos comentários digitais.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-left mb-12">
-            <div className="bg-white dark:bg-slate-900 p-6 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-md space-y-3">
-              <div className="text-xs font-extrabold text-primary dark:text-sky-400 uppercase tracking-wider">
+            <div className="bg-[#FAFBFD] dark:bg-[#0B132B]/85 p-6 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 shadow-sm hover:shadow-md hover:border-sky-500/30 transition-all duration-300 space-y-3">
+              <div className="font-serif text-xs font-bold text-sky-600 dark:text-sky-400 uppercase tracking-wider">
                 01. O Despertar
               </div>
-              <h3 className="text-base font-extrabold text-primary-dark dark:text-white">Sementes Digitais</h3>
-              <p className="text-slate-700 dark:text-slate-300 text-xs leading-relaxed font-medium">
+              <h3 className="text-base font-extrabold text-slate-900 dark:text-white">Sementes Digitais</h3>
+              <p className="text-slate-600 dark:text-slate-300 text-xs leading-relaxed font-normal">
                 O projeto Novos Mensageiros foi criado com o propósito de divulgar o Espiritismo de forma leve e acolhedora nas redes sociais (Instagram e TikTok), levando gotas de esperança para o cotidiano.
               </p>
             </div>
 
-            <div className="bg-white dark:bg-slate-900 p-6 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-md space-y-3">
-              <div className="text-xs font-extrabold text-alert-red uppercase tracking-wider">
+            <div className="bg-[#FAFBFD] dark:bg-[#0B132B]/85 p-6 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 shadow-sm hover:shadow-md hover:border-sky-500/30 transition-all duration-300 space-y-3">
+              <div className="font-serif text-xs font-bold text-rose-600 dark:text-rose-400 uppercase tracking-wider">
                 02. O Sinal de Alerta
               </div>
-              <h3 className="text-base font-extrabold text-primary-dark dark:text-white">A Ponta do Iceberg</h3>
-              <p className="text-slate-700 dark:text-slate-300 text-xs leading-relaxed font-medium">
+              <h3 className="text-base font-extrabold text-slate-900 dark:text-white">A Ponta do Iceberg</h3>
+              <p className="text-slate-600 dark:text-slate-300 text-xs leading-relaxed font-normal">
                 Ao publicarmos conteúdos voltados para a depressão e o vazio da alma, os posts viralizaram. Nos comentários, identificamos um grito silencioso: centenas de desabafos de pessoas em sofrimento profundo.
               </p>
             </div>
 
-            <div className="bg-white dark:bg-slate-900 p-6 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-md space-y-3">
-              <div className="text-xs font-extrabold text-primary dark:text-sky-400 uppercase tracking-wider">
+            <div className="bg-[#FAFBFD] dark:bg-[#0B132B]/85 p-6 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 shadow-sm hover:shadow-md hover:border-sky-500/30 transition-all duration-300 space-y-3">
+              <div className="font-serif text-xs font-bold text-sky-600 dark:text-sky-400 uppercase tracking-wider">
                 03. A Mobilização
               </div>
-              <h3 className="text-base font-extrabold text-primary-dark dark:text-white">Os Primeiros Guardiões</h3>
-              <p className="text-slate-700 dark:text-slate-300 text-xs leading-relaxed font-medium">
+              <h3 className="text-base font-extrabold text-slate-900 dark:text-white">Os Primeiros Guardiões</h3>
+              <p className="text-slate-600 dark:text-slate-300 text-xs leading-relaxed font-normal">
                 Uma pequena equipe de voluntários se reuniu emergencialmente para monitorar os comentários, enviando mensagens de resgate no direct e abrindo canais de escuta fraterna via WhatsApp.
               </p>
             </div>
 
-            <div className="bg-white dark:bg-slate-900 p-6 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-md space-y-3">
-              <div className="text-xs font-extrabold text-emerald-600 dark:text-emerald-400 uppercase tracking-wider">
+            <div className="bg-[#FAFBFD] dark:bg-[#0B132B]/85 p-6 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 shadow-sm hover:shadow-md hover:border-sky-500/30 transition-all duration-300 space-y-3">
+              <div className="font-serif text-xs font-bold text-emerald-600 dark:text-emerald-400 uppercase tracking-wider">
                 04. O Futuro
               </div>
-              <h3 className="text-base font-extrabold text-primary-dark dark:text-white">Expandindo os Horizontes</h3>
-              <p className="text-slate-700 dark:text-slate-300 text-xs leading-relaxed font-medium">
+              <h3 className="text-base font-extrabold text-slate-900 dark:text-white">Expandindo os Horizontes</h3>
+              <p className="text-slate-600 dark:text-slate-300 text-xs leading-relaxed font-normal">
                 Com mais de 100 pessoas acolhidas e milhões de visualizações, estruturamos essa plataforma para recrutar novos voluntários, parceiros clínicos e Casas Espíritas para ampliar esse farol de luz.
               </p>
             </div>
@@ -453,20 +561,20 @@ export default function RescuePortal({ onChangeRoute }: RescuePortalProps) {
         </div>
       </section>
 
-      {/* 7. CTA Final & Inscrição (Simples e Direto) */}
-      <section id="inscricao" className="py-16 md:py-24 bg-white dark:bg-slate-950 border-t border-slate-200 dark:border-slate-800 relative overflow-hidden bg-grid-pattern transition-colors duration-300">
-        {/* Ambient background glows */}
-        <div className="absolute top-1/4 left-5 w-80 h-80 bg-primary-light/65 dark:bg-primary/20 rounded-full blur-3xl pointer-events-none -z-10 animate-pulse"></div>
-        <div className="max-w-xl mx-auto px-4">
-          <div className="bg-slate-50 dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 rounded-3xl shadow-2xl p-8 md:p-10 text-center space-y-6 relative overflow-hidden">
-            <div className="w-16 h-16 bg-whatsapp/15 text-whatsapp rounded-2xl flex items-center justify-center mx-auto mb-2">
-              <MessageSquare className="w-8 h-8 fill-whatsapp" />
+      {/* 7. CTA Final & Inscrição de Voluntários */}
+      <section id="inscricao" className="py-16 md:py-24 bg-slate-50 dark:bg-slate-950 border-t border-slate-200/70 dark:border-slate-800 relative overflow-hidden bg-grid-pattern transition-colors duration-300">
+        <div className="max-w-2xl mx-auto px-4">
+          <div className="bg-[#FAFBFD] dark:bg-[#0B132B]/90 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 p-8 md:p-12 text-center space-y-6 shadow-sm relative overflow-hidden">
+            <div className="w-14 h-14 bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 rounded-2xl flex items-center justify-center mx-auto border border-emerald-500/20">
+              <Heart className="w-7 h-7 fill-emerald-500/20" />
             </div>
 
             <div className="space-y-3">
-              <h3 className="text-2xl md:text-3xl font-black text-slate-900 dark:text-white">Seja um Voluntário</h3>
-              <p className="text-sm text-slate-700 dark:text-slate-300 leading-relaxed max-w-md mx-auto font-medium">
-                Converse diretamente com nossa equipe via WhatsApp para tirar dúvidas e integrar a Rede de Resgate.
+              <h3 className="text-2xl md:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+                Seja um Guardião da Vida
+              </h3>
+              <p className="text-sm md:text-base text-slate-600 dark:text-slate-300 leading-relaxed max-w-md mx-auto font-normal">
+                Converse diretamente com a nossa coordenação pelo WhatsApp para tirar dúvidas e integrar a Rede de Resgate.
               </p>
             </div>
 
@@ -477,23 +585,22 @@ export default function RescuePortal({ onChangeRoute }: RescuePortalProps) {
                 as="a"
                 href="https://wa.me/43991711228?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20gostaria%20de%20me%20voluntariar%20no%20Projeto%20Resgate."
                 target="_blank"
-                className="w-full"
-                iconLeft={<MessageSquare className="w-5 h-5 fill-white mr-1" />}
-                iconRight={<ArrowRight className="w-5 h-5 ml-1" />}
+                className="w-full sm:w-auto"
+                iconRight={<ArrowRight className="w-4 h-4 ml-1" />}
               >
                 Conversar no WhatsApp para Ser Voluntário
               </Button>
             </div>
 
-            <div className="pt-4 border-t border-slate-200 dark:border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-600 dark:text-slate-400 font-medium">
-              <span>Canal oficial de atendimento de voluntários</span>
+            <div className="pt-4 border-t border-slate-200/60 dark:border-slate-800/80 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-500 dark:text-slate-400 font-normal">
+              <span>Acolhimento voluntário e sigiloso</span>
               <a 
                 href="https://www.tiktok.com/@acolhimentomensageiros?is_from_webapp=1&sender_device=pc"
                 target="_blank" 
-                rel="noopener noreferrer"
-                className="text-primary dark:text-sky-400 hover:underline font-extrabold"
+                rel="noopener noreferrer" 
+                className="text-primary dark:text-sky-400 hover:underline font-semibold"
               >
-                Visitar TikTok do Resgate (@acolhimentomensageiros)
+                TikTok Resgate (@acolhimentomensageiros)
               </a>
             </div>
           </div>

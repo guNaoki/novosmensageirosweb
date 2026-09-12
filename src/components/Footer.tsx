@@ -91,6 +91,15 @@ export default function Footer({ currentRoute, onChangeRoute }: FooterProps) {
               </button>
               <button 
                 onClick={() => {
+                  onChangeRoute('#/historia');
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }}
+                className={`hover:text-white transition-colors cursor-pointer ${currentRoute === '#/historia' ? 'text-white underline decoration-primary underline-offset-4' : ''}`}
+              >
+                Nossa História
+              </button>
+              <button 
+                onClick={() => {
                   onChangeRoute('#/links');
                   window.scrollTo({ top: 0, behavior: 'smooth' });
                 }}
@@ -101,15 +110,15 @@ export default function Footer({ currentRoute, onChangeRoute }: FooterProps) {
             </div>
 
             {/* Social Media Links */}
-            <div className="flex flex-wrap justify-center items-center gap-3 text-xs">
+            <div className="flex flex-wrap justify-center items-center gap-2.5 text-xs">
               <a 
                 href="https://www.instagram.com/novosmensageiros/" 
                 target="_blank" 
                 rel="noopener noreferrer" 
-                className="hover:text-white flex items-center bg-white/5 hover:bg-white/10 px-3 py-1.5 rounded-lg border border-white/10 transition-colors"
+                className="hover:text-white flex items-center bg-white/5 hover:bg-white/10 px-3.5 py-1.5 rounded-full border border-white/10 transition-colors"
                 title="Instagram Novos Mensageiros"
               >
-                <Instagram className="w-4 h-4 mr-1.5 text-pink-400" />
+                <Instagram className="w-3.5 h-3.5 mr-1.5 text-pink-400" />
                 @novosmensageiros
               </a>
 
@@ -117,10 +126,10 @@ export default function Footer({ currentRoute, onChangeRoute }: FooterProps) {
                 href="https://www.tiktok.com/@novosmensageiros" 
                 target="_blank" 
                 rel="noopener noreferrer" 
-                className="hover:text-white flex items-center bg-white/5 hover:bg-white/10 px-3 py-1.5 rounded-lg border border-white/10 transition-colors"
+                className="hover:text-white flex items-center bg-white/5 hover:bg-white/10 px-3.5 py-1.5 rounded-full border border-white/10 transition-colors"
                 title="TikTok Novos Mensageiros"
               >
-                <TikTok className="w-4 h-4 mr-1.5 text-sky-400" />
+                <TikTok className="w-3.5 h-3.5 mr-1.5 text-sky-400" />
                 TikTok
               </a>
 
@@ -128,10 +137,10 @@ export default function Footer({ currentRoute, onChangeRoute }: FooterProps) {
                 href="https://www.youtube.com/@NovosMensageiros" 
                 target="_blank" 
                 rel="noopener noreferrer" 
-                className="hover:text-white flex items-center bg-white/5 hover:bg-white/10 px-3 py-1.5 rounded-lg border border-white/10 transition-colors"
+                className="hover:text-white flex items-center bg-white/5 hover:bg-white/10 px-3.5 py-1.5 rounded-full border border-white/10 transition-colors"
                 title="YouTube Novos Mensageiros"
               >
-                <YouTube className="w-4 h-4 mr-1.5 text-red-500" />
+                <YouTube className="w-3.5 h-3.5 mr-1.5 text-red-500" />
                 YouTube
               </a>
 
@@ -141,10 +150,10 @@ export default function Footer({ currentRoute, onChangeRoute }: FooterProps) {
                   href="https://www.tiktok.com/@acolhimentomensageiros?is_from_webapp=1&sender_device=pc" 
                   target="_blank" 
                   rel="noopener noreferrer" 
-                  className="hover:text-white flex items-center bg-primary/20 hover:bg-primary/30 text-sky-300 px-3 py-1.5 rounded-lg border border-primary/40 transition-colors font-bold"
+                  className="hover:text-white flex items-center bg-primary/20 hover:bg-primary/30 text-sky-300 px-3.5 py-1.5 rounded-full border border-primary/40 transition-colors font-medium"
                   title="TikTok Acolhimento e Resgate"
                 >
-                  <TikTok className="w-4 h-4 mr-1.5 text-sky-300" />
+                  <TikTok className="w-3.5 h-3.5 mr-1.5 text-sky-300" />
                   TikTok Resgate (@acolhimentomensageiros)
                 </a>
               )}

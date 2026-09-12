@@ -16,23 +16,38 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
 
 const variantStyles: Record<ButtonVariant, string> = {
   primary:
-    'bg-primary hover:bg-primary-hover text-white shadow-lg shadow-primary/25 hover:shadow-xl hover:shadow-primary/35 border border-primary-light/10',
+    'bg-primary hover:bg-primary-hover text-white shadow-md shadow-primary/20 hover:shadow-lg hover:shadow-primary/30 border border-primary/20',
   secondary:
-    'bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 shadow-sm',
+    'bg-white dark:bg-slate-800/90 hover:bg-slate-100 dark:hover:bg-slate-700/80 text-slate-800 dark:text-slate-100 border border-slate-200 dark:border-slate-700/80 shadow-xs',
   outline:
-    'bg-transparent hover:bg-slate-100 dark:hover:bg-slate-800/80 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 hover:border-slate-300 dark:hover:border-slate-600',
+    'bg-transparent hover:bg-slate-100/80 dark:hover:bg-slate-800/60 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700',
   ghost:
     'bg-transparent hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-sky-400',
   whatsapp:
-    'bg-whatsapp hover:bg-whatsapp-hover text-white shadow-xl shadow-whatsapp/30 hover:shadow-2xl hover:shadow-whatsapp/40',
+    'bg-[#15803d] hover:bg-[#166534] text-white shadow-md shadow-emerald-700/20 hover:shadow-lg hover:shadow-emerald-700/30 border border-emerald-600/30',
   white:
     'bg-white/10 hover:bg-white/20 text-white border border-white/20 backdrop-blur-md',
 };
 
 const sizeStyles: Record<ButtonSize, string> = {
-  sm: 'px-3.5 py-1.5 text-xs rounded-xl font-bold gap-1.5',
-  md: 'px-5 py-2.5 text-xs md:text-sm rounded-xl font-extrabold gap-2',
-  lg: 'px-7 py-4 text-sm md:text-base rounded-2xl font-extrabold gap-2.5',
+  sm: 'px-4 py-1.5 text-xs rounded-full font-semibold gap-2',
+  md: 'px-5 py-2.5 text-xs sm:text-sm rounded-full font-bold gap-2.5',
+  lg: 'px-7 py-3.5 text-sm sm:text-base rounded-full font-bold gap-3',
+};
+
+const iconWrapperStyles: Record<ButtonVariant, string> = {
+  primary: 'bg-white/15 text-white',
+  secondary: 'bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-200',
+  outline: 'bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200',
+  ghost: 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300',
+  whatsapp: 'bg-white/20 text-white',
+  white: 'bg-white/20 text-white',
+};
+
+const iconSizes: Record<ButtonSize, string> = {
+  sm: 'w-5 h-5',
+  md: 'w-6 h-6',
+  lg: 'w-7 h-7',
 };
 
 export default function Button({
@@ -49,9 +64,18 @@ export default function Button({
   ...props
 }: ButtonProps) {
   const baseClasses =
-    'inline-flex items-center justify-center transition-all duration-200 cursor-pointer transform hover:-translate-y-0.5 active:scale-95 select-none focus:outline-none focus:ring-2 focus:ring-primary/20 disabled:opacity-50 disabled:pointer-events-none disabled:transform-none';
+    'group inline-flex items-center justify-center transition-all duration-200 cursor-pointer select-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 dark:focus-visible:ring-offset-slate-950 active:scale-[0.98] disabled:opacity-50 disabled:pointer-events-none disabled:transform-none';
 
   const combinedClasses = `${baseClasses} ${variantStyles[variant]} ${sizeStyles[size]} ${className}`;
+  const iconWrapClass = `rounded-full flex items-center justify-center shrink-0 transition-transform duration-200 group-hover:scale-105 ${iconWrapperStyles[variant]} ${iconSizes[size]}`;
+
+  const renderIcon = (icon: React.ReactNode, isRight = false) => {
+    return (
+      <span className={`${iconWrapClass} ${isRight ? 'group-hover:translate-x-0.5' : 'group-hover:-translate-x-0.5'}`}>
+        {icon}
+      </span>
+    );
+  };
 
   if (as === 'a' || href) {
     return (
@@ -61,18 +85,18 @@ export default function Button({
         rel={target === '_blank' ? 'noopener noreferrer' : rel}
         className={combinedClasses}
       >
-        {iconLeft && <span className="inline-flex shrink-0">{iconLeft}</span>}
-        {children}
-        {iconRight && <span className="inline-flex shrink-0">{iconRight}</span>}
+        {iconLeft && renderIcon(iconLeft, false)}
+        <span>{children}</span>
+        {iconRight && renderIcon(iconRight, true)}
       </a>
     );
   }
 
   return (
     <button className={combinedClasses} {...props}>
-      {iconLeft && <span className="inline-flex shrink-0">{iconLeft}</span>}
-      {children}
-      {iconRight && <span className="inline-flex shrink-0">{iconRight}</span>}
+      {iconLeft && renderIcon(iconLeft, false)}
+      <span>{children}</span>
+      {iconRight && renderIcon(iconRight, true)}
     </button>
   );
 }

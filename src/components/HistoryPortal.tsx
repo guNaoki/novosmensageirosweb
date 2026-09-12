@@ -146,15 +146,15 @@ export default function HistoryPortal({ onChangeRoute }: HistoryPortalProps) {
               variants={fadeInUp}
               className="lg:col-span-5 relative"
             >
-              <div className="absolute inset-0 bg-gradient-to-tr from-primary-light/10 to-primary/20 rounded-3xl blur-3xl -z-10"></div>
-              <div className="relative rounded-3xl overflow-hidden border border-white/10 shadow-2xl group aspect-video lg:aspect-square max-w-[450px] mx-auto">
+              <div className="absolute inset-0 bg-gradient-to-tr from-sky-500/10 to-primary/20 rounded-2xl blur-2xl -z-10"></div>
+              <div className="relative rounded-2xl overflow-hidden border border-slate-200/80 dark:border-slate-800/80 shadow-md group aspect-video lg:aspect-square max-w-[450px] mx-auto">
                 <img 
                   src="https://images.unsplash.com/photo-1455390582262-044cdead277a?q=80&w=600&auto=format&fit=crop" 
                   alt="Typewriter letters history" 
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-primary-dark/85 via-primary-dark/20 to-transparent flex flex-col justify-end p-6 text-left">
-                  <span className="text-[10px] font-bold tracking-widest text-primary-light/80 uppercase">Nosso Início</span>
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0A1B30]/90 via-[#0A1B30]/30 to-transparent flex flex-col justify-end p-6 text-left">
+                  <span className="font-serif text-xs font-bold tracking-wider text-sky-300 uppercase">Nosso Início</span>
                   <p className="text-white text-sm font-semibold leading-relaxed mt-1">
                     "Uma palavra amiga na hora certa pode transformar uma vida inteira."
                   </p>
@@ -237,20 +237,20 @@ export default function HistoryPortal({ onChangeRoute }: HistoryPortalProps) {
                     }`}
                   >
                     {/* Timeline bullet */}
-                    <div className="absolute left-8 md:left-1/2 z-20 -translate-x-1/2 h-8 w-8 rounded-full border-4 border-slate-50 dark:border-slate-900 bg-primary dark:bg-sky-500 flex items-center justify-center text-white shadow-md">
+                    <div className="absolute left-8 md:left-1/2 z-20 -translate-x-1/2 h-8 w-8 rounded-full border-4 border-slate-50 dark:border-[#080E21] bg-primary dark:bg-sky-500 flex items-center justify-center text-white shadow-sm">
                       <Icon className="w-3.5 h-3.5" />
                     </div>
 
                     {/* Left spacer / right block */}
                     <div className="flex-1 w-full pl-16 md:pl-0">
-                      <div className={`bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-200/80 dark:border-slate-800 shadow-sm space-y-3 ${
+                      <div className={`bg-[#FAFBFD] dark:bg-[#0B132B]/85 p-6 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 shadow-sm hover:shadow-md transition-all duration-300 space-y-2.5 ${
                         isEven ? 'md:text-right' : 'md:text-left'
                       }`}>
-                        <span className="text-xs font-black text-primary dark:text-sky-400 uppercase bg-primary-light dark:bg-sky-950 px-2.5 py-1 rounded-full">
+                        <span className="font-serif text-xs font-bold text-sky-600 dark:text-sky-400 uppercase tracking-wider block">
                           {item.year}
                         </span>
-                        <h3 className="text-lg font-bold text-slate-900 dark:text-white mt-2">{item.title}</h3>
-                        <p className="text-slate-600 dark:text-slate-400 text-xs leading-relaxed">{item.description}</p>
+                        <h3 className="text-lg font-extrabold text-slate-900 dark:text-white">{item.title}</h3>
+                        <p className="text-slate-600 dark:text-slate-300 text-xs leading-relaxed font-normal">{item.description}</p>
                       </div>
                     </div>
 
