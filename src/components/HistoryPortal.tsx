@@ -45,30 +45,30 @@ export default function HistoryPortal({ onChangeRoute }: HistoryPortalProps) {
 
   const timelineItems = [
     {
-      year: "O Despertar",
-      title: "Sementes Digitais",
-      description: "O projeto Novos Mensageiros foi criado com o propósito simples de divulgar o Espiritismo de forma leve e acolhedora nas redes sociais (Instagram e TikTok), levando gotas de esperança para a correria do cotidiano.",
+      year: "O Começo",
+      title: "Uma semente de luz",
+      description: "Os Novos Mensageiros nasceram de um desejo muito simples: usar a internet para levar mensagens de paz, reflexão e consolo da Doutrina Espírita para quem enfrenta a correria e o cansaço do dia a dia.",
       icon: Compass,
       color: "bg-primary/10 text-primary dark:bg-sky-500/20 dark:text-sky-400"
     },
     {
-      year: "O Sinal de Alerta",
-      title: "A Ponta do Iceberg",
-      description: "Ao publicarmos conteúdos voltados para a depressão e o vazio da alma, os posts viralizaram. Nos comentários, identificamos um grito silencioso: centenas de desabafos de pessoas em sofrimento profundo e ideação suicida.",
+      year: "O Despertar",
+      title: "Um grito no silêncio",
+      description: "Conforme nossos vídeos alcançavam mais pessoas, as caixas de comentários revelaram uma dor profunda. Centenas de pessoas tiravam a máscara do sorriso para desabafar sobre angústia, solidão e a vontade de desistir da própria vida.",
       icon: Heart,
       color: "bg-red-50 text-alert-red dark:bg-red-950/60 dark:text-red-400"
     },
     {
       year: "A Mobilização",
-      title: "Os Primeiros Guardiões",
-      description: "Uma pequena equipe enxuta de voluntários se reuniu de forma emergencial. Passamos a monitorar os comentários 24 horas por dia, enviando mensagens de resgate no direct e abrindo canais de escuta fraterna via WhatsApp.",
+      title: "Estendendo as mãos",
+      description: "Diante de tanto sofrimento, não havia como cruzar os braços. Nos unimos voluntariamente para não deixar ninguém sem resposta: passamos a enviar mensagens de carinho no direct e a abrir um espaço seguro de escuta pelo WhatsApp.",
       icon: Users,
       color: "bg-primary-light text-primary-dark dark:bg-sky-950 dark:text-sky-300"
     },
     {
-      year: "O Futuro",
-      title: "Expandindo os Horizontes",
-      description: "Com mais de 100 pessoas acolhidas e milhões de visualizações, a estrutura atual atingiu o limite. Decidimos criar esta plataforma para recrutar novos voluntários, parceiros clínicos e Casas Espíritas para ampliar esse farol de luz.",
+      year: "A Nossa Missão",
+      title: "Uma ponte de esperança",
+      description: "O carinho que começou com poucas mensagens já amparou centenas de corações. Mas sabemos que a dor nas redes ainda é imensa. Por isso, estamos abrindo as portas para voluntários, psicólogos e casas espíritas caminharem ao nosso lado.",
       icon: Star,
       color: "bg-amber-50 text-amber-600 dark:bg-amber-950/60 dark:text-amber-400"
     }
@@ -118,7 +118,7 @@ export default function HistoryPortal({ onChangeRoute }: HistoryPortalProps) {
                 variants={fadeInUp}
                 className="text-base md:text-lg text-slate-700 dark:text-slate-200 leading-relaxed max-w-2xl"
               >
-                Como um canal de divulgação espírita nas redes sociais deparou-se com a urgência de acolher e salvar vidas no silêncio dos comentários digitais.
+                Tudo começou com o desejo de espalhar palavras de paz. No caminho, descobrimos que por trás de cada tela há quem precise de muito mais do que posts: precisa de alguém que estenda a mão.
               </motion.p>
               
               <motion.div 
@@ -164,7 +164,7 @@ export default function HistoryPortal({ onChangeRoute }: HistoryPortalProps) {
                 <div className="absolute inset-0 bg-gradient-to-t from-primary-dark/85 via-primary-dark/20 to-transparent flex flex-col justify-end p-6 text-left">
                   <span className="text-[10px] font-bold tracking-widest text-primary-light/80 uppercase">Nosso Início</span>
                   <p className="text-white text-sm font-semibold leading-relaxed mt-1">
-                    "Gotas de esperança nascidas no ambiente digital para confortar os corações."
+                    "Uma palavra amiga na hora certa pode transformar uma vida inteira."
                   </p>
                 </div>
               </div>
@@ -180,19 +180,20 @@ export default function HistoryPortal({ onChangeRoute }: HistoryPortalProps) {
         <div className="absolute bottom-10 right-10 w-[400px] h-[400px] bg-sky-100/30 dark:bg-sky-900/20 rounded-full blur-3xl pointer-events-none -z-10 animate-pulse delay-700"></div>
         <div className="max-w-3xl mx-auto px-4 text-center space-y-6">
           <h2 className="text-3xl md:text-4xl font-extrabold text-primary-dark dark:text-white tracking-tight leading-tight">
-            De um post no TikTok ao resgate de uma alma em aflição.
+            Por trás das telas, pessoas que só precisavam ser ouvidas.
           </h2>
           <p className="text-slate-600 dark:text-slate-300 text-sm md:text-base leading-relaxed">
-            As redes sociais são repletas de filtros e aparências, mas as caixas de comentários contam outra história. Percebemos que, ao publicar mensagens consoladoras, centenas de pessoas se sentiam confortáveis para tirar a máscara do sorriso e revelar suas dores mais profundas.
+            As redes sociais parecem cheias de vidas perfeitas, mas os comentários contam uma realidade muito diferente. Quando começamos a postar reflexões de consolo, percebemos que muita gente finalmente encontrava ali um lugar seguro para baixar a guarda e falar da dor que guardava no peito.
           </p>
           <p className="text-slate-600 dark:text-slate-300 text-sm md:text-base leading-relaxed">
-            Compreendemos que nossa missão deveria ir muito além do conteúdo. Era preciso criar um canal de escuta ativo e imediato para guiar essas pessoas de volta à esperança e ao equilíbrio emocional.
+            Foi aí que entendemos que nossa missão não podia parar nos vídeos. Não adiantava apenas falar de esperança: era preciso estar lá de verdade, com paciência e amor, para acolher e lembrar a cada irmão que ele não está sozinho no mundo.
           </p>
         </div>
       </section>
 
       {/* 3. Timeline / A Jornada Histórica */}
       <section 
+        id="linha-tempo"
         ref={sectionRef}
         className="py-20 md:py-28 bg-slate-50 dark:bg-slate-950 border-y border-slate-200/70 dark:border-slate-800 relative overflow-hidden bg-grid-pattern transition-colors duration-300"
       >
@@ -215,10 +216,10 @@ export default function HistoryPortal({ onChangeRoute }: HistoryPortalProps) {
         <div className="max-w-4xl mx-auto px-4 relative z-10">
           <div className="text-center max-w-2xl mx-auto space-y-3 mb-16">
             <h2 className="text-3xl font-extrabold text-primary-dark dark:text-white tracking-tight">
-              A evolução do nosso trabalho
+              Como essa corrente de amor foi crescendo
             </h2>
             <p className="text-slate-600 dark:text-slate-300 text-sm">
-              Os passos que demos até estruturar essa corrente de amor e acolhimento digital.
+              Cada passo dado, desde as primeiras postagens até a formação de uma rede viva de acolhimento.
             </p>
           </div>
 
@@ -283,9 +284,9 @@ export default function HistoryPortal({ onChangeRoute }: HistoryPortalProps) {
       <section className="bg-primary-dark text-white py-20 relative overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_80%,#004d8f_0%,transparent_50%)] opacity-30 pointer-events-none"></div>
         <div className="max-w-4xl mx-auto px-4 text-center space-y-6 relative z-10">
-          <h2 className="text-3xl font-extrabold tracking-tight">Escreva o próximo capítulo conosco</h2>
+          <h2 className="text-3xl font-extrabold tracking-tight">Faça parte dessa história de amor</h2>
           <p className="text-primary-light/80 max-w-xl mx-auto text-sm leading-relaxed">
-            Nossa equipe enxuta de voluntários precisa crescer para continuarmos respondendo e salvando vidas nas redes sociais. Junte-se a nós como voluntário digital, psicólogo parceiro ou Casa Espírita física.
+            Cada mensagem que respondemos pode ser o respiro de esperança que alguém tanto esperava. Se você sente no coração a vontade de acolher — seja doando sua escuta fraterna, como profissional de psicologia ou através da sua Casa Espírita —, venha caminhar com a gente.
           </p>
           <div className="pt-4 flex flex-col sm:flex-row justify-center gap-4">
             <Button
@@ -297,7 +298,7 @@ export default function HistoryPortal({ onChangeRoute }: HistoryPortalProps) {
                 window.scrollTo({ top: 0, behavior: 'smooth' });
               }}
             >
-              Seja um Voluntário
+              Quero Ajudar no Resgate
             </Button>
             <Button
               variant="secondary"
