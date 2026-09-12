@@ -1,5 +1,5 @@
-import { useState, useEffect, useRef } from 'react';
-import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
+import { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { SOCIAL_STATS } from '../data/stats';
 import {
   Heart,
@@ -13,17 +13,95 @@ import {
   ChevronDown,
   ChevronUp,
   Search,
-  Star,
-  Globe,
-  Flame,
-  MessageCircle,
   X,
   Compass as CompassIcon,
   ShieldAlert,
-  Check,
-  RefreshCw
+  Check
 } from 'lucide-react';
 import Button from './ui/Button';
+
+// =========================================================
+// BESPOKE ARTISTIC SVG VECTORS (Autorais e Nobres)
+// =========================================================
+
+const LightRadianceVector = () => (
+  <svg
+    viewBox="0 0 1200 600"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    className="absolute inset-0 w-full h-full object-cover pointer-events-none opacity-25 dark:opacity-35"
+  >
+    <defs>
+      <radialGradient id="heroLightAura" cx="50%" cy="38%" r="50%">
+        <stop offset="0%" stopColor="#38bdf8" stopOpacity="0.45" />
+        <stop offset="45%" stopColor="#0284c7" stopOpacity="0.12" />
+        <stop offset="100%" stopColor="#0284c7" stopOpacity="0" />
+      </radialGradient>
+      <linearGradient id="heroRayGrad" x1="50%" y1="38%" x2="0%" y2="100%">
+        <stop offset="0%" stopColor="#38bdf8" stopOpacity="0.35" />
+        <stop offset="100%" stopColor="#38bdf8" stopOpacity="0" />
+      </linearGradient>
+    </defs>
+    <circle cx="600" cy="230" r="300" fill="url(#heroLightAura)" />
+    <circle cx="600" cy="230" r="260" stroke="#38bdf8" strokeWidth="1" strokeDasharray="4 8" opacity="0.4" />
+    <circle cx="600" cy="230" r="190" stroke="#38bdf8" strokeWidth="1" strokeDasharray="3 6" opacity="0.45" />
+    <circle cx="600" cy="230" r="120" stroke="#38bdf8" strokeWidth="1" opacity="0.5" />
+    <line x1="600" y1="230" x2="220" y2="50" stroke="url(#heroRayGrad)" strokeWidth="1" />
+    <line x1="600" y1="230" x2="980" y2="50" stroke="url(#heroRayGrad)" strokeWidth="1" />
+    <line x1="600" y1="230" x2="160" y2="230" stroke="url(#heroRayGrad)" strokeWidth="1" />
+    <line x1="600" y1="230" x2="1040" y2="230" stroke="url(#heroRayGrad)" strokeWidth="1" />
+    <line x1="600" y1="230" x2="320" y2="440" stroke="url(#heroRayGrad)" strokeWidth="1" />
+    <line x1="600" y1="230" x2="880" y2="440" stroke="url(#heroRayGrad)" strokeWidth="1" />
+  </svg>
+);
+
+const DeusVector = () => (
+  <svg viewBox="0 0 80 80" fill="none" className="w-11 h-11">
+    <circle cx="40" cy="40" r="34" stroke="currentColor" strokeWidth="1.2" strokeDasharray="2 4" className="text-amber-500/40 dark:text-amber-400/40" />
+    <circle cx="40" cy="40" r="24" stroke="currentColor" strokeWidth="1.2" className="text-amber-500/60 dark:text-amber-400/60" />
+    <circle cx="40" cy="40" r="14" stroke="currentColor" strokeWidth="1.5" className="text-amber-500/80 dark:text-amber-400/80" />
+    <circle cx="40" cy="40" r="5" fill="currentColor" className="text-amber-500 dark:text-amber-400" />
+    <path d="M40 8v8M40 64v8M8 40h8M64 40h8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" className="text-amber-500 dark:text-amber-400" />
+    <path d="M17.4 17.4l5.6 5.6M57 57l5.6 5.6M17.4 62.6l5.6-5.6M57 23l5.6-5.6" stroke="currentColor" strokeWidth="1" strokeLinecap="round" className="text-amber-500/60 dark:text-amber-400/60" />
+  </svg>
+);
+
+const AlmaVector = () => (
+  <svg viewBox="0 0 80 80" fill="none" className="w-11 h-11">
+    <path d="M40 12c-8 12-16 22-16 34a16 16 0 0032 0c0-12-8-22-16-34z" stroke="currentColor" strokeWidth="1.5" className="text-rose-500/80 dark:text-rose-400/80" fill="currentColor" fillOpacity="0.1" />
+    <path d="M40 22c-4 7-8 13-8 20a8 8 0 0016 0c0-7-4-13-8-20z" fill="currentColor" className="text-rose-500 dark:text-rose-400" fillOpacity="0.4" />
+    <circle cx="40" cy="44" r="3" fill="currentColor" className="text-rose-400 dark:text-rose-300" />
+    <path d="M28 66c7 4 17 4 24 0M32 72c5 2 11 2 16 0" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" className="text-rose-500/40 dark:text-rose-400/40" />
+  </svg>
+);
+
+const ReencarnacaoVector = () => (
+  <svg viewBox="0 0 80 80" fill="none" className="w-11 h-11">
+    <path d="M40 12a28 28 0 11-20 8.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" className="text-sky-500 dark:text-sky-400" />
+    <path d="M16 20h6v-6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-sky-500 dark:text-sky-400" />
+    <path d="M40 24a16 16 0 11-11.3 4.7" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" className="text-sky-500/70 dark:text-sky-400/70" strokeDasharray="3 3" />
+    <circle cx="40" cy="40" r="4" fill="currentColor" className="text-sky-500 dark:text-sky-300" />
+  </svg>
+);
+
+const MediunidadeVector = () => (
+  <svg viewBox="0 0 80 80" fill="none" className="w-11 h-11">
+    <circle cx="24" cy="40" r="8" stroke="currentColor" strokeWidth="1.5" className="text-emerald-500 dark:text-emerald-400" fill="currentColor" fillOpacity="0.15" />
+    <circle cx="56" cy="40" r="8" stroke="currentColor" strokeWidth="1.5" className="text-emerald-500 dark:text-emerald-400" fill="currentColor" fillOpacity="0.15" />
+    <path d="M33 34c4-3 10-3 14 0M31 40c6-3 12-3 18 0M33 46c4 3 10 3 14 0" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" className="text-emerald-500/80 dark:text-emerald-400/80" />
+    <path d="M12 40a28 28 0 0156 0" stroke="currentColor" strokeWidth="1" strokeDasharray="2 4" className="text-emerald-500/40 dark:text-emerald-400/40" />
+  </svg>
+);
+
+const MundosVector = () => (
+  <svg viewBox="0 0 80 80" fill="none" className="w-11 h-11">
+    <circle cx="40" cy="40" r="14" stroke="currentColor" strokeWidth="1.5" className="text-purple-500 dark:text-purple-400" fill="currentColor" fillOpacity="0.1" />
+    <ellipse cx="40" cy="40" rx="30" ry="10" stroke="currentColor" strokeWidth="1.2" transform="rotate(-25 40 40)" className="text-purple-500/60 dark:text-purple-400/60" strokeDasharray="4 3" />
+    <circle cx="62" cy="30" r="4" fill="currentColor" className="text-purple-400 dark:text-purple-300" />
+    <circle cx="20" cy="54" r="3" fill="currentColor" className="text-purple-500/60 dark:text-purple-400/60" />
+    <circle cx="40" cy="16" r="2" fill="currentColor" className="text-purple-400/80 dark:text-purple-300/80" />
+  </svg>
+);
 
 interface SpiritismPortalProps {
   onChangeRoute: (route: string) => void;
@@ -45,25 +123,6 @@ export default function SpiritismPortal({ onChangeRoute }: SpiritismPortalProps)
   const [activeTab, setActiveTab] = useState<TabType>('all');
   const [searchTerm, setSearchTerm] = useState('');
   const [activeSection, setActiveSection] = useState('hero');
-
-  // Parallax refs
-  const heroRef = useRef<HTMLDivElement>(null);
-  const principiosRef = useRef<HTMLDivElement>(null);
-
-  // Parallax transforms for Hero (Movimento ampliado e perceptivel)
-  const { scrollYProgress: heroProgress } = useScroll({
-    target: heroRef,
-    offset: ["start start", "end start"]
-  });
-  const heroBgY = useTransform(heroProgress, [0, 1], ["0px", "420px"]);
-  const heroParticlesY = useTransform(heroProgress, [0, 1], ["0px", "-160px"]);
-
-  // Parallax transforms for 5 Princípios
-  const { scrollYProgress: principiosProgress } = useScroll({
-    target: principiosRef,
-    offset: ["start end", "end start"]
-  });
-  const principiosBgY = useTransform(principiosProgress, [0, 1], ["-160px", "160px"]);
 
   // Control showing all resources or limited
   const [showAllResources, setShowAllResources] = useState(false);
@@ -292,6 +351,18 @@ export default function SpiritismPortal({ onChangeRoute }: SpiritismPortalProps)
     </svg>
   );
 
+  // Custom YouTube brand icon
+  const YouTube = ({ className = "w-4 h-4" }: { className?: string }) => (
+    <svg 
+      xmlns="http://www.w3.org/2000/svg" 
+      viewBox="0 0 24 24" 
+      fill="currentColor" 
+      className={className}
+    >
+      <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+    </svg>
+  );
+
   // WhatsApp Icon SVG
   const WhatsAppIcon = ({ className = "w-5 h-5" }: { className?: string }) => (
     <svg
@@ -303,50 +374,6 @@ export default function SpiritismPortal({ onChangeRoute }: SpiritismPortalProps)
       <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2zm.01 1.67c2.2 0 4.26.86 5.82 2.42a8.19 8.19 0 0 1 2.41 5.83c0 4.54-3.7 8.24-8.24 8.24-1.41 0-2.8-.36-4.03-1.05l-.29-.16-3 0.79.8-2.92-.19-.3a8.19 8.19 0 0 1-1.26-4.6c0-4.54 3.7-8.24 8.24-8.24zm4.52 11.64c-.25-.13-1.47-.72-1.7-.81-.23-.08-.39-.13-.56.13-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.13-1.06-.39-2.02-1.25-.75-.67-1.25-1.5-1.4-1.75-.15-.25-.02-.39.11-.51.11-.11.25-.29.38-.44.13-.14.17-.25.25-.42.08-.17.04-.31-.02-.44-.06-.13-.56-1.35-.77-1.85-.2-.49-.41-.42-.56-.43h-.48c-.17 0-.44.06-.67.31-.23.25-.88.86-.88 2.1 0 1.24.9 2.44 1.03 2.61.13.17 1.78 2.71 4.3 3.8 0.6.26 1.07.41 1.44.53.6.19 1.15.16 1.58.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.15-1.18-.06-.11-.23-.17-.48-.3z" />
     </svg>
   );
-
-  // 5 Princípios Básicos (Clássicos, Racionais e Sóbrios de Kardec)
-  const principiosList = [
-    {
-      id: "01",
-      title: "Existência de Deus",
-      subtitle: "Inteligência Suprema",
-      icon: Star,
-      accentBg: "bg-amber-500/10 text-amber-400 border-amber-500/20",
-      description: "Deus é a inteligência suprema e a causa primária de todas as coisas, soberanamente justo e bom."
-    },
-    {
-      id: "02",
-      title: "Imortalidade da Alma",
-      subtitle: "Continuidade da Vida",
-      icon: Flame,
-      accentBg: "bg-rose-500/10 text-rose-400 border-rose-500/20",
-      description: "O espírito sobrevive à morte do corpo físico. O mundo espiritual é a origem e o destino da nossa consciência."
-    },
-    {
-      id: "03",
-      title: "Pluralidade das Existências",
-      subtitle: "Reencarnação",
-      icon: RefreshCw,
-      accentBg: "bg-sky-500/10 text-sky-400 border-sky-500/20",
-      description: "Os espíritos voltam a nascer em novos corpos físicos para aprender, reparar equívocos e progredir moralmente."
-    },
-    {
-      id: "04",
-      title: "Comunicabilidade dos Espíritos",
-      subtitle: "Mediunidade",
-      icon: MessageCircle,
-      accentBg: "bg-emerald-500/10 text-emerald-400 border-emerald-500/20",
-      description: "É a possibilidade de intercâmbio entre o plano físico e o mundo espiritual por meio da faculdade mediúnica."
-    },
-    {
-      id: "05",
-      title: "Pluralidade dos Mundos",
-      subtitle: "Habitabilidade Universal",
-      icon: Globe,
-      accentBg: "bg-purple-500/10 text-purple-400 border-purple-500/20",
-      description: "A Terra é apenas uma das incontáveis moradas que abrigam espíritos em diferentes graus de evolução no universo."
-    }
-  ];
 
   // Helper to extract clean metric numbers without placeholder labels
   const getCleanNumber = (val: string) => {
@@ -398,317 +425,232 @@ export default function SpiritismPortal({ onChangeRoute }: SpiritismPortalProps)
 
 
       {/* ========================================================= */}
-      {/* 1. HERO SECTION (Céu Celestial com Paralaxe Funcional)    */}
+      {/* 1. HERO SECTION (Full-Width Contemplativo & Editorial)     */}
       {/* ========================================================= */}
       <section
         id="hero"
-        ref={heroRef}
-        className="relative pt-32 pb-8 sm:pt-36 sm:pb-12 lg:pt-40 lg:pb-14 text-slate-900 dark:text-white overflow-hidden bg-gradient-to-b from-sky-100/70 via-blue-50/40 to-slate-50 dark:from-[#06152e]/90 dark:via-[#091e42]/65 dark:to-[#040d1f] transition-colors duration-300"
+        className="relative pt-28 pb-16 sm:pt-32 sm:pb-20 lg:pt-36 lg:pb-24 text-slate-900 dark:text-white overflow-hidden bg-gradient-to-b from-sky-100/60 via-blue-50/20 to-slate-50 dark:from-[#06152e]/90 dark:via-[#081b3a]/60 dark:to-[#040d1f] transition-colors duration-300"
       >
-        {/* Layer 1: Parallax Cloud Background Image */}
-        <motion.div
-          style={{ y: heroBgY }}
-          className="absolute -top-[40%] left-0 right-0 h-[180%] z-0 pointer-events-none will-change-transform"
-        >
+        {/* Static Cloud Background Image (Sem parallax) */}
+        <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
           <img
             src="/imagens-pagina/ceunuvem1.webp"
-            alt="Nuvens de fundo celestial"
-            className="w-full h-full object-cover object-center opacity-30 dark:opacity-60 mix-blend-multiply dark:mix-blend-screen scale-105"
+            alt="Fundo celestial sereno"
+            className="w-full h-full object-cover object-center opacity-20 dark:opacity-40 mix-blend-multiply dark:mix-blend-screen"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-sky-50/70 via-sky-50/20 to-slate-50 dark:from-[#06152e]/85 dark:via-[#091e42]/50 dark:to-[#040d1f]"></div>
-          <div className="absolute inset-0 bg-gradient-to-r from-sky-50/80 via-transparent to-sky-50/80 dark:from-[#040d1f]/85 dark:via-transparent dark:to-[#040d1f]/85"></div>
-        </motion.div>
+          <div className="absolute inset-0 bg-gradient-to-b from-sky-50/50 via-transparent to-slate-50 dark:from-[#06152e]/70 dark:via-transparent dark:to-[#040d1f]"></div>
+        </div>
 
-        {/* Layer 2: Cosmic Particles & Drifting Stardust */}
-        <motion.div
-          style={{ y: heroParticlesY }}
-          className="absolute inset-0 z-0 pointer-events-none overflow-hidden"
-        >
-          {/* Subtle grid pattern */}
-          <div className="absolute inset-0 bg-grid-pattern dark:bg-grid-dark opacity-30"></div>
+        {/* Bespoke Artistic Light Radiance Vector */}
+        <LightRadianceVector />
 
-          {/* Floating stardust motes */}
-          <div className="absolute top-1/6 left-1/12 w-2 h-2 bg-sky-400 dark:bg-sky-300 rounded-full animate-drift-1 blur-[0.5px]"></div>
-          <div className="absolute top-1/4 left-1/4 w-3 h-3 bg-sky-300/60 dark:bg-sky-200/60 rounded-full animate-drift-2 blur-[1px]"></div>
-          <div className="absolute top-1/3 right-1/4 w-2 h-2 bg-amber-300/80 dark:bg-amber-200/80 rounded-full animate-drift-1 blur-[0.5px]"></div>
-          <div className="absolute top-2/3 left-1/3 w-3.5 h-3.5 bg-sky-200/70 dark:bg-white/50 rounded-full animate-drift-2 blur-[1px]"></div>
-          <div className="absolute top-1/2 right-1/6 w-1.5 h-1.5 bg-sky-400 dark:bg-sky-300 rounded-full animate-drift-1"></div>
-          <div className="absolute top-3/4 right-1/3 w-2.5 h-2.5 bg-blue-300/70 dark:bg-blue-200/70 rounded-full animate-drift-2 blur-[0.5px]"></div>
-          <div className="absolute top-1/5 right-1/12 w-1.5 h-1.5 bg-sky-500 dark:bg-sky-400 rounded-full animate-drift-1"></div>
-          <div className="absolute top-4/5 left-1/6 w-2 h-2 bg-sky-300/60 dark:bg-white/60 rounded-full animate-drift-2"></div>
+        {/* Subtle grid pattern without particles */}
+        <div className="absolute inset-0 z-0 bg-grid-pattern dark:bg-grid-dark opacity-35 pointer-events-none"></div>
 
-          {/* Ambient Glows */}
-          <div className="ambient-glow top-12 left-1/4 w-[420px] h-[420px] bg-sky-500/15 dark:bg-sky-500/20 pointer-events-none"></div>
-          <div className="ambient-glow bottom-10 right-1/4 w-[480px] h-[480px] bg-primary/15 dark:bg-primary/30 pointer-events-none" style={{ animationDelay: '-4s' }}></div>
-        </motion.div>
-
-        <div className="max-w-6xl mx-auto px-4 relative z-10">
+        <div className="max-w-5xl mx-auto px-4 relative z-10 text-center">
           <motion.div
             initial="hidden"
             animate="visible"
             variants={staggerContainer}
-            className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-8 items-center"
+            className="space-y-6 sm:space-y-8"
           >
-            {/* Left Content Column */}
-            <div className="lg:col-span-7 space-y-4 sm:space-y-6 text-left">
+            {/* Main Editorial Headline */}
+            <motion.h1
+              variants={fadeInUp}
+              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-[1.08] max-w-4xl mx-auto text-balance"
+            >
+              Novos Mensageiros: <br />
+              <span className="font-serif italic font-normal text-primary dark:text-sky-300">
+                Luz e Consolo
+              </span> nas redes digitais.
+            </motion.h1>
 
-              <motion.h1
-                variants={fadeInUp}
-                className="text-4xl sm:text-5xl md:text-5xl lg:text-6xl font-black text-slate-900 dark:text-white tracking-tight leading-[1.08] sm:leading-[1.12]"
-              >
-                Novos Mensageiros: <br className="hidden sm:inline" />
-                <span className="text-sky-600 dark:text-sky-300 relative inline-block drop-shadow-sm">
-                  Luz e Espiritismo
-                </span> nas redes sociais.
-              </motion.h1>
+            {/* Editorial Description */}
+            <motion.p
+              variants={fadeInUp}
+              className="text-base sm:text-lg md:text-xl text-slate-600 dark:text-slate-300 leading-relaxed max-w-2xl mx-auto font-normal"
+            >
+              Levamos os ensinamentos da Doutrina Espírita de forma leve, profunda e acolhedora. Um farol de escuta e amparo para quem busca respostas e paz para a alma.
+            </motion.p>
 
-              <motion.p
-                variants={fadeInUp}
-                className="text-sm sm:text-base md:text-lg text-slate-600 dark:text-slate-300 leading-relaxed max-w-2xl font-normal drop-shadow-xs"
-              >
-                Levamos ensinamentos da Doutrina Espírita de forma leve, profunda e acessível através de posts, vídeos e mensagens no Instagram, TikTok e YouTube Shorts. Um farol de esperança para quem busca respostas e consolo para a alma.
-              </motion.p>
-
-              {/* Clean Action Buttons */}
-              <motion.div
-                variants={fadeInUp}
-                className="flex flex-wrap items-center gap-3 pt-1"
-              >
-                {/* WhatsApp Button */}
-                <Button
-                  variant="whatsapp"
-                  size="md"
-                  as="a"
-                  href="https://wa.me/43991711228?text=Ol%C3%A1!%20Gostaria%20de%20receber%20acolhimento%20e%20conversa%20fraterna."
-                  target="_blank"
-                  iconLeft={<WhatsAppIcon className="w-5 h-5 fill-white mr-1" />}
-                >
-                  Falar no WhatsApp (Acolhimento)
-                </Button>
-
-                {/* Projeto de Resgate CTA */}
-                <Button
-                  variant="secondary"
-                  size="md"
-                  iconRight={<ArrowRight className="w-4 h-4 ml-1" />}
-                  onClick={() => {
-                    onChangeRoute('#/resgate');
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                  }}
-                >
-                  Conhecer o Projeto de Resgate
-                </Button>
-              </motion.div>
-            </div>
-
-            {/* Right Column: Dynamic Floating Cards (Dividem a tela 50/50 no celular) */}
+            {/* Action Buttons */}
             <motion.div
               variants={fadeInUp}
-              className="lg:col-span-5 relative flex flex-col items-center justify-center"
+              className="flex flex-wrap items-center justify-center gap-4 pt-2"
             >
-              {/* Backlight glow */}
-              <div className="absolute inset-0 bg-gradient-to-tr from-sky-500/20 via-primary/20 to-purple-500/15 dark:from-sky-500/25 dark:via-primary/30 dark:to-purple-500/20 rounded-full blur-3xl -z-10 animate-pulse"></div>
+              {/* WhatsApp Button */}
+              <Button
+                variant="whatsapp"
+                size="md"
+                as="a"
+                href="https://wa.me/43991711228?text=Ol%C3%A1!%20Gostaria%20de%20receber%20acolhimento%20e%20conversa%20fraterna."
+                target="_blank"
+                iconLeft={<WhatsAppIcon className="w-4 h-4 fill-white" />}
+              >
+                Falar no WhatsApp (Acolhimento)
+              </Button>
 
-              <div className="w-full max-w-md relative grid grid-cols-2 lg:grid-cols-1 gap-2.5 sm:gap-4">
+              {/* Projeto de Resgate CTA */}
+              <Button
+                variant="secondary"
+                size="md"
+                iconRight={<ArrowRight className="w-4 h-4" />}
+                onClick={() => {
+                  onChangeRoute('#/resgate');
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }}
+              >
+                Conhecer o Projeto de Resgate
+              </Button>
+            </motion.div>
 
-                {/* Card 1: Instagram */}
-                <motion.div
-                  className="animate-float-1 bg-white/95 dark:bg-slate-900/85 backdrop-blur-xl border border-slate-200/90 dark:border-white/15 rounded-2xl sm:rounded-3xl p-3.5 sm:p-5 shadow-xl hover:border-pink-500/50 transition-all duration-300 text-left relative overflow-hidden group"
+            {/* Authentic Channels Showcase (Vitrine Oficial dos 3 Canais Reais) */}
+            <motion.div
+              variants={fadeInUp}
+              className="pt-8 sm:pt-10 max-w-3xl mx-auto"
+            >
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5 text-left">
+                {/* Instagram */}
+                <a
+                  href="https://www.instagram.com/novosmensageiros/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-4 rounded-2xl bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border border-slate-200/80 dark:border-slate-800 shadow-sm hover:shadow-md hover:border-pink-500/40 dark:hover:border-pink-500/40 transition-all duration-200 group flex items-center justify-between"
                 >
-                  <div className="absolute -right-6 -bottom-6 w-24 h-24 bg-gradient-to-br from-purple-600/20 to-pink-600/20 rounded-full blur-xl pointer-events-none"></div>
-
-                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1.5 sm:gap-2 mb-2 sm:mb-3">
-                    <div className="flex items-center space-x-2 sm:space-x-2.5">
-                      <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl sm:rounded-2xl bg-gradient-to-tr from-[#f09433] via-[#dc2743] to-[#bc1888] flex items-center justify-center text-white shadow-md shadow-pink-500/25 flex-shrink-0">
-                        <Instagram className="w-4 h-4 sm:w-5 sm:h-5" />
-                      </div>
-                      <div className="min-w-0">
-                        <div className="text-[11px] sm:text-xs font-bold text-slate-800 dark:text-slate-200 truncate flex items-center gap-1">
-                          @novosmensageiros
-                        </div>
-                        <div className="text-[9px] sm:text-[10px] text-slate-500 dark:text-slate-400 font-medium truncate">Instagram</div>
-                      </div>
+                  <div className="space-y-1">
+                    <div className="flex items-center gap-2">
+                      <Instagram className="w-4 h-4 text-pink-500" />
+                      <span className="text-[11px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Instagram</span>
                     </div>
-                    <span className="self-start sm:self-auto text-[8px] sm:text-[9px] font-extrabold uppercase tracking-wider text-pink-600 dark:text-pink-400 bg-pink-500/10 px-1.5 sm:px-2 py-0.5 rounded-full border border-pink-500/20">
-                      Ativa
-                    </span>
-                  </div>
-
-                  <div className="flex flex-col sm:flex-row sm:items-baseline sm:space-x-1.5">
-                    <span className="text-xl sm:text-3xl font-black text-slate-900 dark:text-white tracking-tight leading-tight">
+                    <div className="text-xl font-black text-slate-900 dark:text-white tracking-tight">
                       +{SOCIAL_STATS.instagramFollowers}
-                    </span>
-                    <span className="text-[10px] sm:text-xs font-bold text-slate-600 dark:text-slate-300">
-                      seguidores
-                    </span>
-                  </div>
-                  <p className="hidden sm:block text-[11px] text-slate-500 dark:text-slate-400 mt-1">
-                    Reflexões diárias e apoio nos comentários.
-                  </p>
-                </motion.div>
-
-                {/* Card 2: TikTok */}
-                <motion.div
-                  className="animate-float-2 bg-white/95 dark:bg-slate-900/85 backdrop-blur-xl border border-slate-200/90 dark:border-white/15 rounded-2xl sm:rounded-3xl p-3.5 sm:p-5 shadow-xl hover:border-sky-500/50 transition-all duration-300 text-left relative overflow-hidden group ml-0 lg:ml-4"
-                >
-                  <div className="absolute -right-6 -bottom-6 w-24 h-24 bg-gradient-to-br from-sky-500/20 to-blue-600/20 rounded-full blur-xl pointer-events-none"></div>
-
-                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1.5 sm:gap-2 mb-2 sm:mb-3">
-                    <div className="flex items-center space-x-2 sm:space-x-2.5">
-                      <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl sm:rounded-2xl bg-gradient-to-tr from-[#00f2fe] via-[#050505] to-[#fe2c55] flex items-center justify-center text-white shadow-md shadow-cyan-500/25 flex-shrink-0">
-                        <TikTok className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
-                      </div>
-                      <div className="min-w-0">
-                        <div className="text-[11px] sm:text-xs font-bold text-slate-800 dark:text-slate-200 truncate flex items-center gap-1">
-                          @novosmensageiros
-                        </div>
-                        <div className="text-[9px] sm:text-[10px] text-slate-500 dark:text-slate-400 font-medium truncate">TikTok Oficial</div>
-                      </div>
                     </div>
-                    <span className="self-start sm:self-auto text-[8px] sm:text-[9px] font-extrabold uppercase tracking-wider text-sky-600 dark:text-sky-400 bg-sky-500/10 px-1.5 sm:px-2 py-0.5 rounded-full border border-sky-500/20">
-                      Impacto
-                    </span>
+                    <div className="text-[11px] text-slate-500 dark:text-slate-400">
+                      seguidores
+                    </div>
                   </div>
+                  <ExternalLink className="w-4 h-4 text-slate-400 group-hover:text-pink-500 transition-colors shrink-0" />
+                </a>
 
-                  <div className="flex flex-col sm:flex-row sm:items-baseline sm:space-x-1.5">
-                    <span className="text-xl sm:text-3xl font-black text-primary dark:text-sky-400 tracking-tight leading-tight">
+                {/* TikTok */}
+                <a
+                  href="https://www.tiktok.com/@novosmensageiros"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-4 rounded-2xl bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border border-slate-200/80 dark:border-slate-800 shadow-sm hover:shadow-md hover:border-sky-500/40 dark:hover:border-sky-500/40 transition-all duration-200 group flex items-center justify-between"
+                >
+                  <div className="space-y-1">
+                    <div className="flex items-center gap-2">
+                      <TikTok className="w-4 h-4 text-sky-400" />
+                      <span className="text-[11px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">TikTok</span>
+                    </div>
+                    <div className="text-xl font-black text-primary dark:text-sky-400 tracking-tight">
                       {getCleanNumber(SOCIAL_STATS.tiktokViews)}
-                    </span>
-                    <span className="text-[10px] sm:text-xs font-bold text-slate-600 dark:text-slate-300">
-                      views
-                    </span>
+                    </div>
+                    <div className="text-[11px] text-slate-500 dark:text-slate-400">
+                      visualizações
+                    </div>
                   </div>
-                  <p className="hidden sm:block text-[11px] text-slate-500 dark:text-slate-400 mt-1">
-                    Vídeos curtos e mensagens consoladoras.
-                  </p>
-                </motion.div>
+                  <ExternalLink className="w-4 h-4 text-slate-400 group-hover:text-sky-400 transition-colors shrink-0" />
+                </a>
 
+                {/* YouTube */}
+                <a
+                  href="https://www.youtube.com/@NovosMensageiros"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-4 rounded-2xl bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border border-slate-200/80 dark:border-slate-800 shadow-sm hover:shadow-md hover:border-red-500/40 dark:hover:border-red-500/40 transition-all duration-200 group flex items-center justify-between"
+                >
+                  <div className="space-y-1">
+                    <div className="flex items-center gap-2">
+                      <YouTube className="w-4 h-4 text-red-500" />
+                      <span className="text-[11px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">YouTube</span>
+                    </div>
+                    <div className="text-xl font-black text-slate-900 dark:text-white tracking-tight">
+                      Canal Oficial
+                    </div>
+                    <div className="text-[11px] text-slate-500 dark:text-slate-400">
+                      vídeos & reflexões
+                    </div>
+                  </div>
+                  <ExternalLink className="w-4 h-4 text-slate-400 group-hover:text-red-500 transition-colors shrink-0" />
+                </a>
+              </div>
+
+              {/* Reassurance note */}
+              <div className="mt-4 flex items-center justify-center gap-2 text-xs text-slate-500 dark:text-slate-400">
+                <Heart className="w-3.5 h-3.5 text-sky-500 fill-sky-500/20" />
+                <span>Uma ponte viva de escuta fraterna gratuita, sigilosa e sem julgamentos.</span>
               </div>
             </motion.div>
           </motion.div>
         </div>
       </section>
 
-
       {/* ========================================================= */}
       {/* 2. CITAÇÃO ALLAN KARDEC                                    */}
       {/* ========================================================= */}
       <section
         id="frase-kardec"
-        className="py-12 sm:py-16 bg-slate-50 dark:bg-[#040d1f] relative z-10 transition-colors duration-300 text-center overflow-hidden"
+        className="py-16 sm:py-20 bg-slate-50 dark:bg-[#040d1f] relative z-10 transition-colors duration-300 text-center overflow-hidden border-y border-slate-200/50 dark:border-slate-800/60"
       >
         <div className="max-w-3xl mx-auto px-4 sm:px-6 relative">
           <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-50px" }}
-            variants={{
-              hidden: { opacity: 0 },
-              visible: {
-                opacity: 1,
-                transition: { staggerChildren: 0.08, delayChildren: 0.1 }
-              }
-            }}
+            variants={staggerContainer}
             className="relative flex flex-col items-center justify-center"
           >
-            {/* Aspas estilizadas flutuantes com movimento orgânico */}
-            <motion.div
-              animate={{ y: [-3, 3, -3] }}
-              transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-              className="text-4xl sm:text-5xl font-serif text-sky-500/40 dark:text-sky-400/40 leading-none select-none mb-1 cursor-default"
-            >
+            <span className="font-serif text-5xl sm:text-6xl text-sky-500/30 dark:text-sky-400/30 leading-none select-none mb-2">
               “
-            </motion.div>
+            </span>
 
-            {/* Frase com revelação de palavras e tipografia editorial sóbria */}
-            <blockquote className="relative z-10 text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight leading-snug px-2 flex flex-wrap justify-center gap-x-2.5 gap-y-1 text-slate-800 dark:text-slate-100">
-              {[
-                { word: "Fora", highlight: false },
-                { word: "da", highlight: false },
-                { word: "caridade", highlight: true },
-                { word: "não", highlight: false },
-                { word: "há", highlight: false },
-                { word: "salvação.", highlight: false }
-              ].map((item, idx) => (
-                <motion.span
-                  key={idx}
-                  variants={{
-                    hidden: { opacity: 0, y: 12, filter: "blur(4px)" },
-                    visible: {
-                      opacity: 1,
-                      y: 0,
-                      filter: "blur(0px)",
-                      transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] }
-                    }
-                  }}
-                  className={item.highlight ? "text-sky-600 dark:text-sky-300 font-extrabold" : "font-bold"}
-                >
-                  {item.word}
-                </motion.span>
-              ))}
+            <blockquote className="font-serif text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tight leading-snug text-slate-800 dark:text-slate-100 italic px-2">
+              Fora da caridade não há salvação.
             </blockquote>
 
-            {/* Autor com linhas finas e acabamento requintado */}
-            <motion.div
-              variants={{
-                hidden: { opacity: 0, y: 8 },
-                visible: { opacity: 1, y: 0, transition: { duration: 0.6, delay: 0.5 } }
-              }}
-              className="mt-4 flex items-center justify-center gap-3 text-slate-500 dark:text-slate-400"
-            >
-              <span className="h-px w-8 sm:w-12 bg-slate-200 dark:bg-slate-700/80"></span>
-              <cite className="text-xs sm:text-sm font-semibold tracking-wider uppercase not-italic text-slate-600 dark:text-slate-300">
+            <div className="mt-5 flex items-center justify-center gap-3 text-slate-500 dark:text-slate-400">
+              <span className="h-px w-8 sm:w-12 bg-slate-300 dark:bg-slate-700"></span>
+              <cite className="text-xs sm:text-sm font-bold tracking-widest uppercase not-italic text-slate-700 dark:text-slate-300">
                 Allan Kardec
               </cite>
-              <span className="h-px w-8 sm:w-12 bg-slate-200 dark:bg-slate-700/80"></span>
-            </motion.div>
+              <span className="h-px w-8 sm:w-12 bg-slate-300 dark:bg-slate-700"></span>
+            </div>
           </motion.div>
         </div>
-
-        {/* Gradient de transição suave para a seção dos Princípios */}
-        <div className="absolute bottom-0 left-0 right-0 h-24 sm:h-32 bg-gradient-to-b from-transparent via-slate-50/80 to-slate-50 dark:via-[#040d1f]/50 dark:to-slate-950 pointer-events-none"></div>
       </section>
 
-
       {/* ========================================================= */}
-      {/* 3. OS 5 PILARES (Fundo Nuvem ceunuvem2 + Parallax Limpo)   */}
+      {/* 3. OS 5 PILARES (Folhas de Leitura com SVGs Proprietários) */}
       {/* ========================================================= */}
       <section
         id="principios"
-        ref={principiosRef}
-        className="py-16 md:py-24 bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-white relative overflow-hidden transition-colors duration-300"
+        className="py-20 md:py-28 bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-white relative overflow-hidden transition-colors duration-300"
       >
-        {/* Parallax Cloud Background */}
-        <motion.div
-          style={{ y: principiosBgY }}
-          className="absolute -top-[40%] left-0 right-0 h-[180%] z-0 pointer-events-none will-change-transform"
-        >
+        {/* Static Cloud Background (Sem parallax) */}
+        <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
           <img
             src="/imagens-pagina/ceunuvem2.webp"
-            alt="Nuvens de fundo dos 5 pilares"
-            className="w-full h-full object-cover object-center opacity-25 dark:opacity-50 mix-blend-multiply dark:mix-blend-screen scale-105"
+            alt="Fundo dos 5 princípios"
+            className="w-full h-full object-cover object-center opacity-15 dark:opacity-35 mix-blend-multiply dark:mix-blend-screen"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-slate-50/70 via-slate-50/30 to-slate-50 dark:from-slate-950/85 dark:via-slate-950/60 dark:to-slate-950"></div>
-        </motion.div>
-
-        {/* Ambient Glow */}
-        <div className="ambient-glow top-20 right-10 w-96 h-96 bg-sky-500/10 pointer-events-none z-0"></div>
-
-
+          <div className="absolute inset-0 bg-gradient-to-b from-slate-50/80 via-slate-50/40 to-slate-50 dark:from-slate-950/90 dark:via-slate-950/70 dark:to-slate-950"></div>
+        </div>
 
         <div className="max-w-6xl mx-auto px-4 relative z-10">
 
-          {/* Header Sóbrio e Humano (Sem badges artificiais) */}
-          <div className="text-center max-w-3xl mx-auto space-y-3 mb-16">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight text-primary-dark dark:text-white">
+          {/* Section Header (Sem pílulas artificiais) */}
+          <div className="text-center max-w-2xl mx-auto space-y-3 mb-16">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-primary-dark dark:text-white">
               Os 5 Princípios Básicos
             </h2>
             <p className="text-slate-600 dark:text-slate-300 text-base md:text-lg leading-relaxed font-normal">
-              O Espiritismo une ciência, filosofia e moral para explicar as leis naturais que regem a existência humana e espiritual.
+              O Espiritismo une ciência, filosofia e moral para explicar as leis naturais que regem a existência humana e o destino do espírito.
             </p>
           </div>
 
-          {/* Cards Sóbrios e Diretos */}
+          {/* Folhas de Leitura Grid (3 cols no desktop) */}
           <motion.div
             initial="hidden"
             whileInView="visible"
@@ -716,44 +658,155 @@ export default function SpiritismPortal({ onChangeRoute }: SpiritismPortalProps)
             variants={staggerContainer}
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 text-left"
           >
-            {principiosList.map((principio, idx) => {
-              const Icon = principio.icon;
-              const isLarge = idx === 4;
-
-              return (
-                <motion.div
-                  key={principio.id}
-                  variants={cardVariants}
-                  whileHover={{ y: -4, transition: { duration: 0.2 } }}
-                  className={`bg-white dark:bg-slate-900/80 backdrop-blur-md rounded-3xl border border-slate-200 dark:border-slate-800 hover:border-primary/40 dark:hover:border-sky-500/40 p-7 shadow-md hover:shadow-xl flex flex-col justify-between group transition-all duration-300 ${isLarge ? 'md:col-span-2 lg:col-span-1' : ''
-                    }`}
-                >
-                  <div className="space-y-4">
-                    <div className="flex items-center justify-between">
-                      <span className="text-2xl font-black text-slate-400 dark:text-slate-500 group-hover:text-primary dark:group-hover:text-sky-400 transition-colors">
-                        {principio.id}
-                      </span>
-                      <div className={`w-11 h-11 rounded-2xl flex items-center justify-center border ${principio.accentBg}`}>
-                        <Icon className="w-5 h-5" />
-                      </div>
-                    </div>
-
-                    <div>
-                      <h3 className="text-xl font-black text-slate-900 dark:text-white group-hover:text-primary dark:group-hover:text-sky-300 transition-colors">
-                        {principio.title}
-                      </h3>
-                      <p className="text-xs font-semibold text-primary dark:text-sky-400/80 mt-0.5">
-                        {principio.subtitle}
-                      </p>
-                    </div>
-
-                    <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-normal border-t border-slate-100 dark:border-slate-800 pt-4">
-                      {principio.description}
-                    </p>
+            {/* Card 1: Anchor (Col-span 2 on LG) - Existência de Deus */}
+            <motion.div
+              variants={cardVariants}
+              className="lg:col-span-2 bg-[#FAFBFD] dark:bg-[#0B132B]/85 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 p-7 sm:p-8 shadow-sm hover:shadow-md hover:border-amber-500/40 dark:hover:border-amber-400/30 flex flex-col justify-between group transition-all duration-300"
+            >
+              <div className="space-y-4">
+                <div className="flex items-center justify-between">
+                  <span className="font-serif text-3xl font-bold text-slate-300 dark:text-slate-600 group-hover:text-amber-500 dark:group-hover:text-amber-400 transition-colors">
+                    01
+                  </span>
+                  <div className="p-2 rounded-xl bg-amber-500/10 text-amber-600 dark:text-amber-400">
+                    <DeusVector />
                   </div>
-                </motion.div>
-              );
-            })}
+                </div>
+
+                <div>
+                  <h3 className="text-2xl font-extrabold text-slate-900 dark:text-white group-hover:text-amber-600 dark:group-hover:text-amber-300 transition-colors">
+                    Existência de Deus
+                  </h3>
+                  <p className="text-xs font-semibold text-amber-600 dark:text-amber-400/90 mt-1 uppercase tracking-wider">
+                    Inteligência Suprema e Causa Primária
+                  </p>
+                </div>
+
+                <p className="text-base text-slate-600 dark:text-slate-300 leading-relaxed font-normal border-t border-slate-200/60 dark:border-slate-800/80 pt-4 max-w-2xl">
+                  Deus é a inteligência suprema do universo e a causa primária de todas as coisas. Soberanamente justo e bom, rege a criação através de leis morais e naturais perfeitas que guiam todos os seres ao progresso infinito.
+                </p>
+              </div>
+            </motion.div>
+
+            {/* Card 2: Imortalidade da Alma */}
+            <motion.div
+              variants={cardVariants}
+              className="bg-[#FAFBFD] dark:bg-[#0B132B]/85 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 p-7 sm:p-8 shadow-sm hover:shadow-md hover:border-rose-500/40 dark:hover:border-rose-400/30 flex flex-col justify-between group transition-all duration-300"
+            >
+              <div className="space-y-4">
+                <div className="flex items-center justify-between">
+                  <span className="font-serif text-3xl font-bold text-slate-300 dark:text-slate-600 group-hover:text-rose-500 dark:group-hover:text-rose-400 transition-colors">
+                    02
+                  </span>
+                  <div className="p-2 rounded-xl bg-rose-500/10 text-rose-600 dark:text-rose-400">
+                    <AlmaVector />
+                  </div>
+                </div>
+
+                <div>
+                  <h3 className="text-xl font-extrabold text-slate-900 dark:text-white group-hover:text-rose-600 dark:group-hover:text-rose-300 transition-colors">
+                    Imortalidade da Alma
+                  </h3>
+                  <p className="text-xs font-semibold text-rose-600 dark:text-rose-400/90 mt-1 uppercase tracking-wider">
+                    Continuidade da Vida
+                  </p>
+                </div>
+
+                <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-normal border-t border-slate-200/60 dark:border-slate-800/80 pt-4">
+                  O espírito sobrevive à morte do corpo físico. O mundo espiritual é a origem primordial e a verdadeira pátria da nossa consciência individual.
+                </p>
+              </div>
+            </motion.div>
+
+            {/* Card 3: Pluralidade das Existências (Reencarnação) */}
+            <motion.div
+              variants={cardVariants}
+              className="bg-[#FAFBFD] dark:bg-[#0B132B]/85 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 p-7 sm:p-8 shadow-sm hover:shadow-md hover:border-sky-500/40 dark:hover:border-sky-400/30 flex flex-col justify-between group transition-all duration-300"
+            >
+              <div className="space-y-4">
+                <div className="flex items-center justify-between">
+                  <span className="font-serif text-3xl font-bold text-slate-300 dark:text-slate-600 group-hover:text-sky-500 dark:group-hover:text-sky-400 transition-colors">
+                    03
+                  </span>
+                  <div className="p-2 rounded-xl bg-sky-500/10 text-sky-600 dark:text-sky-400">
+                    <ReencarnacaoVector />
+                  </div>
+                </div>
+
+                <div>
+                  <h3 className="text-xl font-extrabold text-slate-900 dark:text-white group-hover:text-sky-600 dark:group-hover:text-sky-300 transition-colors">
+                    Pluralidade das Existências
+                  </h3>
+                  <p className="text-xs font-semibold text-sky-600 dark:text-sky-400/90 mt-1 uppercase tracking-wider">
+                    Reencarnação e Aprendizado
+                  </p>
+                </div>
+
+                <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-normal border-t border-slate-200/60 dark:border-slate-800/80 pt-4">
+                  Os espíritos retornam à matéria em novas existências para aprender, reparar equívocos do passado e desenvolver virtudes morais e intelectuais.
+                </p>
+              </div>
+            </motion.div>
+
+            {/* Card 4: Comunicabilidade dos Espíritos (Mediunidade) */}
+            <motion.div
+              variants={cardVariants}
+              className="bg-[#FAFBFD] dark:bg-[#0B132B]/85 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 p-7 sm:p-8 shadow-sm hover:shadow-md hover:border-emerald-500/40 dark:hover:border-emerald-400/30 flex flex-col justify-between group transition-all duration-300"
+            >
+              <div className="space-y-4">
+                <div className="flex items-center justify-between">
+                  <span className="font-serif text-3xl font-bold text-slate-300 dark:text-slate-600 group-hover:text-emerald-500 dark:group-hover:text-emerald-400 transition-colors">
+                    04
+                  </span>
+                  <div className="p-2 rounded-xl bg-emerald-500/10 text-emerald-600 dark:text-emerald-400">
+                    <MediunidadeVector />
+                  </div>
+                </div>
+
+                <div>
+                  <h3 className="text-xl font-extrabold text-slate-900 dark:text-white group-hover:text-emerald-600 dark:group-hover:text-emerald-300 transition-colors">
+                    Comunicabilidade dos Espíritos
+                  </h3>
+                  <p className="text-xs font-semibold text-emerald-600 dark:text-emerald-400/90 mt-1 uppercase tracking-wider">
+                    Mediunidade com Propósito
+                  </p>
+                </div>
+
+                <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-normal border-t border-slate-200/60 dark:border-slate-800/80 pt-4">
+                  O intercâmbio entre os planos visível e invisível é uma lei natural. A mediunidade, exercida com caridade e desinteresse, traz consolo e esclarecimento.
+                </p>
+              </div>
+            </motion.div>
+
+            {/* Card 5: Pluralidade dos Mundos Habitados */}
+            <motion.div
+              variants={cardVariants}
+              className="bg-[#FAFBFD] dark:bg-[#0B132B]/85 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 p-7 sm:p-8 shadow-sm hover:shadow-md hover:border-purple-500/40 dark:hover:border-purple-400/30 flex flex-col justify-between group transition-all duration-300"
+            >
+              <div className="space-y-4">
+                <div className="flex items-center justify-between">
+                  <span className="font-serif text-3xl font-bold text-slate-300 dark:text-slate-600 group-hover:text-purple-500 dark:group-hover:text-purple-400 transition-colors">
+                    05
+                  </span>
+                  <div className="p-2 rounded-xl bg-purple-500/10 text-purple-600 dark:text-purple-400">
+                    <MundosVector />
+                  </div>
+                </div>
+
+                <div>
+                  <h3 className="text-xl font-extrabold text-slate-900 dark:text-white group-hover:text-purple-600 dark:group-hover:text-purple-300 transition-colors">
+                    Pluralidade dos Mundos
+                  </h3>
+                  <p className="text-xs font-semibold text-purple-600 dark:text-purple-400/90 mt-1 uppercase tracking-wider">
+                    Habitabilidade Universal
+                  </p>
+                </div>
+
+                <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-normal border-t border-slate-200/60 dark:border-slate-800/80 pt-4">
+                  A Terra é apenas uma das incontáveis moradas que abrigam espíritos em diferentes graus de maturidade e evolução ao longo do cosmos infinito.
+                </p>
+              </div>
+            </motion.div>
           </motion.div>
 
         </div>
@@ -825,7 +878,7 @@ export default function SpiritismPortal({ onChangeRoute }: SpiritismPortalProps)
 
 
       {/* ========================================================= */}
-      {/* 5. NOSSA HISTÓRIA & PROPÓSITO */}
+      {/* 5. NOSSA HISTÓRIA & PROPÓSITO                             */}
       {/* ========================================================= */}
       <section
         id="nossa-historia"
@@ -833,8 +886,8 @@ export default function SpiritismPortal({ onChangeRoute }: SpiritismPortalProps)
       >
         <div className="max-w-6xl mx-auto px-4">
 
-          <div className="text-center max-w-3xl mx-auto space-y-3 mb-16">
-            <h2 className="text-3xl md:text-4xl font-black text-slate-900 dark:text-white tracking-tight">
+          <div className="text-center max-w-2xl mx-auto space-y-3 mb-16">
+            <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
               A história por trás dos Novos Mensageiros
             </h2>
             <p className="text-slate-600 dark:text-slate-300 text-sm md:text-base leading-relaxed">
@@ -842,26 +895,28 @@ export default function SpiritismPortal({ onChangeRoute }: SpiritismPortalProps)
             </p>
           </div>
 
-          {/* Storytelling Cards Grid */}
+          {/* Storytelling Progressive Flow */}
           <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
             variants={staggerContainer}
-            className="grid grid-cols-1 md:grid-cols-3 gap-8 text-left mb-8"
+            className="grid grid-cols-1 md:grid-cols-3 gap-6 text-left mb-10 relative"
           >
             {/* Step 1 */}
             <motion.div
               variants={cardVariants}
-              whileHover={{ y: -5 }}
-              className="bg-slate-50 dark:bg-slate-800/80 p-8 rounded-3xl border border-slate-200/80 dark:border-slate-700/70 shadow-sm flex flex-col justify-between"
+              className="bg-[#FAFBFD] dark:bg-[#0B132B]/85 p-7 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 shadow-sm flex flex-col justify-between hover:shadow-md hover:border-sky-500/30 transition-all duration-300"
             >
               <div className="space-y-4">
-                <div className="w-12 h-12 rounded-2xl bg-sky-500/10 text-sky-600 dark:text-sky-400 flex items-center justify-center font-black text-lg border border-sky-500/20">
-                  <CompassIcon className="w-6 h-6 text-sky-500" />
+                <div className="flex items-center justify-between">
+                  <span className="font-serif text-sm font-bold uppercase tracking-wider text-sky-600 dark:text-sky-400">Passo 01</span>
+                  <div className="w-10 h-10 rounded-xl bg-sky-500/10 text-sky-600 dark:text-sky-400 flex items-center justify-center border border-sky-500/20">
+                    <CompassIcon className="w-5 h-5 text-sky-500" />
+                  </div>
                 </div>
-                <h3 className="text-xl font-extrabold text-slate-900 dark:text-white">1. Sementes Digitais</h3>
-                <p className="text-xs md:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                <h3 className="text-xl font-bold text-slate-900 dark:text-white">Sementes Digitais</h3>
+                <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-normal">
                   O projeto nasceu com a missão de semear consolo, esperança e paz através de reflexões diárias da Doutrina Espírita no Instagram e TikTok.
                 </p>
               </div>
@@ -870,15 +925,17 @@ export default function SpiritismPortal({ onChangeRoute }: SpiritismPortalProps)
             {/* Step 2 */}
             <motion.div
               variants={cardVariants}
-              whileHover={{ y: -5 }}
-              className="bg-slate-50 dark:bg-slate-800/80 p-8 rounded-3xl border border-slate-200/80 dark:border-slate-700/70 shadow-sm flex flex-col justify-between"
+              className="bg-[#FAFBFD] dark:bg-[#0B132B]/85 p-7 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 shadow-sm flex flex-col justify-between hover:shadow-md hover:border-sky-500/30 transition-all duration-300"
             >
               <div className="space-y-4">
-                <div className="w-12 h-12 rounded-2xl bg-red-500/10 text-red-500 flex items-center justify-center font-black text-lg border border-red-500/20">
-                  <ShieldAlert className="w-6 h-6 text-red-500" />
+                <div className="flex items-center justify-between">
+                  <span className="font-serif text-sm font-bold uppercase tracking-wider text-sky-600 dark:text-sky-400">Passo 02</span>
+                  <div className="w-10 h-10 rounded-xl bg-sky-500/10 text-sky-600 dark:text-sky-400 flex items-center justify-center border border-sky-500/20">
+                    <ShieldAlert className="w-5 h-5" />
+                  </div>
                 </div>
-                <h3 className="text-xl font-extrabold text-slate-900 dark:text-white">2. A Ponta do Iceberg</h3>
-                <p className="text-xs md:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                <h3 className="text-xl font-bold text-slate-900 dark:text-white">A Ponta do Iceberg</h3>
+                <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-normal">
                   Ao viralizarmos conteúdos sobre o vazio da alma e a depressão, os comentários revelaram um pedido de socorro silencioso de centenas de pessoas em sofrimento profundo.
                 </p>
               </div>
@@ -887,20 +944,36 @@ export default function SpiritismPortal({ onChangeRoute }: SpiritismPortalProps)
             {/* Step 3 */}
             <motion.div
               variants={cardVariants}
-              whileHover={{ y: -5 }}
-              className="bg-slate-50 dark:bg-slate-800/80 p-8 rounded-3xl border border-slate-200/80 dark:border-slate-700/70 shadow-sm flex flex-col justify-between"
+              className="bg-[#FAFBFD] dark:bg-[#0B132B]/85 p-7 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 shadow-sm flex flex-col justify-between hover:shadow-md hover:border-sky-500/30 transition-all duration-300"
             >
               <div className="space-y-4">
-                <div className="w-12 h-12 rounded-2xl bg-emerald-500/10 text-emerald-500 flex items-center justify-center font-black text-lg border border-emerald-500/20">
-                  <Heart className="w-6 h-6 text-emerald-500 fill-emerald-500/20" />
+                <div className="flex items-center justify-between">
+                  <span className="font-serif text-sm font-bold uppercase tracking-wider text-sky-600 dark:text-sky-400">Passo 03</span>
+                  <div className="w-10 h-10 rounded-xl bg-sky-500/10 text-sky-600 dark:text-sky-400 flex items-center justify-center border border-sky-500/20">
+                    <Heart className="w-5 h-5 fill-sky-500/20" />
+                  </div>
                 </div>
-                <h3 className="text-xl font-extrabold text-slate-900 dark:text-white">3. A Corrente de Resgate</h3>
-                <p className="text-xs md:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                <h3 className="text-xl font-bold text-slate-900 dark:text-white">A Corrente de Resgate</h3>
+                <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-normal">
                   Criamos uma operação de busca ativa e escuta fraterna para identificar desabafos, dar suporte imediato via WhatsApp e encaminhar para atendimento especializado.
                 </p>
               </div>
             </motion.div>
           </motion.div>
+
+          <div className="text-center">
+            <Button
+              variant="secondary"
+              size="md"
+              iconRight={<ArrowRight className="w-4 h-4" />}
+              onClick={() => {
+                onChangeRoute('#/historia');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }}
+            >
+              Conhecer Toda a Nossa Trajetória
+            </Button>
+          </div>
 
         </div>
       </section>

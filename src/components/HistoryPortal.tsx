@@ -1,5 +1,5 @@
 import { useRef } from 'react';
-import { motion, useScroll, useSpring, useTransform } from 'framer-motion';
+import { motion, useScroll, useSpring } from 'framer-motion';
 import { Heart, Compass, Users, ArrowRight, Star } from 'lucide-react';
 import Button from './ui/Button';
 
@@ -8,14 +8,6 @@ interface HistoryPortalProps {
 }
 
 export default function HistoryPortal({ onChangeRoute }: HistoryPortalProps) {
-  const sectionRef = useRef<HTMLElement>(null);
-  const { scrollYProgress: sectionProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start end", "end start"]
-  });
-
-  const parallaxBgY = useTransform(sectionProgress, [0, 1], ["-120px", "120px"]);
-
   const timelineRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: timelineRef,
@@ -91,8 +83,8 @@ export default function HistoryPortal({ onChangeRoute }: HistoryPortalProps) {
           <div className="absolute inset-0 bg-grid-pattern dark:bg-grid-dark opacity-35"></div>
         </div>
 
-        {/* Ambient Gradient Glows */}
-        <div className="ambient-glow top-10 right-1/4 w-[350px] h-[350px] bg-primary/20 dark:bg-primary/30 rounded-full blur-[120px] z-0 animate-pulse pointer-events-none"></div>
+        {/* Subtle background illumination */}
+        <div className="absolute top-10 right-1/4 w-[350px] h-[350px] bg-primary/10 dark:bg-primary/20 rounded-full blur-3xl z-0 pointer-events-none"></div>
 
         <div className="max-w-6xl mx-auto px-4 relative z-10">
           <motion.div 
@@ -175,9 +167,8 @@ export default function HistoryPortal({ onChangeRoute }: HistoryPortalProps) {
 
       {/* 2. O Manifesto / A Revelação */}
       <section className="py-20 md:py-28 bg-white dark:bg-slate-900 relative overflow-hidden bg-grid-pattern border-b border-slate-200/70 dark:border-slate-800 transition-colors duration-300">
-        {/* Ambient background glows */}
-        <div className="absolute top-10 left-10 w-96 h-96 bg-primary-light/45 dark:bg-primary/20 rounded-full blur-3xl pointer-events-none -z-10 animate-pulse"></div>
-        <div className="absolute bottom-10 right-10 w-[400px] h-[400px] bg-sky-100/30 dark:bg-sky-900/20 rounded-full blur-3xl pointer-events-none -z-10 animate-pulse delay-700"></div>
+        {/* Subtle background glow */}
+        <div className="absolute top-10 left-10 w-96 h-96 bg-primary-light/20 dark:bg-primary/10 rounded-full blur-3xl pointer-events-none -z-10"></div>
         <div className="max-w-3xl mx-auto px-4 text-center space-y-6">
           <h2 className="text-3xl md:text-4xl font-extrabold text-primary-dark dark:text-white tracking-tight leading-tight">
             Por trás das telas, pessoas que só precisavam ser ouvidas.
@@ -194,25 +185,18 @@ export default function HistoryPortal({ onChangeRoute }: HistoryPortalProps) {
       {/* 3. Timeline / A Jornada Histórica */}
       <section 
         id="linha-tempo"
-        ref={sectionRef}
         className="py-20 md:py-28 bg-slate-50 dark:bg-slate-950 border-y border-slate-200/70 dark:border-slate-800 relative overflow-hidden bg-grid-pattern transition-colors duration-300"
       >
-        {/* Parallax Hands Background */}
-        <motion.div
-          style={{ y: parallaxBgY }}
-          className="absolute -top-[25%] left-0 right-0 h-[150%] z-0 pointer-events-none will-change-transform"
-        >
+        {/* Static Hands Background */}
+        <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
           <img
             src="/imagens-pagina/maos-unidas.webp"
             alt="Mãos unidas em união e acolhimento"
-            className="w-full h-full object-cover object-center opacity-85 dark:opacity-85 mix-blend-multiply dark:mix-blend-screen scale-105"
+            className="w-full h-full object-cover object-center opacity-80 dark:opacity-80 mix-blend-multiply dark:mix-blend-screen"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-slate-50/90 via-slate-50/70 to-slate-50 dark:from-slate-950/90 dark:via-slate-950/75 dark:to-slate-950"></div>
-        </motion.div>
+          <div className="absolute inset-0 bg-gradient-to-b from-slate-50/90 via-slate-50/75 to-slate-50 dark:from-slate-950/90 dark:via-slate-950/80 dark:to-slate-950"></div>
+        </div>
 
-        {/* Ambient background glows */}
-        <div className="absolute top-1/4 right-5 w-[400px] h-[400px] bg-primary-light/50 dark:bg-primary/20 rounded-full blur-3xl pointer-events-none -z-10 animate-pulse"></div>
-        <div className="absolute bottom-10 left-10 w-80 h-80 bg-sky-100/30 dark:bg-sky-900/20 rounded-full blur-3xl pointer-events-none -z-10 animate-pulse delay-1000"></div>
         <div className="max-w-4xl mx-auto px-4 relative z-10">
           <div className="text-center max-w-2xl mx-auto space-y-3 mb-16">
             <h2 className="text-3xl font-extrabold text-primary-dark dark:text-white tracking-tight">
@@ -286,7 +270,7 @@ export default function HistoryPortal({ onChangeRoute }: HistoryPortalProps) {
         <div className="max-w-4xl mx-auto px-4 text-center space-y-6 relative z-10">
           <h2 className="text-3xl font-extrabold tracking-tight">Faça parte dessa história de amor</h2>
           <p className="text-primary-light/80 max-w-xl mx-auto text-sm leading-relaxed">
-            Cada mensagem que respondemos pode ser o respiro de esperança que alguém tanto esperava. Se você sente no coração a vontade de acolher — seja doando sua escuta fraterna, como profissional de psicologia ou através da sua Casa Espírita —, venha caminhar com a gente.
+            Cada mensagem que respondemos pode ser o respiro de esperança que alguém tanto esperava. Se você sente no coração a vontade de acolher, seja doando sua escuta fraterna, como profissional de psicologia ou através da sua Casa Espírita, venha caminhar com a gente.
           </p>
           <div className="pt-4 flex flex-col sm:flex-row justify-center gap-4">
             <Button
