@@ -17,6 +17,9 @@ Todas as alterações notáveis deste projeto são documentadas neste arquivo, s
   - Barra inferior compacta com links diretos para Instagram, TikTok e YouTube.
   - Header minimalista com alternador de Dark/Light mode e botão para retornar ao site.
   - Experiência livre de distrações sem a barra de navegação completa para maximizar conversão a partir das redes sociais.
+* **Fundo Parallaxe na Linha do Tempo de Nossa História**:
+  - Imagem de união das mãos convertida em WebP ultra-otimizada (`maos-unidas.webp`).
+  - Efeito suave de paralaxe reativo ao scroll integrado à seção "A evolução do nosso trabalho".
 
 ---
 

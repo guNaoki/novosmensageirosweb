@@ -1,5 +1,5 @@
 import { useRef } from 'react';
-import { motion, useScroll, useSpring } from 'framer-motion';
+import { motion, useScroll, useSpring, useTransform } from 'framer-motion';
 import { Heart, Compass, Users, ArrowRight, Star } from 'lucide-react';
 import Button from './ui/Button';
 
@@ -8,6 +8,14 @@ interface HistoryPortalProps {
 }
 
 export default function HistoryPortal({ onChangeRoute }: HistoryPortalProps) {
+  const sectionRef = useRef<HTMLElement>(null);
+  const { scrollYProgress: sectionProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"]
+  });
+
+  const parallaxBgY = useTransform(sectionProgress, [0, 1], ["-120px", "120px"]);
+
   const timelineRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: timelineRef,
@@ -184,11 +192,27 @@ export default function HistoryPortal({ onChangeRoute }: HistoryPortalProps) {
       </section>
 
       {/* 3. Timeline / A Jornada Histórica */}
-      <section className="py-20 md:py-28 bg-slate-50 dark:bg-slate-950 border-y border-slate-200/70 dark:border-slate-800 relative overflow-hidden bg-grid-pattern transition-colors duration-300">
+      <section 
+        ref={sectionRef}
+        className="py-20 md:py-28 bg-slate-50 dark:bg-slate-950 border-y border-slate-200/70 dark:border-slate-800 relative overflow-hidden bg-grid-pattern transition-colors duration-300"
+      >
+        {/* Parallax Hands Background */}
+        <motion.div
+          style={{ y: parallaxBgY }}
+          className="absolute -top-[25%] left-0 right-0 h-[150%] z-0 pointer-events-none will-change-transform"
+        >
+          <img
+            src="/imagens-pagina/maos-unidas.webp"
+            alt="Mãos unidas em união e acolhimento"
+            className="w-full h-full object-cover object-center opacity-15 dark:opacity-25 mix-blend-multiply dark:mix-blend-screen scale-105"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-slate-50/90 via-slate-50/70 to-slate-50 dark:from-slate-950/90 dark:via-slate-950/75 dark:to-slate-950"></div>
+        </motion.div>
+
         {/* Ambient background glows */}
         <div className="absolute top-1/4 right-5 w-[400px] h-[400px] bg-primary-light/50 dark:bg-primary/20 rounded-full blur-3xl pointer-events-none -z-10 animate-pulse"></div>
         <div className="absolute bottom-10 left-10 w-80 h-80 bg-sky-100/30 dark:bg-sky-900/20 rounded-full blur-3xl pointer-events-none -z-10 animate-pulse delay-1000"></div>
-        <div className="max-w-4xl mx-auto px-4">
+        <div className="max-w-4xl mx-auto px-4 relative z-10">
           <div className="text-center max-w-2xl mx-auto space-y-3 mb-16">
             <h2 className="text-3xl font-extrabold text-primary-dark dark:text-white tracking-tight">
               A evolução do nosso trabalho
