@@ -178,17 +178,16 @@ export default function RescuePortal({ onChangeRoute }: RescuePortalProps) {
                 variants={fadeInUp}
                 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-slate-900 dark:text-white tracking-tight leading-tight"
               >
-                Projeto de Resgate: Uma <span className="text-primary dark:text-sky-400 relative inline-block hover:scale-[1.02] transition-all duration-300 cursor-default select-none">
+                Projeto de Resgate: Uma <span className="text-primary dark:text-sky-400 font-black">
                   mão estendida
-                  <span className="absolute bottom-1 left-0 w-full h-[6px] bg-primary/20 dark:bg-sky-500/30 -z-10 rounded-full"></span>
                 </span> no momento de maior dor.
               </motion.h1>
               
               <motion.p 
                 variants={fadeInUp}
-                className="text-base sm:text-lg text-slate-700 dark:text-slate-100 leading-relaxed max-w-2xl font-medium"
+                className="text-base sm:text-lg text-slate-700 dark:text-slate-100 leading-relaxed max-w-2xl font-normal"
               >
-                O <strong className="font-extrabold text-slate-900 dark:text-white">Projeto de Resgate</strong> é a frente de ação direta dos Novos Mensageiros. Conversamos com pessoas que estão com <em className="italic font-semibold text-primary dark:text-sky-300">depressão</em>. Realizamos o atendimento dessas pessoas, triagem por nível de risco, diálogo fraterno e encaminhamento para profissionais especialistas.
+                O <strong className="font-extrabold text-slate-900 dark:text-white">Projeto de Resgate</strong> é a frente de ação direta dos Novos Mensageiros. Conversamos com pessoas que estão com <strong className="font-semibold text-primary dark:text-sky-300">depressão</strong>. Realizamos o atendimento dessas pessoas, triagem por nível de risco, diálogo fraterno e encaminhamento para profissionais especialistas.
               </motion.p>
               
               <motion.div 
@@ -243,7 +242,7 @@ export default function RescuePortal({ onChangeRoute }: RescuePortalProps) {
                     <Heart className="w-4 h-4 fill-sky-500/30 text-sky-500" />
                   </div>
                   <div>
-                    <div className="font-serif text-sm sm:text-base font-bold text-slate-900 dark:text-white leading-none">+100</div>
+                    <div className="font-sans text-sm sm:text-base font-bold text-slate-900 dark:text-white leading-none">+100</div>
                     <div className="text-[10px] text-slate-500 dark:text-slate-400 font-medium mt-0.5">Vidas amparadas</div>
                   </div>
                 </motion.div>
@@ -256,7 +255,7 @@ export default function RescuePortal({ onChangeRoute }: RescuePortalProps) {
                 >
                   <div className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse shrink-0"></div>
                   <div>
-                    <div className="font-serif text-xs sm:text-sm font-bold text-slate-900 dark:text-white leading-none">Busca Ativa 24/7</div>
+                    <div className="font-sans text-xs sm:text-sm font-bold text-slate-900 dark:text-white leading-none">Busca Ativa 24/7</div>
                     <div className="text-[10px] text-slate-500 dark:text-slate-400 font-medium mt-0.5">Mapeamento contínuo</div>
                   </div>
                 </motion.div>
@@ -312,13 +311,13 @@ export default function RescuePortal({ onChangeRoute }: RescuePortalProps) {
                 </p>
               </div>
               <div className="border-t border-slate-200/60 dark:border-slate-800/80 pt-6 mt-6">
-                <span className="font-serif text-xs font-bold text-slate-500 dark:text-slate-400 block uppercase tracking-wider">Desafio Atual</span>
+                <span className="text-xs font-semibold text-slate-500 dark:text-slate-400 block uppercase tracking-wider">Desafio Atual</span>
                 <span className="text-sm font-bold text-slate-800 dark:text-slate-100 mt-1 block">Mais de 100 pessoas identificadas precisando de atenção fraterna direta nas últimas semanas.</span>
               </div>
             </motion.div>
 
             <motion.div 
-              variants={cardVariants}
+              variants={cardVariants} 
               className="bg-gradient-to-br from-[#0D2847] to-[#0A1B30] dark:from-[#0B1A2E] dark:to-[#050D18] text-white p-7 sm:p-8 rounded-2xl shadow-sm border border-sky-500/20 flex flex-col justify-between relative overflow-hidden"
             >
               <div className="absolute right-0 bottom-0 translate-x-12 translate-y-12 opacity-5 pointer-events-none">
@@ -334,7 +333,7 @@ export default function RescuePortal({ onChangeRoute }: RescuePortalProps) {
                 </p>
               </div>
               <div className="border-t border-white/15 pt-6 mt-6 relative z-10">
-                <span className="font-serif text-xs font-bold text-sky-300 block uppercase tracking-wider">A Meta do Resgate</span>
+                <span className="text-xs font-semibold text-sky-300 block uppercase tracking-wider">A Meta do Resgate</span>
                 <span className="text-sm font-bold text-white mt-1 block">Garantir que 100% dos comentários com ideação dolorosa recebam um acolhimento imediato, sigiloso e humano.</span>
               </div>
             </motion.div>
@@ -375,7 +374,7 @@ export default function RescuePortal({ onChangeRoute }: RescuePortalProps) {
               >
                 <div className="space-y-4">
                   <div className="flex items-center justify-between">
-                    <span className="font-serif text-sm font-bold text-sky-600 dark:text-sky-400 uppercase tracking-wider">
+                    <span className="text-xs font-bold text-sky-600 dark:text-sky-400 uppercase tracking-wider">
                       01
                     </span>
                     <div className="p-2 rounded-xl bg-sky-500/10 text-sky-600 dark:text-sky-400">
@@ -403,7 +402,7 @@ export default function RescuePortal({ onChangeRoute }: RescuePortalProps) {
               >
                 <div className="space-y-4">
                   <div className="flex items-center justify-between">
-                    <span className="font-serif text-sm font-bold text-sky-600 dark:text-sky-400 uppercase tracking-wider">
+                    <span className="text-xs font-bold text-sky-600 dark:text-sky-400 uppercase tracking-wider">
                       02
                     </span>
                     <div className="p-2 rounded-xl bg-sky-500/10 text-sky-600 dark:text-sky-400">
@@ -431,7 +430,7 @@ export default function RescuePortal({ onChangeRoute }: RescuePortalProps) {
               >
                 <div className="space-y-4">
                   <div className="flex items-center justify-between">
-                    <span className="font-serif text-sm font-bold text-rose-600 dark:text-rose-400 uppercase tracking-wider">
+                    <span className="text-xs font-bold text-rose-600 dark:text-rose-400 uppercase tracking-wider">
                       03
                     </span>
                     <div className="p-2 rounded-xl bg-rose-500/10 text-rose-600 dark:text-rose-400">
@@ -459,7 +458,7 @@ export default function RescuePortal({ onChangeRoute }: RescuePortalProps) {
               >
                 <div className="space-y-4">
                   <div className="flex items-center justify-between">
-                    <span className="font-serif text-sm font-bold text-emerald-600 dark:text-emerald-400 uppercase tracking-wider">
+                    <span className="text-xs font-bold text-emerald-600 dark:text-emerald-400 uppercase tracking-wider">
                       04
                     </span>
                     <div className="p-2 rounded-xl bg-emerald-500/10 text-emerald-600 dark:text-emerald-400">
@@ -513,13 +512,13 @@ export default function RescuePortal({ onChangeRoute }: RescuePortalProps) {
                   <div className="w-14 h-14 rounded-2xl bg-white dark:bg-[#080E21] border border-slate-200/80 dark:border-slate-800/80 flex items-center justify-center shadow-xs group-hover:scale-105 transition-transform duration-300">
                     <CasaEspiritaVector />
                   </div>
-                  <span className="font-serif text-[11px] font-bold text-sky-600 dark:text-sky-400 uppercase tracking-wider">
+                  <span className="font-sans text-[11px] font-bold text-sky-600 dark:text-sky-400 uppercase tracking-wider">
                     Presencial
                   </span>
                 </div>
 
                 <div>
-                  <span className="font-serif text-xs font-bold text-sky-600 dark:text-sky-400 uppercase tracking-wider block">
+                  <span className="font-sans text-xs font-bold text-sky-600 dark:text-sky-400 uppercase tracking-wider block">
                     Acolhimento Local
                   </span>
                   <h3 className="text-xl font-extrabold text-slate-900 dark:text-white group-hover:text-primary dark:group-hover:text-sky-400 transition-colors mt-0.5">
@@ -533,7 +532,7 @@ export default function RescuePortal({ onChangeRoute }: RescuePortalProps) {
               </div>
 
               <div className="border-t border-slate-200/60 dark:border-slate-800/80 pt-4 mt-6 space-y-2">
-                <span className="font-serif text-[11px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider block">
+                <span className="font-sans text-[11px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider block">
                   Frentes de Amparo
                 </span>
                 <div className="flex flex-wrap gap-1.5">
@@ -560,13 +559,13 @@ export default function RescuePortal({ onChangeRoute }: RescuePortalProps) {
                   <div className="w-14 h-14 rounded-2xl bg-white dark:bg-[#080E21] border border-slate-200/80 dark:border-slate-800/80 flex items-center justify-center shadow-xs group-hover:scale-105 transition-transform duration-300">
                     <ApoioPsicologicoVector />
                   </div>
-                  <span className="font-serif text-[11px] font-bold text-rose-600 dark:text-rose-400 uppercase tracking-wider">
+                  <span className="font-sans text-[11px] font-bold text-rose-600 dark:text-rose-400 uppercase tracking-wider">
                     Especialista
                   </span>
                 </div>
 
                 <div>
-                  <span className="font-serif text-xs font-bold text-rose-600 dark:text-rose-400 uppercase tracking-wider block">
+                  <span className="font-sans text-xs font-bold text-rose-600 dark:text-rose-400 uppercase tracking-wider block">
                     Suporte Técnico
                   </span>
                   <h3 className="text-xl font-extrabold text-slate-900 dark:text-white group-hover:text-rose-600 dark:group-hover:text-rose-400 transition-colors mt-0.5">
@@ -580,7 +579,7 @@ export default function RescuePortal({ onChangeRoute }: RescuePortalProps) {
               </div>
 
               <div className="border-t border-slate-200/60 dark:border-slate-800/80 pt-4 mt-6 space-y-2">
-                <span className="font-serif text-[11px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider block">
+                <span className="font-sans text-[11px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider block">
                   Frentes de Amparo
                 </span>
                 <div className="flex flex-wrap gap-1.5">
@@ -607,13 +606,13 @@ export default function RescuePortal({ onChangeRoute }: RescuePortalProps) {
                   <div className="w-14 h-14 rounded-2xl bg-white dark:bg-[#080E21] border border-slate-200/80 dark:border-slate-800/80 flex items-center justify-center shadow-xs group-hover:scale-105 transition-transform duration-300">
                     <VoluntariosDigitaisVector />
                   </div>
-                  <span className="font-serif text-[11px] font-bold text-emerald-600 dark:text-emerald-400 uppercase tracking-wider">
+                  <span className="font-sans text-[11px] font-bold text-emerald-600 dark:text-emerald-400 uppercase tracking-wider">
                     Digital
                   </span>
                 </div>
 
                 <div>
-                  <span className="font-serif text-xs font-bold text-emerald-600 dark:text-emerald-400 uppercase tracking-wider block">
+                  <span className="font-sans text-xs font-bold text-emerald-600 dark:text-emerald-400 uppercase tracking-wider block">
                     Linha de Frente
                   </span>
                   <h3 className="text-xl font-extrabold text-slate-900 dark:text-white group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors mt-0.5">
@@ -627,7 +626,7 @@ export default function RescuePortal({ onChangeRoute }: RescuePortalProps) {
               </div>
 
               <div className="border-t border-slate-200/60 dark:border-slate-800/80 pt-4 mt-6 space-y-2">
-                <span className="font-serif text-[11px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider block">
+                <span className="font-sans text-[11px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider block">
                   Frentes de Amparo
                 </span>
                 <div className="flex flex-wrap gap-1.5">
@@ -681,7 +680,7 @@ export default function RescuePortal({ onChangeRoute }: RescuePortalProps) {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-left mb-12">
             <div className="bg-[#FAFBFD] dark:bg-[#0B132B]/85 p-6 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 shadow-sm hover:shadow-md hover:border-sky-500/30 transition-all duration-300 space-y-3">
-              <div className="font-serif text-xs font-bold text-sky-600 dark:text-sky-400 uppercase tracking-wider">
+              <div className="font-sans text-xs font-bold text-sky-600 dark:text-sky-400 uppercase tracking-wider">
                 01. O Despertar
               </div>
               <h3 className="text-base font-extrabold text-slate-900 dark:text-white">Sementes Digitais</h3>
@@ -691,7 +690,7 @@ export default function RescuePortal({ onChangeRoute }: RescuePortalProps) {
             </div>
 
             <div className="bg-[#FAFBFD] dark:bg-[#0B132B]/85 p-6 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 shadow-sm hover:shadow-md hover:border-sky-500/30 transition-all duration-300 space-y-3">
-              <div className="font-serif text-xs font-bold text-rose-600 dark:text-rose-400 uppercase tracking-wider">
+              <div className="font-sans text-xs font-bold text-rose-600 dark:text-rose-400 uppercase tracking-wider">
                 02. O Sinal de Alerta
               </div>
               <h3 className="text-base font-extrabold text-slate-900 dark:text-white">A Ponta do Iceberg</h3>
@@ -701,7 +700,7 @@ export default function RescuePortal({ onChangeRoute }: RescuePortalProps) {
             </div>
 
             <div className="bg-[#FAFBFD] dark:bg-[#0B132B]/85 p-6 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 shadow-sm hover:shadow-md hover:border-sky-500/30 transition-all duration-300 space-y-3">
-              <div className="font-serif text-xs font-bold text-sky-600 dark:text-sky-400 uppercase tracking-wider">
+              <div className="font-sans text-xs font-bold text-sky-600 dark:text-sky-400 uppercase tracking-wider">
                 03. A Mobilização
               </div>
               <h3 className="text-base font-extrabold text-slate-900 dark:text-white">Os Primeiros Guardiões</h3>
@@ -711,7 +710,7 @@ export default function RescuePortal({ onChangeRoute }: RescuePortalProps) {
             </div>
 
             <div className="bg-[#FAFBFD] dark:bg-[#0B132B]/85 p-6 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 shadow-sm hover:shadow-md hover:border-sky-500/30 transition-all duration-300 space-y-3">
-              <div className="font-serif text-xs font-bold text-emerald-600 dark:text-emerald-400 uppercase tracking-wider">
+              <div className="font-sans text-xs font-bold text-emerald-600 dark:text-emerald-400 uppercase tracking-wider">
                 04. O Futuro
               </div>
               <h3 className="text-base font-extrabold text-slate-900 dark:text-white">Expandindo os Horizontes</h3>

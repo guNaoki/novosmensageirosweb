@@ -503,97 +503,63 @@ export default function SpiritismPortal({ onChangeRoute }: SpiritismPortalProps)
               </Button>
             </motion.div>
 
-            {/* Authentic Channels Showcase (Cápsulas Flutuantes Eteriais) */}
+            {/* Authentic Channels Showcase (Linha Minimalista e Discreta) */}
             <motion.div
               variants={fadeInUp}
-              className="pt-6 sm:pt-10 max-w-2xl mx-auto w-full"
+              className="pt-8 max-w-3xl mx-auto w-full"
             >
-              {/* 3 Floating Independent Glass Capsules */}
-              <div className="grid grid-cols-3 gap-2.5 sm:gap-4 text-center">
-                {/* Instagram Floating Card */}
-                <motion.a
+              <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-7 text-xs sm:text-sm text-slate-600 dark:text-slate-300">
+                {/* Instagram */}
+                <a
                   href="https://www.instagram.com/novosmensageiros/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  animate={{ y: [0, -6, 0] }}
-                  transition={{ duration: 4.2, repeat: Infinity, repeatType: "reverse", ease: "easeInOut" }}
-                  whileHover={{ y: -10, scale: 1.03, transition: { duration: 0.2 } }}
-                  className="group relative flex flex-col items-center justify-center p-3 sm:p-4 rounded-2xl bg-white/75 dark:bg-[#0B132B]/75 backdrop-blur-xl border border-white/90 dark:border-slate-800/80 shadow-[0_8px_25px_-5px_rgba(0,0,0,0.06)] hover:shadow-[0_16px_35px_-5px_rgba(236,72,153,0.22)] hover:border-pink-400/40 transition-shadow duration-300 cursor-pointer overflow-hidden"
-                  title="Instagram Novos Mensageiros"
+                  className="inline-flex items-center gap-2 hover:text-pink-600 dark:hover:text-pink-400 transition-colors group cursor-pointer"
+                  title="Instagram @novosmensageiros"
                 >
-                  <div className="absolute inset-0 bg-gradient-to-tr from-pink-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl pointer-events-none"></div>
-                  <div className="flex items-center gap-1.5 mb-1.5 z-10">
-                    <div className="p-1 sm:p-1.5 rounded-lg bg-pink-500/10 text-pink-500">
-                      <Instagram className="w-3.5 h-3.5" />
-                    </div>
-                    <span className="text-[10px] sm:text-xs font-semibold text-slate-500 dark:text-slate-400">Instagram</span>
-                  </div>
-                  <div className="font-serif text-base sm:text-2xl font-bold text-slate-900 dark:text-white tracking-tight z-10">
-                    +{SOCIAL_STATS.instagramFollowers}
-                  </div>
-                  <div className="text-[9px] sm:text-[11px] text-slate-400 dark:text-slate-500 z-10">
-                    seguidores
-                  </div>
-                </motion.a>
+                  <Instagram className="w-4 h-4 text-pink-500 group-hover:scale-110 transition-transform" />
+                  <span>
+                    <strong className="font-bold text-slate-900 dark:text-white">+{SOCIAL_STATS.instagramFollowers}</strong> seguidores
+                  </span>
+                </a>
 
-                {/* TikTok Floating Card */}
-                <motion.a
+                <span className="hidden sm:inline text-slate-300 dark:text-slate-700 select-none">•</span>
+
+                {/* TikTok */}
+                <a
                   href="https://www.tiktok.com/@novosmensageiros"
                   target="_blank"
                   rel="noopener noreferrer"
-                  animate={{ y: [0, -8, 0] }}
-                  transition={{ duration: 3.8, repeat: Infinity, repeatType: "reverse", ease: "easeInOut", delay: 0.5 }}
-                  whileHover={{ y: -12, scale: 1.03, transition: { duration: 0.2 } }}
-                  className="group relative flex flex-col items-center justify-center p-3 sm:p-4 rounded-2xl bg-white/75 dark:bg-[#0B132B]/75 backdrop-blur-xl border border-white/90 dark:border-slate-800/80 shadow-[0_8px_25px_-5px_rgba(0,0,0,0.06)] hover:shadow-[0_16px_35px_-5px_rgba(56,189,248,0.25)] hover:border-sky-400/40 transition-shadow duration-300 cursor-pointer overflow-hidden"
-                  title="TikTok Novos Mensageiros"
+                  className="inline-flex items-center gap-2 hover:text-sky-500 dark:hover:text-sky-400 transition-colors group cursor-pointer"
+                  title="TikTok @novosmensageiros"
                 >
-                  <div className="absolute inset-0 bg-gradient-to-tr from-sky-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl pointer-events-none"></div>
-                  <div className="flex items-center gap-1.5 mb-1.5 z-10">
-                    <div className="p-1 sm:p-1.5 rounded-lg bg-sky-500/10 text-sky-500">
-                      <TikTok className="w-3.5 h-3.5" />
-                    </div>
-                    <span className="text-[10px] sm:text-xs font-semibold text-slate-500 dark:text-slate-400">TikTok</span>
-                  </div>
-                  <div className="font-serif text-base sm:text-2xl font-bold text-sky-600 dark:text-sky-400 tracking-tight z-10">
-                    {getCleanNumber(SOCIAL_STATS.tiktokViews)}
-                  </div>
-                  <div className="text-[9px] sm:text-[11px] text-slate-400 dark:text-slate-500 z-10">
-                    visualizações
-                  </div>
-                </motion.a>
+                  <TikTok className="w-4 h-4 text-sky-400 group-hover:scale-110 transition-transform" />
+                  <span>
+                    <strong className="font-bold text-slate-900 dark:text-white">{getCleanNumber(SOCIAL_STATS.tiktokViews)}</strong> visualizações
+                  </span>
+                </a>
 
-                {/* YouTube Floating Card */}
-                <motion.a
+                <span className="hidden sm:inline text-slate-300 dark:text-slate-700 select-none">•</span>
+
+                {/* YouTube */}
+                <a
                   href="https://www.youtube.com/@NovosMensageiros"
                   target="_blank"
                   rel="noopener noreferrer"
-                  animate={{ y: [0, -6, 0] }}
-                  transition={{ duration: 4.5, repeat: Infinity, repeatType: "reverse", ease: "easeInOut", delay: 1 }}
-                  whileHover={{ y: -10, scale: 1.03, transition: { duration: 0.2 } }}
-                  className="group relative flex flex-col items-center justify-center p-3 sm:p-4 rounded-2xl bg-white/75 dark:bg-[#0B132B]/75 backdrop-blur-xl border border-white/90 dark:border-slate-800/80 shadow-[0_8px_25px_-5px_rgba(0,0,0,0.06)] hover:shadow-[0_16px_35px_-5px_rgba(239,68,68,0.22)] hover:border-red-400/40 transition-shadow duration-300 cursor-pointer overflow-hidden"
+                  className="inline-flex items-center gap-2 hover:text-red-500 dark:hover:text-red-400 transition-colors group cursor-pointer"
                   title="YouTube Novos Mensageiros"
                 >
-                  <div className="absolute inset-0 bg-gradient-to-tr from-red-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl pointer-events-none"></div>
-                  <div className="flex items-center gap-1.5 mb-1.5 z-10">
-                    <div className="p-1 sm:p-1.5 rounded-lg bg-red-500/10 text-red-500">
-                      <YouTube className="w-3.5 h-3.5" />
-                    </div>
-                    <span className="text-[10px] sm:text-xs font-semibold text-slate-500 dark:text-slate-400">YouTube</span>
-                  </div>
-                  <div className="font-serif text-base sm:text-2xl font-bold text-slate-900 dark:text-white tracking-tight z-10">
-                    Canal Oficial
-                  </div>
-                  <div className="text-[9px] sm:text-[11px] text-slate-400 dark:text-slate-500 z-10">
-                    reflexões & aulas
-                  </div>
-                </motion.a>
+                  <YouTube className="w-4 h-4 text-red-500 group-hover:scale-110 transition-transform" />
+                  <span>
+                    <strong className="font-bold text-slate-900 dark:text-white">Canal Oficial</strong> (Aulas & Reflexões)
+                  </span>
+                </a>
               </div>
 
               {/* Reassurance note */}
-              <div className="mt-4 flex items-center justify-center gap-2 text-[11px] sm:text-xs text-slate-500 dark:text-slate-400">
-                <Heart className="w-3 h-3 text-sky-500 fill-sky-500/20" />
-                <span>Uma ponte viva de escuta fraterna gratuita, sigilosa e sem julgamentos.</span>
-              </div>
+              <p className="mt-3 text-[11px] sm:text-xs text-slate-500 dark:text-slate-400 text-center">
+                Uma ponte viva de escuta fraterna gratuita, sigilosa e sem julgamentos.
+              </p>
             </motion.div>
           </motion.div>
         </div>
@@ -677,7 +643,7 @@ export default function SpiritismPortal({ onChangeRoute }: SpiritismPortalProps)
             >
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
-                  <span className="font-serif text-3xl font-bold text-slate-300 dark:text-slate-600 group-hover:text-amber-500 dark:group-hover:text-amber-400 transition-colors">
+                  <span className="font-sans text-2xl sm:text-3xl font-bold tracking-tight text-slate-300 dark:text-slate-600 group-hover:text-amber-500 dark:group-hover:text-amber-400 transition-colors">
                     01
                   </span>
                   <div className="p-2 rounded-xl bg-amber-500/10 text-amber-600 dark:text-amber-400">
@@ -707,7 +673,7 @@ export default function SpiritismPortal({ onChangeRoute }: SpiritismPortalProps)
             >
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
-                  <span className="font-serif text-3xl font-bold text-slate-300 dark:text-slate-600 group-hover:text-rose-500 dark:group-hover:text-rose-400 transition-colors">
+                  <span className="font-sans text-2xl sm:text-3xl font-bold tracking-tight text-slate-300 dark:text-slate-600 group-hover:text-rose-500 dark:group-hover:text-rose-400 transition-colors">
                     02
                   </span>
                   <div className="p-2 rounded-xl bg-rose-500/10 text-rose-600 dark:text-rose-400">
@@ -737,7 +703,7 @@ export default function SpiritismPortal({ onChangeRoute }: SpiritismPortalProps)
             >
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
-                  <span className="font-serif text-3xl font-bold text-slate-300 dark:text-slate-600 group-hover:text-sky-500 dark:group-hover:text-sky-400 transition-colors">
+                  <span className="font-sans text-2xl sm:text-3xl font-bold tracking-tight text-slate-300 dark:text-slate-600 group-hover:text-sky-500 dark:group-hover:text-sky-400 transition-colors">
                     03
                   </span>
                   <div className="p-2 rounded-xl bg-sky-500/10 text-sky-600 dark:text-sky-400">
@@ -767,7 +733,7 @@ export default function SpiritismPortal({ onChangeRoute }: SpiritismPortalProps)
             >
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
-                  <span className="font-serif text-3xl font-bold text-slate-300 dark:text-slate-600 group-hover:text-emerald-500 dark:group-hover:text-emerald-400 transition-colors">
+                  <span className="font-sans text-2xl sm:text-3xl font-bold tracking-tight text-slate-300 dark:text-slate-600 group-hover:text-emerald-500 dark:group-hover:text-emerald-400 transition-colors">
                     04
                   </span>
                   <div className="p-2 rounded-xl bg-emerald-500/10 text-emerald-600 dark:text-emerald-400">
@@ -797,7 +763,7 @@ export default function SpiritismPortal({ onChangeRoute }: SpiritismPortalProps)
             >
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
-                  <span className="font-serif text-3xl font-bold text-slate-300 dark:text-slate-600 group-hover:text-purple-500 dark:group-hover:text-purple-400 transition-colors">
+                  <span className="font-sans text-2xl sm:text-3xl font-bold tracking-tight text-slate-300 dark:text-slate-600 group-hover:text-purple-500 dark:group-hover:text-purple-400 transition-colors">
                     05
                   </span>
                   <div className="p-2 rounded-xl bg-purple-500/10 text-purple-600 dark:text-purple-400">
@@ -833,78 +799,71 @@ export default function SpiritismPortal({ onChangeRoute }: SpiritismPortalProps)
         className="py-14 sm:py-20 md:py-24 bg-slate-50 dark:bg-slate-950 border-b border-slate-200/60 dark:border-slate-800 relative overflow-hidden bg-grid-pattern transition-colors duration-300"
       >
         <div className="max-w-4xl mx-auto px-4">
-          <div className="bg-[#FAFBFD] dark:bg-[#0B132B]/85 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 shadow-sm p-6 sm:p-10 md:p-12 text-left relative overflow-hidden space-y-8">
-            <div className="absolute right-0 top-0 translate-x-8 -translate-y-8 text-sky-500/5 pointer-events-none">
-              <MapPin className="w-64 h-64" />
+          <div className="text-center max-w-2xl mx-auto space-y-3 mb-12 sm:mb-14">
+            <div className="inline-flex items-center gap-1.5 text-xs font-semibold text-sky-600 dark:text-sky-400 uppercase tracking-wider">
+              <MapPin className="w-3.5 h-3.5" />
+              <span>Acolhimento Presencial</span>
             </div>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+              Como encontrar uma Casa Espírita acolhedora?
+            </h2>
+            <p className="text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed font-normal">
+              As Casas Espíritas oferecem <strong className="font-semibold text-slate-900 dark:text-white">Atendimento Fraterno</strong> (uma conversa privativa, amiga e acolhedora), palestras consoladoras e <strong className="font-semibold text-slate-900 dark:text-white">passes magnéticos</strong> para reequilíbrio espiritual. Todos os serviços são 100% gratuitos.
+            </p>
+          </div>
 
-            <div className="space-y-3 max-w-2xl relative z-10">
-              <div className="flex items-center gap-2 text-xs font-semibold text-sky-600 dark:text-sky-400">
-                <MapPin className="w-4 h-4 text-sky-500" />
-                <span className="font-serif uppercase tracking-wider">Acolhimento Presencial</span>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {/* Step 1: Google Maps */}
+            <div className="bg-white dark:bg-[#0B132B]/90 p-6 sm:p-8 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 shadow-xs space-y-5 flex flex-col justify-between hover:border-sky-500/40 transition-colors">
+              <div className="space-y-3">
+                <span className="text-xs font-semibold text-sky-600 dark:text-sky-400 uppercase tracking-wider block">
+                  01 • Busca Prática
+                </span>
+                <h3 className="text-lg font-bold text-slate-900 dark:text-white">Google Maps na sua região</h3>
+                <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-normal">
+                  Pesquise por <strong>"Centro Espírita" + sua cidade ou bairro</strong> para encontrar horários de reuniões públicas, endereço e avaliações de frequentadores.
+                </p>
               </div>
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
-                Como encontrar uma Casa Espírita acolhedora?
-              </h2>
-              <p className="text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed font-normal">
-                As Casas Espíritas oferecem <strong className="font-bold text-slate-900 dark:text-white">Atendimento Fraterno</strong> (uma conversa privativa, amiga e acolhedora), palestras consoladoras e <strong className="font-bold text-slate-900 dark:text-white">passes magnéticos</strong> para reequilíbrio espiritual. Todos os serviços são 100% gratuitos.
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 relative z-10">
-              {/* Step 1: Google Maps */}
-              <div className="bg-white dark:bg-[#080E21] p-6 rounded-2xl border border-slate-200/70 dark:border-slate-800/70 shadow-xs space-y-4 flex flex-col justify-between">
-                <div className="space-y-3">
-                  <span className="font-serif text-xs font-bold text-sky-600 dark:text-sky-400 uppercase tracking-wider block">
-                    01. Busca Prática
-                  </span>
-                  <h3 className="text-lg font-bold text-slate-900 dark:text-white">Google Maps na sua região</h3>
-                  <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed font-normal">
-                    Pesquise por <strong>"Centro Espírita" + sua cidade ou bairro</strong> para encontrar horários de reuniões públicas, endereço e avaliações de frequentadores.
-                  </p>
-                </div>
-                <div className="pt-2">
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    as="a"
-                    href="https://www.google.com/maps/search/centro+espirita"
-                    target="_blank"
-                    className="w-full"
-                    iconRight={<ExternalLink className="w-3.5 h-3.5 ml-1" />}
-                  >
-                    Buscar no Google Maps
-                  </Button>
-                </div>
-              </div>
-
-              {/* Step 2: FEB */}
-              <div className="bg-white dark:bg-[#080E21] p-6 rounded-2xl border border-slate-200/70 dark:border-slate-800/70 shadow-xs space-y-4 flex flex-col justify-between">
-                <div className="space-y-3">
-                  <span className="font-serif text-xs font-bold text-sky-600 dark:text-sky-400 uppercase tracking-wider block">
-                    02. Cadastro Oficial
-                  </span>
-                  <h3 className="text-lg font-bold text-slate-900 dark:text-white">Federação Espírita Brasileira</h3>
-                  <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed font-normal">
-                    A FEB reúne o diretório oficial de todas as federações estaduais e centros espíritas filiados e regulares em todo o território nacional.
-                  </p>
-                </div>
-                <div className="pt-2">
-                  <Button
-                    variant="primary"
-                    size="sm"
-                    as="a"
-                    href="https://www.febnet.org.br/"
-                    target="_blank"
-                    className="w-full"
-                    iconRight={<ExternalLink className="w-3.5 h-3.5 ml-1" />}
-                  >
-                    Acessar Portal Oficial FEB
-                  </Button>
-                </div>
+              <div className="pt-2">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  as="a"
+                  href="https://www.google.com/maps/search/centro+espirita"
+                  target="_blank"
+                  className="w-full"
+                  iconRight={<ExternalLink className="w-3.5 h-3.5 ml-1" />}
+                >
+                  Buscar no Google Maps
+                </Button>
               </div>
             </div>
 
+            {/* Step 2: FEB */}
+            <div className="bg-white dark:bg-[#0B132B]/90 p-6 sm:p-8 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 shadow-xs space-y-5 flex flex-col justify-between hover:border-sky-500/40 transition-colors">
+              <div className="space-y-3">
+                <span className="text-xs font-semibold text-sky-600 dark:text-sky-400 uppercase tracking-wider block">
+                  02 • Cadastro Oficial
+                </span>
+                <h3 className="text-lg font-bold text-slate-900 dark:text-white">Federação Espírita Brasileira</h3>
+                <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-normal">
+                  A FEB reúne o diretório oficial de todas as federações estaduais e centros espíritas filiados e regulares em todo o território nacional.
+                </p>
+              </div>
+              <div className="pt-2">
+                <Button
+                  variant="primary"
+                  size="sm"
+                  as="a"
+                  href="https://www.febnet.org.br/"
+                  target="_blank"
+                  className="w-full"
+                  iconRight={<ExternalLink className="w-3.5 h-3.5 ml-1" />}
+                >
+                  Acessar Portal Oficial FEB
+                </Button>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -943,7 +902,7 @@ export default function SpiritismPortal({ onChangeRoute }: SpiritismPortalProps)
             >
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
-                  <span className="font-serif text-sm font-bold uppercase tracking-wider text-sky-600 dark:text-sky-400">Passo 01</span>
+                  <span className="text-xs font-semibold uppercase tracking-wider text-sky-600 dark:text-sky-400">Passo 01</span>
                   <div className="w-10 h-10 rounded-xl bg-sky-500/10 text-sky-600 dark:text-sky-400 flex items-center justify-center border border-sky-500/20">
                     <CompassIcon className="w-5 h-5 text-sky-500" />
                   </div>
@@ -962,7 +921,7 @@ export default function SpiritismPortal({ onChangeRoute }: SpiritismPortalProps)
             >
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
-                  <span className="font-serif text-sm font-bold uppercase tracking-wider text-sky-600 dark:text-sky-400">Passo 02</span>
+                  <span className="text-xs font-semibold uppercase tracking-wider text-sky-600 dark:text-sky-400">Passo 02</span>
                   <div className="w-10 h-10 rounded-xl bg-sky-500/10 text-sky-600 dark:text-sky-400 flex items-center justify-center border border-sky-500/20">
                     <ShieldAlert className="w-5 h-5" />
                   </div>
@@ -981,7 +940,7 @@ export default function SpiritismPortal({ onChangeRoute }: SpiritismPortalProps)
             >
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
-                  <span className="font-serif text-sm font-bold uppercase tracking-wider text-sky-600 dark:text-sky-400">Passo 03</span>
+                  <span className="text-xs font-semibold uppercase tracking-wider text-sky-600 dark:text-sky-400">Passo 03</span>
                   <div className="w-10 h-10 rounded-xl bg-sky-500/10 text-sky-600 dark:text-sky-400 flex items-center justify-center border border-sky-500/20">
                     <Heart className="w-5 h-5 fill-sky-500/20" />
                   </div>
@@ -1121,7 +1080,7 @@ export default function SpiritismPortal({ onChangeRoute }: SpiritismPortalProps)
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent"></div>
                       <div className="absolute bottom-2.5 left-3 z-10">
-                        <span className="font-serif text-[10px] font-bold text-white bg-slate-900/80 backdrop-blur-sm px-2.5 py-1 rounded-md tracking-wider uppercase border border-white/10">
+                        <span className="font-sans text-[10px] font-semibold text-white bg-slate-900/80 backdrop-blur-sm px-2.5 py-1 rounded-md tracking-wider uppercase border border-white/10">
                           {item.badge}
                         </span>
                       </div>

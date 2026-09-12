@@ -1,6 +1,6 @@
 import { useRef } from 'react';
 import { motion, useScroll, useSpring } from 'framer-motion';
-import { Heart, Compass, Users, ArrowRight, Star, Sparkles } from 'lucide-react';
+import { Heart, Compass, Users, ArrowRight, Star } from 'lucide-react';
 import Button from './ui/Button';
 
 interface HistoryPortalProps {
@@ -143,26 +143,12 @@ export default function HistoryPortal({ onChangeRoute }: HistoryPortalProps) {
               </motion.div>
             </div>
 
-            {/* Right Visual Image Frame with Floating Accents */}
+            {/* Right Visual Image Frame */}
             <motion.div 
               variants={fadeInUp}
               className="lg:col-span-5 relative"
             >
               <div className="absolute inset-0 bg-gradient-to-tr from-sky-500/15 to-primary/20 rounded-2xl blur-3xl -z-10"></div>
-              
-              {/* Floating Badge 1: Sementes de Luz (Top Left) */}
-              <motion.div
-                animate={{ y: [0, -7, 0] }}
-                transition={{ duration: 4, repeat: Infinity, repeatType: "reverse", ease: "easeInOut" }}
-                className="absolute -top-3 -left-3 sm:left-0 bg-white/85 dark:bg-[#0B132B]/85 backdrop-blur-xl px-3.5 py-2 rounded-2xl border border-white/90 dark:border-slate-800/80 shadow-[0_10px_25px_-5px_rgba(0,0,0,0.08)] flex items-center gap-2 z-20"
-              >
-                <div className="p-1 rounded-lg bg-amber-400/15 text-amber-500">
-                  <Sparkles className="w-3.5 h-3.5" />
-                </div>
-                <span className="text-xs font-bold text-slate-800 dark:text-slate-200">
-                  Sementes de Luz
-                </span>
-              </motion.div>
 
               <div className="relative rounded-2xl overflow-hidden border border-slate-200/80 dark:border-slate-800/80 shadow-md group aspect-video lg:aspect-square max-w-[450px] mx-auto">
                 <img 
@@ -171,51 +157,33 @@ export default function HistoryPortal({ onChangeRoute }: HistoryPortalProps) {
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0A1B30]/90 via-[#0A1B30]/30 to-transparent flex flex-col justify-end p-6 text-left">
-                  <span className="font-serif text-xs font-bold tracking-wider text-sky-300 uppercase">Nosso Início</span>
+                  <span className="font-sans text-xs font-bold tracking-wider text-sky-300 uppercase">Nosso Início</span>
                   <p className="text-white text-sm font-semibold leading-relaxed mt-1">
                     "Uma palavra amiga na hora certa pode transformar uma vida inteira."
                   </p>
                 </div>
               </div>
-
-              {/* Floating Badge 2: Rede Viva (Bottom Right) */}
-              <motion.div
-                animate={{ y: [0, 7, 0] }}
-                transition={{ duration: 4.5, repeat: Infinity, repeatType: "reverse", ease: "easeInOut", delay: 0.8 }}
-                className="absolute -bottom-3 -right-3 sm:right-0 bg-white/85 dark:bg-[#0B132B]/85 backdrop-blur-xl px-3.5 py-2 rounded-2xl border border-white/90 dark:border-slate-800/80 shadow-[0_10px_25px_-5px_rgba(0,0,0,0.08)] flex items-center gap-2 z-20"
-              >
-                <div className="p-1 rounded-lg bg-sky-500/15 text-sky-500">
-                  <Compass className="w-3.5 h-3.5" />
-                </div>
-                <span className="text-xs font-bold text-slate-800 dark:text-slate-200">
-                  Rede Viva de Amor
-                </span>
-              </motion.div>
             </motion.div>
           </motion.div>
         </div>
       </section>
 
       {/* 2. O Manifesto / A Revelação */}
-      <section className="py-14 sm:py-20 md:py-24 bg-white dark:bg-slate-900 relative overflow-hidden bg-grid-pattern border-b border-slate-200/70 dark:border-slate-800 transition-colors duration-300">
-        {/* Subtle background glow */}
-        <div className="absolute top-10 left-10 w-96 h-96 bg-primary-light/20 dark:bg-primary/10 rounded-full blur-3xl pointer-events-none -z-10"></div>
-        <div className="max-w-4xl mx-auto px-4 text-center">
-          <div className="bg-[#FAFBFD] dark:bg-[#0B132B]/85 p-7 sm:p-10 md:p-12 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 shadow-sm space-y-6 text-left sm:text-center relative">
-            <span className="font-serif text-xs font-bold text-sky-600 dark:text-sky-400 uppercase tracking-widest block">
-              Nosso Manifesto
-            </span>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-tight">
-              Por trás das telas, pessoas que só precisavam ser ouvidas.
-            </h2>
-            <div className="space-y-4 max-w-2xl mx-auto text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed font-normal">
-              <p>
-                As redes sociais parecem cheias de vidas perfeitas, mas os comentários contam uma realidade muito diferente. Quando começamos a postar reflexões de consolo, percebemos que muita gente finalmente encontrava ali um lugar seguro para baixar a guarda e falar da dor que guardava no peito.
-              </p>
-              <p>
-                Foi aí que entendemos que nossa missão não podia parar nos vídeos. Não adiantava apenas falar de esperança: era preciso estar lá de verdade, com paciência e amor, para acolher e lembrar a cada irmão que ele não está sozinho no mundo.
-              </p>
-            </div>
+      <section className="py-16 sm:py-24 bg-white dark:bg-slate-900 relative overflow-hidden border-b border-slate-200/70 dark:border-slate-800 transition-colors duration-300">
+        <div className="max-w-3xl mx-auto px-4 text-center space-y-6">
+          <span className="font-sans text-xs font-bold text-sky-600 dark:text-sky-400 uppercase tracking-widest block">
+            Nosso Manifesto
+          </span>
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-tight">
+            Por trás das telas, pessoas que só precisavam ser ouvidas.
+          </h2>
+          <div className="space-y-5 text-slate-600 dark:text-slate-300 text-base sm:text-lg leading-relaxed font-normal text-left sm:text-center">
+            <p>
+              As redes sociais parecem cheias de vidas perfeitas, mas os comentários contam uma realidade muito diferente. Quando começamos a postar reflexões de consolo, percebemos que muita gente finalmente encontrava ali um lugar seguro para baixar a guarda e falar da dor que guardava no peito.
+            </p>
+            <p>
+              Foi aí que entendemos que nossa missão não podia parar nos vídeos. Não adiantava apenas falar de esperança: era preciso estar lá de verdade, com paciência e amor, para acolher e lembrar a cada irmão que ele não está sozinho no mundo.
+            </p>
           </div>
         </div>
       </section>
@@ -284,7 +252,7 @@ export default function HistoryPortal({ onChangeRoute }: HistoryPortalProps) {
                       <div className={`bg-[#FAFBFD] dark:bg-[#0B132B]/85 p-6 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 shadow-sm hover:shadow-md transition-all duration-300 space-y-2.5 ${
                         isEven ? 'md:text-right' : 'md:text-left'
                       }`}>
-                        <span className="font-serif text-xs font-bold text-sky-600 dark:text-sky-400 uppercase tracking-wider block">
+                        <span className="font-sans text-xs font-bold text-sky-600 dark:text-sky-400 uppercase tracking-wider block">
                           {item.year}
                         </span>
                         <h3 className="text-lg font-extrabold text-slate-900 dark:text-white">{item.title}</h3>
