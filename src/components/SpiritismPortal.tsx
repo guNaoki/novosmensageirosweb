@@ -187,16 +187,34 @@ export default function SpiritismPortal({ onChangeRoute }: SpiritismPortalProps)
   // Consume any cross-page navigation scroll target on mount
   useEffect(() => {
     const targetId = sessionStorage.getItem('navScrollTarget');
-    if (targetId) {
-      sessionStorage.removeItem('navScrollTarget');
-      const timer = setTimeout(() => {
-        const el = document.getElementById(targetId);
-        if (el) {
-          el.scrollIntoView({ behavior: 'smooth' });
+    if (!targetId) return;
+
+    let attempts = 0;
+    const maxAttempts = 6;
+
+    const tryScroll = () => {
+      attempts++;
+      const el = document.getElementById(targetId);
+      if (el) {
+        const navbarOffset = 80;
+        const y = el.getBoundingClientRect().top + window.pageYOffset - navbarOffset;
+        window.scrollTo({ top: Math.max(0, y), behavior: 'smooth' });
+        
+        if (attempts >= 3) {
+          sessionStorage.removeItem('navScrollTarget');
+          return;
         }
-      }, 120);
-      return () => clearTimeout(timer);
-    }
+      }
+      
+      if (attempts < maxAttempts) {
+        setTimeout(tryScroll, 150);
+      } else {
+        sessionStorage.removeItem('navScrollTarget');
+      }
+    };
+
+    const timer = setTimeout(tryScroll, 180);
+    return () => clearTimeout(timer);
   }, []);
 
   // Active section spy for Desktop Left Sidebar Navigation
@@ -579,26 +597,23 @@ export default function SpiritismPortal({ onChangeRoute }: SpiritismPortalProps)
               </Button>
             </motion.div>
 
-            {/* Authentic Channels Showcase (Linha Minimalista com Destaque Comemorativo 100k) */}
+            {/* Authentic Channels Showcase (Linha Minimalista) */}
             <motion.div
               variants={fadeInUp}
               className="pt-8 max-w-3xl mx-auto w-full"
             >
               <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-xs sm:text-sm text-slate-600 dark:text-slate-300">
-                {/* Instagram com Destaque de Meta 100k Batida */}
+                {/* Instagram */}
                 <a
                   href="https://www.instagram.com/novosmensageiros/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-amber-500/10 dark:bg-amber-400/10 border border-amber-500/25 dark:border-amber-400/25 hover:border-amber-500/40 text-slate-700 dark:text-slate-200 transition-all duration-300 group cursor-pointer shadow-xs"
-                  title="Instagram @novosmensageiros - Meta de 100 mil batida!"
+                  className="inline-flex items-center gap-2 hover:text-pink-500 dark:hover:text-pink-400 transition-colors group cursor-pointer"
+                  title="Instagram @novosmensageiros"
                 >
                   <Instagram className="w-4 h-4 text-pink-500 group-hover:scale-110 transition-transform" />
-                  <span className="flex items-center gap-1.5">
-                    <strong className="font-bold text-amber-600 dark:text-amber-300">+{SOCIAL_STATS.instagramFollowers}</strong> seguidores
-                    <span className="text-[10px] uppercase font-bold tracking-wider px-1.5 py-0.5 rounded bg-amber-500/20 text-amber-700 dark:text-amber-300">
-                      Meta Batida 🎉
-                    </span>
+                  <span>
+                    <strong className="font-bold text-pink-600 dark:text-pink-400">+{SOCIAL_STATS.instagramFollowers}</strong> seguidores
                   </span>
                 </a>
 
@@ -622,15 +637,15 @@ export default function SpiritismPortal({ onChangeRoute }: SpiritismPortalProps)
 
                 {/* YouTube */}
                 <a
-                  href="https://www.youtube.com/@NovosMensageiros"
+                  href="https://www.youtube.com/@NovosMensageiros/shorts"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 hover:text-red-500 dark:hover:text-red-400 transition-colors group cursor-pointer"
-                  title="YouTube Novos Mensageiros"
+                  title="YouTube Shorts Novos Mensageiros"
                 >
                   <YouTube className="w-4 h-4 text-red-500 group-hover:scale-110 transition-transform" />
                   <span>
-                    <strong className="font-bold text-slate-900 dark:text-white">Canal Oficial</strong> (Aulas & Reflexões)
+                    <strong className="font-bold text-slate-900 dark:text-white">Canal Oficial</strong>
                   </span>
                 </a>
               </div>
@@ -683,7 +698,7 @@ export default function SpiritismPortal({ onChangeRoute }: SpiritismPortalProps)
       {/* ========================================================= */}
       <section
         id="principios"
-        className="py-20 md:py-28 bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-white relative overflow-hidden transition-colors duration-300"
+        className="py-20 md:py-28 scroll-mt-20 sm:scroll-mt-24 bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-white relative overflow-hidden transition-colors duration-300"
       >
         {/* Static Cloud Background (Sem parallax) */}
         <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
@@ -875,7 +890,7 @@ export default function SpiritismPortal({ onChangeRoute }: SpiritismPortalProps)
       {/* ========================================================= */}
       <section
         id="buscar-ajuda"
-        className="py-14 sm:py-20 md:py-24 bg-slate-50 dark:bg-slate-950 border-b border-slate-200/60 dark:border-slate-800 relative overflow-hidden bg-grid-pattern transition-colors duration-300"
+        className="py-14 sm:py-20 md:py-24 scroll-mt-20 sm:scroll-mt-24 bg-slate-50 dark:bg-slate-950 border-b border-slate-200/60 dark:border-slate-800 relative overflow-hidden bg-grid-pattern transition-colors duration-300"
       >
         <div className="max-w-4xl mx-auto px-4">
           <div className="text-center max-w-2xl mx-auto space-y-3 mb-12 sm:mb-14">
@@ -953,7 +968,7 @@ export default function SpiritismPortal({ onChangeRoute }: SpiritismPortalProps)
       {/* ========================================================= */}
       <section
         id="materiais"
-        className="py-14 sm:py-20 bg-white dark:bg-slate-900 border-b border-slate-200/60 dark:border-slate-800 relative overflow-hidden bg-grid-pattern transition-colors duration-300"
+        className="py-14 sm:py-20 scroll-mt-20 sm:scroll-mt-24 bg-white dark:bg-slate-900 border-b border-slate-200/60 dark:border-slate-800 relative overflow-hidden bg-grid-pattern transition-colors duration-300"
       >
         <div className="max-w-6xl mx-auto px-4">
 
@@ -1130,7 +1145,7 @@ export default function SpiritismPortal({ onChangeRoute }: SpiritismPortalProps)
       {/* ========================================================= */}
       <section
         id="nossa-historia"
-        className="py-14 sm:py-20 md:py-24 bg-slate-50/70 dark:bg-slate-950 border-b border-slate-200/60 dark:border-slate-800 relative overflow-hidden bg-grid-pattern transition-colors duration-300"
+        className="py-14 sm:py-20 md:py-24 scroll-mt-20 sm:scroll-mt-24 bg-slate-50/70 dark:bg-slate-950 border-b border-slate-200/60 dark:border-slate-800 relative overflow-hidden bg-grid-pattern transition-colors duration-300"
       >
         <div className="max-w-6xl mx-auto px-4">
 
@@ -1258,7 +1273,7 @@ export default function SpiritismPortal({ onChangeRoute }: SpiritismPortalProps)
       {/* ========================================================= */}
       <section
         id="fale-conosco"
-        className="py-14 sm:py-20 bg-slate-50 dark:bg-slate-950 border-t border-slate-200/60 dark:border-slate-800 relative overflow-hidden bg-grid-pattern transition-colors duration-300"
+        className="py-14 sm:py-20 scroll-mt-20 sm:scroll-mt-24 bg-slate-50 dark:bg-slate-950 border-t border-slate-200/60 dark:border-slate-800 relative overflow-hidden bg-grid-pattern transition-colors duration-300"
       >
         <div className="max-w-3xl mx-auto px-4">
           <div className="bg-[#FAFBFD] dark:bg-[#0B132B]/85 border border-slate-200/80 dark:border-slate-800/80 rounded-2xl shadow-sm p-6 sm:p-10 md:p-12 text-center space-y-6 relative overflow-hidden">
@@ -1347,7 +1362,7 @@ export default function SpiritismPortal({ onChangeRoute }: SpiritismPortalProps)
       {/* ========================================================= */}
       <section
         id="amor-ideal"
-        className="py-14 sm:py-20 bg-white dark:bg-slate-950 border-t border-slate-200/60 dark:border-slate-800 relative overflow-hidden bg-grid-pattern transition-colors duration-300"
+        className="py-14 sm:py-20 scroll-mt-20 sm:scroll-mt-24 bg-white dark:bg-slate-950 border-t border-slate-200/60 dark:border-slate-800 relative overflow-hidden bg-grid-pattern transition-colors duration-300"
       >
         <div className="max-w-5xl mx-auto px-4 text-center">
           <div className="max-w-2xl mx-auto space-y-3 mb-12">

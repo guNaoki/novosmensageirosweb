@@ -178,10 +178,12 @@ export default function RescuePortal({ onChangeRoute }: RescuePortalProps) {
                 variants={fadeInUp}
                 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-tight"
               >
-                Rede de Resgate: Um <br />
+                Rede de Resgate: <br />
+                Um porto seguro para quem <br />
+                só precisa{" "}
                 <span className="font-serif italic font-normal text-primary dark:text-sky-300">
-                  porto seguro
-                </span> para quem só precisa ser acolhido.
+                  ser acolhido
+                </span>.
               </motion.h1>
               
               <motion.p 

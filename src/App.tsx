@@ -12,9 +12,13 @@ function App() {
   const [route, setRoute] = useState(() => {
     // Get initial route from hash
     const initialHash = window.location.hash;
-    if (initialHash === '#/resgate') return '#/resgate';
-    if (initialHash === '#/historia') return '#/historia';
-    if (initialHash === '#/links' || initialHash === '#/bio') return '#/links';
+    if (initialHash.startsWith('#/resgate')) return '#/resgate';
+    if (initialHash.startsWith('#/historia')) return '#/historia';
+    if (initialHash.startsWith('#/links') || initialHash.startsWith('#/bio')) return '#/links';
+    const cleanSection = initialHash.replace(/^#\/?/, '');
+    if (['principios', 'materiais', 'buscar-ajuda', 'amor-ideal', 'nossa-historia', 'fale-conosco'].includes(cleanSection)) {
+      sessionStorage.setItem('navScrollTarget', cleanSection);
+    }
     return '#/';
   });
 
@@ -49,6 +53,10 @@ function App() {
         setRoute('#/links');
       } else {
         setRoute('#/');
+        const cleanSection = currentHash.replace(/^#\/?/, '');
+        if (['principios', 'materiais', 'buscar-ajuda', 'amor-ideal', 'nossa-historia', 'fale-conosco'].includes(cleanSection)) {
+          sessionStorage.setItem('navScrollTarget', cleanSection);
+        }
       }
       // Scroll to top on route change only if no specific section scroll target is set
       const hasScrollTarget = sessionStorage.getItem('navScrollTarget');

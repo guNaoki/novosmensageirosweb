@@ -7,54 +7,6 @@ interface HistoryPortalProps {
   onChangeRoute: (route: string) => void;
 }
 
-const AcolhimentoLuzVector = () => (
-  <div className="relative w-full max-w-[420px] aspect-square mx-auto flex items-center justify-center p-4 sm:p-6">
-    {/* Ethereal background auras */}
-    <div className="absolute inset-0 bg-gradient-to-tr from-sky-500/20 via-primary/15 to-transparent rounded-3xl blur-2xl -z-10"></div>
-    <div className="w-full h-full rounded-3xl bg-white/70 dark:bg-[#0B132B]/85 backdrop-blur-xl border border-white/80 dark:border-slate-800/80 p-6 sm:p-8 flex flex-col justify-between shadow-lg relative overflow-hidden group">
-      
-      {/* Background celestial orbits */}
-      <svg viewBox="0 0 200 200" fill="none" className="absolute -right-8 -top-8 w-44 h-44 pointer-events-none opacity-40">
-        <circle cx="100" cy="100" r="70" stroke="currentColor" strokeWidth="1" strokeDasharray="4 6" className="text-sky-500/50 dark:text-sky-400/40" />
-        <circle cx="100" cy="100" r="45" stroke="currentColor" strokeWidth="1" className="text-sky-500/30 dark:text-sky-400/30" />
-      </svg>
-
-      {/* Top Emblem: Farol de Luz & Coração */}
-      <div className="flex items-center justify-between relative z-10">
-        <div className="w-12 h-12 rounded-2xl bg-sky-500/10 dark:bg-sky-500/15 border border-sky-500/20 flex items-center justify-center text-sky-600 dark:text-sky-400">
-          <Heart className="w-6 h-6 fill-sky-500/20 text-sky-500" />
-        </div>
-        <span className="text-[11px] font-bold text-sky-600 dark:text-sky-400 tracking-wider uppercase bg-sky-500/10 px-3 py-1 rounded-full border border-sky-500/20">
-          Farol de Esperança
-        </span>
-      </div>
-
-      {/* Central Ethereal Illustration: Light Rays & Celestial Connection */}
-      <div className="my-auto py-4 flex flex-col items-center justify-center relative z-10 text-center">
-        <svg viewBox="0 0 120 120" fill="none" className="w-28 h-28 text-sky-500 dark:text-sky-400">
-          <circle cx="60" cy="60" r="50" stroke="currentColor" strokeWidth="1" strokeDasharray="3 4" opacity="0.3" />
-          <circle cx="60" cy="60" r="38" stroke="currentColor" strokeWidth="1.2" opacity="0.5" />
-          <circle cx="60" cy="60" r="24" fill="currentColor" fillOpacity="0.1" stroke="currentColor" strokeWidth="1.5" />
-          <path d="M60 20v8M60 92v8M20 60h8M92 60h8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" opacity="0.6" />
-          <path d="M36 44c10-8 38-8 48 0M36 76c10 8 38 8 48 0" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" opacity="0.4" />
-          <circle cx="60" cy="60" r="7" fill="currentColor" className="text-sky-400" />
-        </svg>
-      </div>
-
-      {/* Bottom Editorial Caption */}
-      <div className="relative z-10 border-t border-slate-200/70 dark:border-slate-800/80 pt-4">
-        <span className="text-xs font-bold text-sky-600 dark:text-sky-400 uppercase tracking-wider block">
-          Nosso Início
-        </span>
-        <p className="text-slate-700 dark:text-slate-200 text-xs sm:text-sm font-semibold leading-relaxed mt-1">
-          "Uma palavra amiga na hora certa pode transformar uma vida inteira."
-        </p>
-      </div>
-
-    </div>
-  </div>
-);
-
 export default function HistoryPortal({ onChangeRoute }: HistoryPortalProps) {
   const timelineRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
@@ -117,8 +69,8 @@ export default function HistoryPortal({ onChangeRoute }: HistoryPortalProps) {
   return (
     <div className="bg-slate-50 dark:bg-slate-950 overflow-x-hidden text-left transition-colors duration-300">
       
-      {/* 1. Hero Section */}
-      <section className="relative pt-24 pb-14 sm:pt-32 sm:pb-20 lg:pt-40 lg:pb-28 bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-white overflow-hidden transition-colors duration-300">
+      {/* 1. Hero Section (Centrada, Compacta & Editorial) */}
+      <section className="relative pt-24 pb-14 sm:pt-32 sm:pb-20 lg:pt-36 lg:pb-24 bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-white overflow-hidden transition-colors duration-300">
         {/* Full-bleed background image with overlay */}
         <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
           <img 
@@ -132,71 +84,65 @@ export default function HistoryPortal({ onChangeRoute }: HistoryPortalProps) {
         </div>
 
         {/* Subtle background illumination */}
-        <div className="absolute top-10 right-1/4 w-[350px] h-[350px] bg-primary/10 dark:bg-primary/20 rounded-full blur-3xl z-0 pointer-events-none"></div>
+        <div className="absolute top-10 left-1/2 -translate-x-1/2 w-[420px] h-[320px] bg-primary/10 dark:bg-primary/20 rounded-full blur-3xl z-0 pointer-events-none"></div>
 
-        <div className="max-w-6xl mx-auto px-4 relative z-10">
+        <div className="max-w-4xl mx-auto px-4 relative z-10 text-center">
           <motion.div 
             initial="hidden"
             animate="visible"
             variants={staggerContainer}
-            className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-12 items-center"
+            className="space-y-6 max-w-3xl mx-auto"
           >
-            {/* Left Content Column */}
-            <div className="lg:col-span-7 space-y-6 text-left relative z-10">
+            {/* Editorial Badge */}
+            <motion.div variants={fadeInUp} className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-sky-500/10 border border-sky-500/20 text-sky-600 dark:text-sky-300 text-xs font-semibold">
+              <Compass className="w-3.5 h-3.5" />
+              <span>Nossa Trajetória & Propósito</span>
+            </motion.div>
 
-              <motion.h1 
-                variants={fadeInUp}
-                className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight text-slate-900 dark:text-white"
-              >
-                A Jornada por trás dos <br />
-                <span className="font-serif italic font-normal text-primary dark:text-sky-300">
-                  Novos Mensageiros
-                </span>
-              </motion.h1>
+            <motion.h1 
+              variants={fadeInUp}
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight text-slate-900 dark:text-white"
+            >
+              A Jornada por trás dos <br />
+              <span className="font-serif italic font-normal text-primary dark:text-sky-300">
+                Novos Mensageiros
+              </span>
+            </motion.h1>
 
-              <motion.p 
-                variants={fadeInUp}
-                className="text-base sm:text-lg text-slate-700 dark:text-slate-200 leading-relaxed max-w-2xl font-normal"
-              >
-                Tudo começou com o desejo de espalhar palavras de paz. No caminho, descobrimos que por trás de cada tela há quem precise de muito mais do que posts: precisa de alguém que estenda a mão.
-              </motion.p>
-              
-              <motion.div 
-                variants={fadeInUp}
-                className="flex flex-col sm:flex-row gap-3 sm:gap-4 pt-2"
-              >
-                <Button
-                  variant="primary"
-                  size="md"
-                  className="w-full sm:w-auto"
-                  iconRight={<ArrowRight className="w-4 h-4 ml-1" />}
-                  onClick={() => {
-                    const el = document.getElementById('linha-tempo');
-                    if (el) el.scrollIntoView({ behavior: 'smooth' });
-                  }}
-                >
-                  Explorar Linha do Tempo
-                </Button>
-                <Button
-                  variant="secondary"
-                  size="md"
-                  className="w-full sm:w-auto"
-                  onClick={() => {
-                    onChangeRoute('#/');
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                  }}
-                >
-                  Voltar ao Início
-                </Button>
-              </motion.div>
-            </div>
-
-            {/* Right Visual Artistic Ethereal Vector Frame */}
+            <motion.p 
+              variants={fadeInUp}
+              className="text-base sm:text-lg text-slate-700 dark:text-slate-200 leading-relaxed max-w-2xl mx-auto font-normal"
+            >
+              Tudo começou com o desejo de espalhar palavras de paz. No caminho, descobrimos que por trás de cada tela há quem precise de muito mais do que posts: precisa de alguém que estenda a mão.
+            </motion.p>
+            
             <motion.div 
               variants={fadeInUp}
-              className="lg:col-span-5 relative"
+              className="flex flex-col sm:flex-row gap-3 sm:gap-4 pt-2 justify-center"
             >
-              <AcolhimentoLuzVector />
+              <Button
+                variant="primary"
+                size="md"
+                className="w-full sm:w-auto cursor-pointer"
+                iconRight={<ArrowRight className="w-4 h-4 ml-1" />}
+                onClick={() => {
+                  const el = document.getElementById('linha-tempo');
+                  if (el) el.scrollIntoView({ behavior: 'smooth' });
+                }}
+              >
+                Explorar Linha do Tempo
+              </Button>
+              <Button
+                variant="secondary"
+                size="md"
+                className="w-full sm:w-auto cursor-pointer"
+                onClick={() => {
+                  onChangeRoute('#/');
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }}
+              >
+                Voltar ao Início
+              </Button>
             </motion.div>
           </motion.div>
         </div>
@@ -209,7 +155,10 @@ export default function HistoryPortal({ onChangeRoute }: HistoryPortalProps) {
             Nosso Manifesto
           </span>
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-tight">
-            Por trás das telas, pessoas que só precisavam <span className="font-serif italic font-normal text-primary dark:text-sky-300">ser ouvidas</span>.
+            Por trás das telas, pessoas que só precisavam{" "}
+            <span className="font-serif italic font-normal text-primary dark:text-sky-300">
+              ser ouvidas
+            </span>.
           </h2>
           <div className="space-y-5 text-slate-600 dark:text-slate-300 text-base sm:text-lg leading-relaxed font-normal text-left sm:text-center">
             <p>

@@ -309,12 +309,12 @@ export default function LinksPortal({ onChangeRoute, darkMode, onToggleDarkMode 
             </a>
 
             <a
-              href="https://www.youtube.com/@novosmensageiros"
+              href="https://www.youtube.com/@NovosMensageiros/shorts"
               target="_blank"
               rel="noopener noreferrer"
               className="p-2.5 rounded-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300 hover:text-red-600 dark:hover:text-red-400 hover:border-red-300 dark:hover:border-red-800/60 hover:-translate-y-0.5 transition-all shadow-2xs"
-              title="YouTube @novosmensageiros"
-              aria-label="YouTube @novosmensageiros"
+              title="YouTube Shorts @novosmensageiros"
+              aria-label="YouTube Shorts @novosmensageiros"
             >
               <YouTubeIcon className="w-4 h-4" />
             </a>

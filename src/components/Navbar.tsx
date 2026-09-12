@@ -22,7 +22,9 @@ export default function Navbar({ currentRoute, onChangeRoute, darkMode, onToggle
       if (currentRoute === route) {
         const el = document.getElementById(elementId);
         if (el) {
-          el.scrollIntoView({ behavior: 'smooth' });
+          const navbarOffset = 80;
+          const y = el.getBoundingClientRect().top + window.pageYOffset - navbarOffset;
+          window.scrollTo({ top: Math.max(0, y), behavior: 'smooth' });
         }
       } else {
         sessionStorage.setItem('navScrollTarget', elementId);
