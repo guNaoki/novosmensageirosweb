@@ -84,9 +84,9 @@ export default function HistoryPortal({ onChangeRoute }: HistoryPortalProps) {
           <img 
             src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1600&auto=format&fit=crop" 
             alt="History pathway background" 
-            className="w-full h-full object-cover opacity-25 dark:opacity-35 mix-blend-multiply dark:mix-blend-screen scale-105 pointer-events-none"
+            className="w-full h-full object-cover opacity-30 dark:opacity-65 mix-blend-multiply dark:mix-blend-screen scale-105 pointer-events-none"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-sky-50/80 via-sky-50/90 to-slate-50 dark:from-slate-950/60 dark:via-slate-950/90 dark:to-slate-950"></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-sky-50/50 via-sky-50/50 to-slate-50 dark:from-slate-950/60 dark:via-slate-950/90 dark:to-slate-950"></div>
           {/* Subtle grid pattern overlay */}
           <div className="absolute inset-0 bg-grid-pattern dark:bg-grid-dark opacity-35"></div>
         </div>
@@ -204,7 +204,7 @@ export default function HistoryPortal({ onChangeRoute }: HistoryPortalProps) {
           <img
             src="/imagens-pagina/maos-unidas.webp"
             alt="Mãos unidas em união e acolhimento"
-            className="w-full h-full object-cover object-center opacity-15 dark:opacity-25 mix-blend-multiply dark:mix-blend-screen scale-105"
+            className="w-full h-full object-cover object-center opacity-85 dark:opacity-85 mix-blend-multiply dark:mix-blend-screen scale-105"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-slate-50/90 via-slate-50/70 to-slate-50 dark:from-slate-950/90 dark:via-slate-950/75 dark:to-slate-950"></div>
         </motion.div>
