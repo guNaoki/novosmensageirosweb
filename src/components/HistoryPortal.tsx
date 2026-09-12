@@ -170,45 +170,16 @@ export default function HistoryPortal({ onChangeRoute }: HistoryPortalProps) {
         {/* Ambient background glows */}
         <div className="absolute top-10 left-10 w-96 h-96 bg-primary-light/45 dark:bg-primary/20 rounded-full blur-3xl pointer-events-none -z-10 animate-pulse"></div>
         <div className="absolute bottom-10 right-10 w-[400px] h-[400px] bg-sky-100/30 dark:bg-sky-900/20 rounded-full blur-3xl pointer-events-none -z-10 animate-pulse delay-700"></div>
-        <div className="max-w-4xl mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
-            
-            <div className="md:col-span-6 space-y-6">
-              <h2 className="text-3xl font-extrabold text-primary-dark dark:text-white tracking-tight leading-tight">
-                De um post no TikTok ao resgate de uma alma em aflição.
-              </h2>
-              <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
-                As redes sociais são repletas de filtros e aparências, mas as caixas de comentários contam outra história. Percebemos que, ao publicar mensagens consoladoras, centenas de pessoas se sentiam confortáveis para tirar a máscara do sorriso e revelar suas dores mais profundas.
-              </p>
-              <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
-                Compreendemos que nossa missão deveria ir muito além do conteúdo. Era preciso criar um canal de escuta ativo e imediato para guiar essas pessoas de volta à esperança e ao equilíbrio emocional.
-              </p>
-            </div>
-
-            <div className="md:col-span-6">
-              <div className="bg-slate-50 dark:bg-slate-800/80 p-8 rounded-3xl border border-slate-200/80 dark:border-slate-700 shadow-xl space-y-6">
-                <div className="flex items-center space-x-4">
-                  <div className="text-xl md:text-2xl font-black text-primary dark:text-sky-400">8 - escolher métrica</div>
-                  <div className="text-xs font-semibold text-slate-600 dark:text-slate-300 uppercase tracking-wider">
-                    Voluntários ativos na triagem inicial
-                  </div>
-                </div>
-                <div className="flex items-center space-x-4">
-                  <div className="text-xl md:text-2xl font-black text-primary dark:text-sky-400">400 - escolher métrica</div>
-                  <div className="text-xs font-semibold text-slate-600 dark:text-slate-300 uppercase tracking-wider">
-                    Pessoas direcionadas ao acolhimento
-                  </div>
-                </div>
-                <div className="flex items-center space-x-4">
-                  <div className="text-xl md:text-2xl font-black text-primary dark:text-sky-400">3.7M - escolher métrica</div>
-                  <div className="text-xs font-semibold text-slate-600 dark:text-slate-300 uppercase tracking-wider">
-                    Visualizações nos canais de divulgação
-                  </div>
-                </div>
-              </div>
-            </div>
-
-          </div>
+        <div className="max-w-3xl mx-auto px-4 text-center space-y-6">
+          <h2 className="text-3xl md:text-4xl font-extrabold text-primary-dark dark:text-white tracking-tight leading-tight">
+            De um post no TikTok ao resgate de uma alma em aflição.
+          </h2>
+          <p className="text-slate-600 dark:text-slate-300 text-sm md:text-base leading-relaxed">
+            As redes sociais são repletas de filtros e aparências, mas as caixas de comentários contam outra história. Percebemos que, ao publicar mensagens consoladoras, centenas de pessoas se sentiam confortáveis para tirar a máscara do sorriso e revelar suas dores mais profundas.
+          </p>
+          <p className="text-slate-600 dark:text-slate-300 text-sm md:text-base leading-relaxed">
+            Compreendemos que nossa missão deveria ir muito além do conteúdo. Era preciso criar um canal de escuta ativo e imediato para guiar essas pessoas de volta à esperança e ao equilíbrio emocional.
+          </p>
         </div>
       </section>
 
