@@ -2,7 +2,6 @@ import { motion } from 'framer-motion';
 import { 
   HeartHandshake, 
   Globe, 
-  LifeBuoy, 
   BookOpen, 
   ExternalLink, 
   CheckCircle2, 
@@ -224,32 +223,7 @@ export default function LinksPortal({ onChangeRoute, darkMode, onToggleDarkMode 
             </button>
           </motion.div>
 
-          {/* 3. PROJETO RESGATE */}
-          <motion.div variants={itemVariants}>
-            <button
-              onClick={() => onChangeRoute('#/resgate')}
-              className="w-full group p-4 rounded-2xl bg-[#FAFBFD] dark:bg-[#0B132B]/85 border border-slate-200/80 dark:border-slate-800/80 shadow-xs hover:shadow-md hover:border-primary/40 dark:hover:border-sky-400/40 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 text-left flex items-center justify-between cursor-pointer"
-            >
-              <div className="flex items-center gap-3.5">
-                <div className="w-11 h-11 rounded-xl bg-blue-50 dark:bg-blue-950/50 text-blue-600 dark:text-blue-400 flex items-center justify-center shrink-0 border border-blue-100 dark:border-blue-900/50 group-hover:bg-blue-600 group-hover:text-white transition-colors duration-200">
-                  <LifeBuoy className="w-5 h-5" />
-                </div>
-                <div>
-                  <h3 className="text-sm font-bold text-slate-800 dark:text-slate-100 group-hover:text-primary dark:group-hover:text-sky-400 transition-colors">
-                    Conhecer o Projeto Resgate
-                  </h3>
-                  <p className="text-xs text-slate-500 dark:text-slate-400 leading-tight mt-0.5">
-                    Busca ativa e socorro emocional no TikTok
-                  </p>
-                </div>
-              </div>
-              <div className="text-slate-400 dark:text-slate-500 group-hover:text-primary dark:group-hover:text-sky-400 group-hover:translate-x-0.5 transition-all">
-                <span className="text-xs font-semibold">Ver</span>
-              </div>
-            </button>
-          </motion.div>
-
-          {/* 4. NOSSA HISTÓRIA */}
+          {/* 3. NOSSA HISTÓRIA */}
           <motion.div variants={itemVariants}>
             <button
               onClick={() => onChangeRoute('#/historia')}
