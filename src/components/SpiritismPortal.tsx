@@ -503,82 +503,94 @@ export default function SpiritismPortal({ onChangeRoute }: SpiritismPortalProps)
               </Button>
             </motion.div>
 
-            {/* Authentic Channels Showcase (Fita Editorial Unificada de Comunidade) */}
+            {/* Authentic Channels Showcase (Cápsulas Flutuantes Eteriais) */}
             <motion.div
               variants={fadeInUp}
               className="pt-6 sm:pt-10 max-w-2xl mx-auto w-full"
             >
-              <div className="bg-[#FAFBFD]/90 dark:bg-[#0B132B]/85 backdrop-blur-md rounded-2xl border border-slate-200/80 dark:border-slate-800/80 p-2 sm:p-2.5 shadow-sm">
-                <div className="grid grid-cols-3 divide-x divide-slate-200/60 dark:divide-slate-800/80 text-center">
-                  
-                  {/* Instagram */}
-                  <a
-                    href="https://www.instagram.com/novosmensageiros/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="p-2 sm:p-3 rounded-xl hover:bg-slate-100/70 dark:hover:bg-slate-800/50 transition-all duration-200 group flex flex-col items-center justify-center cursor-pointer"
-                    title="Instagram Novos Mensageiros"
-                  >
-                    <div className="flex items-center gap-1.5 mb-1">
-                      <Instagram className="w-3.5 h-3.5 text-pink-500" />
-                      <span className="text-[10px] sm:text-xs font-semibold text-slate-500 dark:text-slate-400">Instagram</span>
-                      <ExternalLink className="w-2.5 h-2.5 text-slate-400 opacity-0 group-hover:opacity-100 transition-opacity hidden sm:inline" />
+              {/* 3 Floating Independent Glass Capsules */}
+              <div className="grid grid-cols-3 gap-2.5 sm:gap-4 text-center">
+                {/* Instagram Floating Card */}
+                <motion.a
+                  href="https://www.instagram.com/novosmensageiros/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  animate={{ y: [0, -6, 0] }}
+                  transition={{ duration: 4.2, repeat: Infinity, repeatType: "reverse", ease: "easeInOut" }}
+                  whileHover={{ y: -10, scale: 1.03, transition: { duration: 0.2 } }}
+                  className="group relative flex flex-col items-center justify-center p-3 sm:p-4 rounded-2xl bg-white/75 dark:bg-[#0B132B]/75 backdrop-blur-xl border border-white/90 dark:border-slate-800/80 shadow-[0_8px_25px_-5px_rgba(0,0,0,0.06)] hover:shadow-[0_16px_35px_-5px_rgba(236,72,153,0.22)] hover:border-pink-400/40 transition-shadow duration-300 cursor-pointer overflow-hidden"
+                  title="Instagram Novos Mensageiros"
+                >
+                  <div className="absolute inset-0 bg-gradient-to-tr from-pink-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl pointer-events-none"></div>
+                  <div className="flex items-center gap-1.5 mb-1.5 z-10">
+                    <div className="p-1 sm:p-1.5 rounded-lg bg-pink-500/10 text-pink-500">
+                      <Instagram className="w-3.5 h-3.5" />
                     </div>
-                    <div className="font-serif text-sm sm:text-xl font-bold text-slate-900 dark:text-white tracking-tight">
-                      +{SOCIAL_STATS.instagramFollowers}
-                    </div>
-                    <div className="text-[9px] sm:text-[11px] text-slate-400 dark:text-slate-500">
-                      seguidores
-                    </div>
-                  </a>
+                    <span className="text-[10px] sm:text-xs font-semibold text-slate-500 dark:text-slate-400">Instagram</span>
+                  </div>
+                  <div className="font-serif text-base sm:text-2xl font-bold text-slate-900 dark:text-white tracking-tight z-10">
+                    +{SOCIAL_STATS.instagramFollowers}
+                  </div>
+                  <div className="text-[9px] sm:text-[11px] text-slate-400 dark:text-slate-500 z-10">
+                    seguidores
+                  </div>
+                </motion.a>
 
-                  {/* TikTok */}
-                  <a
-                    href="https://www.tiktok.com/@novosmensageiros"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="p-2 sm:p-3 rounded-xl hover:bg-slate-100/70 dark:hover:bg-slate-800/50 transition-all duration-200 group flex flex-col items-center justify-center cursor-pointer"
-                    title="TikTok Novos Mensageiros"
-                  >
-                    <div className="flex items-center gap-1.5 mb-1">
-                      <TikTok className="w-3.5 h-3.5 text-sky-400" />
-                      <span className="text-[10px] sm:text-xs font-semibold text-slate-500 dark:text-slate-400">TikTok</span>
-                      <ExternalLink className="w-2.5 h-2.5 text-slate-400 opacity-0 group-hover:opacity-100 transition-opacity hidden sm:inline" />
+                {/* TikTok Floating Card */}
+                <motion.a
+                  href="https://www.tiktok.com/@novosmensageiros"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  animate={{ y: [0, -8, 0] }}
+                  transition={{ duration: 3.8, repeat: Infinity, repeatType: "reverse", ease: "easeInOut", delay: 0.5 }}
+                  whileHover={{ y: -12, scale: 1.03, transition: { duration: 0.2 } }}
+                  className="group relative flex flex-col items-center justify-center p-3 sm:p-4 rounded-2xl bg-white/75 dark:bg-[#0B132B]/75 backdrop-blur-xl border border-white/90 dark:border-slate-800/80 shadow-[0_8px_25px_-5px_rgba(0,0,0,0.06)] hover:shadow-[0_16px_35px_-5px_rgba(56,189,248,0.25)] hover:border-sky-400/40 transition-shadow duration-300 cursor-pointer overflow-hidden"
+                  title="TikTok Novos Mensageiros"
+                >
+                  <div className="absolute inset-0 bg-gradient-to-tr from-sky-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl pointer-events-none"></div>
+                  <div className="flex items-center gap-1.5 mb-1.5 z-10">
+                    <div className="p-1 sm:p-1.5 rounded-lg bg-sky-500/10 text-sky-500">
+                      <TikTok className="w-3.5 h-3.5" />
                     </div>
-                    <div className="font-serif text-sm sm:text-xl font-bold text-sky-600 dark:text-sky-400 tracking-tight">
-                      {getCleanNumber(SOCIAL_STATS.tiktokViews)}
-                    </div>
-                    <div className="text-[9px] sm:text-[11px] text-slate-400 dark:text-slate-500">
-                      visualizações
-                    </div>
-                  </a>
+                    <span className="text-[10px] sm:text-xs font-semibold text-slate-500 dark:text-slate-400">TikTok</span>
+                  </div>
+                  <div className="font-serif text-base sm:text-2xl font-bold text-sky-600 dark:text-sky-400 tracking-tight z-10">
+                    {getCleanNumber(SOCIAL_STATS.tiktokViews)}
+                  </div>
+                  <div className="text-[9px] sm:text-[11px] text-slate-400 dark:text-slate-500 z-10">
+                    visualizações
+                  </div>
+                </motion.a>
 
-                  {/* YouTube */}
-                  <a
-                    href="https://www.youtube.com/@NovosMensageiros"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="p-2 sm:p-3 rounded-xl hover:bg-slate-100/70 dark:hover:bg-slate-800/50 transition-all duration-200 group flex flex-col items-center justify-center cursor-pointer"
-                    title="YouTube Novos Mensageiros"
-                  >
-                    <div className="flex items-center gap-1.5 mb-1">
-                      <YouTube className="w-3.5 h-3.5 text-red-500" />
-                      <span className="text-[10px] sm:text-xs font-semibold text-slate-500 dark:text-slate-400">YouTube</span>
-                      <ExternalLink className="w-2.5 h-2.5 text-slate-400 opacity-0 group-hover:opacity-100 transition-opacity hidden sm:inline" />
+                {/* YouTube Floating Card */}
+                <motion.a
+                  href="https://www.youtube.com/@NovosMensageiros"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  animate={{ y: [0, -6, 0] }}
+                  transition={{ duration: 4.5, repeat: Infinity, repeatType: "reverse", ease: "easeInOut", delay: 1 }}
+                  whileHover={{ y: -10, scale: 1.03, transition: { duration: 0.2 } }}
+                  className="group relative flex flex-col items-center justify-center p-3 sm:p-4 rounded-2xl bg-white/75 dark:bg-[#0B132B]/75 backdrop-blur-xl border border-white/90 dark:border-slate-800/80 shadow-[0_8px_25px_-5px_rgba(0,0,0,0.06)] hover:shadow-[0_16px_35px_-5px_rgba(239,68,68,0.22)] hover:border-red-400/40 transition-shadow duration-300 cursor-pointer overflow-hidden"
+                  title="YouTube Novos Mensageiros"
+                >
+                  <div className="absolute inset-0 bg-gradient-to-tr from-red-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl pointer-events-none"></div>
+                  <div className="flex items-center gap-1.5 mb-1.5 z-10">
+                    <div className="p-1 sm:p-1.5 rounded-lg bg-red-500/10 text-red-500">
+                      <YouTube className="w-3.5 h-3.5" />
                     </div>
-                    <div className="font-serif text-sm sm:text-xl font-bold text-slate-900 dark:text-white tracking-tight">
-                      Canal Oficial
-                    </div>
-                    <div className="text-[9px] sm:text-[11px] text-slate-400 dark:text-slate-500">
-                      reflexões & aulas
-                    </div>
-                  </a>
-
-                </div>
+                    <span className="text-[10px] sm:text-xs font-semibold text-slate-500 dark:text-slate-400">YouTube</span>
+                  </div>
+                  <div className="font-serif text-base sm:text-2xl font-bold text-slate-900 dark:text-white tracking-tight z-10">
+                    Canal Oficial
+                  </div>
+                  <div className="text-[9px] sm:text-[11px] text-slate-400 dark:text-slate-500 z-10">
+                    reflexões & aulas
+                  </div>
+                </motion.a>
               </div>
 
               {/* Reassurance note */}
-              <div className="mt-3 flex items-center justify-center gap-2 text-[11px] sm:text-xs text-slate-500 dark:text-slate-400">
+              <div className="mt-4 flex items-center justify-center gap-2 text-[11px] sm:text-xs text-slate-500 dark:text-slate-400">
                 <Heart className="w-3 h-3 text-sky-500 fill-sky-500/20" />
                 <span>Uma ponte viva de escuta fraterna gratuita, sigilosa e sem julgamentos.</span>
               </div>

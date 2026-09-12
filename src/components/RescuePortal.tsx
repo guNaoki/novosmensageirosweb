@@ -82,6 +82,46 @@ const VoluntariosDigitaisVector = () => (
   </svg>
 );
 
+const FarolResgateVector = () => (
+  <svg viewBox="0 0 320 280" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-auto max-w-[280px] sm:max-w-[320px] mx-auto select-none">
+    <defs>
+      <radialGradient id="beaconGlow" cx="160" cy="120" r="110" gradientUnits="userSpaceOnUse">
+        <stop stopColor="#38BDF8" stopOpacity="0.3" />
+        <stop offset="0.6" stopColor="#0284C7" stopOpacity="0.08" />
+        <stop offset="1" stopColor="#0284C7" stopOpacity="0" />
+      </radialGradient>
+    </defs>
+
+    {/* Ambient Glow Aura */}
+    <circle cx="160" cy="130" r="110" fill="url(#beaconGlow)" />
+
+    {/* Concentric Signal Arcs (Radar/Waves of Hope) */}
+    <circle cx="160" cy="120" r="84" stroke="currentColor" strokeWidth="1" strokeDasharray="4 6" className="text-sky-400/40 dark:text-sky-400/30" />
+    <circle cx="160" cy="120" r="54" stroke="currentColor" strokeWidth="1.2" strokeDasharray="3 5" className="text-sky-500/50 dark:text-sky-300/40" />
+
+    {/* Light Beams from Center */}
+    <path d="M160 120 L80 40 M160 120 L240 40 M160 120 L60 120 M160 120 L260 120" stroke="currentColor" strokeWidth="1" strokeDasharray="2 4" className="text-sky-300/40 dark:text-sky-400/30" />
+
+    {/* Central Lighthouse / Beacon Pillar */}
+    <path d="M148 190 L153 105 L167 105 L172 190 Z" fill="currentColor" className="text-slate-200/90 dark:text-slate-800" stroke="currentColor" strokeWidth="1.5" />
+    <path d="M144 190 H176" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" className="text-sky-600 dark:text-sky-400" />
+
+    {/* Lantern Room (Luz Central) */}
+    <rect x="151" y="90" width="18" height="15" rx="3" fill="#38BDF8" className="animate-pulse" />
+    <circle cx="160" cy="97" r="6" fill="#FFFFFF" />
+    <path d="M146 90 L160 76 L174 90 Z" fill="currentColor" className="text-sky-600 dark:text-sky-400" />
+
+    {/* Protective Outstretched Caring Hands Framing Base */}
+    <path d="M115 190 C125 170 142 165 155 172" stroke="currentColor" strokeWidth="2" strokeLinecap="round" className="text-sky-500 dark:text-sky-400" />
+    <path d="M205 190 C195 170 178 165 165 172" stroke="currentColor" strokeWidth="2" strokeLinecap="round" className="text-sky-500 dark:text-sky-400" />
+
+    {/* Floating Sparks of Hope */}
+    <circle cx="118" cy="85" r="3" fill="#38BDF8" className="animate-pulse" />
+    <circle cx="212" cy="95" r="2.5" fill="#F43F5E" className="animate-pulse" />
+    <circle cx="160" cy="48" r="3.5" fill="#FBBF24" className="animate-pulse" />
+  </svg>
+);
+
 interface RescuePortalProps {
   onChangeRoute: (route: string) => void;
 }
@@ -181,52 +221,57 @@ export default function RescuePortal({ onChangeRoute }: RescuePortalProps) {
               </motion.div>
             </div>
 
-            {/* Rescue Operational Metrics Card */}
+            {/* Rescue Operational Floating Composition (Farol & Telemetria Flutuante) */}
             <motion.div 
               variants={fadeInUp}
-              className="lg:col-span-5 relative animate-fadeIn"
+              className="lg:col-span-5 relative flex flex-col items-center justify-center pt-4"
             >
-              <div className="absolute inset-0 bg-gradient-to-tr from-sky-500/10 to-primary/20 rounded-2xl blur-2xl -z-10"></div>
+              {/* Background radiant aura */}
+              <div className="absolute inset-0 bg-gradient-to-tr from-sky-500/15 via-primary/10 to-transparent rounded-full blur-3xl -z-10"></div>
               
-              <div className="bg-[#FAFBFD] dark:bg-[#0B132B]/85 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 shadow-sm overflow-hidden text-left">
-                <div className="relative h-44 w-full bg-slate-100 dark:bg-slate-800 overflow-hidden">
-                  <img 
-                    src="https://images.pexels.com/photos/6146693/pexels-photo-6146693.jpeg" 
-                    alt="Supportive Hands" 
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/30 to-transparent"></div>
-                  <div className="absolute bottom-3 left-3 flex items-center gap-2">
-                    <div className="flex items-center gap-2 bg-slate-900/80 backdrop-blur-sm text-white px-3 py-1.5 rounded-lg text-xs font-medium tracking-wide">
-                      <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-                      Operação de Acolhimento Fraterno
-                    </div>
-                  </div>
-                </div>
-                
-                <div className="p-4 sm:p-5 space-y-3.5 text-left">
-                  <div className="grid grid-cols-2 gap-2.5 sm:gap-3">
-                    <div className="bg-white dark:bg-[#080E21] p-3 sm:p-3.5 rounded-xl border border-slate-200/60 dark:border-slate-800/60">
-                      <div className="font-serif text-base sm:text-lg font-bold text-slate-900 dark:text-white">+100</div>
-                      <div className="text-[11px] sm:text-xs font-semibold text-slate-600 dark:text-slate-300 mt-0.5">Vidas amparadas</div>
-                    </div>
+              {/* Central Beacon Illustration */}
+              <div className="relative w-full max-w-[340px] flex items-center justify-center py-4">
+                <FarolResgateVector />
 
-                    <div className="bg-white dark:bg-[#080E21] p-3 sm:p-3.5 rounded-xl border border-slate-200/60 dark:border-slate-800/60">
-                      <div className="font-serif text-base sm:text-lg font-bold text-sky-600 dark:text-sky-400">24/7</div>
-                      <div className="text-[11px] sm:text-xs font-semibold text-slate-600 dark:text-slate-300 mt-0.5">Mapeamento contínuo</div>
-                    </div>
+                {/* Floating Telemetry Badge 1: Vidas Amparadas (Top Right) */}
+                <motion.div
+                  animate={{ y: [0, -8, 0] }}
+                  transition={{ duration: 4, repeat: Infinity, repeatType: "reverse", ease: "easeInOut" }}
+                  className="absolute -top-2 -right-2 sm:right-2 bg-white/85 dark:bg-[#0B132B]/85 backdrop-blur-xl p-3 sm:p-3.5 rounded-2xl border border-white/90 dark:border-slate-800/80 shadow-[0_10px_25px_-5px_rgba(0,0,0,0.08)] flex items-center gap-2.5 z-20"
+                >
+                  <div className="w-8 h-8 rounded-xl bg-sky-500/15 text-sky-600 dark:text-sky-400 flex items-center justify-center font-bold text-xs">
+                    <Heart className="w-4 h-4 fill-sky-500/30 text-sky-500" />
                   </div>
+                  <div>
+                    <div className="font-serif text-sm sm:text-base font-bold text-slate-900 dark:text-white leading-none">+100</div>
+                    <div className="text-[10px] text-slate-500 dark:text-slate-400 font-medium mt-0.5">Vidas amparadas</div>
+                  </div>
+                </motion.div>
 
-                  <div className="bg-white dark:bg-[#080E21] p-3 sm:p-3.5 rounded-xl border border-slate-200/60 dark:border-slate-800/60 flex items-center gap-3">
-                    <div className="bg-rose-500/10 text-rose-500 w-9 h-9 rounded-lg flex items-center justify-center shrink-0">
-                      <Shield className="w-5 h-5 text-rose-500" />
-                    </div>
-                    <div>
-                      <div className="text-xs font-bold text-slate-900 dark:text-white">Triagem por Nível de Risco</div>
-                      <div className="text-[11px] text-slate-500 dark:text-slate-400">Avaliação técnica e encaminhamento clínico/espiritual.</div>
-                    </div>
+                {/* Floating Telemetry Badge 2: Monitoramento 24/7 (Bottom Left) */}
+                <motion.div
+                  animate={{ y: [0, 8, 0] }}
+                  transition={{ duration: 4.5, repeat: Infinity, repeatType: "reverse", ease: "easeInOut", delay: 0.6 }}
+                  className="absolute bottom-2 -left-2 sm:left-2 bg-white/85 dark:bg-[#0B132B]/85 backdrop-blur-xl p-3 sm:p-3.5 rounded-2xl border border-white/90 dark:border-slate-800/80 shadow-[0_10px_25px_-5px_rgba(0,0,0,0.08)] flex items-center gap-2.5 z-20"
+                >
+                  <div className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse shrink-0"></div>
+                  <div>
+                    <div className="font-serif text-xs sm:text-sm font-bold text-slate-900 dark:text-white leading-none">Busca Ativa 24/7</div>
+                    <div className="text-[10px] text-slate-500 dark:text-slate-400 font-medium mt-0.5">Mapeamento contínuo</div>
                   </div>
-                </div>
+                </motion.div>
+
+                {/* Floating Telemetry Badge 3: Triagem Segura (Bottom Right) */}
+                <motion.div
+                  animate={{ y: [0, -6, 0] }}
+                  transition={{ duration: 3.8, repeat: Infinity, repeatType: "reverse", ease: "easeInOut", delay: 1.2 }}
+                  className="absolute -bottom-4 right-4 bg-white/85 dark:bg-[#0B132B]/85 backdrop-blur-xl px-3.5 py-2.5 rounded-2xl border border-white/90 dark:border-slate-800/80 shadow-[0_10px_25px_-5px_rgba(0,0,0,0.08)] flex items-center gap-2 z-20"
+                >
+                  <Shield className="w-3.5 h-3.5 text-rose-500" />
+                  <span className="text-[11px] font-bold text-slate-800 dark:text-slate-200">
+                    Triagem e Sigilo
+                  </span>
+                </motion.div>
               </div>
             </motion.div>
 

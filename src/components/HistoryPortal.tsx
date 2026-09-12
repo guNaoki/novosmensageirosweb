@@ -1,6 +1,6 @@
 import { useRef } from 'react';
 import { motion, useScroll, useSpring } from 'framer-motion';
-import { Heart, Compass, Users, ArrowRight, Star } from 'lucide-react';
+import { Heart, Compass, Users, ArrowRight, Star, Sparkles } from 'lucide-react';
 import Button from './ui/Button';
 
 interface HistoryPortalProps {
@@ -143,12 +143,27 @@ export default function HistoryPortal({ onChangeRoute }: HistoryPortalProps) {
               </motion.div>
             </div>
 
-            {/* Right Visual Image Frame */}
+            {/* Right Visual Image Frame with Floating Accents */}
             <motion.div 
               variants={fadeInUp}
               className="lg:col-span-5 relative"
             >
-              <div className="absolute inset-0 bg-gradient-to-tr from-sky-500/10 to-primary/20 rounded-2xl blur-2xl -z-10"></div>
+              <div className="absolute inset-0 bg-gradient-to-tr from-sky-500/15 to-primary/20 rounded-2xl blur-3xl -z-10"></div>
+              
+              {/* Floating Badge 1: Sementes de Luz (Top Left) */}
+              <motion.div
+                animate={{ y: [0, -7, 0] }}
+                transition={{ duration: 4, repeat: Infinity, repeatType: "reverse", ease: "easeInOut" }}
+                className="absolute -top-3 -left-3 sm:left-0 bg-white/85 dark:bg-[#0B132B]/85 backdrop-blur-xl px-3.5 py-2 rounded-2xl border border-white/90 dark:border-slate-800/80 shadow-[0_10px_25px_-5px_rgba(0,0,0,0.08)] flex items-center gap-2 z-20"
+              >
+                <div className="p-1 rounded-lg bg-amber-400/15 text-amber-500">
+                  <Sparkles className="w-3.5 h-3.5" />
+                </div>
+                <span className="text-xs font-bold text-slate-800 dark:text-slate-200">
+                  Sementes de Luz
+                </span>
+              </motion.div>
+
               <div className="relative rounded-2xl overflow-hidden border border-slate-200/80 dark:border-slate-800/80 shadow-md group aspect-video lg:aspect-square max-w-[450px] mx-auto">
                 <img 
                   src="https://images.unsplash.com/photo-1455390582262-044cdead277a?q=80&w=600&auto=format&fit=crop" 
@@ -162,6 +177,20 @@ export default function HistoryPortal({ onChangeRoute }: HistoryPortalProps) {
                   </p>
                 </div>
               </div>
+
+              {/* Floating Badge 2: Rede Viva (Bottom Right) */}
+              <motion.div
+                animate={{ y: [0, 7, 0] }}
+                transition={{ duration: 4.5, repeat: Infinity, repeatType: "reverse", ease: "easeInOut", delay: 0.8 }}
+                className="absolute -bottom-3 -right-3 sm:right-0 bg-white/85 dark:bg-[#0B132B]/85 backdrop-blur-xl px-3.5 py-2 rounded-2xl border border-white/90 dark:border-slate-800/80 shadow-[0_10px_25px_-5px_rgba(0,0,0,0.08)] flex items-center gap-2 z-20"
+              >
+                <div className="p-1 rounded-lg bg-sky-500/15 text-sky-500">
+                  <Compass className="w-3.5 h-3.5" />
+                </div>
+                <span className="text-xs font-bold text-slate-800 dark:text-slate-200">
+                  Rede Viva de Amor
+                </span>
+              </motion.div>
             </motion.div>
           </motion.div>
         </div>
