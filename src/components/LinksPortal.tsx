@@ -203,7 +203,7 @@ export default function LinksPortal({ onChangeRoute, darkMode, onToggleDarkMode 
           <motion.div variants={itemVariants}>
             <button
               onClick={() => onChangeRoute('#/')}
-              className="w-full group p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800/80 shadow-xs hover:shadow-md hover:border-primary/40 dark:hover:border-sky-400/40 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 text-left flex items-center justify-between cursor-pointer"
+              className="w-full group p-4 rounded-2xl bg-[#FAFBFD] dark:bg-[#0B132B]/85 border border-slate-200/80 dark:border-slate-800/80 shadow-xs hover:shadow-md hover:border-primary/40 dark:hover:border-sky-400/40 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 text-left flex items-center justify-between cursor-pointer"
             >
               <div className="flex items-center gap-3.5">
                 <div className="w-11 h-11 rounded-xl bg-sky-50 dark:bg-sky-950/50 text-primary dark:text-sky-400 flex items-center justify-center shrink-0 border border-sky-100 dark:border-sky-900/50 group-hover:bg-primary group-hover:text-white dark:group-hover:bg-sky-500 dark:group-hover:text-slate-950 transition-colors duration-200">
@@ -228,7 +228,7 @@ export default function LinksPortal({ onChangeRoute, darkMode, onToggleDarkMode 
           <motion.div variants={itemVariants}>
             <button
               onClick={() => onChangeRoute('#/resgate')}
-              className="w-full group p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800/80 shadow-xs hover:shadow-md hover:border-primary/40 dark:hover:border-sky-400/40 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 text-left flex items-center justify-between cursor-pointer"
+              className="w-full group p-4 rounded-2xl bg-[#FAFBFD] dark:bg-[#0B132B]/85 border border-slate-200/80 dark:border-slate-800/80 shadow-xs hover:shadow-md hover:border-primary/40 dark:hover:border-sky-400/40 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 text-left flex items-center justify-between cursor-pointer"
             >
               <div className="flex items-center gap-3.5">
                 <div className="w-11 h-11 rounded-xl bg-blue-50 dark:bg-blue-950/50 text-blue-600 dark:text-blue-400 flex items-center justify-center shrink-0 border border-blue-100 dark:border-blue-900/50 group-hover:bg-blue-600 group-hover:text-white transition-colors duration-200">
@@ -253,7 +253,7 @@ export default function LinksPortal({ onChangeRoute, darkMode, onToggleDarkMode 
           <motion.div variants={itemVariants}>
             <button
               onClick={() => onChangeRoute('#/historia')}
-              className="w-full group p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800/80 shadow-xs hover:shadow-md hover:border-primary/40 dark:hover:border-sky-400/40 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 text-left flex items-center justify-between cursor-pointer"
+              className="w-full group p-4 rounded-2xl bg-[#FAFBFD] dark:bg-[#0B132B]/85 border border-slate-200/80 dark:border-slate-800/80 shadow-xs hover:shadow-md hover:border-primary/40 dark:hover:border-sky-400/40 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 text-left flex items-center justify-between cursor-pointer"
             >
               <div className="flex items-center gap-3.5">
                 <div className="w-11 h-11 rounded-xl bg-slate-100 dark:bg-slate-800/70 text-slate-600 dark:text-slate-300 flex items-center justify-center shrink-0 border border-slate-200/60 dark:border-slate-700/60 group-hover:bg-slate-700 group-hover:text-white transition-colors duration-200">

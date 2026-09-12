@@ -15,8 +15,7 @@ import {
   Search,
   X,
   Compass as CompassIcon,
-  ShieldAlert,
-  Check
+  ShieldAlert
 } from 'lucide-react';
 import Button from './ui/Button';
 
@@ -504,82 +503,83 @@ export default function SpiritismPortal({ onChangeRoute }: SpiritismPortalProps)
               </Button>
             </motion.div>
 
-            {/* Authentic Channels Showcase (Vitrine Oficial dos 3 Canais Reais) */}
+            {/* Authentic Channels Showcase (Fita Editorial Unificada de Comunidade) */}
             <motion.div
               variants={fadeInUp}
-              className="pt-8 sm:pt-10 max-w-3xl mx-auto"
+              className="pt-6 sm:pt-10 max-w-2xl mx-auto w-full"
             >
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5 text-left">
-                {/* Instagram */}
-                <a
-                  href="https://www.instagram.com/novosmensageiros/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-4 rounded-2xl bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border border-slate-200/80 dark:border-slate-800 shadow-sm hover:shadow-md hover:border-pink-500/40 dark:hover:border-pink-500/40 transition-all duration-200 group flex items-center justify-between"
-                >
-                  <div className="space-y-1">
-                    <div className="flex items-center gap-2">
-                      <Instagram className="w-4 h-4 text-pink-500" />
-                      <span className="text-[11px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Instagram</span>
+              <div className="bg-[#FAFBFD]/90 dark:bg-[#0B132B]/85 backdrop-blur-md rounded-2xl border border-slate-200/80 dark:border-slate-800/80 p-2 sm:p-2.5 shadow-sm">
+                <div className="grid grid-cols-3 divide-x divide-slate-200/60 dark:divide-slate-800/80 text-center">
+                  
+                  {/* Instagram */}
+                  <a
+                    href="https://www.instagram.com/novosmensageiros/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-2 sm:p-3 rounded-xl hover:bg-slate-100/70 dark:hover:bg-slate-800/50 transition-all duration-200 group flex flex-col items-center justify-center cursor-pointer"
+                    title="Instagram Novos Mensageiros"
+                  >
+                    <div className="flex items-center gap-1.5 mb-1">
+                      <Instagram className="w-3.5 h-3.5 text-pink-500" />
+                      <span className="text-[10px] sm:text-xs font-semibold text-slate-500 dark:text-slate-400">Instagram</span>
+                      <ExternalLink className="w-2.5 h-2.5 text-slate-400 opacity-0 group-hover:opacity-100 transition-opacity hidden sm:inline" />
                     </div>
-                    <div className="text-xl font-black text-slate-900 dark:text-white tracking-tight">
+                    <div className="font-serif text-sm sm:text-xl font-bold text-slate-900 dark:text-white tracking-tight">
                       +{SOCIAL_STATS.instagramFollowers}
                     </div>
-                    <div className="text-[11px] text-slate-500 dark:text-slate-400">
+                    <div className="text-[9px] sm:text-[11px] text-slate-400 dark:text-slate-500">
                       seguidores
                     </div>
-                  </div>
-                  <ExternalLink className="w-4 h-4 text-slate-400 group-hover:text-pink-500 transition-colors shrink-0" />
-                </a>
+                  </a>
 
-                {/* TikTok */}
-                <a
-                  href="https://www.tiktok.com/@novosmensageiros"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-4 rounded-2xl bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border border-slate-200/80 dark:border-slate-800 shadow-sm hover:shadow-md hover:border-sky-500/40 dark:hover:border-sky-500/40 transition-all duration-200 group flex items-center justify-between"
-                >
-                  <div className="space-y-1">
-                    <div className="flex items-center gap-2">
-                      <TikTok className="w-4 h-4 text-sky-400" />
-                      <span className="text-[11px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">TikTok</span>
+                  {/* TikTok */}
+                  <a
+                    href="https://www.tiktok.com/@novosmensageiros"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-2 sm:p-3 rounded-xl hover:bg-slate-100/70 dark:hover:bg-slate-800/50 transition-all duration-200 group flex flex-col items-center justify-center cursor-pointer"
+                    title="TikTok Novos Mensageiros"
+                  >
+                    <div className="flex items-center gap-1.5 mb-1">
+                      <TikTok className="w-3.5 h-3.5 text-sky-400" />
+                      <span className="text-[10px] sm:text-xs font-semibold text-slate-500 dark:text-slate-400">TikTok</span>
+                      <ExternalLink className="w-2.5 h-2.5 text-slate-400 opacity-0 group-hover:opacity-100 transition-opacity hidden sm:inline" />
                     </div>
-                    <div className="text-xl font-black text-primary dark:text-sky-400 tracking-tight">
+                    <div className="font-serif text-sm sm:text-xl font-bold text-sky-600 dark:text-sky-400 tracking-tight">
                       {getCleanNumber(SOCIAL_STATS.tiktokViews)}
                     </div>
-                    <div className="text-[11px] text-slate-500 dark:text-slate-400">
+                    <div className="text-[9px] sm:text-[11px] text-slate-400 dark:text-slate-500">
                       visualizações
                     </div>
-                  </div>
-                  <ExternalLink className="w-4 h-4 text-slate-400 group-hover:text-sky-400 transition-colors shrink-0" />
-                </a>
+                  </a>
 
-                {/* YouTube */}
-                <a
-                  href="https://www.youtube.com/@NovosMensageiros"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-4 rounded-2xl bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border border-slate-200/80 dark:border-slate-800 shadow-sm hover:shadow-md hover:border-red-500/40 dark:hover:border-red-500/40 transition-all duration-200 group flex items-center justify-between"
-                >
-                  <div className="space-y-1">
-                    <div className="flex items-center gap-2">
-                      <YouTube className="w-4 h-4 text-red-500" />
-                      <span className="text-[11px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">YouTube</span>
+                  {/* YouTube */}
+                  <a
+                    href="https://www.youtube.com/@NovosMensageiros"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-2 sm:p-3 rounded-xl hover:bg-slate-100/70 dark:hover:bg-slate-800/50 transition-all duration-200 group flex flex-col items-center justify-center cursor-pointer"
+                    title="YouTube Novos Mensageiros"
+                  >
+                    <div className="flex items-center gap-1.5 mb-1">
+                      <YouTube className="w-3.5 h-3.5 text-red-500" />
+                      <span className="text-[10px] sm:text-xs font-semibold text-slate-500 dark:text-slate-400">YouTube</span>
+                      <ExternalLink className="w-2.5 h-2.5 text-slate-400 opacity-0 group-hover:opacity-100 transition-opacity hidden sm:inline" />
                     </div>
-                    <div className="text-xl font-black text-slate-900 dark:text-white tracking-tight">
+                    <div className="font-serif text-sm sm:text-xl font-bold text-slate-900 dark:text-white tracking-tight">
                       Canal Oficial
                     </div>
-                    <div className="text-[11px] text-slate-500 dark:text-slate-400">
-                      vídeos & reflexões
+                    <div className="text-[9px] sm:text-[11px] text-slate-400 dark:text-slate-500">
+                      reflexões & aulas
                     </div>
-                  </div>
-                  <ExternalLink className="w-4 h-4 text-slate-400 group-hover:text-red-500 transition-colors shrink-0" />
-                </a>
+                  </a>
+
+                </div>
               </div>
 
               {/* Reassurance note */}
-              <div className="mt-4 flex items-center justify-center gap-2 text-xs text-slate-500 dark:text-slate-400">
-                <Heart className="w-3.5 h-3.5 text-sky-500 fill-sky-500/20" />
+              <div className="mt-3 flex items-center justify-center gap-2 text-[11px] sm:text-xs text-slate-500 dark:text-slate-400">
+                <Heart className="w-3 h-3 text-sky-500 fill-sky-500/20" />
                 <span>Uma ponte viva de escuta fraterna gratuita, sigilosa e sem julgamentos.</span>
               </div>
             </motion.div>
@@ -818,55 +818,76 @@ export default function SpiritismPortal({ onChangeRoute }: SpiritismPortalProps)
       {/* ========================================================= */}
       <section
         id="buscar-ajuda"
-        className="py-20 md:py-28 bg-slate-50 dark:bg-slate-950 border-b border-slate-200/60 dark:border-slate-800 relative overflow-hidden bg-grid-pattern"
+        className="py-14 sm:py-20 md:py-24 bg-slate-50 dark:bg-slate-950 border-b border-slate-200/60 dark:border-slate-800 relative overflow-hidden bg-grid-pattern transition-colors duration-300"
       >
         <div className="max-w-4xl mx-auto px-4">
-          <div className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200/80 dark:border-slate-800 shadow-xl p-8 md:p-12 text-left relative overflow-hidden space-y-8">
+          <div className="bg-[#FAFBFD] dark:bg-[#0B132B]/85 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 shadow-sm p-6 sm:p-10 md:p-12 text-left relative overflow-hidden space-y-8">
             <div className="absolute right-0 top-0 translate-x-8 -translate-y-8 text-sky-500/5 pointer-events-none">
               <MapPin className="w-64 h-64" />
             </div>
 
             <div className="space-y-3 max-w-2xl relative z-10">
-              <h2 className="text-3xl font-black text-slate-900 dark:text-white tracking-tight">
+              <div className="flex items-center gap-2 text-xs font-semibold text-sky-600 dark:text-sky-400">
+                <MapPin className="w-4 h-4 text-sky-500" />
+                <span className="font-serif uppercase tracking-wider">Acolhimento Presencial</span>
+              </div>
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
                 Como encontrar uma Casa Espírita acolhedora?
               </h2>
-              <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
-                As Casas Espíritas oferecem <strong className="font-bold text-slate-800 dark:text-slate-100">Atendimento Fraterno</strong> (uma conversa privativa, amiga e acolhedora), palestras consoladoras e <strong className="font-bold text-slate-800 dark:text-slate-100">passes magnéticos</strong> para reequilíbrio energético. Todos os serviços são 100% gratuitos.
+              <p className="text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed font-normal">
+                As Casas Espíritas oferecem <strong className="font-bold text-slate-900 dark:text-white">Atendimento Fraterno</strong> (uma conversa privativa, amiga e acolhedora), palestras consoladoras e <strong className="font-bold text-slate-900 dark:text-white">passes magnéticos</strong> para reequilíbrio espiritual. Todos os serviços são 100% gratuitos.
               </p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 relative z-10">
-              <div className="bg-slate-50 dark:bg-slate-800/60 p-6 rounded-2xl border border-slate-200/70 dark:border-slate-700/60 space-y-3">
-                <div className="bg-sky-500/10 text-sky-600 dark:text-sky-400 w-10 h-10 rounded-xl flex items-center justify-center font-bold text-sm">
-                  1
+              {/* Step 1: Google Maps */}
+              <div className="bg-white dark:bg-[#080E21] p-6 rounded-2xl border border-slate-200/70 dark:border-slate-800/70 shadow-xs space-y-4 flex flex-col justify-between">
+                <div className="space-y-3">
+                  <span className="font-serif text-xs font-bold text-sky-600 dark:text-sky-400 uppercase tracking-wider block">
+                    01. Busca Prática
+                  </span>
+                  <h3 className="text-lg font-bold text-slate-900 dark:text-white">Google Maps na sua região</h3>
+                  <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed font-normal">
+                    Pesquise por <strong>"Centro Espírita" + sua cidade ou bairro</strong> para encontrar horários de reuniões públicas, endereço e avaliações de frequentadores.
+                  </p>
                 </div>
-                <h3 className="text-base font-bold text-slate-900 dark:text-white">Busca no Google Maps</h3>
-                <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
-                  Pesquise no Google Maps por <strong>"Centro Espírita" + sua cidade ou bairro</strong> para verificar rotas, avaliações e dias de reuniões públicas.
-                </p>
+                <div className="pt-2">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    as="a"
+                    href="https://www.google.com/maps/search/centro+espirita"
+                    target="_blank"
+                    className="w-full"
+                    iconRight={<ExternalLink className="w-3.5 h-3.5 ml-1" />}
+                  >
+                    Buscar no Google Maps
+                  </Button>
+                </div>
               </div>
 
-              <div className="bg-slate-50 dark:bg-slate-800/60 p-6 rounded-2xl border border-slate-200/70 dark:border-slate-700/60 space-y-3 flex flex-col justify-between">
+              {/* Step 2: FEB */}
+              <div className="bg-white dark:bg-[#080E21] p-6 rounded-2xl border border-slate-200/70 dark:border-slate-800/70 shadow-xs space-y-4 flex flex-col justify-between">
                 <div className="space-y-3">
-                  <div className="bg-sky-500/10 text-sky-600 dark:text-sky-400 w-10 h-10 rounded-xl flex items-center justify-center font-bold text-sm">
-                    2
-                  </div>
-                  <h3 className="text-base font-bold text-slate-900 dark:text-white">Federação Espírita Brasileira (FEB)</h3>
-                  <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
-                    A FEB reúne o cadastro oficial de federações estaduais e centros espíritas filiados em todo o Brasil.
+                  <span className="font-serif text-xs font-bold text-sky-600 dark:text-sky-400 uppercase tracking-wider block">
+                    02. Cadastro Oficial
+                  </span>
+                  <h3 className="text-lg font-bold text-slate-900 dark:text-white">Federação Espírita Brasileira</h3>
+                  <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed font-normal">
+                    A FEB reúne o diretório oficial de todas as federações estaduais e centros espíritas filiados e regulares em todo o território nacional.
                   </p>
                 </div>
                 <div className="pt-2">
                   <Button
                     variant="primary"
-                    size="md"
+                    size="sm"
                     as="a"
                     href="https://www.febnet.org.br/"
                     target="_blank"
                     className="w-full"
-                    iconRight={<ExternalLink className="w-4 h-4 ml-1" />}
+                    iconRight={<ExternalLink className="w-3.5 h-3.5 ml-1" />}
                   >
-                    Acessar Portal Oficial da FEB
+                    Acessar Portal Oficial FEB
                   </Button>
                 </div>
               </div>
@@ -882,15 +903,15 @@ export default function SpiritismPortal({ onChangeRoute }: SpiritismPortalProps)
       {/* ========================================================= */}
       <section
         id="nossa-historia"
-        className="py-20 md:py-28 bg-white dark:bg-slate-900 border-b border-slate-200/60 dark:border-slate-800 relative overflow-hidden bg-grid-pattern"
+        className="py-14 sm:py-20 md:py-24 bg-white dark:bg-slate-900 border-b border-slate-200/60 dark:border-slate-800 relative overflow-hidden bg-grid-pattern transition-colors duration-300"
       >
         <div className="max-w-6xl mx-auto px-4">
 
-          <div className="text-center max-w-2xl mx-auto space-y-3 mb-16">
-            <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+          <div className="text-center max-w-2xl mx-auto space-y-3 mb-12 sm:mb-16">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
               A história por trás dos Novos Mensageiros
             </h2>
-            <p className="text-slate-600 dark:text-slate-300 text-sm md:text-base leading-relaxed">
+            <p className="text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed font-normal">
               Como um canal de divulgação da Doutrina Espírita nas redes sociais deparou-se com a urgência de acolher e salvar vidas no silêncio dos comentários digitais.
             </p>
           </div>
@@ -995,15 +1016,15 @@ export default function SpiritismPortal({ onChangeRoute }: SpiritismPortalProps)
       {/* ========================================================= */}
       <section
         id="materiais"
-        className="py-20 md:py-28 bg-white dark:bg-slate-900 border-y border-slate-200/60 dark:border-slate-800 relative overflow-hidden bg-grid-pattern"
+        className="py-14 sm:py-20 md:py-24 bg-white dark:bg-slate-950 border-y border-slate-200/60 dark:border-slate-800 relative overflow-hidden bg-grid-pattern transition-colors duration-300"
       >
         <div className="max-w-6xl mx-auto px-4">
 
           <div className="text-center max-w-2xl mx-auto space-y-3 mb-10">
-            <h2 className="text-3xl md:text-4xl font-black text-slate-900 dark:text-white tracking-tight">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
               Materiais Gratuitos Recomendados
             </h2>
-            <p className="text-slate-600 dark:text-slate-300 text-sm">
+            <p className="text-slate-600 dark:text-slate-300 text-sm sm:text-base font-normal">
               Assista a palestras, leia obras fundamentais em PDF ou veja indicações de filmes inspiradores sobre a vida espiritual.
             </p>
           </div>
@@ -1011,18 +1032,19 @@ export default function SpiritismPortal({ onChangeRoute }: SpiritismPortalProps)
           {/* Interactive Live Search Bar */}
           <div className="max-w-md mx-auto mb-8 relative">
             <div className="relative flex items-center">
-              <Search className="w-5 h-5 text-slate-400 absolute left-4 pointer-events-none" />
+              <Search className="w-4 h-4 text-slate-400 absolute left-4 pointer-events-none" />
               <input
                 type="text"
-                placeholder="Pesquisar por título ou palavra-chave (ex: Kardec, Nosso Lar)..."
+                placeholder="Pesquisar por título ou autor (ex: Kardec, Nosso Lar)..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-12 pr-10 py-3.5 rounded-2xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-white placeholder-slate-400 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-sky-400 transition-all shadow-inner"
+                className="w-full pl-11 pr-10 py-3 rounded-xl bg-[#FAFBFD] dark:bg-[#0B132B]/85 border border-slate-200/80 dark:border-slate-800 text-slate-800 dark:text-white placeholder-slate-400 text-xs sm:text-sm font-medium focus:outline-none focus:ring-2 focus:ring-sky-500/30 transition-all shadow-xs"
               />
               {searchTerm && (
                 <button
                   onClick={() => setSearchTerm('')}
-                  className="absolute right-3 p-1 rounded-full text-slate-400 hover:text-slate-600 dark:hover:text-white"
+                  className="absolute right-3 p-1 rounded-full text-slate-400 hover:text-slate-600 dark:hover:text-white cursor-pointer"
+                  title="Limpar busca"
                 >
                   <X className="w-4 h-4" />
                 </button>
@@ -1049,12 +1071,12 @@ export default function SpiritismPortal({ onChangeRoute }: SpiritismPortalProps)
                     setActiveTab(tab);
                     setShowAllResources(false);
                   }}
-                  className={`relative inline-flex items-center px-4 py-2.5 rounded-xl text-xs md:text-sm font-bold transition-all duration-200 cursor-pointer ${isSelected
-                      ? 'bg-sky-500 text-white shadow-md'
-                      : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:border-slate-300'
+                  className={`relative inline-flex items-center px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all duration-200 cursor-pointer ${isSelected
+                      ? 'bg-primary dark:bg-sky-500 text-white shadow-xs'
+                      : 'bg-[#FAFBFD] dark:bg-[#0B132B]/80 text-slate-600 dark:text-slate-300 border border-slate-200/80 dark:border-slate-800 hover:border-sky-500/30'
                     }`}
                 >
-                  {tab !== 'all' && <Icon className="w-4 h-4 mr-1.5" />}
+                  {tab !== 'all' && <Icon className="w-3.5 h-3.5 mr-1.5" />}
                   {labelMap[tab]}
                 </button>
               );
@@ -1075,7 +1097,7 @@ export default function SpiritismPortal({ onChangeRoute }: SpiritismPortalProps)
                   exit={{ opacity: 0, scale: 0.95 }}
                   transition={{ duration: 0.3 }}
                   key={item.title}
-                  className="bg-slate-50 dark:bg-slate-800/80 rounded-2xl border border-slate-200/70 dark:border-slate-700/60 shadow-sm flex flex-col justify-between hover-lift overflow-hidden group"
+                  className="bg-[#FAFBFD] dark:bg-[#0B132B]/85 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 shadow-sm hover:shadow-md hover:border-sky-500/30 transition-all duration-300 flex flex-col justify-between overflow-hidden group"
                 >
                   <div className="flex flex-col">
                     <div className="relative aspect-video w-full overflow-hidden bg-slate-100 dark:bg-slate-900">
@@ -1085,42 +1107,40 @@ export default function SpiritismPortal({ onChangeRoute }: SpiritismPortalProps)
                         className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                         loading="lazy"
                       />
-                      <div className="absolute top-3 left-3 z-10">
-                        <span className="text-[11px] font-bold text-slate-800 dark:text-slate-100 bg-white/90 dark:bg-slate-900/90 backdrop-blur-sm px-2.5 py-1 rounded-full shadow-sm flex items-center gap-1.5 border border-slate-100 dark:border-slate-800">
-                          {item.category === 'books' && <BookMarked className="w-3.5 h-3.5 text-sky-400" />}
-                          {item.category === 'lectures' && <Video className="w-3.5 h-3.5 text-sky-400" />}
-                          {item.category === 'movies' && <Film className="w-3.5 h-3.5 text-sky-400" />}
+                      <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent"></div>
+                      <div className="absolute bottom-2.5 left-3 z-10">
+                        <span className="font-serif text-[10px] font-bold text-white bg-slate-900/80 backdrop-blur-sm px-2.5 py-1 rounded-md tracking-wider uppercase border border-white/10">
                           {item.badge}
                         </span>
                       </div>
                     </div>
 
-                    <div className="p-6 space-y-3">
-                      <h4 className="text-base font-bold text-slate-900 dark:text-white leading-snug group-hover:text-sky-400 transition-colors">
+                    <div className="p-5 sm:p-6 space-y-2.5">
+                      <h4 className="text-base font-bold text-slate-900 dark:text-white leading-snug group-hover:text-primary dark:group-hover:text-sky-400 transition-colors">
                         {item.title}
                       </h4>
-                      <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed line-clamp-3">
+                      <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed line-clamp-3 font-normal">
                         {item.description}
                       </p>
                     </div>
                   </div>
 
-                  <div className="px-6 pb-6 pt-0 flex flex-col mt-auto">
+                  <div className="px-5 sm:px-6 pb-5 sm:pb-6 pt-0 flex flex-col mt-auto">
                     {item.platforms && (
-                      <div className="flex flex-wrap gap-1.5 mb-4">
+                      <div className="flex flex-wrap gap-1.5 mb-3.5">
                         {item.platforms.map((plat, pidx) => (
-                          <span key={pidx} className="text-[10px] font-bold text-slate-500 dark:text-slate-400 bg-slate-200/60 dark:bg-slate-700/60 border border-slate-300/60 dark:border-slate-600/60 px-2 py-0.5 rounded">
+                          <span key={pidx} className="text-[10px] font-semibold text-slate-600 dark:text-slate-300 bg-slate-200/50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 px-2 py-0.5 rounded-md">
                             {plat}
                           </span>
                         ))}
                       </div>
                     )}
-                    <div className="border-t border-slate-200/60 dark:border-slate-700/60 pt-4 w-full">
+                    <div className="border-t border-slate-200/60 dark:border-slate-800/80 pt-3.5 w-full">
                       <a
                         href={item.link}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center text-xs font-extrabold text-primary dark:text-sky-400 hover:text-primary-hover group/link"
+                        className="inline-flex items-center text-xs font-bold text-primary dark:text-sky-400 hover:text-primary-hover group/link"
                       >
                         {item.category === 'books' ? 'Acessar Livro (PDF)' : item.category === 'movies' ? 'Onde Assistir' : 'Assistir Palestra'}
                         <ExternalLink className="w-3.5 h-3.5 ml-1.5 transition-transform duration-300 group-hover/link:translate-x-0.5" />
@@ -1170,17 +1190,17 @@ export default function SpiritismPortal({ onChangeRoute }: SpiritismPortalProps)
       {/* ========================================================= */}
       <section
         id="fale-conosco"
-        className="py-20 md:py-28 bg-slate-50 dark:bg-slate-950 border-t border-slate-200/60 dark:border-slate-800 relative overflow-hidden bg-grid-pattern"
+        className="py-14 sm:py-20 bg-slate-50 dark:bg-slate-950 border-t border-slate-200/60 dark:border-slate-800 relative overflow-hidden bg-grid-pattern transition-colors duration-300"
       >
         <div className="max-w-3xl mx-auto px-4">
-          <div className="bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 rounded-3xl shadow-xl p-8 md:p-12 text-center space-y-6 relative overflow-hidden">
+          <div className="bg-[#FAFBFD] dark:bg-[#0B132B]/85 border border-slate-200/80 dark:border-slate-800/80 rounded-2xl shadow-sm p-6 sm:p-10 md:p-12 text-center space-y-6 relative overflow-hidden">
             
             {/* Header */}
             <div className="space-y-3 max-w-xl mx-auto">
-              <div className="w-14 h-14 bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 rounded-2xl flex items-center justify-center mx-auto mb-2 border border-emerald-500/20">
-                <WhatsAppIcon className="w-7 h-7 fill-emerald-600 dark:fill-emerald-400" />
+              <div className="w-12 h-12 bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 rounded-xl flex items-center justify-center mx-auto mb-2 border border-emerald-500/20">
+                <WhatsAppIcon className="w-6 h-6 fill-emerald-600 dark:fill-emerald-400" />
               </div>
-              <h2 className="text-2xl md:text-3xl font-black text-slate-900 dark:text-white tracking-tight">
+              <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
                 Fale Conosco no WhatsApp
               </h2>
               <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-normal">
@@ -1196,26 +1216,26 @@ export default function SpiritismPortal({ onChangeRoute }: SpiritismPortalProps)
                 as="a"
                 href="https://wa.me/43991711228?text=Ol%C3%A1!%20Gostaria%20de%20conversar%20com%20a%20equipe%20dos%20Novos%20Mensageiros."
                 target="_blank"
-                className="w-full text-sm sm:text-base py-4 shadow-lg shadow-emerald-500/20"
-                iconLeft={<WhatsAppIcon className="w-5 h-5 fill-white mr-1.5" />}
+                className="w-full text-sm sm:text-base py-3.5"
+                iconLeft={<WhatsAppIcon className="w-4 h-4 fill-white" />}
               >
                 Conversar no WhatsApp (Atendimento Fraterno)
               </Button>
             </div>
 
             {/* Highlights */}
-            <div className="pt-4 border-t border-slate-100 dark:border-slate-800/80 grid grid-cols-1 sm:grid-cols-3 gap-3 text-left">
-              <div className="flex items-center gap-2 text-xs text-slate-600 dark:text-slate-400">
-                <Check className="w-4 h-4 text-emerald-500 shrink-0" />
-                <span>100% gratuito</span>
+            <div className="pt-4 border-t border-slate-200/60 dark:border-slate-800/80 grid grid-cols-1 sm:grid-cols-3 gap-3 text-center sm:text-left">
+              <div className="flex items-center justify-center sm:justify-start gap-2 text-xs font-semibold text-slate-700 dark:text-slate-300">
+                <span className="w-2 h-2 rounded-full bg-emerald-500 shrink-0"></span>
+                <span>100% Gratuito</span>
               </div>
-              <div className="flex items-center gap-2 text-xs text-slate-600 dark:text-slate-400">
-                <Check className="w-4 h-4 text-emerald-500 shrink-0" />
-                <span>Conversa confidencial</span>
+              <div className="flex items-center justify-center sm:justify-start gap-2 text-xs font-semibold text-slate-700 dark:text-slate-300">
+                <span className="w-2 h-2 rounded-full bg-emerald-500 shrink-0"></span>
+                <span>Sigilo e Discrição</span>
               </div>
-              <div className="flex items-center gap-2 text-xs text-slate-600 dark:text-slate-400">
-                <Check className="w-4 h-4 text-emerald-500 shrink-0" />
-                <span>Acolhimento sem julgamentos</span>
+              <div className="flex items-center justify-center sm:justify-start gap-2 text-xs font-semibold text-slate-700 dark:text-slate-300">
+                <span className="w-2 h-2 rounded-full bg-emerald-500 shrink-0"></span>
+                <span>Acolhimento Sem Julgamentos</span>
               </div>
             </div>
 
@@ -1227,14 +1247,14 @@ export default function SpiritismPortal({ onChangeRoute }: SpiritismPortalProps)
       {/* ========================================================= */}
       {/* 9. RECRUITING CALL TO ACTION (Transição para Resgate) */}
       {/* ========================================================= */}
-      <section className="bg-slate-900 text-white py-16 relative overflow-hidden border-t border-slate-800">
+      <section className="bg-slate-900 text-white py-14 sm:py-16 relative overflow-hidden border-t border-slate-800">
         <div className="absolute right-0 bottom-0 translate-x-20 translate-y-20 opacity-5 pointer-events-none">
           <Heart className="w-96 h-96 fill-white" />
         </div>
 
         <div className="max-w-4xl mx-auto px-4 text-center space-y-6 relative z-10">
-          <h2 className="text-3xl font-extrabold tracking-tight">Quer fazer a diferença conosco voluntariamente?</h2>
-          <p className="text-slate-300 max-w-2xl mx-auto text-sm leading-relaxed">
+          <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight">Quer fazer a diferença conosco voluntariamente?</h2>
+          <p className="text-slate-300 max-w-2xl mx-auto text-sm leading-relaxed font-normal">
             Se você deseja doar um pouco do seu tempo nas redes sociais para mapear dores e salvar vidas, seja como voluntário digital, Psicólogo parceiro ou Casa Espírita, conheça o nosso <strong className="font-extrabold text-white">Projeto de Resgate</strong>.
           </p>
           <div className="pt-2">
@@ -1259,73 +1279,73 @@ export default function SpiritismPortal({ onChangeRoute }: SpiritismPortalProps)
       {/* ========================================================= */}
       <section
         id="amor-ideal"
-        className="py-20 md:py-28 bg-white dark:bg-slate-950 border-t border-slate-200/60 dark:border-slate-800 relative overflow-hidden bg-grid-pattern"
+        className="py-14 sm:py-20 bg-white dark:bg-slate-950 border-t border-slate-200/60 dark:border-slate-800 relative overflow-hidden bg-grid-pattern transition-colors duration-300"
       >
         <div className="max-w-5xl mx-auto px-4 text-center">
-          <div className="max-w-2xl mx-auto space-y-3 mb-14">
-            <h2 className="text-3xl md:text-4xl font-black text-slate-900 dark:text-white tracking-tight">
+          <div className="max-w-2xl mx-auto space-y-3 mb-12">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
               Amor Ideal e Centro Espírita Mei Mei
             </h2>
-            <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed font-medium">
+            <p className="text-slate-600 dark:text-slate-300 text-sm sm:text-base font-normal">
               Iniciativas parceiras dedicadas à fraternidade, acolhimento espiritual e disseminação de amor ativo.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-left">
-            <div className="bg-slate-50 dark:bg-slate-900 p-8 rounded-3xl border border-slate-200/70 dark:border-slate-800 shadow-md space-y-6 hover-lift flex flex-col justify-between group">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-left">
+            <div className="bg-[#FAFBFD] dark:bg-[#0B132B]/85 p-6 sm:p-8 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 shadow-sm hover:shadow-md hover:border-sky-500/30 transition-all duration-300 space-y-5 flex flex-col justify-between group">
               <div className="space-y-4">
-                <div className="h-16 flex items-center">
-                  <div className="bg-white p-3 rounded-2xl border border-slate-200/90 shadow-sm inline-flex items-center justify-center">
+                <div className="h-14 flex items-center">
+                  <div className="bg-white dark:bg-[#080E21] p-2.5 rounded-xl border border-slate-200/80 dark:border-slate-800/80 shadow-xs inline-flex items-center justify-center">
                     <img
                       src="/amorideal.webp"
                       alt="Projeto Amor Ideal"
-                      className="h-10 w-auto object-contain max-w-full transform group-hover:scale-105 transition-transform duration-300"
+                      className="h-9 w-auto object-contain max-w-full transform group-hover:scale-105 transition-transform duration-300"
                     />
                   </div>
                 </div>
-                <h3 className="text-xl font-extrabold text-slate-900 dark:text-white">Projeto Amor Ideal</h3>
-                <p className="text-xs md:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                <h3 className="text-lg sm:text-xl font-extrabold text-slate-900 dark:text-white">Projeto Amor Ideal</h3>
+                <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-normal">
                   Uma obra dedicada ao amparo fraterno, fortalecimento de laços de afeto e promoção da caridade ativa na sociedade.
                 </p>
               </div>
-              <div className="pt-4 border-t border-slate-200/70 dark:border-slate-800">
+              <div className="pt-4 border-t border-slate-200/60 dark:border-slate-800/80">
                 <a
                   href="https://www.amorideal.org.br/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center text-xs font-extrabold text-primary dark:text-sky-400 hover:text-primary-hover group/link"
+                  className="inline-flex items-center text-xs font-bold text-primary dark:text-sky-400 hover:text-primary-hover group/link"
                 >
                   Conhecer o Projeto Amor Ideal
-                  <ExternalLink className="w-4 h-4 ml-1.5 transition-transform duration-300 group-hover/link:translate-x-0.5" />
+                  <ExternalLink className="w-3.5 h-3.5 ml-1.5 transition-transform duration-300 group-hover/link:translate-x-0.5" />
                 </a>
               </div>
             </div>
 
-            <div className="bg-slate-50 dark:bg-slate-900 p-8 rounded-3xl border border-slate-200/70 dark:border-slate-800 shadow-md space-y-6 hover-lift flex flex-col justify-between group">
+            <div className="bg-[#FAFBFD] dark:bg-[#0B132B]/85 p-6 sm:p-8 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 shadow-sm hover:shadow-md hover:border-sky-500/30 transition-all duration-300 space-y-5 flex flex-col justify-between group">
               <div className="space-y-4">
-                <div className="h-16 flex items-center">
-                  <div className="bg-white p-3 rounded-2xl border border-slate-200/90 shadow-sm inline-flex items-center justify-center">
+                <div className="h-14 flex items-center">
+                  <div className="bg-white dark:bg-[#080E21] p-2.5 rounded-xl border border-slate-200/80 dark:border-slate-800/80 shadow-xs inline-flex items-center justify-center">
                     <img
                       src="/meimei.webp"
                       alt="Centro Espírita Mei Mei"
-                      className="h-10 w-auto object-contain max-w-full transform group-hover:scale-105 transition-transform duration-300"
+                      className="h-9 w-auto object-contain max-w-full transform group-hover:scale-105 transition-transform duration-300"
                     />
                   </div>
                 </div>
-                <h3 className="text-xl font-extrabold text-slate-900 dark:text-white">Centro Espírita Mei Mei</h3>
-                <p className="text-xs md:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                <h3 className="text-lg sm:text-xl font-extrabold text-slate-900 dark:text-white">Centro Espírita Mei Mei</h3>
+                <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-normal">
                   Instituição dedicada ao estudo espírita, palestras consoladoras, passe e trabalhos assistenciais inspirados no espírito Mei Mei.
                 </p>
               </div>
-              <div className="pt-4 border-t border-slate-200/70 dark:border-slate-800">
+              <div className="pt-4 border-t border-slate-200/60 dark:border-slate-800/80">
                 <a
                   href="https://www.centroespiritameimei.com.br/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center text-xs font-extrabold text-primary dark:text-sky-400 hover:text-primary-hover group/link"
+                  className="inline-flex items-center text-xs font-bold text-primary dark:text-sky-400 hover:text-primary-hover group/link"
                 >
                   Visitar Centro Espírita Mei Mei
-                  <ExternalLink className="w-4 h-4 ml-1.5 transition-transform duration-300 group-hover/link:translate-x-0.5" />
+                  <ExternalLink className="w-3.5 h-3.5 ml-1.5 transition-transform duration-300 group-hover/link:translate-x-0.5" />
                 </a>
               </div>
             </div>

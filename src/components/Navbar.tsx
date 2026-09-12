@@ -211,7 +211,7 @@ export default function Navbar({ currentRoute, onChangeRoute, darkMode, onToggle
               Início (Acolhimento)
             </button>
             <button
-              onClick={() => handleNavigate('#/', 'nossa-historia')}
+              onClick={() => handleNavigate('#/historia')}
               className="w-full text-left py-2.5 px-4 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 font-semibold text-slate-800 dark:text-slate-200 hover:text-primary dark:hover:text-sky-400 cursor-pointer text-sm transition-colors"
             >
               Nossa História

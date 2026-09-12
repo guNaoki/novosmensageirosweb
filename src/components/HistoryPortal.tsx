@@ -69,8 +69,8 @@ export default function HistoryPortal({ onChangeRoute }: HistoryPortalProps) {
   return (
     <div className="bg-slate-50 dark:bg-slate-950 overflow-x-hidden text-left transition-colors duration-300">
       
-      {/* 1. Hero Section with parallax-style background */}
-      <section className="relative pt-36 pb-24 lg:pt-44 lg:pb-36 bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-white overflow-hidden transition-colors duration-300">
+      {/* 1. Hero Section */}
+      <section className="relative pt-24 pb-14 sm:pt-32 sm:pb-20 lg:pt-40 lg:pb-28 bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-white overflow-hidden transition-colors duration-300">
         {/* Full-bleed background image with overlay */}
         <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
           <img 
@@ -91,14 +91,14 @@ export default function HistoryPortal({ onChangeRoute }: HistoryPortalProps) {
             initial="hidden"
             animate="visible"
             variants={staggerContainer}
-            className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center"
+            className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-12 items-center"
           >
             {/* Left Content Column */}
             <div className="lg:col-span-7 space-y-6 text-left relative z-10">
 
               <motion.h1 
                 variants={fadeInUp}
-                className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight text-slate-900 dark:text-white"
+                className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight text-slate-900 dark:text-white"
               >
                 A história por trás da <br />
                 <span className="text-primary dark:text-sky-300 italic relative inline-block hover:scale-[1.02] hover:-skew-x-[6deg] transition-all duration-300 cursor-default select-none">
@@ -108,18 +108,19 @@ export default function HistoryPortal({ onChangeRoute }: HistoryPortalProps) {
 
               <motion.p 
                 variants={fadeInUp}
-                className="text-base md:text-lg text-slate-700 dark:text-slate-200 leading-relaxed max-w-2xl"
+                className="text-base sm:text-lg text-slate-700 dark:text-slate-200 leading-relaxed max-w-2xl font-normal"
               >
                 Tudo começou com o desejo de espalhar palavras de paz. No caminho, descobrimos que por trás de cada tela há quem precise de muito mais do que posts: precisa de alguém que estenda a mão.
               </motion.p>
               
               <motion.div 
                 variants={fadeInUp}
-                className="flex flex-col sm:flex-row gap-4 pt-2"
+                className="flex flex-col sm:flex-row gap-3 sm:gap-4 pt-2"
               >
                 <Button
                   variant="primary"
                   size="md"
+                  className="w-full sm:w-auto"
                   iconRight={<ArrowRight className="w-4 h-4 ml-1" />}
                   onClick={() => {
                     const el = document.getElementById('linha-tempo');
@@ -131,6 +132,7 @@ export default function HistoryPortal({ onChangeRoute }: HistoryPortalProps) {
                 <Button
                   variant="secondary"
                   size="md"
+                  className="w-full sm:w-auto"
                   onClick={() => {
                     onChangeRoute('#/');
                     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -166,26 +168,33 @@ export default function HistoryPortal({ onChangeRoute }: HistoryPortalProps) {
       </section>
 
       {/* 2. O Manifesto / A Revelação */}
-      <section className="py-20 md:py-28 bg-white dark:bg-slate-900 relative overflow-hidden bg-grid-pattern border-b border-slate-200/70 dark:border-slate-800 transition-colors duration-300">
+      <section className="py-14 sm:py-20 md:py-24 bg-white dark:bg-slate-900 relative overflow-hidden bg-grid-pattern border-b border-slate-200/70 dark:border-slate-800 transition-colors duration-300">
         {/* Subtle background glow */}
         <div className="absolute top-10 left-10 w-96 h-96 bg-primary-light/20 dark:bg-primary/10 rounded-full blur-3xl pointer-events-none -z-10"></div>
-        <div className="max-w-3xl mx-auto px-4 text-center space-y-6">
-          <h2 className="text-3xl md:text-4xl font-extrabold text-primary-dark dark:text-white tracking-tight leading-tight">
-            Por trás das telas, pessoas que só precisavam ser ouvidas.
-          </h2>
-          <p className="text-slate-600 dark:text-slate-300 text-sm md:text-base leading-relaxed">
-            As redes sociais parecem cheias de vidas perfeitas, mas os comentários contam uma realidade muito diferente. Quando começamos a postar reflexões de consolo, percebemos que muita gente finalmente encontrava ali um lugar seguro para baixar a guarda e falar da dor que guardava no peito.
-          </p>
-          <p className="text-slate-600 dark:text-slate-300 text-sm md:text-base leading-relaxed">
-            Foi aí que entendemos que nossa missão não podia parar nos vídeos. Não adiantava apenas falar de esperança: era preciso estar lá de verdade, com paciência e amor, para acolher e lembrar a cada irmão que ele não está sozinho no mundo.
-          </p>
+        <div className="max-w-4xl mx-auto px-4 text-center">
+          <div className="bg-[#FAFBFD] dark:bg-[#0B132B]/85 p-7 sm:p-10 md:p-12 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 shadow-sm space-y-6 text-left sm:text-center relative">
+            <span className="font-serif text-xs font-bold text-sky-600 dark:text-sky-400 uppercase tracking-widest block">
+              Nosso Manifesto
+            </span>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-tight">
+              Por trás das telas, pessoas que só precisavam ser ouvidas.
+            </h2>
+            <div className="space-y-4 max-w-2xl mx-auto text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed font-normal">
+              <p>
+                As redes sociais parecem cheias de vidas perfeitas, mas os comentários contam uma realidade muito diferente. Quando começamos a postar reflexões de consolo, percebemos que muita gente finalmente encontrava ali um lugar seguro para baixar a guarda e falar da dor que guardava no peito.
+              </p>
+              <p>
+                Foi aí que entendemos que nossa missão não podia parar nos vídeos. Não adiantava apenas falar de esperança: era preciso estar lá de verdade, com paciência e amor, para acolher e lembrar a cada irmão que ele não está sozinho no mundo.
+              </p>
+            </div>
+          </div>
         </div>
       </section>
 
       {/* 3. Timeline / A Jornada Histórica */}
       <section 
         id="linha-tempo"
-        className="py-20 md:py-28 bg-slate-50 dark:bg-slate-950 border-y border-slate-200/70 dark:border-slate-800 relative overflow-hidden bg-grid-pattern transition-colors duration-300"
+        className="py-14 sm:py-20 md:py-24 bg-slate-50 dark:bg-slate-950 border-y border-slate-200/70 dark:border-slate-800 relative overflow-hidden bg-grid-pattern transition-colors duration-300"
       >
         {/* Static Hands Background */}
         <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
@@ -198,18 +207,18 @@ export default function HistoryPortal({ onChangeRoute }: HistoryPortalProps) {
         </div>
 
         <div className="max-w-4xl mx-auto px-4 relative z-10">
-          <div className="text-center max-w-2xl mx-auto space-y-3 mb-16">
-            <h2 className="text-3xl font-extrabold text-primary-dark dark:text-white tracking-tight">
+          <div className="text-center max-w-2xl mx-auto space-y-3 mb-12 sm:mb-16">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
               Como essa corrente de amor foi crescendo
             </h2>
-            <p className="text-slate-600 dark:text-slate-300 text-sm">
+            <p className="text-slate-600 dark:text-slate-300 text-sm sm:text-base font-normal">
               Cada passo dado, desde as primeiras postagens até a formação de uma rede viva de acolhimento.
             </p>
           </div>
 
           <div ref={timelineRef} className="relative">
             {/* Background static line */}
-            <div className="absolute left-8 md:left-1/2 top-4 bottom-4 w-[3px] bg-slate-200 dark:bg-slate-800 -translate-x-1/2 rounded-full overflow-hidden">
+            <div className="absolute left-6 md:left-1/2 top-4 bottom-4 w-[3px] bg-slate-200 dark:bg-slate-800 -translate-x-1/2 rounded-full overflow-hidden">
               {/* Dynamic scroll progress line */}
               <motion.div 
                 style={{ scaleY, transformOrigin: 'top' }}
@@ -222,7 +231,7 @@ export default function HistoryPortal({ onChangeRoute }: HistoryPortalProps) {
               whileInView="visible"
               viewport={{ once: true, margin: "-100px" }}
               variants={staggerContainer}
-              className="space-y-12 relative"
+              className="space-y-10 sm:space-y-12 relative"
             >
               {timelineItems.map((item, idx) => {
                 const Icon = item.icon;
@@ -232,17 +241,17 @@ export default function HistoryPortal({ onChangeRoute }: HistoryPortalProps) {
                   <motion.div 
                     key={idx}
                     variants={fadeInUp}
-                    className={`relative flex flex-col md:flex-row items-start md:items-center gap-8 ${
+                    className={`relative flex flex-col md:flex-row items-start md:items-center gap-6 sm:gap-8 ${
                       isEven ? 'md:flex-row' : 'md:flex-row-reverse'
                     }`}
                   >
                     {/* Timeline bullet */}
-                    <div className="absolute left-8 md:left-1/2 z-20 -translate-x-1/2 h-8 w-8 rounded-full border-4 border-slate-50 dark:border-[#080E21] bg-primary dark:bg-sky-500 flex items-center justify-center text-white shadow-sm">
+                    <div className="absolute left-6 md:left-1/2 z-20 -translate-x-1/2 h-8 w-8 rounded-full border-4 border-slate-50 dark:border-[#080E21] bg-primary dark:bg-sky-500 flex items-center justify-center text-white shadow-sm">
                       <Icon className="w-3.5 h-3.5" />
                     </div>
 
                     {/* Left spacer / right block */}
-                    <div className="flex-1 w-full pl-16 md:pl-0">
+                    <div className="flex-1 w-full pl-12 md:pl-0">
                       <div className={`bg-[#FAFBFD] dark:bg-[#0B132B]/85 p-6 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 shadow-sm hover:shadow-md transition-all duration-300 space-y-2.5 ${
                         isEven ? 'md:text-right' : 'md:text-left'
                       }`}>
@@ -250,7 +259,7 @@ export default function HistoryPortal({ onChangeRoute }: HistoryPortalProps) {
                           {item.year}
                         </span>
                         <h3 className="text-lg font-extrabold text-slate-900 dark:text-white">{item.title}</h3>
-                        <p className="text-slate-600 dark:text-slate-300 text-xs leading-relaxed font-normal">{item.description}</p>
+                        <p className="text-slate-600 dark:text-slate-300 text-xs sm:text-sm leading-relaxed font-normal">{item.description}</p>
                       </div>
                     </div>
 
@@ -265,17 +274,18 @@ export default function HistoryPortal({ onChangeRoute }: HistoryPortalProps) {
       </section>
 
       {/* 4. CTA Final */}
-      <section className="bg-primary-dark text-white py-20 relative overflow-hidden">
+      <section className="bg-primary-dark text-white py-14 sm:py-20 relative overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_80%,#004d8f_0%,transparent_50%)] opacity-30 pointer-events-none"></div>
         <div className="max-w-4xl mx-auto px-4 text-center space-y-6 relative z-10">
-          <h2 className="text-3xl font-extrabold tracking-tight">Faça parte dessa história de amor</h2>
-          <p className="text-primary-light/80 max-w-xl mx-auto text-sm leading-relaxed">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight">Faça parte dessa história de amor</h2>
+          <p className="text-primary-light/80 max-w-xl mx-auto text-sm sm:text-base leading-relaxed font-normal">
             Cada mensagem que respondemos pode ser o respiro de esperança que alguém tanto esperava. Se você sente no coração a vontade de acolher, seja doando sua escuta fraterna, como profissional de psicologia ou através da sua Casa Espírita, venha caminhar com a gente.
           </p>
-          <div className="pt-4 flex flex-col sm:flex-row justify-center gap-4">
+          <div className="pt-2 flex flex-col sm:flex-row justify-center gap-3 sm:gap-4">
             <Button
               variant="primary"
               size="md"
+              className="w-full sm:w-auto"
               iconRight={<ArrowRight className="w-4 h-4 ml-1" />}
               onClick={() => {
                 onChangeRoute('#/resgate');
@@ -287,6 +297,7 @@ export default function HistoryPortal({ onChangeRoute }: HistoryPortalProps) {
             <Button
               variant="secondary"
               size="md"
+              className="w-full sm:w-auto"
               onClick={() => {
                 onChangeRoute('#/');
                 window.scrollTo({ top: 0, behavior: 'smooth' });

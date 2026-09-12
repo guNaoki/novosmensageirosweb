@@ -4,9 +4,7 @@ import {
   ArrowRight, 
   Users, 
   Shield, 
-  Check, 
-  AlertCircle, 
-  MapPin
+  AlertCircle 
 } from 'lucide-react';
 import Button from './ui/Button';
 
@@ -57,6 +55,33 @@ const AcolhimentoFisicoVector = () => (
   </svg>
 );
 
+const CasaEspiritaVector = () => (
+  <svg viewBox="0 0 48 48" fill="none" className="w-8 h-8 text-sky-600 dark:text-sky-400">
+    <path d="M24 6L6 20v22h36V20L24 6z" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" fill="currentColor" fillOpacity="0.08" />
+    <path d="M20 42V26a4 4 0 018 0v16" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+    <circle cx="24" cy="17" r="3" stroke="currentColor" strokeWidth="1.8" fill="currentColor" fillOpacity="0.2" />
+    <path d="M24 9v3M16 12l2 2M32 12l-2 2" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+  </svg>
+);
+
+const ApoioPsicologicoVector = () => (
+  <svg viewBox="0 0 48 48" fill="none" className="w-8 h-8 text-rose-500 dark:text-rose-400">
+    <path d="M24 8c-8 0-14.5 6.5-14.5 14.5 0 5.5 3 10.5 7.5 13v4.5h14V35.5c4.5-2.5 7.5-7.5 7.5-13C38.5 14.5 32 8 24 8z" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" fill="currentColor" fillOpacity="0.08" />
+    <path d="M19 22c0-2.8 2.2-5 5-5s5 2.2 5 5-5 7-5 7-5-4.2-5-7z" stroke="currentColor" strokeWidth="1.8" fill="currentColor" fillOpacity="0.2" />
+    <path d="M20 40h8M22 44h4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+  </svg>
+);
+
+const VoluntariosDigitaisVector = () => (
+  <svg viewBox="0 0 48 48" fill="none" className="w-8 h-8 text-emerald-600 dark:text-emerald-400">
+    <circle cx="24" cy="14" r="5" stroke="currentColor" strokeWidth="2" fill="currentColor" fillOpacity="0.1" />
+    <circle cx="12" cy="32" r="4" stroke="currentColor" strokeWidth="1.8" fill="currentColor" fillOpacity="0.1" />
+    <circle cx="36" cy="32" r="4" stroke="currentColor" strokeWidth="1.8" fill="currentColor" fillOpacity="0.1" />
+    <path d="M16 30l5-11M32 30l-5-11M16 33h16" stroke="currentColor" strokeWidth="1.6" strokeDasharray="2 2" className="opacity-70" />
+    <path d="M6 44c0-4 4-6 8-6M34 38c4 0 8 2 8 6M15 44c0-5.5 4-8.5 9-8.5s9 3 9 8.5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+  </svg>
+);
+
 interface RescuePortalProps {
   onChangeRoute: (route: string) => void;
 }
@@ -87,7 +112,7 @@ export default function RescuePortal({ onChangeRoute }: RescuePortalProps) {
     <div className="bg-slate-50 dark:bg-slate-950 overflow-x-hidden transition-colors duration-300">
       
       {/* 2. Hero Section (O Propósito) */}
-      <section id="proposito" className="relative pt-28 pb-16 lg:pt-36 lg:pb-24 bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-white overflow-hidden transition-colors duration-300">
+      <section id="proposito" className="relative pt-24 pb-12 sm:pt-28 sm:pb-16 lg:pt-36 lg:pb-24 bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-white overflow-hidden transition-colors duration-300">
         {/* Full-bleed background image with clear overlay */}
         <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
           <img 
@@ -105,13 +130,13 @@ export default function RescuePortal({ onChangeRoute }: RescuePortalProps) {
             initial="hidden"
             animate="visible"
             variants={staggerContainer}
-            className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center"
+            className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-12 items-center"
           >
             
             <div className="lg:col-span-7 space-y-6 text-left">
               <motion.h1 
                 variants={fadeInUp}
-                className="text-4xl md:text-5xl lg:text-6xl font-black text-slate-900 dark:text-white tracking-tight leading-tight"
+                className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-slate-900 dark:text-white tracking-tight leading-tight"
               >
                 Projeto de Resgate: Uma <span className="text-primary dark:text-sky-400 relative inline-block hover:scale-[1.02] transition-all duration-300 cursor-default select-none">
                   mão estendida
@@ -121,18 +146,19 @@ export default function RescuePortal({ onChangeRoute }: RescuePortalProps) {
               
               <motion.p 
                 variants={fadeInUp}
-                className="text-lg text-slate-700 dark:text-slate-100 leading-relaxed max-w-2xl font-medium"
+                className="text-base sm:text-lg text-slate-700 dark:text-slate-100 leading-relaxed max-w-2xl font-medium"
               >
                 O <strong className="font-extrabold text-slate-900 dark:text-white">Projeto de Resgate</strong> é a frente de ação direta dos Novos Mensageiros. Conversamos com pessoas que estão com <em className="italic font-semibold text-primary dark:text-sky-300">depressão</em>. Realizamos o atendimento dessas pessoas, triagem por nível de risco, diálogo fraterno e encaminhamento para profissionais especialistas.
               </motion.p>
               
               <motion.div 
                 variants={fadeInUp}
-                className="flex flex-col sm:flex-row gap-4 pt-2"
+                className="flex flex-col sm:flex-row gap-3 sm:gap-4 pt-2"
               >
                 <Button
                   variant="primary"
                   size="lg"
+                  className="w-full sm:w-auto"
                   iconRight={<ArrowRight className="w-5 h-5 ml-1" />}
                   onClick={() => {
                     const el = document.getElementById('inscricao');
@@ -144,6 +170,7 @@ export default function RescuePortal({ onChangeRoute }: RescuePortalProps) {
                 <Button
                   variant="secondary"
                   size="lg"
+                  className="w-full sm:w-auto"
                   onClick={() => {
                     onChangeRoute('#/');
                     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -177,20 +204,20 @@ export default function RescuePortal({ onChangeRoute }: RescuePortalProps) {
                   </div>
                 </div>
                 
-                <div className="p-5 space-y-3.5 text-left">
-                  <div className="grid grid-cols-2 gap-3">
-                    <div className="bg-white dark:bg-[#080E21] p-3.5 rounded-xl border border-slate-200/60 dark:border-slate-800/60">
-                      <div className="font-serif text-lg font-bold text-slate-900 dark:text-white">+100</div>
-                      <div className="text-xs font-semibold text-slate-600 dark:text-slate-300 mt-0.5">Vidas amparadas no acolhimento direto</div>
+                <div className="p-4 sm:p-5 space-y-3.5 text-left">
+                  <div className="grid grid-cols-2 gap-2.5 sm:gap-3">
+                    <div className="bg-white dark:bg-[#080E21] p-3 sm:p-3.5 rounded-xl border border-slate-200/60 dark:border-slate-800/60">
+                      <div className="font-serif text-base sm:text-lg font-bold text-slate-900 dark:text-white">+100</div>
+                      <div className="text-[11px] sm:text-xs font-semibold text-slate-600 dark:text-slate-300 mt-0.5">Vidas amparadas</div>
                     </div>
 
-                    <div className="bg-white dark:bg-[#080E21] p-3.5 rounded-xl border border-slate-200/60 dark:border-slate-800/60">
-                      <div className="font-serif text-lg font-bold text-sky-600 dark:text-sky-400">24/7</div>
-                      <div className="text-xs font-semibold text-slate-600 dark:text-slate-300 mt-0.5">Mapeamento em posts virais</div>
+                    <div className="bg-white dark:bg-[#080E21] p-3 sm:p-3.5 rounded-xl border border-slate-200/60 dark:border-slate-800/60">
+                      <div className="font-serif text-base sm:text-lg font-bold text-sky-600 dark:text-sky-400">24/7</div>
+                      <div className="text-[11px] sm:text-xs font-semibold text-slate-600 dark:text-slate-300 mt-0.5">Mapeamento contínuo</div>
                     </div>
                   </div>
 
-                  <div className="bg-white dark:bg-[#080E21] p-3.5 rounded-xl border border-slate-200/60 dark:border-slate-800/60 flex items-center gap-3">
+                  <div className="bg-white dark:bg-[#080E21] p-3 sm:p-3.5 rounded-xl border border-slate-200/60 dark:border-slate-800/60 flex items-center gap-3">
                     <div className="bg-rose-500/10 text-rose-500 w-9 h-9 rounded-lg flex items-center justify-center shrink-0">
                       <Shield className="w-5 h-5 text-rose-500" />
                     </div>
@@ -208,13 +235,13 @@ export default function RescuePortal({ onChangeRoute }: RescuePortalProps) {
       </section>
 
       {/* 3. A Dor / O Contexto (O Iceberg) */}
-      <section id="dor" className="py-16 md:py-24 bg-white dark:bg-slate-950 border-y border-slate-200/70 dark:border-slate-800 relative overflow-hidden bg-grid-pattern transition-colors duration-300">
+      <section id="dor" className="py-14 sm:py-20 md:py-24 bg-white dark:bg-slate-950 border-y border-slate-200/70 dark:border-slate-800 relative overflow-hidden bg-grid-pattern transition-colors duration-300">
         <div className="max-w-4xl mx-auto px-4 text-center">
-          <div className="max-w-2xl mx-auto space-y-3 mb-16">
-            <h2 className="text-3xl md:text-4xl font-extrabold text-primary-dark dark:text-white tracking-tight">
+          <div className="max-w-2xl mx-auto space-y-3 mb-12 sm:mb-16">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-primary-dark dark:text-white tracking-tight">
               Os comentários em nossos posts são apenas a ponta do iceberg.
             </h2>
-            <p className="text-slate-700 dark:text-slate-300 text-base leading-relaxed font-normal">
+            <p className="text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed font-normal">
               Vídeos curtos de 30 segundos alcançam milhões, mas no silêncio do campo de comentários, milhares de pessoas desabafam sobre depressão, vazio existencial e ideação suicida.
             </p>
           </div>
@@ -271,13 +298,13 @@ export default function RescuePortal({ onChangeRoute }: RescuePortalProps) {
       </section>
 
       {/* 4. A Jornada do Acolhimento (Trilha Contínua Ilustrada em SVG) */}
-      <section id="jornada" className="py-16 md:py-24 bg-slate-50 dark:bg-slate-950 relative overflow-hidden bg-grid-pattern transition-colors duration-300">
+      <section id="jornada" className="py-14 sm:py-20 md:py-24 bg-slate-50 dark:bg-slate-950 relative overflow-hidden bg-grid-pattern transition-colors duration-300">
         <div className="max-w-6xl mx-auto px-4 relative">
-          <div className="text-center max-w-2xl mx-auto space-y-3 mb-16">
-            <h2 className="text-3xl md:text-4xl font-extrabold text-primary-dark dark:text-white tracking-tight">
+          <div className="text-center max-w-2xl mx-auto space-y-3 mb-12 sm:mb-16">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-primary-dark dark:text-white tracking-tight">
               A Trilha do Acolhimento e Resgate
             </h2>
-            <p className="text-slate-700 dark:text-slate-300 text-base font-normal">
+            <p className="text-slate-600 dark:text-slate-300 text-sm sm:text-base font-normal">
               Nossa rede atua de forma proativa para encontrar a dor onde ela estiver nas redes sociais e direcioná-la para a luz do amparo fraternal.
             </p>
           </div>
@@ -285,6 +312,9 @@ export default function RescuePortal({ onChangeRoute }: RescuePortalProps) {
           <div className="relative">
             {/* SVG Connecting Track (Desktop) */}
             <CareTrackVector />
+
+            {/* Mobile connecting dashed spine */}
+            <div className="lg:hidden absolute left-1/2 top-6 bottom-6 w-px -translate-x-1/2 border-l border-dashed border-sky-400/30 pointer-events-none"></div>
 
             <motion.div 
               initial="hidden"
@@ -410,14 +440,14 @@ export default function RescuePortal({ onChangeRoute }: RescuePortalProps) {
       </section>
 
       {/* 5. Rede de Apoio (Como nos dividimos) */}
-      <section id="apoio" className="py-16 md:py-24 bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 relative overflow-hidden bg-grid-pattern transition-colors duration-300">
+      <section id="apoio" className="py-14 sm:py-20 md:py-24 bg-slate-50 dark:bg-[#060D1E] border-t border-slate-200/70 dark:border-slate-800/80 relative overflow-hidden bg-grid-pattern transition-colors duration-300">
         <div className="max-w-6xl mx-auto px-4">
-          <div className="text-center max-w-2xl mx-auto space-y-3 mb-16">
-            <h2 className="text-3xl md:text-4xl font-extrabold text-primary-dark dark:text-white tracking-tight">
+          <div className="text-center max-w-2xl mx-auto space-y-3 mb-12 sm:mb-16">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-primary-dark dark:text-white tracking-tight">
               A Nossa Rede de Amparo e Resgate
             </h2>
-            <p className="text-slate-700 dark:text-slate-300 text-base font-normal">
-              Cada perfil tem um papel essencial no resgate de vidas. Veja como você ou sua organização podem colaborar.
+            <p className="text-slate-600 dark:text-slate-300 text-sm sm:text-base font-normal">
+              Cada perfil tem um papel essencial no resgate de vidas. Veja como você ou sua organização podem colaborar nessa corrente de luz.
             </p>
           </div>
 
@@ -426,60 +456,147 @@ export default function RescuePortal({ onChangeRoute }: RescuePortalProps) {
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
             variants={staggerContainer}
-            className="grid grid-cols-1 lg:grid-cols-3 gap-8 text-left"
+            className="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8 text-left"
           >
             {/* Column 1 - Casas Espíritas */}
-            <motion.div variants={cardVariants} className="bg-[#FAFBFD] dark:bg-[#0B132B]/85 p-7 sm:p-8 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 shadow-sm hover:shadow-md hover:border-sky-500/30 transition-all duration-300 flex flex-col justify-between">
+            <motion.div 
+              variants={cardVariants} 
+              className="bg-[#FAFBFD] dark:bg-[#0B132B]/85 p-6 sm:p-8 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 shadow-sm hover:shadow-md hover:border-sky-500/30 transition-all duration-300 flex flex-col justify-between group"
+            >
               <div className="space-y-4">
-                <div className="bg-sky-500/10 dark:bg-sky-500/20 text-primary dark:text-sky-400 w-11 h-11 rounded-xl flex items-center justify-center font-bold">
-                  <MapPin className="w-5 h-5 text-primary dark:text-sky-400" />
+                <div className="flex items-center justify-between">
+                  <div className="w-14 h-14 rounded-2xl bg-white dark:bg-[#080E21] border border-slate-200/80 dark:border-slate-800/80 flex items-center justify-center shadow-xs group-hover:scale-105 transition-transform duration-300">
+                    <CasaEspiritaVector />
+                  </div>
+                  <span className="font-serif text-[11px] font-bold text-sky-600 dark:text-sky-400 uppercase tracking-wider">
+                    Presencial
+                  </span>
                 </div>
-                <h3 className="text-xl font-extrabold text-primary-dark dark:text-white">Casas Espíritas</h3>
+
+                <div>
+                  <span className="font-serif text-xs font-bold text-sky-600 dark:text-sky-400 uppercase tracking-wider block">
+                    Acolhimento Local
+                  </span>
+                  <h3 className="text-xl font-extrabold text-slate-900 dark:text-white group-hover:text-primary dark:group-hover:text-sky-400 transition-colors mt-0.5">
+                    Casas Espíritas
+                  </h3>
+                </div>
+
                 <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-normal">
-                  Oferecem atendimento fraterno presencial, suporte de passes magnéticos, fluidoterapia e reintegração da pessoa a uma comunidade de acolhimento físico na localidade onde reside.
+                  Oferecem atendimento fraterno presencial, suporte de passes magnéticos, fluidoterapia e reintegração da pessoa a uma comunidade viva de acolhimento físico na localidade onde reside.
                 </p>
               </div>
-              <ul className="space-y-2.5 text-xs font-semibold text-slate-700 dark:text-slate-200 border-t border-slate-200/60 dark:border-slate-800/80 pt-5 mt-6">
-                <li className="flex items-center"><Check className="w-4 h-4 text-primary dark:text-sky-400 mr-2 shrink-0" /> Acolhimento presencial na região</li>
-                <li className="flex items-center"><Check className="w-4 h-4 text-primary dark:text-sky-400 mr-2 shrink-0" /> Encaminhamento a reuniões</li>
-                <li className="flex items-center"><Check className="w-4 h-4 text-primary dark:text-sky-400 mr-2 shrink-0" /> Suporte espiritual dedicado</li>
-              </ul>
+
+              <div className="border-t border-slate-200/60 dark:border-slate-800/80 pt-4 mt-6 space-y-2">
+                <span className="font-serif text-[11px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider block">
+                  Frentes de Amparo
+                </span>
+                <div className="flex flex-wrap gap-1.5">
+                  <span className="text-xs px-2.5 py-1 rounded-lg bg-sky-500/10 dark:bg-sky-500/15 text-sky-700 dark:text-sky-300 font-medium">
+                    Atendimento Fraterno
+                  </span>
+                  <span className="text-xs px-2.5 py-1 rounded-lg bg-sky-500/10 dark:bg-sky-500/15 text-sky-700 dark:text-sky-300 font-medium">
+                    Passes & Fluidos
+                  </span>
+                  <span className="text-xs px-2.5 py-1 rounded-lg bg-sky-500/10 dark:bg-sky-500/15 text-sky-700 dark:text-sky-300 font-medium">
+                    Comunidade Viva
+                  </span>
+                </div>
+              </div>
             </motion.div>
 
             {/* Column 2 - Psicólogos */}
-            <motion.div variants={cardVariants} className="bg-[#FAFBFD] dark:bg-[#0B132B]/85 p-7 sm:p-8 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 shadow-sm hover:shadow-md hover:border-sky-500/30 transition-all duration-300 flex flex-col justify-between">
+            <motion.div 
+              variants={cardVariants} 
+              className="bg-[#FAFBFD] dark:bg-[#0B132B]/85 p-6 sm:p-8 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 shadow-sm hover:shadow-md hover:border-rose-500/30 transition-all duration-300 flex flex-col justify-between group"
+            >
               <div className="space-y-4">
-                <div className="bg-sky-500/10 dark:bg-sky-500/20 text-primary dark:text-sky-400 w-11 h-11 rounded-xl flex items-center justify-center font-bold">
-                  <Shield className="w-5 h-5 text-primary dark:text-sky-400" />
+                <div className="flex items-center justify-between">
+                  <div className="w-14 h-14 rounded-2xl bg-white dark:bg-[#080E21] border border-slate-200/80 dark:border-slate-800/80 flex items-center justify-center shadow-xs group-hover:scale-105 transition-transform duration-300">
+                    <ApoioPsicologicoVector />
+                  </div>
+                  <span className="font-serif text-[11px] font-bold text-rose-600 dark:text-rose-400 uppercase tracking-wider">
+                    Especialista
+                  </span>
                 </div>
-                <h3 className="text-xl font-extrabold text-primary-dark dark:text-white">Psicólogos e Profissionais</h3>
+
+                <div>
+                  <span className="font-serif text-xs font-bold text-rose-600 dark:text-rose-400 uppercase tracking-wider block">
+                    Suporte Técnico
+                  </span>
+                  <h3 className="text-xl font-extrabold text-slate-900 dark:text-white group-hover:text-rose-600 dark:group-hover:text-rose-400 transition-colors mt-0.5">
+                    Psicólogos e Clínicos
+                  </h3>
+                </div>
+
                 <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-normal">
                   Oferecem escuta profissional orientadora, triagem psicológica preliminar de suporte clínico e direcionam as pessoas para serviços públicos de saúde mental quando necessário.
                 </p>
               </div>
-              <ul className="space-y-2.5 text-xs font-semibold text-slate-700 dark:text-slate-200 border-t border-slate-200/60 dark:border-slate-800/80 pt-5 mt-6">
-                <li className="flex items-center"><Check className="w-4 h-4 text-primary dark:text-sky-400 mr-2 shrink-0" /> Atendimento voluntário online</li>
-                <li className="flex items-center"><Check className="w-4 h-4 text-primary dark:text-sky-400 mr-2 shrink-0" /> Orientação de casos graves</li>
-                <li className="flex items-center"><Check className="w-4 h-4 text-primary dark:text-sky-400 mr-2 shrink-0" /> Supervisão técnica da equipe</li>
-              </ul>
+
+              <div className="border-t border-slate-200/60 dark:border-slate-800/80 pt-4 mt-6 space-y-2">
+                <span className="font-serif text-[11px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider block">
+                  Frentes de Amparo
+                </span>
+                <div className="flex flex-wrap gap-1.5">
+                  <span className="text-xs px-2.5 py-1 rounded-lg bg-rose-500/10 dark:bg-rose-500/15 text-rose-700 dark:text-rose-300 font-medium">
+                    Escuta Clínica Online
+                  </span>
+                  <span className="text-xs px-2.5 py-1 rounded-lg bg-rose-500/10 dark:bg-rose-500/15 text-rose-700 dark:text-rose-300 font-medium">
+                    Triagem de Gravidade
+                  </span>
+                  <span className="text-xs px-2.5 py-1 rounded-lg bg-rose-500/10 dark:bg-rose-500/15 text-rose-700 dark:text-rose-300 font-medium">
+                    Supervisão Técnica
+                  </span>
+                </div>
+              </div>
             </motion.div>
 
-            {/* Column 3 - Voluntários Gerais */}
-            <motion.div variants={cardVariants} className="bg-[#FAFBFD] dark:bg-[#0B132B]/85 p-7 sm:p-8 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 shadow-sm hover:shadow-md hover:border-sky-500/30 transition-all duration-300 flex flex-col justify-between">
+            {/* Column 3 - Voluntários Digitais */}
+            <motion.div 
+              variants={cardVariants} 
+              className="bg-[#FAFBFD] dark:bg-[#0B132B]/85 p-6 sm:p-8 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 shadow-sm hover:shadow-md hover:border-emerald-500/30 transition-all duration-300 flex flex-col justify-between group"
+            >
               <div className="space-y-4">
-                <div className="bg-sky-500/10 dark:bg-sky-500/20 text-primary dark:text-sky-400 w-11 h-11 rounded-xl flex items-center justify-center font-bold">
-                  <Users className="w-5 h-5 text-primary dark:text-sky-400" />
+                <div className="flex items-center justify-between">
+                  <div className="w-14 h-14 rounded-2xl bg-white dark:bg-[#080E21] border border-slate-200/80 dark:border-slate-800/80 flex items-center justify-center shadow-xs group-hover:scale-105 transition-transform duration-300">
+                    <VoluntariosDigitaisVector />
+                  </div>
+                  <span className="font-serif text-[11px] font-bold text-emerald-600 dark:text-emerald-400 uppercase tracking-wider">
+                    Digital
+                  </span>
                 </div>
-                <h3 className="text-xl font-extrabold text-primary-dark dark:text-white">Voluntários Digitais</h3>
+
+                <div>
+                  <span className="font-serif text-xs font-bold text-emerald-600 dark:text-emerald-400 uppercase tracking-wider block">
+                    Linha de Frente
+                  </span>
+                  <h3 className="text-xl font-extrabold text-slate-900 dark:text-white group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors mt-0.5">
+                    Guardiões Digitais
+                  </h3>
+                </div>
+
                 <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-normal">
-                  Pessoas dedicadas a ler os comentários, enviar as primeiras mensagens acolhedoras via direct, encaminhar para atendimento de WhatsApp e pesquisar links úteis.
+                  Pessoas dedicadas a ler os comentários, enviar as primeiras mensagens acolhedoras via direct, encaminhar para atendimento fraterno de WhatsApp e pesquisar links úteis.
                 </p>
               </div>
-              <ul className="space-y-2.5 text-xs font-semibold text-slate-700 dark:text-slate-200 border-t border-slate-200/60 dark:border-slate-800/80 pt-5 mt-6">
-                <li className="flex items-center"><Check className="w-4 h-4 text-primary dark:text-sky-400 mr-2 shrink-0" /> Mapeamento ativo de redes</li>
-                <li className="flex items-center"><Check className="w-4 h-4 text-primary dark:text-sky-400 mr-2 shrink-0" /> Envio de mensagens de acolhimento</li>
-                <li className="flex items-center"><Check className="w-4 h-4 text-primary dark:text-sky-400 mr-2 shrink-0" /> Suporte operacional online</li>
-              </ul>
+
+              <div className="border-t border-slate-200/60 dark:border-slate-800/80 pt-4 mt-6 space-y-2">
+                <span className="font-serif text-[11px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider block">
+                  Frentes de Amparo
+                </span>
+                <div className="flex flex-wrap gap-1.5">
+                  <span className="text-xs px-2.5 py-1 rounded-lg bg-emerald-500/10 dark:bg-emerald-500/15 text-emerald-700 dark:text-emerald-300 font-medium">
+                    Mapeamento em Vídeos
+                  </span>
+                  <span className="text-xs px-2.5 py-1 rounded-lg bg-emerald-500/10 dark:bg-emerald-500/15 text-emerald-700 dark:text-emerald-300 font-medium">
+                    Acolhimento no Direct
+                  </span>
+                  <span className="text-xs px-2.5 py-1 rounded-lg bg-emerald-500/10 dark:bg-emerald-500/15 text-emerald-700 dark:text-emerald-300 font-medium">
+                    Ponte para o WhatsApp
+                  </span>
+                </div>
+              </div>
             </motion.div>
           </motion.div>
         </div>
@@ -506,13 +623,13 @@ export default function RescuePortal({ onChangeRoute }: RescuePortalProps) {
       </section>
 
       {/* 6. Nossa Trajetória e Linha do Tempo */}
-      <section id="historia" className="py-16 md:py-24 bg-slate-50 dark:bg-slate-950 relative overflow-hidden bg-grid-pattern border-t border-slate-200 dark:border-slate-800 transition-colors duration-300">
+      <section id="historia" className="py-14 sm:py-20 md:py-24 bg-slate-50 dark:bg-slate-950 relative overflow-hidden bg-grid-pattern border-t border-slate-200 dark:border-slate-800 transition-colors duration-300">
         <div className="max-w-4xl mx-auto px-4 text-center">
-          <div className="max-w-2xl mx-auto space-y-3 mb-16">
-            <h2 className="text-3xl md:text-4xl font-extrabold text-primary-dark dark:text-white tracking-tight">
+          <div className="max-w-2xl mx-auto space-y-3 mb-12 sm:mb-16">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-primary-dark dark:text-white tracking-tight">
               A história por trás da Rede de Resgate
             </h2>
-            <p className="text-slate-700 dark:text-slate-300 text-base font-normal">
+            <p className="text-slate-600 dark:text-slate-300 text-sm sm:text-base font-normal">
               Como um canal de divulgação espírita nas redes sociais deparou-se com a urgência de acolher e salvar vidas no silêncio dos comentários digitais.
             </p>
           </div>
@@ -562,18 +679,18 @@ export default function RescuePortal({ onChangeRoute }: RescuePortalProps) {
       </section>
 
       {/* 7. CTA Final & Inscrição de Voluntários */}
-      <section id="inscricao" className="py-16 md:py-24 bg-slate-50 dark:bg-slate-950 border-t border-slate-200/70 dark:border-slate-800 relative overflow-hidden bg-grid-pattern transition-colors duration-300">
+      <section id="inscricao" className="py-14 sm:py-20 md:py-24 bg-slate-50 dark:bg-slate-950 border-t border-slate-200/70 dark:border-slate-800 relative overflow-hidden bg-grid-pattern transition-colors duration-300">
         <div className="max-w-2xl mx-auto px-4">
-          <div className="bg-[#FAFBFD] dark:bg-[#0B132B]/90 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 p-8 md:p-12 text-center space-y-6 shadow-sm relative overflow-hidden">
-            <div className="w-14 h-14 bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 rounded-2xl flex items-center justify-center mx-auto border border-emerald-500/20">
-              <Heart className="w-7 h-7 fill-emerald-500/20" />
+          <div className="bg-[#FAFBFD] dark:bg-[#0B132B]/90 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 p-6 sm:p-8 md:p-12 text-center space-y-6 shadow-sm relative overflow-hidden">
+            <div className="w-12 h-12 bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 rounded-2xl flex items-center justify-center mx-auto border border-emerald-500/20">
+              <Heart className="w-6 h-6 fill-emerald-500/20" />
             </div>
 
             <div className="space-y-3">
-              <h3 className="text-2xl md:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+              <h3 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
                 Seja um Guardião da Vida
               </h3>
-              <p className="text-sm md:text-base text-slate-600 dark:text-slate-300 leading-relaxed max-w-md mx-auto font-normal">
+              <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed max-w-md mx-auto font-normal">
                 Converse diretamente com a nossa coordenação pelo WhatsApp para tirar dúvidas e integrar a Rede de Resgate.
               </p>
             </div>
