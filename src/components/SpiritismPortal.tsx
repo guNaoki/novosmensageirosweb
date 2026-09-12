@@ -41,16 +41,86 @@ const LightRadianceVector = () => (
         <stop offset="100%" stopColor="#38bdf8" stopOpacity="0" />
       </linearGradient>
     </defs>
-    <circle cx="600" cy="230" r="300" fill="url(#heroLightAura)" />
-    <circle cx="600" cy="230" r="260" stroke="#38bdf8" strokeWidth="1" strokeDasharray="4 8" opacity="0.4" />
-    <circle cx="600" cy="230" r="190" stroke="#38bdf8" strokeWidth="1" strokeDasharray="3 6" opacity="0.45" />
-    <circle cx="600" cy="230" r="120" stroke="#38bdf8" strokeWidth="1" opacity="0.5" />
-    <line x1="600" y1="230" x2="220" y2="50" stroke="url(#heroRayGrad)" strokeWidth="1" />
-    <line x1="600" y1="230" x2="980" y2="50" stroke="url(#heroRayGrad)" strokeWidth="1" />
-    <line x1="600" y1="230" x2="160" y2="230" stroke="url(#heroRayGrad)" strokeWidth="1" />
-    <line x1="600" y1="230" x2="1040" y2="230" stroke="url(#heroRayGrad)" strokeWidth="1" />
-    <line x1="600" y1="230" x2="320" y2="440" stroke="url(#heroRayGrad)" strokeWidth="1" />
-    <line x1="600" y1="230" x2="880" y2="440" stroke="url(#heroRayGrad)" strokeWidth="1" />
+
+    {/* 1. Aura Central Ectoplasmática (Respiração Suave) */}
+    <motion.circle
+      cx="600"
+      cy="230"
+      r="300"
+      fill="url(#heroLightAura)"
+      animate={{
+        opacity: [0.55, 0.95, 0.55],
+        scale: [0.96, 1.04, 0.96],
+      }}
+      transition={{
+        duration: 8,
+        repeat: Infinity,
+        repeatType: 'reverse',
+        ease: 'easeInOut',
+      }}
+      style={{ transformOrigin: '600px 230px' }}
+    />
+
+    {/* 2. Feixes de Luz Radiais com rotação ultralenta e pulso de luminosidade */}
+    <motion.g
+      animate={{
+        rotate: [0, 360],
+        opacity: [0.75, 1, 0.75],
+      }}
+      transition={{
+        rotate: { duration: 180, repeat: Infinity, ease: 'linear' },
+        opacity: { duration: 9, repeat: Infinity, repeatType: 'reverse', ease: 'easeInOut' },
+      }}
+      style={{ transformOrigin: '600px 230px' }}
+    >
+      <line x1="600" y1="230" x2="220" y2="50" stroke="url(#heroRayGrad)" strokeWidth="1" />
+      <line x1="600" y1="230" x2="980" y2="50" stroke="url(#heroRayGrad)" strokeWidth="1" />
+      <line x1="600" y1="230" x2="160" y2="230" stroke="url(#heroRayGrad)" strokeWidth="1" />
+      <line x1="600" y1="230" x2="1040" y2="230" stroke="url(#heroRayGrad)" strokeWidth="1" />
+      <line x1="600" y1="230" x2="320" y2="440" stroke="url(#heroRayGrad)" strokeWidth="1" />
+      <line x1="600" y1="230" x2="880" y2="440" stroke="url(#heroRayGrad)" strokeWidth="1" />
+    </motion.g>
+
+    {/* 3. Anel Celestial Externo Pontilhado (Rotação Horária com pontos focais orbitais) */}
+    <motion.g
+      animate={{ rotate: [0, 360] }}
+      transition={{ duration: 110, repeat: Infinity, ease: 'linear' }}
+      style={{ transformOrigin: '600px 230px' }}
+    >
+      <circle cx="600" cy="230" r="260" stroke="#38bdf8" strokeWidth="1" strokeDasharray="4 8" opacity="0.4" />
+      <circle cx="860" cy="230" r="2.5" fill="#7dd3fc" opacity="0.7" />
+      <circle cx="340" cy="230" r="1.5" fill="#7dd3fc" opacity="0.5" />
+    </motion.g>
+
+    {/* 4. Anel Intermediário Pontilhado (Rotação Anti-Horária Oposta) */}
+    <motion.g
+      animate={{ rotate: [0, -360] }}
+      transition={{ duration: 75, repeat: Infinity, ease: 'linear' }}
+      style={{ transformOrigin: '600px 230px' }}
+    >
+      <circle cx="600" cy="230" r="190" stroke="#38bdf8" strokeWidth="1" strokeDasharray="3 6" opacity="0.45" />
+      <circle cx="600" cy="40" r="2" fill="#38bdf8" opacity="0.7" />
+    </motion.g>
+
+    {/* 5. Anel Interno Focado (Pulso Suave de Respiração) */}
+    <motion.circle
+      cx="600"
+      cy="230"
+      r="120"
+      stroke="#38bdf8"
+      strokeWidth="1"
+      animate={{
+        opacity: [0.35, 0.65, 0.35],
+        scale: [0.98, 1.02, 0.98],
+      }}
+      transition={{
+        duration: 6,
+        repeat: Infinity,
+        repeatType: 'reverse',
+        ease: 'easeInOut',
+      }}
+      style={{ transformOrigin: '600px 230px' }}
+    />
   </svg>
 );
 
