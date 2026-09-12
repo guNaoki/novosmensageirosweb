@@ -50,8 +50,11 @@ function App() {
       } else {
         setRoute('#/');
       }
-      // Scroll to top on route change
-      window.scrollTo(0, 0);
+      // Scroll to top on route change only if no specific section scroll target is set
+      const hasScrollTarget = sessionStorage.getItem('navScrollTarget');
+      if (!hasScrollTarget) {
+        window.scrollTo(0, 0);
+      }
     };
 
     window.addEventListener('hashchange', handleHashChange);

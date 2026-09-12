@@ -152,7 +152,7 @@ export default function RescuePortal({ onChangeRoute }: RescuePortalProps) {
     <div className="bg-slate-50 dark:bg-slate-950 overflow-x-hidden transition-colors duration-300">
       
       {/* 2. Hero Section (O Propósito) */}
-      <section id="proposito" className="relative pt-24 pb-12 sm:pt-28 sm:pb-16 lg:pt-36 lg:pb-24 bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-white overflow-hidden transition-colors duration-300">
+      <section id="proposito" className="relative min-h-[calc(100vh-4.5rem)] flex flex-col justify-center pt-24 pb-14 sm:pt-28 sm:pb-16 lg:py-20 bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-white overflow-hidden transition-colors duration-300">
         {/* Full-bleed background image with clear overlay */}
         <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
           <img 
@@ -176,11 +176,12 @@ export default function RescuePortal({ onChangeRoute }: RescuePortalProps) {
             <div className="lg:col-span-7 space-y-6 text-left">
               <motion.h1 
                 variants={fadeInUp}
-                className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-slate-900 dark:text-white tracking-tight leading-tight"
+                className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-tight"
               >
-                Projeto de Resgate: Uma <span className="text-primary dark:text-sky-400 font-black">
-                  mão estendida
-                </span> no momento de maior dor.
+                Rede de Resgate: Um <br />
+                <span className="font-serif italic font-normal text-primary dark:text-sky-300">
+                  porto seguro
+                </span> para quem só precisa ser acolhido.
               </motion.h1>
               
               <motion.p 

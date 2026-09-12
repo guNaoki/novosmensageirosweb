@@ -18,15 +18,18 @@ export default function Navbar({ currentRoute, onChangeRoute, darkMode, onToggle
     setMobileMenuOpen(false);
     setActiveDropdown(null);
     
-    onChangeRoute(route);
-    
     if (elementId) {
-      setTimeout(() => {
+      if (currentRoute === route) {
         const el = document.getElementById(elementId);
         if (el) {
           el.scrollIntoView({ behavior: 'smooth' });
         }
-      }, 150);
+      } else {
+        sessionStorage.setItem('navScrollTarget', elementId);
+        onChangeRoute(route);
+      }
+    } else {
+      onChangeRoute(route);
     }
   };
 
