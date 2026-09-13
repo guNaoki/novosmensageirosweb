@@ -319,7 +319,7 @@ export default function SpiritismPortal({ onChangeRoute }: SpiritismPortalProps)
   };
 
   return (
-    <div className="bg-slate-50 dark:bg-slate-950 overflow-x-hidden transition-colors duration-300 relative">
+    <div className="bg-slate-50 dark:bg-slate-950 overflow-x-clip transition-colors duration-300 relative">
 
       {/* ========================================================= */}
       {/* SUMÁRIO LATERAL DESKTOP MINIMALISTA (Left Quick Nav) */}
