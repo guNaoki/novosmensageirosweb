@@ -73,37 +73,46 @@ export default function Footer({ currentRoute, onChangeRoute }: FooterProps) {
             <div className="flex flex-wrap justify-center gap-6 text-sm font-medium">
               <button 
                 onClick={() => {
-                  onChangeRoute('#/');
+                  onChangeRoute('/');
                   window.scrollTo({ top: 0, behavior: 'smooth' });
                 }}
-                className={`hover:text-white transition-colors cursor-pointer ${currentRoute === '#/' ? 'text-white underline decoration-primary underline-offset-4' : ''}`}
+                className={`hover:text-white transition-colors cursor-pointer ${currentRoute === '/' ? 'text-white underline decoration-primary underline-offset-4' : ''}`}
               >
-                Consolo & Espiritismo
+                Início
               </button>
               <button 
                 onClick={() => {
-                  onChangeRoute('#/resgate');
+                  onChangeRoute('/recursos');
                   window.scrollTo({ top: 0, behavior: 'smooth' });
                 }}
-                className={`hover:text-white transition-colors cursor-pointer ${currentRoute === '#/resgate' ? 'text-white underline decoration-primary underline-offset-4' : ''}`}
+                className={`hover:text-white transition-colors cursor-pointer ${currentRoute === '/recursos' ? 'text-white underline decoration-primary underline-offset-4' : ''}`}
+              >
+                Recursos & Apoio
+              </button>
+              <button 
+                onClick={() => {
+                  onChangeRoute('/resgate');
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }}
+                className={`hover:text-white transition-colors cursor-pointer ${currentRoute === '/resgate' ? 'text-white underline decoration-primary underline-offset-4' : ''}`}
               >
                 Projeto Resgate
               </button>
               <button 
                 onClick={() => {
-                  onChangeRoute('#/historia');
+                  onChangeRoute('/historia');
                   window.scrollTo({ top: 0, behavior: 'smooth' });
                 }}
-                className={`hover:text-white transition-colors cursor-pointer ${currentRoute === '#/historia' ? 'text-white underline decoration-primary underline-offset-4' : ''}`}
+                className={`hover:text-white transition-colors cursor-pointer ${currentRoute === '/historia' ? 'text-white underline decoration-primary underline-offset-4' : ''}`}
               >
                 Nossa História
               </button>
               <button 
                 onClick={() => {
-                  onChangeRoute('#/links');
+                  onChangeRoute('/links');
                   window.scrollTo({ top: 0, behavior: 'smooth' });
                 }}
-                className={`hover:text-white transition-colors cursor-pointer ${currentRoute === '#/links' ? 'text-white underline decoration-primary underline-offset-4' : ''}`}
+                className={`hover:text-white transition-colors cursor-pointer ${currentRoute === '/links' ? 'text-white underline decoration-primary underline-offset-4' : ''}`}
               >
                 Links Úteis
               </button>

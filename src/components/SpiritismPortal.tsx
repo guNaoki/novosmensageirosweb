@@ -1,23 +1,15 @@
 import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { SOCIAL_STATS } from '../data/stats';
 import {
   Heart,
-  Video,
-  BookOpen,
-  Film,
   ArrowRight,
-  BookMarked,
-  MapPin,
   ExternalLink,
-  ChevronDown,
-  ChevronUp,
-  Search,
-  X,
   Compass as CompassIcon,
-  ShieldAlert
+  ShieldAlert,
 } from 'lucide-react';
 import Button from './ui/Button';
+import CelestialArcPrinciples from './CelestialArcPrinciples';
 
 // =========================================================
 // BESPOKE ARTISTIC SVG VECTORS (Autorais e Nobres)
@@ -160,99 +152,12 @@ const PoeiraEstelarVector = () => (
   </div>
 );
 
-const DeusVector = () => (
-  <svg viewBox="0 0 80 80" fill="none" className="w-11 h-11">
-    <circle cx="40" cy="40" r="34" stroke="currentColor" strokeWidth="1.2" strokeDasharray="2 4" className="text-amber-500/40 dark:text-amber-400/40" />
-    <circle cx="40" cy="40" r="24" stroke="currentColor" strokeWidth="1.2" className="text-amber-500/60 dark:text-amber-400/60" />
-    <circle cx="40" cy="40" r="14" stroke="currentColor" strokeWidth="1.5" className="text-amber-500/80 dark:text-amber-400/80" />
-    <circle cx="40" cy="40" r="5" fill="currentColor" className="text-amber-500 dark:text-amber-400" />
-    <path d="M40 8v8M40 64v8M8 40h8M64 40h8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" className="text-amber-500 dark:text-amber-400" />
-    <path d="M17.4 17.4l5.6 5.6M57 57l5.6 5.6M17.4 62.6l5.6-5.6M57 23l5.6-5.6" stroke="currentColor" strokeWidth="1" strokeLinecap="round" className="text-amber-500/60 dark:text-amber-400/60" />
-  </svg>
-);
-
-const CentelhaAlmaVector = () => (
-  <svg viewBox="0 0 80 80" fill="none" className="w-11 h-11">
-    {/* Ethereal aura radiation */}
-    <circle cx="40" cy="40" r="32" stroke="currentColor" strokeWidth="1" strokeDasharray="3 3" className="text-indigo-400/30 dark:text-cyan-400/30" />
-    <circle cx="40" cy="40" r="22" stroke="currentColor" strokeWidth="1.2" className="text-indigo-500/40 dark:text-cyan-400/40" />
-    
-    {/* Ascending Divine Spark / Flame of the Soul */}
-    <path 
-      d="M40 14c-4 9-11 16-11 24a11 11 0 0022 0c0-8-7-15-11-24z" 
-      stroke="currentColor" 
-      strokeWidth="1.5" 
-      className="text-indigo-500 dark:text-cyan-400" 
-      fill="currentColor" 
-      fillOpacity="0.15" 
-    />
-    {/* Inner core flame */}
-    <path 
-      d="M40 24c-2 5-6 9-6 14a6 6 0 0012 0c0-5-4-9-6-14z" 
-      fill="currentColor" 
-      className="text-indigo-400 dark:text-cyan-300" 
-      fillOpacity="0.6" 
-    />
-    {/* Spiritual spark point */}
-    <circle cx="40" cy="38" r="2.5" fill="currentColor" className="text-white dark:text-white" />
-    
-    {/* Celestial rays of life continuity */}
-    <path d="M40 6v4M40 70v4M10 40h4M66 40h4" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" className="text-indigo-400/50 dark:text-cyan-400/50" />
-    <path d="M19 19l3 3M58 58l3 3M19 61l3-3M58 22l3-3" stroke="currentColor" strokeWidth="1" strokeLinecap="round" className="text-indigo-400/40 dark:text-cyan-400/40" />
-  </svg>
-);
-
-const ReencarnacaoVector = () => (
-  <svg viewBox="0 0 80 80" fill="none" className="w-11 h-11">
-    <path d="M40 12a28 28 0 11-20 8.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" className="text-sky-500 dark:text-sky-400" />
-    <path d="M16 20h6v-6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-sky-500 dark:text-sky-400" />
-    <path d="M40 24a16 16 0 11-11.3 4.7" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" className="text-sky-500/70 dark:text-sky-400/70" strokeDasharray="3 3" />
-    <circle cx="40" cy="40" r="4" fill="currentColor" className="text-sky-500 dark:text-sky-300" />
-  </svg>
-);
-
-const MediunidadeVector = () => (
-  <svg viewBox="0 0 80 80" fill="none" className="w-11 h-11">
-    <circle cx="24" cy="40" r="8" stroke="currentColor" strokeWidth="1.5" className="text-emerald-500 dark:text-emerald-400" fill="currentColor" fillOpacity="0.15" />
-    <circle cx="56" cy="40" r="8" stroke="currentColor" strokeWidth="1.5" className="text-emerald-500 dark:text-emerald-400" fill="currentColor" fillOpacity="0.15" />
-    <path d="M33 34c4-3 10-3 14 0M31 40c6-3 12-3 18 0M33 46c4 3 10 3 14 0" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" className="text-emerald-500/80 dark:text-emerald-400/80" />
-    <path d="M12 40a28 28 0 0156 0" stroke="currentColor" strokeWidth="1" strokeDasharray="2 4" className="text-emerald-500/40 dark:text-emerald-400/40" />
-  </svg>
-);
-
-const MundosVector = () => (
-  <svg viewBox="0 0 80 80" fill="none" className="w-11 h-11">
-    <circle cx="40" cy="40" r="14" stroke="currentColor" strokeWidth="1.5" className="text-purple-500 dark:text-purple-400" fill="currentColor" fillOpacity="0.1" />
-    <ellipse cx="40" cy="40" rx="30" ry="10" stroke="currentColor" strokeWidth="1.2" transform="rotate(-25 40 40)" className="text-purple-500/60 dark:text-purple-400/60" strokeDasharray="4 3" />
-    <circle cx="62" cy="30" r="4" fill="currentColor" className="text-purple-400 dark:text-purple-300" />
-    <circle cx="20" cy="54" r="3" fill="currentColor" className="text-purple-500/60 dark:text-purple-400/60" />
-    <circle cx="40" cy="16" r="2" fill="currentColor" className="text-purple-400/80 dark:text-purple-300/80" />
-  </svg>
-);
-
 interface SpiritismPortalProps {
   onChangeRoute: (route: string) => void;
 }
 
-type TabType = 'all' | 'lectures' | 'books' | 'movies';
-
-interface ResourceItem {
-  title: string;
-  category: TabType;
-  description: string;
-  link: string;
-  badge?: string;
-  platforms?: string[];
-  imageUrl: string;
-}
-
 export default function SpiritismPortal({ onChangeRoute }: SpiritismPortalProps) {
-  const [activeTab, setActiveTab] = useState<TabType>('all');
-  const [searchTerm, setSearchTerm] = useState('');
   const [activeSection, setActiveSection] = useState('hero');
-
-  // Control showing all resources or limited
-  const [showAllResources, setShowAllResources] = useState(false);
 
   // Consume any cross-page navigation scroll target on mount
   useEffect(() => {
@@ -294,8 +199,6 @@ export default function SpiritismPortal({ onChangeRoute }: SpiritismPortalProps)
         'hero',
         'frase-kardec',
         'principios',
-        'buscar-ajuda',
-        'materiais',
         'nossa-historia',
         'fale-conosco',
         'amor-ideal'
@@ -330,135 +233,10 @@ export default function SpiritismPortal({ onChangeRoute }: SpiritismPortalProps)
     { id: 'hero', label: 'Início' },
     { id: 'frase-kardec', label: 'Caridade' },
     { id: 'principios', label: '5 Princípios' },
-    { id: 'buscar-ajuda', label: 'Achar Centro' },
-    { id: 'materiais', label: 'Materiais' },
     { id: 'nossa-historia', label: 'História' },
     { id: 'fale-conosco', label: 'Fale Conosco' },
     { id: 'amor-ideal', label: 'Parceiros' }
   ];
-
-  const resources: ResourceItem[] = [
-    {
-      title: "O Evangelho Segundo o Espiritismo",
-      category: 'books',
-      description: "A explicação das máximas morais de Jesus Cristo sob a ótica da Doutrina Espírita e sua aplicação na vida.",
-      link: "https://www.luzespirita.org.br/leitura/pdf/l3.pdf",
-      badge: "Livro PDF",
-      imageUrl: "/recursos/livros/evangelho.webp"
-    },
-    {
-      title: "O Livro dos Espíritos",
-      category: 'books',
-      description: "A obra filosófica fundamental do Espiritismo, escrita por Allan Kardec. Perguntas e respostas sobre as leis divinas.",
-      link: "https://www.febnet.org.br/wp-content/uploads/2014/05/Livro-dos-Espiritos.pdf",
-      badge: "Livro PDF",
-      imageUrl: "/recursos/livros/livroespiritos.webp"
-    },
-    {
-      title: "Nosso Lar (Filme)",
-      category: 'movies',
-      description: "A superprodução nacional que retrata visualmente a jornada do Dr. André Luiz na colônia espiritual homônima.",
-      link: "https://www.youtube.com/watch?v=kHR9A8TXIF4",
-      badge: "Filme",
-      platforms: ["Disney+", "YouTube"],
-      imageUrl: "/recursos/filmes/Nosso lar.webp"
-    },
-    {
-      title: "Desequilíbrios Reais | Mayse Braga",
-      category: 'lectures',
-      description: "Como lidar com desequilíbrios emocionais e espirituais com calma, autoconhecimento e fé?",
-      link: "https://www.youtube.com/watch?v=Gt_NkiM6Arc&list=PLI-OgasY7T5seUPtpX50sm9Olw7J3IKy4&index=4",
-      badge: "Palestra",
-      imageUrl: "/recursos/palestras/maysereais.webp"
-    },
-    {
-      title: "Chico Xavier",
-      category: 'movies',
-      description: "A emocionante biografia de um dos maiores corações do Brasil, mostrando seu trabalho e amor incondicional.",
-      link: "https://www.youtube.com/watch?v=k3VsW_DmwMk",
-      badge: "Filme",
-      platforms: ["Amazon Prime", "YouTube"],
-      imageUrl: "/recursos/filmes/chico.webp"
-    },
-    {
-      title: "Nosso Lar (Livro)",
-      category: 'books',
-      description: "Pelo espírito André Luiz, psicografado por Chico Xavier. A clássica descrição da vida no mundo espiritual.",
-      link: "https://www.oconsolador.com.br/linkfixo/bibliotecavirtual/chicoxavier/nossolar.pdf",
-      badge: "Livro PDF",
-      imageUrl: "/recursos/livros/nossolarlivro.webp"
-    },
-    {
-      title: "Violetas na Janela",
-      category: 'books',
-      description: "Relato comovente e acolhedor de Patrícia sobre sua desencarnação e a descoberta da vida após a morte.",
-      link: "http://www.feluzecaridade.net/download/Violetas_na_Janela.pdf",
-      badge: "Livro PDF",
-      imageUrl: "/recursos/livros/violetas.webp"
-    },
-    {
-      title: "Tudo é Pensamento | Mayse Braga",
-      category: 'lectures',
-      description: "Você já parou para pensar no poder dos seus pensamentos? Descubra nesta palestra espírita consoladora.",
-      link: "https://www.youtube.com/watch?v=R4G9DWwIn9E&list=PLI-OgasY7T5seUPtpX50sm9Olw7J3IKy4&index=2",
-      badge: "Palestra",
-      imageUrl: "/recursos/palestras/maysepensamento.webp"
-    },
-    {
-      title: "O Livro dos Médiuns",
-      category: 'books',
-      description: "O guia prático para as manifestações, comunicação e sintonias com o plano invisível.",
-      link: "https://gelcip.com/wp-content/uploads/2018/11/o-livro-dos-mediuns-JHP.pdf",
-      badge: "Livro PDF",
-      imageUrl: "/recursos/livros/lviromediuns.webp"
-    },
-    {
-      title: "Predestinado: Arigó e o Espírito do Dr. Fritz",
-      category: 'movies',
-      description: "O retrato impressionante de Zé Arigó e suas cirurgias e curas espirituais guiadas pelo Dr Fritz.",
-      link: "https://www.youtube.com/watch?v=R4G9DWwIn9E&list=PLI-OgasY7T5seUPtpX50sm9Olw7J3IKy4&index=2",
-      badge: "Filme",
-      platforms: ["Netflix"],
-      imageUrl: "/recursos/filmes/predestinado.webp"
-    },
-    {
-      title: "Chamado | Mayse Braga",
-      category: 'lectures',
-      description: "Entendendo as vozes interiores e a influência espiritual positiva em nossas vidas.",
-      link: "https://www.youtube.com/watch?v=2KVGuKMwdds&list=PLI-OgasY7T5seUPtpX50sm9Olw7J3IKy4&index=7",
-      badge: "Palestra",
-      imageUrl: "/recursos/palestras/maysechamados.webp"
-    },
-    {
-      title: "As Mães de Chico Xavier",
-      category: 'movies',
-      description: "Três mães com histórias diferentes e dores intensas encontram consolo e respostas na mediunidade de Chico Xavier.",
-      link: "https://www.youtube.com/watch?v=R4G9DWwIn9E&list=PLI-OgasY7T5seUPtpX50sm9Olw7J3IKy4&index=2",
-      badge: "Filme",
-      platforms: ["Netflix"],
-      imageUrl: "/recursos/filmes/maesdechico.webp"
-    },
-    {
-      title: "Divaldo - O Mensageiro da Paz",
-      category: 'movies',
-      description: "A trajetória do médium Divaldo Franco, desde a infância na Bahia até a consagração como embaixador da paz.",
-      link: "https://www.youtube.com/watch?v=R4G9DWwIn9E&list=PLI-OgasY7T5seUPtpX50sm9Olw7J3IKy4&index=2",
-      badge: "Filme",
-      platforms: ["Aluguel Digital", "Netflix"],
-      imageUrl: "/recursos/filmes/divaldo.webp"
-    }
-  ];
-
-  // Filter resources based on active tab and search query
-  const filteredResources = resources.filter(item => {
-    const matchesTab = activeTab === 'all' || item.category === activeTab;
-    const matchesSearch = searchTerm.trim() === '' ||
-      item.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      item.description.toLowerCase().includes(searchTerm.toLowerCase());
-    return matchesTab && matchesSearch;
-  });
-
-  const displayedResources = showAllResources ? filteredResources : filteredResources.slice(0, 6);
 
   // Framer Motion Variants
   const fadeInUp = {
@@ -659,11 +437,24 @@ export default function SpiritismPortal({ onChangeRoute }: SpiritismPortalProps)
                 size="md"
                 iconRight={<ArrowRight className="w-4 h-4" />}
                 onClick={() => {
-                  onChangeRoute('#/resgate');
+                  onChangeRoute('/resgate');
                   window.scrollTo({ top: 0, behavior: 'smooth' });
                 }}
               >
                 Conhecer o Projeto de Resgate
+              </Button>
+
+              {/* Casas Espíritas & Livros Gratuitos CTA */}
+              <Button
+                variant="outline"
+                size="md"
+                iconLeft={<CompassIcon className="w-4 h-4 text-sky-500" />}
+                onClick={() => {
+                  onChangeRoute('/recursos');
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }}
+              >
+                Casas Espíritas & Livros Gratuitos
               </Button>
             </motion.div>
 
@@ -764,450 +555,9 @@ export default function SpiritismPortal({ onChangeRoute }: SpiritismPortalProps)
       </section>
 
       {/* ========================================================= */}
-      {/* 3. OS 5 PILARES (Folhas de Leitura com SVGs Proprietários) */}
+      {/* 3. OS 5 PRINCÍPIOS BÁSICOS (Arco Celestial Sticky Scroll) */}
       {/* ========================================================= */}
-      <section
-        id="principios"
-        className="py-20 md:py-28 scroll-mt-20 sm:scroll-mt-24 bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-white relative overflow-hidden transition-colors duration-300"
-      >
-        {/* Static Cloud Background (Sem parallax) */}
-        <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
-          <img
-            src="/imagens-pagina/ceunuvem2.webp"
-            alt="Fundo dos 5 princípios"
-            className="w-full h-full object-cover object-center opacity-15 dark:opacity-35 mix-blend-multiply dark:mix-blend-screen"
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-slate-50/80 via-slate-50/40 to-slate-50 dark:from-slate-950/90 dark:via-slate-950/70 dark:to-slate-950"></div>
-        </div>
-
-        <div className="max-w-6xl mx-auto px-4 relative z-10">
-
-          {/* Section Header (Sem pílulas artificiais) */}
-          <div className="text-center max-w-2xl mx-auto space-y-3 mb-16">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-primary-dark dark:text-white">
-              Os 5 Princípios Básicos
-            </h2>
-            <p className="text-slate-600 dark:text-slate-300 text-base md:text-lg leading-relaxed font-normal">
-              O Espiritismo une ciência, filosofia e moral para explicar as leis naturais que regem a existência humana e o destino do espírito.
-            </p>
-          </div>
-
-          {/* Folhas de Leitura Grid (3 cols no desktop) */}
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
-            variants={staggerContainer}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 text-left"
-          >
-            {/* Card 1: Anchor (Col-span 2 on LG) - Existência de Deus */}
-            <motion.div
-              variants={cardVariants}
-              className="lg:col-span-2 bg-[#FAFBFD] dark:bg-[#0B132B]/85 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 p-7 sm:p-8 shadow-sm hover:shadow-md hover:border-amber-500/40 dark:hover:border-amber-400/30 flex flex-col justify-between group transition-all duration-300"
-            >
-              <div className="space-y-4">
-                <div className="flex items-center justify-between">
-                  <span className="font-sans text-2xl sm:text-3xl font-bold tracking-tight text-slate-300 dark:text-slate-600 group-hover:text-amber-500 dark:group-hover:text-amber-400 transition-colors">
-                    01
-                  </span>
-                  <div className="p-2 rounded-xl bg-amber-500/10 text-amber-600 dark:text-amber-400">
-                    <DeusVector />
-                  </div>
-                </div>
-
-                <div>
-                  <h3 className="text-2xl font-extrabold text-slate-900 dark:text-white group-hover:text-amber-600 dark:group-hover:text-amber-300 transition-colors">
-                    Existência de Deus
-                  </h3>
-                  <p className="text-xs font-semibold text-amber-600 dark:text-amber-400/90 mt-1 uppercase tracking-wider">
-                    Inteligência Suprema e Causa Primária
-                  </p>
-                </div>
-
-                <p className="text-base text-slate-600 dark:text-slate-300 leading-relaxed font-normal border-t border-slate-200/60 dark:border-slate-800/80 pt-4 max-w-2xl">
-                  Deus é a inteligência suprema do universo e a causa primária de todas as coisas. Soberanamente justo e bom, rege a criação através de leis morais e naturais perfeitas que guiam todos os seres ao progresso infinito.
-                </p>
-              </div>
-            </motion.div>
-
-            {/* Card 2: Imortalidade da Alma */}
-            <motion.div
-              variants={cardVariants}
-              className="bg-[#FAFBFD] dark:bg-[#0B132B]/85 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 p-7 sm:p-8 shadow-sm hover:shadow-md hover:border-indigo-500/40 dark:hover:border-cyan-400/30 flex flex-col justify-between group transition-all duration-300"
-            >
-              <div className="space-y-4">
-                <div className="flex items-center justify-between">
-                  <span className="font-sans text-2xl sm:text-3xl font-bold tracking-tight text-slate-300 dark:text-slate-600 group-hover:text-indigo-500 dark:group-hover:text-cyan-400 transition-colors">
-                    02
-                  </span>
-                  <div className="p-2 rounded-xl bg-indigo-500/10 dark:bg-cyan-500/10 text-indigo-600 dark:text-cyan-400">
-                    <CentelhaAlmaVector />
-                  </div>
-                </div>
-
-                <div>
-                  <h3 className="text-xl font-extrabold text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-cyan-300 transition-colors">
-                    Imortalidade da Alma
-                  </h3>
-                  <p className="text-xs font-semibold text-indigo-600 dark:text-cyan-400/90 mt-1 uppercase tracking-wider">
-                    Continuidade da Vida
-                  </p>
-                </div>
-
-                <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-normal border-t border-slate-200/60 dark:border-slate-800/80 pt-4">
-                  O espírito sobrevive à morte do corpo físico. O mundo espiritual é a origem primordial e a verdadeira pátria da nossa consciência individual.
-                </p>
-              </div>
-            </motion.div>
-
-            {/* Card 3: Pluralidade das Existências (Reencarnação) */}
-            <motion.div
-              variants={cardVariants}
-              className="bg-[#FAFBFD] dark:bg-[#0B132B]/85 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 p-7 sm:p-8 shadow-sm hover:shadow-md hover:border-sky-500/40 dark:hover:border-sky-400/30 flex flex-col justify-between group transition-all duration-300"
-            >
-              <div className="space-y-4">
-                <div className="flex items-center justify-between">
-                  <span className="font-sans text-2xl sm:text-3xl font-bold tracking-tight text-slate-300 dark:text-slate-600 group-hover:text-sky-500 dark:group-hover:text-sky-400 transition-colors">
-                    03
-                  </span>
-                  <div className="p-2 rounded-xl bg-sky-500/10 text-sky-600 dark:text-sky-400">
-                    <ReencarnacaoVector />
-                  </div>
-                </div>
-
-                <div>
-                  <h3 className="text-xl font-extrabold text-slate-900 dark:text-white group-hover:text-sky-600 dark:group-hover:text-sky-300 transition-colors">
-                    Pluralidade das Existências
-                  </h3>
-                  <p className="text-xs font-semibold text-sky-600 dark:text-sky-400/90 mt-1 uppercase tracking-wider">
-                    Reencarnação e Aprendizado
-                  </p>
-                </div>
-
-                <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-normal border-t border-slate-200/60 dark:border-slate-800/80 pt-4">
-                  Os espíritos retornam à matéria em novas existências para aprender, reparar equívocos do passado e desenvolver virtudes morais e intelectuais.
-                </p>
-              </div>
-            </motion.div>
-
-            {/* Card 4: Comunicabilidade dos Espíritos (Mediunidade) */}
-            <motion.div
-              variants={cardVariants}
-              className="bg-[#FAFBFD] dark:bg-[#0B132B]/85 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 p-7 sm:p-8 shadow-sm hover:shadow-md hover:border-emerald-500/40 dark:hover:border-emerald-400/30 flex flex-col justify-between group transition-all duration-300"
-            >
-              <div className="space-y-4">
-                <div className="flex items-center justify-between">
-                  <span className="font-sans text-2xl sm:text-3xl font-bold tracking-tight text-slate-300 dark:text-slate-600 group-hover:text-emerald-500 dark:group-hover:text-emerald-400 transition-colors">
-                    04
-                  </span>
-                  <div className="p-2 rounded-xl bg-emerald-500/10 text-emerald-600 dark:text-emerald-400">
-                    <MediunidadeVector />
-                  </div>
-                </div>
-
-                <div>
-                  <h3 className="text-xl font-extrabold text-slate-900 dark:text-white group-hover:text-emerald-600 dark:group-hover:text-emerald-300 transition-colors">
-                    Comunicabilidade dos Espíritos
-                  </h3>
-                  <p className="text-xs font-semibold text-emerald-600 dark:text-emerald-400/90 mt-1 uppercase tracking-wider">
-                    Mediunidade com Propósito
-                  </p>
-                </div>
-
-                <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-normal border-t border-slate-200/60 dark:border-slate-800/80 pt-4">
-                  O intercâmbio entre os planos visível e invisível é uma lei natural. A mediunidade, exercida com caridade e desinteresse, traz consolo e esclarecimento.
-                </p>
-              </div>
-            </motion.div>
-
-            {/* Card 5: Pluralidade dos Mundos Habitados */}
-            <motion.div
-              variants={cardVariants}
-              className="bg-[#FAFBFD] dark:bg-[#0B132B]/85 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 p-7 sm:p-8 shadow-sm hover:shadow-md hover:border-purple-500/40 dark:hover:border-purple-400/30 flex flex-col justify-between group transition-all duration-300"
-            >
-              <div className="space-y-4">
-                <div className="flex items-center justify-between">
-                  <span className="font-sans text-2xl sm:text-3xl font-bold tracking-tight text-slate-300 dark:text-slate-600 group-hover:text-purple-500 dark:group-hover:text-purple-400 transition-colors">
-                    05
-                  </span>
-                  <div className="p-2 rounded-xl bg-purple-500/10 text-purple-600 dark:text-purple-400">
-                    <MundosVector />
-                  </div>
-                </div>
-
-                <div>
-                  <h3 className="text-xl font-extrabold text-slate-900 dark:text-white group-hover:text-purple-600 dark:group-hover:text-purple-300 transition-colors">
-                    Pluralidade dos Mundos
-                  </h3>
-                  <p className="text-xs font-semibold text-purple-600 dark:text-purple-400/90 mt-1 uppercase tracking-wider">
-                    Habitabilidade Universal
-                  </p>
-                </div>
-
-                <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-normal border-t border-slate-200/60 dark:border-slate-800/80 pt-4">
-                  A Terra é apenas uma das incontáveis moradas que abrigam espíritos em diferentes graus de maturidade e evolução ao longo do cosmos infinito.
-                </p>
-              </div>
-            </motion.div>
-          </motion.div>
-
-        </div>
-      </section>
-
-
-      {/* ========================================================= */}
-      {/* 4. ENCONTRAR UMA CASA ESPÍRITA (Buscar Ajuda Perto) */}
-      {/* ========================================================= */}
-      <section
-        id="buscar-ajuda"
-        className="py-14 sm:py-20 md:py-24 scroll-mt-20 sm:scroll-mt-24 bg-slate-50 dark:bg-slate-950 border-b border-slate-200/60 dark:border-slate-800 relative overflow-hidden bg-grid-pattern transition-colors duration-300"
-      >
-        <div className="max-w-4xl mx-auto px-4">
-          <div className="text-center max-w-2xl mx-auto space-y-3 mb-12 sm:mb-14">
-            <div className="inline-flex items-center gap-1.5 text-xs font-semibold text-sky-600 dark:text-sky-400 uppercase tracking-wider">
-              <MapPin className="w-3.5 h-3.5" />
-              <span>Acolhimento Presencial</span>
-            </div>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
-              Como encontrar uma Casa Espírita acolhedora?
-            </h2>
-            <p className="text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed font-normal">
-              As Casas Espíritas oferecem <strong className="font-semibold text-slate-900 dark:text-white">Atendimento Fraterno</strong> (uma conversa privativa, amiga e acolhedora), palestras consoladoras e <strong className="font-semibold text-slate-900 dark:text-white">passes magnéticos</strong> para reequilíbrio espiritual. Todos os serviços são 100% gratuitos.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {/* Step 1: Google Maps */}
-            <div className="bg-white dark:bg-[#0B132B]/90 p-6 sm:p-8 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 shadow-xs space-y-5 flex flex-col justify-between hover:border-sky-500/40 transition-colors">
-              <div className="space-y-3">
-                <span className="text-xs font-semibold text-sky-600 dark:text-sky-400 uppercase tracking-wider block">
-                  01 • Busca Prática
-                </span>
-                <h3 className="text-lg font-bold text-slate-900 dark:text-white">Google Maps na sua região</h3>
-                <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-normal">
-                  Pesquise por <strong>"Centro Espírita" + sua cidade ou bairro</strong> para encontrar horários de reuniões públicas, endereço e avaliações de frequentadores.
-                </p>
-              </div>
-              <div className="pt-2">
-                <Button
-                  variant="outline"
-                  size="sm"
-                  as="a"
-                  href="https://www.google.com/maps/search/centro+espirita"
-                  target="_blank"
-                  className="w-full"
-                  iconRight={<ExternalLink className="w-3.5 h-3.5 ml-1" />}
-                >
-                  Buscar no Google Maps
-                </Button>
-              </div>
-            </div>
-
-            {/* Step 2: FEB */}
-            <div className="bg-white dark:bg-[#0B132B]/90 p-6 sm:p-8 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 shadow-xs space-y-5 flex flex-col justify-between hover:border-sky-500/40 transition-colors">
-              <div className="space-y-3">
-                <span className="text-xs font-semibold text-sky-600 dark:text-sky-400 uppercase tracking-wider block">
-                  02 • Cadastro Oficial
-                </span>
-                <h3 className="text-lg font-bold text-slate-900 dark:text-white">Federação Espírita Brasileira</h3>
-                <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-normal">
-                  A FEB reúne o diretório oficial de todas as federações estaduais e centros espíritas filiados e regulares em todo o território nacional.
-                </p>
-              </div>
-              <div className="pt-2">
-                <Button
-                  variant="primary"
-                  size="sm"
-                  as="a"
-                  href="https://www.febnet.org.br/"
-                  target="_blank"
-                  className="w-full"
-                  iconRight={<ExternalLink className="w-3.5 h-3.5 ml-1" />}
-                >
-                  Acessar Portal Oficial FEB
-                </Button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-
-      {/* ========================================================= */}
-      {/* 5. ACERVO DE MATERIAIS RECOMENDADOS (Compacto & Editorial) */}
-      {/* ========================================================= */}
-      <section
-        id="materiais"
-        className="py-14 sm:py-20 scroll-mt-20 sm:scroll-mt-24 bg-white dark:bg-slate-900 border-b border-slate-200/60 dark:border-slate-800 relative overflow-hidden bg-grid-pattern transition-colors duration-300"
-      >
-        <div className="max-w-6xl mx-auto px-4">
-
-          <div className="text-center max-w-2xl mx-auto space-y-3 mb-8">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
-              Materiais Gratuitos Recomendados
-            </h2>
-            <p className="text-slate-600 dark:text-slate-300 text-sm sm:text-base font-normal">
-              Assista a palestras, leia obras fundamentais em PDF ou veja indicações de filmes inspiradores sobre a vida espiritual.
-            </p>
-          </div>
-
-          {/* Interactive Live Search Bar */}
-          <div className="max-w-md mx-auto mb-6 relative">
-            <div className="relative flex items-center">
-              <Search className="w-4 h-4 text-slate-400 absolute left-4 pointer-events-none" />
-              <input
-                type="text"
-                placeholder="Pesquisar por título ou autor (ex: Kardec, Nosso Lar)..."
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-11 pr-10 py-2.5 rounded-full bg-slate-50 dark:bg-slate-800/80 border border-slate-200/80 dark:border-slate-700 text-slate-800 dark:text-white placeholder-slate-400 text-xs sm:text-sm font-medium focus:outline-none focus:ring-2 focus:ring-sky-500/30 transition-all shadow-xs"
-              />
-              {searchTerm && (
-                <button
-                  onClick={() => setSearchTerm('')}
-                  className="absolute right-3 p-1 rounded-full text-slate-400 hover:text-slate-600 dark:hover:text-white cursor-pointer"
-                  title="Limpar busca"
-                >
-                  <X className="w-4 h-4" />
-                </button>
-              )}
-            </div>
-          </div>
-
-          {/* Category Tabs */}
-          <div className="flex flex-wrap justify-center gap-2 mb-8">
-            {(['all', 'lectures', 'books', 'movies'] as const).map((tab) => {
-              const labelMap = {
-                all: 'Todos os Recursos',
-                lectures: 'Palestras',
-                books: 'Livros em PDF',
-                movies: 'Filmes e Séries'
-              };
-              const Icon = tab === 'lectures' ? Video : tab === 'books' ? BookOpen : tab === 'movies' ? Film : BookMarked;
-              const isSelected = activeTab === tab;
-
-              return (
-                <button
-                  key={tab}
-                  onClick={() => {
-                    setActiveTab(tab);
-                    setShowAllResources(false);
-                  }}
-                  className={`relative inline-flex items-center px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all duration-200 cursor-pointer ${isSelected
-                      ? 'bg-primary dark:bg-sky-500 text-white shadow-xs'
-                      : 'bg-white/80 dark:bg-slate-800/80 text-slate-600 dark:text-slate-300 border border-slate-200/80 dark:border-slate-700 hover:border-sky-500/30'
-                    }`}
-                >
-                  {tab !== 'all' && <Icon className="w-3.5 h-3.5 mr-1.5" />}
-                  {labelMap[tab]}
-                </button>
-              );
-            })}
-          </div>
-
-          {/* Compact Resources Grid */}
-          <motion.div
-            layout
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 text-left"
-          >
-            <AnimatePresence mode="popLayout">
-              {displayedResources.map((item) => (
-                <motion.div
-                  layout
-                  initial={{ opacity: 0, scale: 0.96 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.96 }}
-                  transition={{ duration: 0.25 }}
-                  key={item.title}
-                  className="bg-white/80 dark:bg-[#0B132B]/85 backdrop-blur-md rounded-2xl border border-slate-200/80 dark:border-slate-800/80 shadow-sm hover:shadow-md hover:border-sky-500/30 transition-all duration-300 flex flex-col justify-between overflow-hidden group"
-                >
-                  <div>
-                    {/* Compact Image Banner */}
-                    <div className="relative aspect-[16/9] w-full overflow-hidden bg-slate-100 dark:bg-slate-900">
-                      <img
-                        src={item.imageUrl}
-                        alt={item.title}
-                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                        loading="lazy"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent"></div>
-                      <div className="absolute bottom-2.5 left-3 z-10">
-                        <span className="font-sans text-[10px] font-bold text-white bg-slate-900/80 backdrop-blur-md px-2.5 py-0.5 rounded-full tracking-wider uppercase border border-white/15">
-                          {item.badge}
-                        </span>
-                      </div>
-                    </div>
-
-                    {/* Compact Info Body */}
-                    <div className="p-4 sm:p-5 space-y-1.5">
-                      <h4 className="text-base font-bold text-slate-900 dark:text-white leading-snug group-hover:text-primary dark:group-hover:text-sky-400 transition-colors">
-                        {item.title}
-                      </h4>
-                      <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed line-clamp-2 font-normal">
-                        {item.description}
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* Card Footer */}
-                  <div className="px-4 sm:px-5 pb-4 sm:pb-5 pt-0 flex flex-col mt-auto">
-                    {item.platforms && (
-                      <div className="flex flex-wrap gap-1 mb-2.5">
-                        {item.platforms.map((plat, pidx) => (
-                          <span key={pidx} className="text-[10px] font-medium text-slate-600 dark:text-slate-300 bg-slate-100 dark:bg-slate-800/80 border border-slate-200/60 dark:border-slate-700/60 px-2 py-0.5 rounded-md">
-                            {plat}
-                          </span>
-                        ))}
-                      </div>
-                    )}
-                    <div className="border-t border-slate-200/60 dark:border-slate-800/80 pt-3 w-full">
-                      <a
-                        href={item.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center text-xs font-bold text-primary dark:text-sky-400 hover:text-primary-hover group/link"
-                      >
-                        {item.category === 'books' ? 'Acessar Livro (PDF)' : item.category === 'movies' ? 'Onde Assistir' : 'Assistir Palestra'}
-                        <ExternalLink className="w-3.5 h-3.5 ml-1.5 transition-transform duration-300 group-hover/link:translate-x-0.5" />
-                      </a>
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
-            </AnimatePresence>
-          </motion.div>
-
-          {/* Fallback state */}
-          {displayedResources.length === 0 && (
-            <div className="py-12 text-center text-slate-500 dark:text-slate-400 text-sm">
-              Nenhum material encontrado para "<span className="font-semibold">{searchTerm}</span>". Tente pesquisar com outros termos.
-            </div>
-          )}
-
-          {/* "Ver mais" toggle button */}
-          {filteredResources.length > 6 && (
-            <motion.div layout className="mt-8 text-center">
-              <button
-                onClick={() => setShowAllResources(!showAllResources)}
-                className="inline-flex items-center justify-center bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 font-bold px-5 py-2.5 rounded-full transition-all duration-200 cursor-pointer shadow-sm text-xs hover:border-sky-500/40"
-              >
-                {showAllResources ? (
-                  <>
-                    Ver Menos Recursos
-                    <ChevronUp className="w-4 h-4 ml-1.5" />
-                  </>
-                ) : (
-                  <>
-                    Mostrar Mais Recursos ({filteredResources.length - 6} itens)
-                    <ChevronDown className="w-4 h-4 ml-1.5" />
-                  </>
-                )}
-              </button>
-            </motion.div>
-          )}
-
-        </div>
-      </section>
+      <CelestialArcPrinciples onChangeRoute={onChangeRoute} />
 
 
       {/* ========================================================= */}
@@ -1326,7 +676,7 @@ export default function SpiritismPortal({ onChangeRoute }: SpiritismPortalProps)
               size="md"
               iconRight={<ArrowRight className="w-4 h-4" />}
               onClick={() => {
-                onChangeRoute('#/historia');
+                onChangeRoute('/historia');
                 window.scrollTo({ top: 0, behavior: 'smooth' });
               }}
             >
@@ -1416,7 +766,7 @@ export default function SpiritismPortal({ onChangeRoute }: SpiritismPortalProps)
               size="md"
               iconRight={<ArrowRight className="w-4 h-4 ml-1" />}
               onClick={() => {
-                onChangeRoute('#/resgate');
+                onChangeRoute('/resgate');
                 window.scrollTo({ top: 0, behavior: 'smooth' });
               }}
             >

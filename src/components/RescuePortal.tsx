@@ -216,7 +216,7 @@ export default function RescuePortal({ onChangeRoute }: RescuePortalProps) {
                   size="lg"
                   className="w-full sm:w-auto"
                   onClick={() => {
-                    onChangeRoute('#/');
+                    onChangeRoute('/');
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                   }}
                 >

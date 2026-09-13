@@ -95,7 +95,7 @@ export default function LinksPortal({ onChangeRoute, darkMode, onToggleDarkMode 
         {/* Top Minimal Action Bar */}
         <div className="flex items-center justify-between mb-6">
           <button
-            onClick={() => onChangeRoute('#/')}
+            onClick={() => onChangeRoute('/')}
             className="flex items-center gap-1.5 text-xs font-semibold text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-sky-400 px-3 py-1.5 rounded-full bg-white/70 dark:bg-slate-900/70 backdrop-blur-md border border-slate-200/80 dark:border-slate-800 shadow-xs hover:border-primary/30 transition-all cursor-pointer"
           >
             <ArrowLeft className="w-3.5 h-3.5" />
@@ -201,7 +201,7 @@ export default function LinksPortal({ onChangeRoute, darkMode, onToggleDarkMode 
           {/* 2. SITE OFICIAL (LOGO EM SEGUIDA) */}
           <motion.div variants={itemVariants}>
             <button
-              onClick={() => onChangeRoute('#/')}
+              onClick={() => onChangeRoute('/')}
               className="w-full group p-4 rounded-2xl bg-[#FAFBFD] dark:bg-[#0B132B]/85 border border-slate-200/80 dark:border-slate-800/80 shadow-xs hover:shadow-md hover:border-primary/40 dark:hover:border-sky-400/40 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 text-left flex items-center justify-between cursor-pointer"
             >
               <div className="flex items-center gap-3.5">
@@ -226,7 +226,7 @@ export default function LinksPortal({ onChangeRoute, darkMode, onToggleDarkMode 
           {/* 3. NOSSA HISTÓRIA */}
           <motion.div variants={itemVariants}>
             <button
-              onClick={() => onChangeRoute('#/historia')}
+              onClick={() => onChangeRoute('/historia')}
               className="w-full group p-4 rounded-2xl bg-[#FAFBFD] dark:bg-[#0B132B]/85 border border-slate-200/80 dark:border-slate-800/80 shadow-xs hover:shadow-md hover:border-primary/40 dark:hover:border-sky-400/40 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 text-left flex items-center justify-between cursor-pointer"
             >
               <div className="flex items-center gap-3.5">

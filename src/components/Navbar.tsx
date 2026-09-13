@@ -51,7 +51,7 @@ export default function Navbar({ currentRoute, onChangeRoute, darkMode, onToggle
           {/* Left: Logo */}
           <div className="flex-shrink-0 flex items-center gap-2">
             <button 
-              onClick={() => handleNavigate('#/')}
+              onClick={() => handleNavigate('/')}
               className="flex items-center space-x-2.5 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-xl p-1"
             >
               <img 
@@ -69,25 +69,35 @@ export default function Navbar({ currentRoute, onChangeRoute, darkMode, onToggle
           <div className="hidden md:flex space-x-8 items-center font-semibold text-sm text-slate-700 dark:text-slate-200">
             {/* Link 1: Início */}
             <button
-              onClick={() => handleNavigate('#/')}
+              onClick={() => handleNavigate('/')}
               className={`hover:text-primary dark:hover:text-sky-400 transition-colors cursor-pointer py-2 ${
-                currentRoute === '#/' ? 'text-primary dark:text-sky-400 border-b-2 border-primary dark:border-sky-400 font-bold' : ''
+                currentRoute === '/' ? 'text-primary dark:text-sky-400 border-b-2 border-primary dark:border-sky-400 font-bold' : ''
               }`}
             >
               Início
             </button>
 
-            {/* Link 2: Nossa História */}
+            {/* Link 2: Recursos (Novo Hub) */}
             <button
-              onClick={() => handleNavigate('#/historia')}
+              onClick={() => handleNavigate('/recursos')}
               className={`hover:text-primary dark:hover:text-sky-400 transition-colors cursor-pointer py-2 ${
-                currentRoute === '#/historia' ? 'text-primary dark:text-sky-400 border-b-2 border-primary dark:border-sky-400 font-bold' : 'text-slate-700 dark:text-slate-200'
+                currentRoute === '/recursos' ? 'text-primary dark:text-sky-400 border-b-2 border-primary dark:border-sky-400 font-bold' : 'text-slate-700 dark:text-slate-200'
+              }`}
+            >
+              Recursos & Apoio
+            </button>
+
+            {/* Link 3: Nossa História */}
+            <button
+              onClick={() => handleNavigate('/historia')}
+              className={`hover:text-primary dark:hover:text-sky-400 transition-colors cursor-pointer py-2 ${
+                currentRoute === '/historia' ? 'text-primary dark:text-sky-400 border-b-2 border-primary dark:border-sky-400 font-bold' : 'text-slate-700 dark:text-slate-200'
               }`}
             >
               Nossa História
             </button>
 
-            {/* Link 3: Espiritismo Dropdown */}
+            {/* Link 4: Espiritismo Dropdown */}
             <div className="relative">
               <button
                 onClick={() => toggleDropdown('espiritismo')}
@@ -103,32 +113,32 @@ export default function Navbar({ currentRoute, onChangeRoute, darkMode, onToggle
               {/* Dropdown Card */}
               {activeDropdown === 'espiritismo' && (
                 <div 
-                  className="absolute left-0 mt-2 w-56 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xl p-2.5 animate-fadeIn z-50 text-left"
+                  className="absolute left-0 mt-2 w-60 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xl p-2.5 animate-fadeIn z-50 text-left"
                   onMouseLeave={() => setActiveDropdown(null)}
                 >
                   <button
-                    onClick={() => handleNavigate('#/', 'principios')}
+                    onClick={() => handleNavigate('/', 'principios')}
                     className="w-full flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 transition text-slate-700 dark:text-slate-200 hover:text-primary dark:hover:text-sky-400 cursor-pointer text-xs font-bold"
                   >
                     <HelpCircle className="w-4 h-4 text-primary dark:text-sky-400 shrink-0" />
                     5 Princípios Básicos
                   </button>
                   <button
-                    onClick={() => handleNavigate('#/', 'materiais')}
+                    onClick={() => handleNavigate('/recursos', 'encontrar-centro')}
+                    className="w-full flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 transition text-slate-700 dark:text-slate-200 hover:text-primary dark:hover:text-sky-400 cursor-pointer text-xs font-bold"
+                  >
+                    <Compass className="w-4 h-4 text-primary dark:text-sky-400 shrink-0" />
+                    Achar um Centro (FEB / Maps)
+                  </button>
+                  <button
+                    onClick={() => handleNavigate('/recursos', 'biblioteca-digital')}
                     className="w-full flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 transition text-slate-700 dark:text-slate-200 hover:text-primary dark:hover:text-sky-400 cursor-pointer text-xs font-bold"
                   >
                     <Star className="w-4 h-4 text-primary dark:text-sky-400 shrink-0" />
                     Livros, Vídeos & Filmes
                   </button>
                   <button
-                    onClick={() => handleNavigate('#/', 'buscar-ajuda')}
-                    className="w-full flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 transition text-slate-700 dark:text-slate-200 hover:text-primary dark:hover:text-sky-400 cursor-pointer text-xs font-bold"
-                  >
-                    <Compass className="w-4 h-4 text-primary dark:text-sky-400 shrink-0" />
-                    Achar um Centro (FEB)
-                  </button>
-                  <button
-                    onClick={() => handleNavigate('#/', 'amor-ideal')}
+                    onClick={() => handleNavigate('/', 'amor-ideal')}
                     className="w-full flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 transition text-slate-700 dark:text-slate-200 hover:text-primary dark:hover:text-sky-400 cursor-pointer text-xs font-bold"
                   >
                     <Heart className="w-4 h-4 text-primary dark:text-sky-400 shrink-0" />
@@ -138,11 +148,11 @@ export default function Navbar({ currentRoute, onChangeRoute, darkMode, onToggle
               )}
             </div>
 
-            {/* Link 4: O Projeto (Single unified route) */}
+            {/* Link 5: O Projeto (Single unified route) */}
             <button
-              onClick={() => handleNavigate('#/resgate')}
+              onClick={() => handleNavigate('/resgate')}
               className={`hover:text-primary dark:hover:text-sky-400 transition-colors cursor-pointer py-2 ${
-                currentRoute === '#/resgate' ? 'text-primary dark:text-sky-400 border-b-2 border-primary dark:border-sky-400 font-bold' : ''
+                currentRoute === '/resgate' ? 'text-primary dark:text-sky-400 border-b-2 border-primary dark:border-sky-400 font-bold' : ''
               }`}
             >
               Projeto Resgate
@@ -170,7 +180,7 @@ export default function Navbar({ currentRoute, onChangeRoute, darkMode, onToggle
             <Button
               variant="primary"
               size="md"
-              onClick={() => handleNavigate('#/resgate', 'inscricao')}
+              onClick={() => handleNavigate('/resgate', 'inscricao')}
               className="whitespace-nowrap"
             >
               Quero Ser Voluntário
@@ -210,13 +220,19 @@ export default function Navbar({ currentRoute, onChangeRoute, darkMode, onToggle
         <div className="md:hidden border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 shadow-xl animate-fadeIn p-4 space-y-4">
           <div className="flex flex-col space-y-2">
             <button
-              onClick={() => handleNavigate('#/')}
+              onClick={() => handleNavigate('/')}
               className="w-full text-left py-2.5 px-4 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 font-semibold text-slate-800 dark:text-slate-200 hover:text-primary dark:hover:text-sky-400 cursor-pointer text-sm transition-colors"
             >
               Início (Acolhimento)
             </button>
             <button
-              onClick={() => handleNavigate('#/historia')}
+              onClick={() => handleNavigate('/recursos')}
+              className="w-full text-left py-2.5 px-4 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 font-semibold text-slate-800 dark:text-slate-200 hover:text-primary dark:hover:text-sky-400 cursor-pointer text-sm transition-colors"
+            >
+              Recursos & Casas Espíritas
+            </button>
+            <button
+              onClick={() => handleNavigate('/historia')}
               className="w-full text-left py-2.5 px-4 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 font-semibold text-slate-800 dark:text-slate-200 hover:text-primary dark:hover:text-sky-400 cursor-pointer text-sm transition-colors"
             >
               Nossa História
@@ -226,25 +242,25 @@ export default function Navbar({ currentRoute, onChangeRoute, darkMode, onToggle
             
             <div className="px-4 py-1 text-slate-400 dark:text-slate-500 font-extrabold text-[10px] uppercase tracking-wider">Espiritismo</div>
             <button
-              onClick={() => handleNavigate('#/', 'principios')}
+              onClick={() => handleNavigate('/', 'principios')}
               className="w-full text-left py-2 px-6 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 font-semibold text-slate-700 dark:text-slate-300 hover:text-primary dark:hover:text-sky-400 cursor-pointer text-xs transition-colors"
             >
               5 Princípios Básicos
             </button>
             <button
-              onClick={() => handleNavigate('#/', 'buscar-ajuda')}
+              onClick={() => handleNavigate('/recursos', 'encontrar-centro')}
               className="w-full text-left py-2 px-6 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 font-semibold text-slate-700 dark:text-slate-300 hover:text-primary dark:hover:text-sky-400 cursor-pointer text-xs transition-colors"
             >
-              Achar um Centro (FEB)
+              Achar um Centro (FEB / Maps)
             </button>
             <button
-              onClick={() => handleNavigate('#/', 'materiais')}
+              onClick={() => handleNavigate('/recursos', 'biblioteca-digital')}
               className="w-full text-left py-2 px-6 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 font-semibold text-slate-700 dark:text-slate-300 hover:text-primary dark:hover:text-sky-400 cursor-pointer text-xs transition-colors"
             >
-              Materiais de Apoio
+              Materiais & Livros em PDF
             </button>
             <button
-              onClick={() => handleNavigate('#/', 'amor-ideal')}
+              onClick={() => handleNavigate('/', 'amor-ideal')}
               className="w-full text-left py-2 px-6 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 font-semibold text-slate-700 dark:text-slate-300 hover:text-primary dark:hover:text-sky-400 cursor-pointer text-xs transition-colors"
             >
               Amor Ideal & Mei Mei
@@ -254,7 +270,7 @@ export default function Navbar({ currentRoute, onChangeRoute, darkMode, onToggle
 
             <div className="px-4 py-1 text-slate-400 dark:text-slate-500 font-extrabold text-[10px] uppercase tracking-wider">O Projeto</div>
             <button
-              onClick={() => handleNavigate('#/resgate')}
+              onClick={() => handleNavigate('/resgate')}
               className="w-full text-left py-2 px-6 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 font-semibold text-slate-700 dark:text-slate-300 hover:text-primary dark:hover:text-sky-400 cursor-pointer text-xs transition-colors"
             >
               Projeto Resgate
@@ -265,7 +281,7 @@ export default function Navbar({ currentRoute, onChangeRoute, darkMode, onToggle
             <Button
               variant="primary"
               size="md"
-              onClick={() => handleNavigate('#/resgate', 'inscricao')}
+              onClick={() => handleNavigate('/resgate', 'inscricao')}
               className="w-full py-3.5"
             >
               Quero Ser Voluntário

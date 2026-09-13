@@ -7,19 +7,29 @@ import SpiritismPortal from './components/SpiritismPortal';
 import RescuePortal from './components/RescuePortal';
 import HistoryPortal from './components/HistoryPortal';
 import LinksPortal from './components/LinksPortal';
+import ResourcesPortal from './components/ResourcesPortal';
 
 function App() {
   const [route, setRoute] = useState(() => {
-    // Get initial route from hash
+    // 1. Backwards compatibility: handle hash redirects if coming from legacy links (e.g. #/resgate)
     const initialHash = window.location.hash;
-    if (initialHash.startsWith('#/resgate')) return '#/resgate';
-    if (initialHash.startsWith('#/historia')) return '#/historia';
-    if (initialHash.startsWith('#/links') || initialHash.startsWith('#/bio')) return '#/links';
-    const cleanSection = initialHash.replace(/^#\/?/, '');
-    if (['principios', 'materiais', 'buscar-ajuda', 'amor-ideal', 'nossa-historia', 'fale-conosco'].includes(cleanSection)) {
-      sessionStorage.setItem('navScrollTarget', cleanSection);
+    if (initialHash.startsWith('#/')) {
+      const cleanFromHash = initialHash.replace(/^#/, '');
+      window.history.replaceState({}, '', cleanFromHash);
+      if (cleanFromHash.startsWith('/resgate')) return '/resgate';
+      if (cleanFromHash.startsWith('/historia')) return '/historia';
+      if (cleanFromHash.startsWith('/recursos')) return '/recursos';
+      if (cleanFromHash.startsWith('/links') || cleanFromHash.startsWith('/bio')) return '/links';
+      return '/';
     }
-    return '#/';
+
+    // 2. Standard clean pathnames
+    const path = window.location.pathname;
+    if (path.startsWith('/resgate')) return '/resgate';
+    if (path.startsWith('/historia')) return '/historia';
+    if (path.startsWith('/recursos')) return '/recursos';
+    if (path.startsWith('/links') || path.startsWith('/bio')) return '/links';
+    return '/';
   });
 
   const [darkMode, setDarkMode] = useState(() => {
@@ -42,40 +52,54 @@ function App() {
   };
 
   useEffect(() => {
-    const handleHashChange = () => {
-      const currentHash = window.location.hash;
-      if (currentHash.startsWith('#/resgate')) {
-        setRoute('#/resgate');
-      } else if (currentHash.startsWith('#/historia')) {
-        setRoute('#/historia');
-      } else if (currentHash.startsWith('#/links') || currentHash.startsWith('#/bio')) {
-        setRoute('#/links');
+    const handlePopState = () => {
+      const path = window.location.pathname;
+      if (path.startsWith('/resgate')) {
+        setRoute('/resgate');
+      } else if (path.startsWith('/historia')) {
+        setRoute('/historia');
+      } else if (path.startsWith('/recursos')) {
+        setRoute('/recursos');
+      } else if (path.startsWith('/links') || path.startsWith('/bio')) {
+        setRoute('/links');
       } else {
-        setRoute('#/');
-        const cleanSection = currentHash.replace(/^#\/?/, '');
-        if (['principios', 'materiais', 'buscar-ajuda', 'amor-ideal', 'nossa-historia', 'fale-conosco'].includes(cleanSection)) {
-          sessionStorage.setItem('navScrollTarget', cleanSection);
-        }
+        setRoute('/');
       }
-      // Scroll to top on route change only if no specific section scroll target is set
-      const hasScrollTarget = sessionStorage.getItem('navScrollTarget');
-      if (!hasScrollTarget) {
-        window.scrollTo(0, 0);
-      }
+      window.scrollTo(0, 0);
     };
 
-    window.addEventListener('hashchange', handleHashChange);
+    window.addEventListener('popstate', handlePopState);
     return () => {
-      window.removeEventListener('hashchange', handleHashChange);
+      window.removeEventListener('popstate', handlePopState);
     };
   }, []);
 
-  const handleRouteChange = (newRoute: string) => {
-    window.location.hash = newRoute;
-    setRoute(newRoute);
+  const handleRouteChange = (newRoute: string, elementId?: string) => {
+    let cleanPath = newRoute.startsWith('#') ? newRoute.replace(/^#/, '') : newRoute;
+    if (!cleanPath.startsWith('/')) {
+      cleanPath = '/' + cleanPath;
+    }
+
+    if (window.location.pathname !== cleanPath) {
+      window.history.pushState({}, '', cleanPath);
+    }
+    setRoute(cleanPath);
+
+    if (elementId) {
+      setTimeout(() => {
+        const el = document.getElementById(elementId);
+        if (el) {
+          const navbarOffset = 80;
+          const y = el.getBoundingClientRect().top + window.pageYOffset - navbarOffset;
+          window.scrollTo({ top: Math.max(0, y), behavior: 'smooth' });
+        }
+      }, 100);
+    } else {
+      window.scrollTo(0, 0);
+    }
   };
 
-  const isLinksRoute = route === '#/links';
+  const isLinksRoute = route === '/links';
 
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-100 flex flex-col font-sans selection:bg-primary selection:text-white transition-colors duration-300">
@@ -92,7 +116,7 @@ function App() {
       {/* Main Portals Content with smooth page transition animations */}
       <main className="flex-grow relative">
         <AnimatePresence mode="wait">
-          {route === '#/links' && (
+          {route === '/links' && (
             <motion.div
               key="links-portal"
               initial={{ opacity: 0, y: 12 }}
@@ -108,7 +132,7 @@ function App() {
             </motion.div>
           )}
 
-          {route === '#/resgate' && (
+          {route === '/resgate' && (
             <motion.div
               key="rescue-portal"
               initial={{ opacity: 0, y: 12 }}
@@ -120,7 +144,7 @@ function App() {
             </motion.div>
           )}
 
-          {route === '#/historia' && (
+          {route === '/historia' && (
             <motion.div
               key="history-portal"
               initial={{ opacity: 0, y: 12 }}
@@ -132,7 +156,19 @@ function App() {
             </motion.div>
           )}
 
-          {route === '#/' && (
+          {route === '/recursos' && (
+            <motion.div
+              key="resources-portal"
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -12 }}
+              transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] }}
+            >
+              <ResourcesPortal onChangeRoute={handleRouteChange} />
+            </motion.div>
+          )}
+
+          {route === '/' && (
             <motion.div
               key="spiritism-portal"
               initial={{ opacity: 0, y: 12 }}

@@ -137,7 +137,7 @@ export default function HistoryPortal({ onChangeRoute }: HistoryPortalProps) {
                 size="md"
                 className="w-full sm:w-auto cursor-pointer"
                 onClick={() => {
-                  onChangeRoute('#/');
+                  onChangeRoute('/');
                   window.scrollTo({ top: 0, behavior: 'smooth' });
                 }}
               >
@@ -268,7 +268,7 @@ export default function HistoryPortal({ onChangeRoute }: HistoryPortalProps) {
               className="w-full sm:w-auto"
               iconRight={<ArrowRight className="w-4 h-4 ml-1" />}
               onClick={() => {
-                onChangeRoute('#/resgate');
+                onChangeRoute('/resgate');
                 window.scrollTo({ top: 0, behavior: 'smooth' });
               }}
             >
@@ -279,7 +279,7 @@ export default function HistoryPortal({ onChangeRoute }: HistoryPortalProps) {
               size="md"
               className="w-full sm:w-auto"
               onClick={() => {
-                onChangeRoute('#/');
+                onChangeRoute('/');
                 window.scrollTo({ top: 0, behavior: 'smooth' });
               }}
             >
