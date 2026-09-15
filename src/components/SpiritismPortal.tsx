@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { useState, useEffect, useRef } from 'react';
+import { motion, useScroll, useTransform, useSpring, type MotionValue } from 'framer-motion';
 import { SOCIAL_STATS } from '../data/stats';
 import {
   Heart,
@@ -20,16 +20,17 @@ const LightRadianceVector = () => (
     viewBox="0 0 1200 600"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
-    className="absolute inset-0 w-full h-full object-cover pointer-events-none opacity-25 dark:opacity-35"
+    className="absolute inset-0 w-full h-full object-cover pointer-events-none opacity-85 dark:opacity-40 transition-opacity duration-500"
   >
     <defs>
       <radialGradient id="heroLightAura" cx="50%" cy="38%" r="50%">
-        <stop offset="0%" stopColor="#38bdf8" stopOpacity="0.45" />
-        <stop offset="45%" stopColor="#0284c7" stopOpacity="0.12" />
+        <stop offset="0%" stopColor="#0284c7" stopOpacity="0.35" />
+        <stop offset="45%" stopColor="#38bdf8" stopOpacity="0.16" />
         <stop offset="100%" stopColor="#0284c7" stopOpacity="0" />
       </radialGradient>
       <linearGradient id="heroRayGrad" x1="50%" y1="38%" x2="0%" y2="100%">
-        <stop offset="0%" stopColor="#38bdf8" stopOpacity="0.35" />
+        <stop offset="0%" stopColor="#0284c7" stopOpacity="0.65" />
+        <stop offset="60%" stopColor="#38bdf8" stopOpacity="0.3" />
         <stop offset="100%" stopColor="#38bdf8" stopOpacity="0" />
       </linearGradient>
     </defs>
@@ -41,7 +42,7 @@ const LightRadianceVector = () => (
       r="300"
       fill="url(#heroLightAura)"
       animate={{
-        opacity: [0.55, 0.95, 0.55],
+        opacity: [0.65, 1, 0.65],
         scale: [0.96, 1.04, 0.96],
       }}
       transition={{
@@ -53,7 +54,7 @@ const LightRadianceVector = () => (
       style={{ transformOrigin: '600px 230px' }}
     />
 
-    {/* 2. Feixes de Luz Radiais com rotação ultralenta e pulso de luminosidade */}
+    {/* 2. Feixes de Luz Radiais com rotação suave e pulso de luminosidade */}
     <motion.g
       animate={{
         rotate: [0, 360],
@@ -65,23 +66,23 @@ const LightRadianceVector = () => (
       }}
       style={{ transformOrigin: '600px 230px' }}
     >
-      <line x1="600" y1="230" x2="220" y2="50" stroke="url(#heroRayGrad)" strokeWidth="1" />
-      <line x1="600" y1="230" x2="980" y2="50" stroke="url(#heroRayGrad)" strokeWidth="1" />
-      <line x1="600" y1="230" x2="160" y2="230" stroke="url(#heroRayGrad)" strokeWidth="1" />
-      <line x1="600" y1="230" x2="1040" y2="230" stroke="url(#heroRayGrad)" strokeWidth="1" />
-      <line x1="600" y1="230" x2="320" y2="440" stroke="url(#heroRayGrad)" strokeWidth="1" />
-      <line x1="600" y1="230" x2="880" y2="440" stroke="url(#heroRayGrad)" strokeWidth="1" />
+      <line x1="600" y1="230" x2="220" y2="50" stroke="url(#heroRayGrad)" strokeWidth="1.5" />
+      <line x1="600" y1="230" x2="980" y2="50" stroke="url(#heroRayGrad)" strokeWidth="1.5" />
+      <line x1="600" y1="230" x2="160" y2="230" stroke="url(#heroRayGrad)" strokeWidth="1.5" />
+      <line x1="600" y1="230" x2="1040" y2="230" stroke="url(#heroRayGrad)" strokeWidth="1.5" />
+      <line x1="600" y1="230" x2="320" y2="440" stroke="url(#heroRayGrad)" strokeWidth="1.5" />
+      <line x1="600" y1="230" x2="880" y2="440" stroke="url(#heroRayGrad)" strokeWidth="1.5" />
     </motion.g>
 
-    {/* 3. Anel Celestial Externo Pontilhado (Rotação Horária com pontos focais orbitais) */}
+    {/* 3. Anel Celestial Externo Pontilhado (Rotação Horária com pontos orbitais bem evidentes) */}
     <motion.g
       animate={{ rotate: [0, 360] }}
       transition={{ duration: 110, repeat: Infinity, ease: 'linear' }}
       style={{ transformOrigin: '600px 230px' }}
     >
-      <circle cx="600" cy="230" r="260" stroke="#38bdf8" strokeWidth="1" strokeDasharray="4 8" opacity="0.4" />
-      <circle cx="860" cy="230" r="2.5" fill="#7dd3fc" opacity="0.7" />
-      <circle cx="340" cy="230" r="1.5" fill="#7dd3fc" opacity="0.5" />
+      <circle cx="600" cy="230" r="260" stroke="#0284c7" strokeWidth="1.5" strokeDasharray="5 7" opacity="0.65" />
+      <circle cx="860" cy="230" r="3.5" fill="#0369a1" opacity="0.9" />
+      <circle cx="340" cy="230" r="2.5" fill="#0369a1" opacity="0.8" />
     </motion.g>
 
     {/* 4. Anel Intermediário Pontilhado (Rotação Anti-Horária Oposta) */}
@@ -90,8 +91,8 @@ const LightRadianceVector = () => (
       transition={{ duration: 75, repeat: Infinity, ease: 'linear' }}
       style={{ transformOrigin: '600px 230px' }}
     >
-      <circle cx="600" cy="230" r="190" stroke="#38bdf8" strokeWidth="1" strokeDasharray="3 6" opacity="0.45" />
-      <circle cx="600" cy="40" r="2" fill="#38bdf8" opacity="0.7" />
+      <circle cx="600" cy="230" r="190" stroke="#0284c7" strokeWidth="1.5" strokeDasharray="4 6" opacity="0.6" />
+      <circle cx="600" cy="40" r="3" fill="#0369a1" opacity="0.9" />
     </motion.g>
 
     {/* 5. Anel Interno Focado (Pulso Suave de Respiração) */}
@@ -99,10 +100,10 @@ const LightRadianceVector = () => (
       cx="600"
       cy="230"
       r="120"
-      stroke="#38bdf8"
-      strokeWidth="1"
+      stroke="#0284c7"
+      strokeWidth="1.5"
       animate={{
-        opacity: [0.35, 0.65, 0.35],
+        opacity: [0.45, 0.75, 0.45],
         scale: [0.98, 1.02, 0.98],
       }}
       transition={{
@@ -135,8 +136,8 @@ const PoeiraEstelarVector = () => (
       <motion.div
         key={idx}
         animate={{
-          opacity: [0.15, 0.75, 0.15],
-          scale: [0.8, 1.2, 0.8],
+          opacity: [0.25, 0.95, 0.25],
+          scale: [0.8, 1.3, 0.8],
         }}
         transition={{
           duration: star.duration,
@@ -146,11 +147,126 @@ const PoeiraEstelarVector = () => (
           delay: star.delay,
         }}
         style={{ left: star.x, top: star.y }}
-        className={`absolute ${star.size} rounded-full bg-sky-300 dark:bg-sky-200 shadow-[0_0_8px_rgba(125,211,252,0.8)]`}
+        className={`absolute ${star.size} rounded-full bg-sky-500 dark:bg-sky-200 shadow-[0_0_6px_rgba(2,132,199,0.7)] dark:shadow-[0_0_8px_rgba(56,189,248,0.9)]`}
       />
     ))}
   </div>
 );
+
+// =========================================================
+// SCROLL-DRIVEN TEXT REVEAL: CITAÇÃO ALLAN KARDEC
+// =========================================================
+
+interface WordRevealProps {
+  word: string;
+  highlight?: boolean;
+  progress: MotionValue<number>;
+  range: [number, number];
+}
+
+function WordReveal({ word, highlight, progress, range }: WordRevealProps) {
+  const opacity = useTransform(progress, range, [0.15, 1]);
+  const y = useTransform(progress, range, [12, 0]);
+  const filter = useTransform(progress, range, ['blur(4px)', 'blur(0px)']);
+  const scale = useTransform(progress, range, [0.94, 1]);
+
+  return (
+    <motion.span
+      style={{
+        opacity,
+        y,
+        filter,
+        scale,
+      }}
+      className={`inline-block transition-colors duration-300 select-none ${
+        highlight
+          ? 'text-primary dark:text-sky-300 font-bold drop-shadow-[0_2px_12px_rgba(2,132,199,0.2)] dark:drop-shadow-[0_2px_18px_rgba(56,189,248,0.4)]'
+          : 'text-slate-900 dark:text-slate-100'
+      }`}
+    >
+      {word}
+    </motion.span>
+  );
+}
+
+function KardecQuoteReveal() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ['start 0.85', 'center 0.45'],
+  });
+
+  const smoothProgress = useSpring(scrollYProgress, { stiffness: 260, damping: 26 });
+
+  const words = [
+    { text: 'Fora', highlight: false },
+    { text: 'da', highlight: false },
+    { text: 'caridade', highlight: true },
+    { text: 'não', highlight: false },
+    { text: 'há', highlight: false },
+    { text: 'salvação.', highlight: true },
+  ];
+
+  const quoteOpacity = useTransform(smoothProgress, [0, 0.25], [0.1, 0.45]);
+  const quoteScale = useTransform(smoothProgress, [0, 0.3], [0.85, 1.05]);
+  const citeOpacity = useTransform(smoothProgress, [0.72, 1], [0, 1]);
+  const lineScale = useTransform(smoothProgress, [0.72, 1], [0.1, 1]);
+
+  return (
+    <section
+      ref={containerRef}
+      id="frase-kardec"
+      className="py-24 sm:py-32 md:py-40 bg-slate-50/80 dark:bg-[#040d1f] relative z-10 transition-colors duration-500 text-center overflow-hidden border-y border-slate-200/50 dark:border-slate-800/60"
+    >
+      {/* Luz ambiente central suave */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[480px] h-[280px] bg-sky-400/10 dark:bg-sky-500/10 rounded-full blur-3xl pointer-events-none" />
+
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 relative">
+        <div className="relative flex flex-col items-center justify-center">
+          <motion.span
+            style={{ opacity: quoteOpacity, scale: quoteScale }}
+            className="font-serif text-6xl sm:text-7xl md:text-8xl text-sky-600 dark:text-sky-300 leading-none select-none mb-3 block"
+          >
+            “
+          </motion.span>
+
+          <blockquote className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight leading-[1.22] italic px-2 flex flex-wrap justify-center gap-x-2.5 sm:gap-x-3.5 gap-y-1 sm:gap-y-2">
+            {words.map((w, idx) => {
+              const start = (idx / words.length) * 0.7;
+              const end = Math.min(1, start + (1 / words.length) * 0.95);
+              return (
+                <WordReveal
+                  key={idx}
+                  word={w.text}
+                  highlight={w.highlight}
+                  progress={smoothProgress}
+                  range={[start, end]}
+                />
+              );
+            })}
+          </blockquote>
+
+          <motion.div
+            style={{ opacity: citeOpacity }}
+            className="mt-8 sm:mt-10 flex items-center justify-center gap-3 text-slate-500 dark:text-slate-400"
+          >
+            <motion.span
+              style={{ scaleX: lineScale }}
+              className="h-px w-10 sm:w-16 bg-slate-300 dark:bg-slate-700 origin-right"
+            />
+            <cite className="text-xs sm:text-sm font-bold tracking-[0.25em] uppercase not-italic text-slate-700 dark:text-slate-300">
+              Allan Kardec
+            </cite>
+            <motion.span
+              style={{ scaleX: lineScale }}
+              className="h-px w-10 sm:w-16 bg-slate-300 dark:bg-slate-700 origin-left"
+            />
+          </motion.div>
+        </div>
+      </div>
+    </section>
+  );
+}
 
 interface SpiritismPortalProps {
   onChangeRoute: (route: string) => void;
@@ -374,7 +490,7 @@ export default function SpiritismPortal({ onChangeRoute }: SpiritismPortalProps)
           <img
             src="/imagens-pagina/ceunuvem1.webp"
             alt="Fundo celestial sereno"
-            className="w-full h-full object-cover object-center opacity-80 dark:opacity-35 mix-blend-multiply dark:mix-blend-screen transition-opacity duration-500"
+            className="w-full h-full object-cover object-center opacity-38 dark:opacity-35 mix-blend-multiply dark:mix-blend-screen transition-opacity duration-500"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-sky-100/40 via-transparent to-slate-100/80 dark:from-[#06152e]/70 dark:via-transparent dark:to-[#040d1f]"></div>
         </div>
@@ -518,38 +634,9 @@ export default function SpiritismPortal({ onChangeRoute }: SpiritismPortalProps)
       </section>
 
       {/* ========================================================= */}
-      {/* 2. CITAÇÃO ALLAN KARDEC                                    */}
+      {/* 2. CITAÇÃO ALLAN KARDEC (Scroll-Driven Text Reveal)         */}
       {/* ========================================================= */}
-      <section
-        id="frase-kardec"
-        className="py-16 sm:py-20 bg-slate-50 dark:bg-[#040d1f] relative z-10 transition-colors duration-300 text-center overflow-hidden border-y border-slate-200/50 dark:border-slate-800/60"
-      >
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 relative">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-50px" }}
-            variants={staggerContainer}
-            className="relative flex flex-col items-center justify-center"
-          >
-            <span className="font-serif text-5xl sm:text-6xl text-sky-500/30 dark:text-sky-400/30 leading-none select-none mb-2">
-              “
-            </span>
-
-            <blockquote className="font-serif text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tight leading-snug text-slate-800 dark:text-slate-100 italic px-2">
-              Fora da caridade não há salvação.
-            </blockquote>
-
-            <div className="mt-5 flex items-center justify-center gap-3 text-slate-500 dark:text-slate-400">
-              <span className="h-px w-8 sm:w-12 bg-slate-300 dark:bg-slate-700"></span>
-              <cite className="text-xs sm:text-sm font-bold tracking-widest uppercase not-italic text-slate-700 dark:text-slate-300">
-                Allan Kardec
-              </cite>
-              <span className="h-px w-8 sm:w-12 bg-slate-300 dark:bg-slate-700"></span>
-            </div>
-          </motion.div>
-        </div>
-      </section>
+      <KardecQuoteReveal />
 
       {/* ========================================================= */}
       {/* 3. OS 5 PRINCÍPIOS BÁSICOS (Arco Celestial Sticky Scroll) */}

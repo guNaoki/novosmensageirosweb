@@ -623,10 +623,10 @@ export default function CelestialArcPrinciples({ onChangeRoute }: CelestialArcPr
           {/* ------------------------------------------------------- */}
           {/* MOBILE LAYOUT (< md: Experiência Vertical Integrada)    */}
           {/* ------------------------------------------------------- */}
-          <div className="block md:hidden w-full max-w-lg mx-auto flex flex-col justify-between h-full py-1">
+          <div className="block md:hidden w-full max-w-md mx-auto flex flex-col justify-between h-full py-0.5">
             
-            {/* Top Celestial Arch */}
-            <div className="relative w-full max-w-xs mx-auto h-[90px] shrink-0 pt-1">
+            {/* Top Celestial Arch (Compacto e Conectado ao Conteúdo) */}
+            <div className="relative w-full max-w-[300px] mx-auto h-[74px] shrink-0">
               <svg viewBox="0 0 360 90" fill="none" className="w-full h-full pointer-events-none overflow-visible">
                 {/* Subtle base guide track */}
                 <path
@@ -699,45 +699,49 @@ export default function CelestialArcPrinciples({ onChangeRoute }: CelestialArcPr
               </motion.div>
             </div>
 
-            {/* Mobile Editorial Content (Estabilizado com Altura Generosa / Sem Pulos de Layout) */}
-            <div className="flex-grow flex flex-col justify-center my-auto space-y-3.5 py-2">
+            {/* Mobile Editorial Content (Preenchimento Harmônico e Sem Vácuos) */}
+            <div className="flex-1 flex flex-col justify-between py-1 min-h-0">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={activePrinciple.id}
-                  initial={{ opacity: 0, y: 8 }}
+                  initial={{ opacity: 0, y: 6 }}
                   animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -8 }}
-                  transition={{ duration: 0.25 }}
-                  className="space-y-3 text-left"
+                  exit={{ opacity: 0, y: -6 }}
+                  transition={{ duration: 0.22 }}
+                  className="flex-1 flex flex-col justify-between text-left"
                 >
-                  <div className="flex items-center justify-between">
-                    <span
-                      className="px-2.5 py-0.5 rounded-full text-xs font-mono font-bold text-white shadow-xs"
-                      style={{ backgroundColor: activePrinciple.colorHex }}
-                    >
-                      {activePrinciple.id} / 05
-                    </span>
-                    <span
-                      className="text-xs font-bold uppercase tracking-wider truncate max-w-[210px]"
-                      style={{ color: activePrinciple.colorHex }}
-                    >
-                      {activePrinciple.subtitle}
-                    </span>
+                  {/* Bloco Superior: Eyebrow + Título + Descrição */}
+                  <div className="space-y-2">
+                    <div className="flex items-center justify-between">
+                      <span
+                        className="px-2.5 py-0.5 rounded-full text-xs font-mono font-bold text-white shadow-xs"
+                        style={{ backgroundColor: activePrinciple.colorHex }}
+                      >
+                        {activePrinciple.id} / 05
+                      </span>
+                      <span
+                        className="text-xs font-bold uppercase tracking-wider truncate max-w-[210px]"
+                        style={{ color: activePrinciple.colorHex }}
+                      >
+                        {activePrinciple.subtitle}
+                      </span>
+                    </div>
+
+                    <h3 className="font-serif text-2xl sm:text-3xl font-bold text-slate-950 dark:text-white leading-[1.14]">
+                      {activePrinciple.title}
+                    </h3>
+
+                    <p className="text-sm sm:text-base text-slate-700 dark:text-slate-200 leading-relaxed font-normal">
+                      {activePrinciple.description}
+                    </p>
                   </div>
 
-                  <h3 className="font-serif text-3xl sm:text-4xl font-bold text-slate-950 dark:text-white leading-[1.14]">
-                    {activePrinciple.title}
-                  </h3>
-
-                  <p className="text-base sm:text-lg text-slate-800 dark:text-slate-200 leading-relaxed font-normal">
-                    {activePrinciple.description}
-                  </p>
-
-                  <div className="pt-3 border-t border-slate-200/80 dark:border-slate-800/80">
-                    <blockquote className="font-serif italic text-sm sm:text-base text-slate-700 dark:text-slate-300 leading-snug">
+                  {/* Bloco Inferior: Card de Citação Refinado (Ocupa o espaço inferior com valor editorial) */}
+                  <div className="my-2 p-3.5 sm:p-4 rounded-2xl bg-white/70 dark:bg-slate-900/60 border border-slate-200/80 dark:border-slate-800/80 shadow-xs backdrop-blur-xs">
+                    <blockquote className="font-serif italic text-xs sm:text-sm text-slate-800 dark:text-slate-200 leading-snug">
                       “{activePrinciple.quote}”
                     </blockquote>
-                    <cite className="block mt-1.5 text-xs font-semibold text-slate-500 dark:text-slate-400 not-italic uppercase tracking-wider">
+                    <cite className="block mt-1.5 text-[11px] font-semibold text-slate-500 dark:text-slate-400 not-italic uppercase tracking-wider">
                       — {activePrinciple.quoteAuthor}
                     </cite>
                   </div>
@@ -746,7 +750,7 @@ export default function CelestialArcPrinciples({ onChangeRoute }: CelestialArcPr
             </div>
 
             {/* Mobile Navigation Controls (Deck Unificado na Base da Seção - Ergonômico & Completo) */}
-            <div className="shrink-0 pt-3 pb-1 border-t border-slate-200/80 dark:border-slate-800/80 flex flex-col gap-2.5">
+            <div className="shrink-0 pt-2 pb-1 border-t border-slate-200/80 dark:border-slate-800/80 flex flex-col gap-2">
               <div className="flex items-center justify-between">
                 <button
                   type="button"
