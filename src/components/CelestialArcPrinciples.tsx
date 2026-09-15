@@ -224,11 +224,52 @@ const MOBILE_SEGMENTS = [
   }
 ];
 
-interface CelestialArcPrinciplesProps {
-  onChangeRoute: (route: string) => void;
+// 5 Marcos Exatos do Astrolábio Vertical Mobile (t = 0, 0.25, 0.5, 0.75, 1.0)
+const ASTROLABE_POINTS = [
+  { x: 35.0, y: 25.0 },
+  { x: 20.9, y: 97.3 },
+  { x: 16.3, y: 180.0 },
+  { x: 20.9, y: 262.7 },
+  { x: 35.0, y: 335.0 }
+];
+
+const ASTROLABE_SEGMENTS = [
+  { d: "M 35,25 C 26.5,46 22.8,70 20.9,97.3", gradId: "astroGrad1" },
+  { d: "M 20.9,97.3 C 19,124.6 16.3,152 16.3,180", gradId: "astroGrad2" },
+  { d: "M 16.3,180 C 16.3,208 19,235.4 20.9,262.7", gradId: "astroGrad3" },
+  { d: "M 20.9,262.7 C 22.8,290 26.5,314 35,335", gradId: "astroGrad4" }
+];
+
+function getAstrolabeBezierPoint(t: number) {
+  const p0 = { x: 35, y: 25 };
+  const p1 = { x: 10, y: 110 };
+  const p2 = { x: 10, y: 250 };
+  const p3 = { x: 35, y: 335 };
+  const mt = 1 - t;
+  const mt2 = mt * mt;
+  const mt3 = mt2 * mt;
+  const t2 = t * t;
+  const t3 = t2 * t;
+  const x = mt3 * p0.x + 3 * mt2 * t * p1.x + 3 * mt * t2 * p2.x + t3 * p3.x;
+  const y = mt3 * p0.y + 3 * mt2 * t * p1.y + 3 * mt * t2 * p2.y + t3 * p3.y;
+  return { x, y };
 }
 
-export default function CelestialArcPrinciples({ onChangeRoute }: CelestialArcPrinciplesProps) {
+interface CelestialArcPrinciplesProps {
+  onChangeRoute: (route: string) => void;
+  variant?: 'editorial' | 'astrolabio' | 'sagrado';
+  sectionId?: string;
+  variantTitle?: string;
+  variantNumber?: number;
+}
+
+export default function CelestialArcPrinciples({
+  onChangeRoute,
+  variant = 'editorial',
+  sectionId = 'principios',
+  variantTitle,
+  variantNumber
+}: CelestialArcPrinciplesProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);
 
@@ -262,6 +303,15 @@ export default function CelestialArcPrinciples({ onChangeRoute }: CelestialArcPr
   const mobileBeaconY = useTransform(smoothProgress, (p) => {
     const pt = getMobileBezierPoint(p);
     return `${(pt.y / 90) * 100}%`;
+  });
+
+  const astrolabeBeaconX = useTransform(smoothProgress, (p) => {
+    const pt = getAstrolabeBezierPoint(p);
+    return `${(pt.x / 50) * 100}%`;
+  });
+  const astrolabeBeaconY = useTransform(smoothProgress, (p) => {
+    const pt = getAstrolabeBezierPoint(p);
+    return `${(pt.y / 360) * 100}%`;
   });
 
   // Step threshold detection centered around milestones 0, 0.25, 0.5, 0.75, 1.0
@@ -322,7 +372,7 @@ export default function CelestialArcPrinciples({ onChangeRoute }: CelestialArcPr
   return (
     <section
       ref={containerRef}
-      id="principios"
+      id={sectionId}
       className="relative h-[320vh] md:h-[400vh] bg-slate-50 dark:bg-[#030914] text-slate-900 dark:text-white transition-colors duration-500"
     >
       {/* Shared SVG Defs with Segment Gradients matching the dots */}
@@ -360,6 +410,24 @@ export default function CelestialArcPrinciples({ onChangeRoute }: CelestialArcPr
             <stop offset="100%" stopColor="#16a34a" />
           </linearGradient>
           <linearGradient id="mobGrad4" x1="263.4" y1="44.1" x2="330" y2="75" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stopColor="#16a34a" />
+            <stop offset="100%" stopColor="#4338ca" />
+          </linearGradient>
+
+          {/* Astrolabe Vertical Segment Gradients */}
+          <linearGradient id="astroGrad1" x1="35" y1="25" x2="20.9" y2="97.3" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stopColor="#d97706" />
+            <stop offset="100%" stopColor="#0284c7" />
+          </linearGradient>
+          <linearGradient id="astroGrad2" x1="20.9" y1="97.3" x2="16.3" y2="180" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stopColor="#0284c7" />
+            <stop offset="100%" stopColor="#0d9488" />
+          </linearGradient>
+          <linearGradient id="astroGrad3" x1="16.3" y1="180" x2="20.9" y2="262.7" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stopColor="#0d9488" />
+            <stop offset="100%" stopColor="#16a34a" />
+          </linearGradient>
+          <linearGradient id="astroGrad4" x1="20.9" y1="262.7" x2="35" y2="335" gradientUnits="userSpaceOnUse">
             <stop offset="0%" stopColor="#16a34a" />
             <stop offset="100%" stopColor="#4338ca" />
           </linearGradient>
@@ -621,188 +689,439 @@ export default function CelestialArcPrinciples({ onChangeRoute }: CelestialArcPr
           </div>
 
           {/* ------------------------------------------------------- */}
-          {/* MOBILE LAYOUT (< md: Experiência Vertical Integrada)    */}
+          {/* MOBILE LAYOUT (< md: 3 Variantes de Design Editorial)    */}
           {/* ------------------------------------------------------- */}
-          <div className="block md:hidden w-full max-w-md mx-auto flex flex-col justify-between h-full py-0.5">
+          <div className="block md:hidden w-full max-w-md mx-auto flex flex-col justify-between h-full py-0.5 relative">
             
-            {/* Top Celestial Arch (Compacto e Conectado ao Conteúdo) */}
-            <div className="relative w-full max-w-[300px] mx-auto h-[74px] shrink-0">
-              <svg viewBox="0 0 360 90" fill="none" className="w-full h-full pointer-events-none overflow-visible">
-                {/* Subtle base guide track */}
-                <path
-                  d="M 30,75 C 100,20 260,20 330,75"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                  strokeDasharray="3 5"
-                  className="text-slate-300 dark:text-slate-800"
-                  strokeLinecap="round"
-                />
+            {/* Banner de Comparação Mobile (Visualização Rápida no Vercel) */}
+            {variantTitle && (
+              <div className="shrink-0 -mx-4 -mt-2.5 mb-1 px-3 py-1.5 bg-slate-900/95 dark:bg-black/95 text-white flex items-center justify-between border-b border-white/10 z-30">
+                <div className="flex items-center gap-1.5 truncate">
+                  <span className="w-2 h-2 rounded-full bg-sky-400 animate-pulse shrink-0" />
+                  {variantNumber && (
+                    <span className="px-1.5 py-0.5 rounded bg-sky-500/20 text-sky-300 font-mono text-[9px] font-bold shrink-0">
+                      V{variantNumber}
+                    </span>
+                  )}
+                  <span className="font-bold text-[10.5px] truncate text-sky-200">
+                    {variantTitle}
+                  </span>
+                </div>
+                <div className="flex items-center gap-1 shrink-0 pl-1.5">
+                  <a
+                    href="#principios-v1"
+                    className={`px-1.5 py-0.5 rounded text-[9.5px] font-mono font-bold transition-colors ${
+                      variant === 'editorial' ? 'bg-sky-500 text-white' : 'bg-white/10 text-slate-300'
+                    }`}
+                  >
+                    Opç 1
+                  </a>
+                  <a
+                    href="#principios-v2"
+                    className={`px-1.5 py-0.5 rounded text-[9.5px] font-mono font-bold transition-colors ${
+                      variant === 'astrolabio' ? 'bg-sky-500 text-white' : 'bg-white/10 text-slate-300'
+                    }`}
+                  >
+                    Opç 2
+                  </a>
+                  <a
+                    href="#principios-v3"
+                    className={`px-1.5 py-0.5 rounded text-[9.5px] font-mono font-bold transition-colors ${
+                      variant === 'sagrado' ? 'bg-sky-500 text-white' : 'bg-white/10 text-slate-300'
+                    }`}
+                  >
+                    Opç 3
+                  </a>
+                </div>
+              </div>
+            )}
 
-                {/* 4 Colored Segments matching the dots */}
-                {MOBILE_SEGMENTS.map((seg, sIdx) => {
-                  const isPassedOrCurrent = activeIndex >= sIdx;
-                  return (
-                    <g key={sIdx}>
-                      <path
-                        d={seg.d}
-                        stroke={`url(#${seg.gradId})`}
-                        strokeWidth="4"
-                        strokeLinecap="round"
-                        opacity={isPassedOrCurrent ? 0.35 : 0.15}
-                        filter="url(#celestialAtmosphereGlow)"
-                        className="transition-opacity duration-300"
-                      />
-                      <path
-                        d={seg.d}
-                        stroke={`url(#${seg.gradId})`}
-                        strokeWidth="2.5"
-                        strokeLinecap="round"
-                        opacity={isPassedOrCurrent ? 1 : 0.35}
-                        className="transition-opacity duration-300"
-                      />
-                    </g>
-                  );
-                })}
-
-                {/* Milestone Dots */}
-                {MOBILE_ARC_POINTS.map((pt, idx) => (
-                  <circle
-                    key={idx}
-                    cx={pt.x}
-                    cy={pt.y}
-                    r={idx === activeIndex ? 6.5 : 4}
-                    fill={idx <= activeIndex ? PRINCIPLES[idx].colorHex : '#94a3b8'}
-                    className="pointer-events-auto cursor-pointer"
-                    onClick={() => goToIndex(idx)}
-                  />
-                ))}
-              </svg>
-
-              {/* Continuous Sliding Beacon along Mobile Curve */}
-              <motion.div
-                className="absolute w-12 h-12 -translate-x-1/2 -translate-y-1/2 rounded-full flex items-center justify-center pointer-events-none z-20"
-                style={{
-                  left: mobileBeaconX,
-                  top: mobileBeaconY
-                }}
-              >
+            {/* ======================================================= */}
+            {/* VARIANTE 1: LÂMINA EDITORIAL IMERSIVA (Apple / Kinfolk) */}
+            {/* ======================================================= */}
+            {variant === 'editorial' && (
+              <div className="flex-1 flex flex-col justify-between relative overflow-hidden">
+                {/* Aura Dinâmica de Fundo na cor do princípio ativo */}
                 <div
-                  className="absolute inset-0 rounded-full blur-xs opacity-70 transition-colors duration-300"
+                  className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[280px] h-[280px] rounded-full blur-3xl pointer-events-none transition-colors duration-700 opacity-60 dark:opacity-40"
                   style={{ backgroundColor: activePrinciple.colorHex }}
                 />
-                <div
-                  className="relative w-9 h-9 rounded-full bg-white dark:bg-slate-900 border-2 shadow-md flex items-center justify-center p-1.5 transition-colors duration-300"
-                  style={{ borderColor: activePrinciple.colorHex }}
-                >
-                  <activePrinciple.Icon className="w-full h-full object-contain" />
-                </div>
-              </motion.div>
-            </div>
 
-            {/* Mobile Editorial Content (Preenchimento Harmônico e Sem Vácuos) */}
-            <div className="flex-1 flex flex-col justify-between py-1 min-h-0">
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={activePrinciple.id}
-                  initial={{ opacity: 0, y: 6 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -6 }}
-                  transition={{ duration: 0.22 }}
-                  className="flex-1 flex flex-col justify-between text-left"
-                >
-                  {/* Bloco Superior: Eyebrow + Título + Descrição */}
-                  <div className="space-y-2">
-                    <div className="flex items-center gap-2.5 flex-wrap">
-                      <span
-                        className="px-2.5 py-0.5 rounded-full text-xs font-mono font-bold text-white shadow-xs shrink-0"
-                        style={{ backgroundColor: activePrinciple.colorHex }}
-                      >
-                        {activePrinciple.id} / 05
-                      </span>
-                      <span
-                        className="text-xs sm:text-sm font-bold uppercase tracking-wider leading-snug"
-                        style={{ color: activePrinciple.colorHex }}
-                      >
-                        {activePrinciple.subtitle}
-                      </span>
+                {/* Numeral Monumental em Marca d'Água Serifada */}
+                <div className="absolute top-2 right-1 text-[115px] font-serif font-black text-slate-900/[0.04] dark:text-white/[0.05] pointer-events-none select-none leading-none z-0">
+                  {activePrinciple.id}
+                </div>
+
+                {/* Top Celestial Horizon Arc (Linha Fina e Orgânica) */}
+                <div className="relative w-full max-w-[280px] mx-auto h-[60px] shrink-0 pt-0.5 z-10">
+                  <svg viewBox="0 0 360 75" fill="none" className="w-full h-full pointer-events-none overflow-visible">
+                    <path
+                      d="M 30,55 C 100,18 260,18 330,55"
+                      stroke="currentColor"
+                      strokeWidth="1.2"
+                      strokeDasharray="2 4"
+                      className="text-slate-300 dark:text-slate-800"
+                      strokeLinecap="round"
+                    />
+                    {MOBILE_SEGMENTS.map((seg, sIdx) => {
+                      const isPassedOrCurrent = activeIndex >= sIdx;
+                      return (
+                        <g key={sIdx}>
+                          <path
+                            d={seg.d}
+                            stroke={`url(#${seg.gradId})`}
+                            strokeWidth="2.5"
+                            strokeLinecap="round"
+                            opacity={isPassedOrCurrent ? 0.9 : 0.25}
+                            className="transition-opacity duration-300"
+                          />
+                        </g>
+                      );
+                    })}
+                    {MOBILE_ARC_POINTS.map((pt, idx) => (
+                      <circle
+                        key={idx}
+                        cx={pt.x}
+                        cy={pt.y}
+                        r={idx === activeIndex ? 5.5 : 3.5}
+                        fill={idx <= activeIndex ? PRINCIPLES[idx].colorHex : '#94a3b8'}
+                        className="pointer-events-auto cursor-pointer"
+                        onClick={() => goToIndex(idx)}
+                      />
+                    ))}
+                  </svg>
+
+                  {/* Sliding Beacon */}
+                  <motion.div
+                    className="absolute w-10 h-10 -translate-x-1/2 -translate-y-1/2 rounded-full flex items-center justify-center pointer-events-none z-20"
+                    style={{ left: mobileBeaconX, top: mobileBeaconY }}
+                  >
+                    <div
+                      className="absolute inset-0 rounded-full blur-xs opacity-75"
+                      style={{ backgroundColor: activePrinciple.colorHex }}
+                    />
+                    <div
+                      className="relative w-8 h-8 rounded-full bg-white dark:bg-slate-900 border-2 shadow-md flex items-center justify-center p-1"
+                      style={{ borderColor: activePrinciple.colorHex }}
+                    >
+                      <activePrinciple.Icon className="w-full h-full object-contain" />
+                    </div>
+                  </motion.div>
+                </div>
+
+                {/* Conteúdo Editorial Nobre (Livre de Caixas) */}
+                <div className="flex-1 flex flex-col justify-between py-1 min-h-0 z-10 text-left">
+                  <AnimatePresence mode="wait">
+                    <motion.div
+                      key={activePrinciple.id}
+                      initial={{ opacity: 0, y: 6 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -6 }}
+                      transition={{ duration: 0.22 }}
+                      className="flex-1 flex flex-col justify-between"
+                    >
+                      <div className="space-y-1.5">
+                        <div className="flex items-center gap-2">
+                          <span className="w-2 h-2 rounded-full shrink-0" style={{ backgroundColor: activePrinciple.colorHex }} />
+                          <span className="text-[11px] font-bold uppercase tracking-[0.2em]" style={{ color: activePrinciple.colorHex }}>
+                            {activePrinciple.subtitle}
+                          </span>
+                        </div>
+
+                        <h3 className="font-serif text-[1.85rem] font-bold tracking-tight text-slate-950 dark:text-white leading-[1.12]">
+                          {activePrinciple.title}
+                        </h3>
+
+                        <p className="text-[0.92rem] text-slate-700 dark:text-slate-200 leading-relaxed font-normal">
+                          {activePrinciple.description}
+                        </p>
+                      </div>
+
+                      {/* Pull Quote Editorial Livre (Fim da Caixa Cinza) */}
+                      <div className="pl-3.5 border-l-2 py-0.5 transition-colors duration-500 my-1" style={{ borderColor: activePrinciple.colorHex }}>
+                        <blockquote className="font-serif italic text-xs sm:text-sm text-slate-800 dark:text-slate-200 leading-snug">
+                          “{activePrinciple.quote}”
+                        </blockquote>
+                        <cite className="block mt-1 text-[10.5px] font-semibold text-slate-500 dark:text-slate-400 not-italic uppercase tracking-wider">
+                          — {activePrinciple.quoteAuthor}
+                        </cite>
+                      </div>
+                    </motion.div>
+                  </AnimatePresence>
+                </div>
+
+                {/* Barra de Navegação Flutuante em Vidro Fosco */}
+                <div className="shrink-0 pt-2 pb-0.5 flex flex-col gap-1.5 z-10">
+                  <div className="flex items-center justify-between px-3 py-1.5 rounded-full bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border border-slate-200/60 dark:border-slate-800/60 shadow-xs">
+                    <button
+                      type="button"
+                      onClick={() => goToIndex(activeIndex - 1)}
+                      disabled={activeIndex === 0}
+                      className="px-2.5 py-1 rounded-full text-xs font-bold text-slate-700 dark:text-slate-200 disabled:opacity-25 hover:bg-slate-100 dark:hover:bg-slate-800 transition"
+                    >
+                      ← Anterior
+                    </button>
+
+                    <div className="flex items-center gap-1.5">
+                      {PRINCIPLES.map((p, idx) => (
+                        <button
+                          key={idx}
+                          type="button"
+                          onClick={() => goToIndex(idx)}
+                          className={`h-1.5 rounded-full transition-all duration-300 ${
+                            idx === activeIndex ? 'w-5' : 'w-1.5 bg-slate-300 dark:bg-slate-700'
+                          }`}
+                          style={{ backgroundColor: idx === activeIndex ? p.colorHex : undefined }}
+                        />
+                      ))}
                     </div>
 
-                    <h3 className="font-serif text-2xl sm:text-3xl font-bold text-slate-950 dark:text-white leading-[1.14]">
-                      {activePrinciple.title}
-                    </h3>
-
-                    <p className="text-sm sm:text-base text-slate-700 dark:text-slate-200 leading-relaxed font-normal">
-                      {activePrinciple.description}
-                    </p>
-                  </div>
-
-                  {/* Bloco Inferior: Card de Citação Refinado (Ocupa o espaço inferior com valor editorial) */}
-                  <div className="my-2 p-3.5 sm:p-4 rounded-2xl bg-white/70 dark:bg-slate-900/60 border border-slate-200/80 dark:border-slate-800/80 shadow-xs backdrop-blur-xs">
-                    <blockquote className="font-serif italic text-xs sm:text-sm text-slate-800 dark:text-slate-200 leading-snug">
-                      “{activePrinciple.quote}”
-                    </blockquote>
-                    <cite className="block mt-1.5 text-[11px] font-semibold text-slate-500 dark:text-slate-400 not-italic uppercase tracking-wider">
-                      — {activePrinciple.quoteAuthor}
-                    </cite>
-                  </div>
-                </motion.div>
-              </AnimatePresence>
-            </div>
-
-            {/* Mobile Navigation Controls (Deck Unificado na Base da Seção - Ergonômico & Completo) */}
-            <div className="shrink-0 pt-2 pb-1 border-t border-slate-200/80 dark:border-slate-800/80 flex flex-col gap-2">
-              <div className="flex items-center justify-between">
-                <button
-                  type="button"
-                  onClick={() => goToIndex(activeIndex - 1)}
-                  disabled={activeIndex === 0}
-                  className="px-3.5 py-2 rounded-xl border border-slate-300 dark:border-slate-700 disabled:opacity-25 font-semibold cursor-pointer active:scale-95 text-xs text-slate-700 dark:text-slate-200"
-                >
-                  ← Anterior
-                </button>
-
-                {/* 5 Milestone Indicator Pills no centro do deck */}
-                <div className="flex items-center gap-2">
-                  {PRINCIPLES.map((p, idx) => (
                     <button
-                      key={idx}
                       type="button"
-                      onClick={() => goToIndex(idx)}
-                      className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
-                        idx === activeIndex
-                          ? 'w-6 shadow-xs'
-                          : 'w-2 bg-slate-300 dark:bg-slate-700'
-                      }`}
-                      style={{
-                        backgroundColor: idx === activeIndex ? p.colorHex : undefined
-                      }}
-                      title={`Princípio ${idx + 1}`}
-                    />
-                  ))}
+                      onClick={() => goToIndex(activeIndex + 1)}
+                      disabled={activeIndex === 4}
+                      className="px-2.5 py-1 rounded-full text-xs font-bold text-slate-700 dark:text-slate-200 disabled:opacity-25 hover:bg-slate-100 dark:hover:bg-slate-800 transition"
+                    >
+                      Próximo →
+                    </button>
+                  </div>
+
+                  <div className="flex items-center justify-between text-[11px] text-slate-500 dark:text-slate-400 px-2">
+                    <span>Role para avançar</span>
+                    <button type="button" onClick={() => onChangeRoute('/recursos')} className="text-sky-900 dark:text-sky-300 font-bold hover:underline">
+                      Recursos & Obras ➔
+                    </button>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* ======================================================= */}
+            {/* VARIANTE 2: ASTROLÁBIO CELESTIAL VERTICAL (Lateral)     */}
+            {/* ======================================================= */}
+            {variant === 'astrolabio' && (
+              <div className="flex-1 flex flex-col justify-between py-1 min-h-0">
+                <div className="flex-1 flex items-stretch gap-3 min-h-0">
+                  {/* Lado Esquerdo (78%): Editorial */}
+                  <div className="flex-1 flex flex-col justify-between text-left pr-1 min-h-0">
+                    <AnimatePresence mode="wait">
+                      <motion.div
+                        key={activePrinciple.id}
+                        initial={{ opacity: 0, x: -8 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        exit={{ opacity: 0, x: 8 }}
+                        transition={{ duration: 0.22 }}
+                        className="flex-1 flex flex-col justify-between"
+                      >
+                        <div className="space-y-1.5">
+                          <span className="text-[11px] font-bold uppercase tracking-wider block" style={{ color: activePrinciple.colorHex }}>
+                            {activePrinciple.subtitle}
+                          </span>
+
+                          <h3 className="font-serif text-2xl font-bold tracking-tight text-slate-950 dark:text-white leading-[1.14]">
+                            {activePrinciple.title}
+                          </h3>
+
+                          <p className="text-[0.88rem] text-slate-700 dark:text-slate-200 leading-relaxed font-normal">
+                            {activePrinciple.description}
+                          </p>
+                        </div>
+
+                        <div className="pl-3 border-l-2 py-0.5 my-1" style={{ borderColor: activePrinciple.colorHex }}>
+                          <blockquote className="font-serif italic text-xs text-slate-800 dark:text-slate-200 leading-snug">
+                            “{activePrinciple.quote}”
+                          </blockquote>
+                          <cite className="block mt-1 text-[10px] font-semibold text-slate-500 dark:text-slate-400 not-italic uppercase tracking-wider">
+                            — {activePrinciple.quoteAuthor}
+                          </cite>
+                        </div>
+                      </motion.div>
+                    </AnimatePresence>
+
+                    {/* Botões do Astrolábio */}
+                    <div className="pt-2 border-t border-slate-200/80 dark:border-slate-800/80 flex items-center justify-between">
+                      <button
+                        type="button"
+                        onClick={() => goToIndex(activeIndex - 1)}
+                        disabled={activeIndex === 0}
+                        className="px-3 py-1.5 rounded-lg border border-slate-300 dark:border-slate-700 disabled:opacity-25 font-bold text-xs"
+                      >
+                        ← Anterior
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => goToIndex(activeIndex + 1)}
+                        disabled={activeIndex === 4}
+                        className="px-3 py-1.5 rounded-lg border border-slate-300 dark:border-slate-700 disabled:opacity-25 font-bold text-xs"
+                      >
+                        Próximo →
+                      </button>
+                    </div>
+                  </div>
+
+                  {/* Lado Direito (22%): Arco Vertical Descente com Beacon */}
+                  <div className="w-[50px] shrink-0 relative flex flex-col justify-center items-center py-2">
+                    <svg viewBox="0 0 50 360" fill="none" className="w-full h-full pointer-events-none overflow-visible">
+                      <path
+                        d="M 35,25 C 10,110 10,250 35,335"
+                        stroke="currentColor"
+                        strokeWidth="1.5"
+                        strokeDasharray="3 5"
+                        className="text-slate-300 dark:text-slate-800"
+                        strokeLinecap="round"
+                      />
+                      {ASTROLABE_SEGMENTS.map((seg, sIdx) => {
+                        const isPassed = activeIndex >= sIdx;
+                        return (
+                          <path
+                            key={sIdx}
+                            d={seg.d}
+                            stroke={`url(#${seg.gradId})`}
+                            strokeWidth="3"
+                            strokeLinecap="round"
+                            opacity={isPassed ? 1 : 0.25}
+                            className="transition-opacity duration-300"
+                          />
+                        );
+                      })}
+                      {ASTROLABE_POINTS.map((pt, idx) => (
+                        <g key={idx} className="cursor-pointer pointer-events-auto" onClick={() => goToIndex(idx)}>
+                          <circle
+                            cx={pt.x}
+                            cy={pt.y}
+                            r={idx === activeIndex ? 6 : 3.5}
+                            fill={idx <= activeIndex ? PRINCIPLES[idx].colorHex : '#94a3b8'}
+                          />
+                          <text
+                            x={pt.x - 14}
+                            y={pt.y + 3.5}
+                            fontSize="9"
+                            fontFamily="monospace"
+                            fontWeight="bold"
+                            fill={idx === activeIndex ? PRINCIPLES[idx].colorHex : '#94a3b8'}
+                          >
+                            {PRINCIPLES[idx].id}
+                          </text>
+                        </g>
+                      ))}
+                    </svg>
+
+                    {/* Beacon Vertical */}
+                    <motion.div
+                      className="absolute w-8 h-8 -translate-x-1/2 -translate-y-1/2 rounded-full flex items-center justify-center pointer-events-none z-20"
+                      style={{ left: astrolabeBeaconX, top: astrolabeBeaconY }}
+                    >
+                      <div
+                        className="absolute inset-0 rounded-full blur-xs opacity-70"
+                        style={{ backgroundColor: activePrinciple.colorHex }}
+                      />
+                      <div
+                        className="relative w-6 h-6 rounded-full bg-white dark:bg-slate-900 border-2 shadow-sm flex items-center justify-center p-0.5"
+                        style={{ borderColor: activePrinciple.colorHex }}
+                      >
+                        <activePrinciple.Icon className="w-full h-full object-contain" />
+                      </div>
+                    </motion.div>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* ======================================================= */}
+            {/* VARIANTE 3: SELO SAGRADO & HORIZONTE ORBITAL            */}
+            {/* ======================================================= */}
+            {variant === 'sagrado' && (
+              <div className="flex-1 flex flex-col justify-between py-1 min-h-0 text-center">
+                {/* Selo Sagrado no Centro com Aura Radiante */}
+                <div className="relative pt-1 shrink-0">
+                  <div
+                    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-28 h-28 rounded-full blur-xl opacity-50 transition-colors duration-500"
+                    style={{ backgroundColor: activePrinciple.colorHex }}
+                  />
+                  <div
+                    className="relative w-14 h-14 rounded-full bg-white/95 dark:bg-slate-900/95 border-2 shadow-lg flex items-center justify-center p-2.5 mx-auto transition-colors duration-500"
+                    style={{ borderColor: activePrinciple.colorHex }}
+                  >
+                    <activePrinciple.Icon className="w-full h-full object-contain" />
+                  </div>
                 </div>
 
-                <button
-                  type="button"
-                  onClick={() => goToIndex(activeIndex + 1)}
-                  disabled={activeIndex === 4}
-                  className="px-3.5 py-2 rounded-xl border border-slate-300 dark:border-slate-700 disabled:opacity-25 font-semibold cursor-pointer active:scale-95 text-xs text-slate-700 dark:text-slate-200"
-                >
-                  Próximo →
-                </button>
-              </div>
+                {/* Conteúdo Centralizado Clássico */}
+                <div className="flex-1 flex flex-col justify-between py-1 min-h-0">
+                  <AnimatePresence mode="wait">
+                    <motion.div
+                      key={activePrinciple.id}
+                      initial={{ opacity: 0, scale: 0.97 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 0.97 }}
+                      transition={{ duration: 0.22 }}
+                      className="flex-1 flex flex-col justify-between"
+                    >
+                      <div className="space-y-1.5 px-2">
+                        <span className="text-[11px] font-bold uppercase tracking-[0.25em] block" style={{ color: activePrinciple.colorHex }}>
+                          {activePrinciple.subtitle}
+                        </span>
 
-              {/* Secondary Action: Recursos Link */}
-              <div className="flex items-center justify-between text-xs text-slate-500 dark:text-slate-400 px-1">
-                <span className="text-[11px]">Role a página para avançar</span>
-                <button
-                  type="button"
-                  onClick={() => onChangeRoute('/recursos')}
-                  className="text-sky-900 dark:text-sky-300 font-bold hover:underline cursor-pointer flex items-center gap-1"
-                >
-                  Recursos & Obras ➔
-                </button>
+                        <h3 className="font-serif text-2xl font-bold tracking-tight text-slate-950 dark:text-white leading-tight">
+                          {activePrinciple.title}
+                        </h3>
+
+                        <p className="text-[0.88rem] text-slate-700 dark:text-slate-200 leading-relaxed font-normal max-w-sm mx-auto">
+                          {activePrinciple.description}
+                        </p>
+                      </div>
+
+                      {/* Citação Solene Centralizada */}
+                      <div className="px-3 my-1">
+                        <div className="h-px w-12 mx-auto bg-slate-300 dark:bg-slate-700 mb-2" />
+                        <blockquote className="font-serif italic text-xs text-slate-800 dark:text-slate-200 leading-snug">
+                          “{activePrinciple.quote}”
+                        </blockquote>
+                        <cite className="block mt-1 text-[10px] font-semibold text-slate-500 dark:text-slate-400 not-italic uppercase tracking-widest">
+                          — {activePrinciple.quoteAuthor}
+                        </cite>
+                        <div className="h-px w-12 mx-auto bg-slate-300 dark:bg-slate-700 mt-2" />
+                      </div>
+                    </motion.div>
+                  </AnimatePresence>
+                </div>
+
+                {/* Deck Centralizado */}
+                <div className="shrink-0 pt-1.5 pb-0.5 border-t border-slate-200/80 dark:border-slate-800/80 flex items-center justify-between px-1">
+                  <button
+                    type="button"
+                    onClick={() => goToIndex(activeIndex - 1)}
+                    disabled={activeIndex === 0}
+                    className="px-3 py-1.5 rounded-lg border border-slate-300 dark:border-slate-700 disabled:opacity-25 font-bold text-xs text-slate-700 dark:text-slate-200"
+                  >
+                    ← Anterior
+                  </button>
+
+                  <div className="flex items-center gap-1.5">
+                    {PRINCIPLES.map((p, idx) => (
+                      <button
+                        key={idx}
+                        type="button"
+                        onClick={() => goToIndex(idx)}
+                        className={`h-2 rounded-full transition-all duration-300 ${
+                          idx === activeIndex ? 'w-5' : 'w-2 bg-slate-300 dark:bg-slate-700'
+                        }`}
+                        style={{ backgroundColor: idx === activeIndex ? p.colorHex : undefined }}
+                      />
+                    ))}
+                  </div>
+
+                  <button
+                    type="button"
+                    onClick={() => goToIndex(activeIndex + 1)}
+                    disabled={activeIndex === 4}
+                    className="px-3 py-1.5 rounded-lg border border-slate-300 dark:border-slate-700 disabled:opacity-25 font-bold text-xs text-slate-700 dark:text-slate-200"
+                  >
+                    Próximo →
+                  </button>
+                </div>
               </div>
-            </div>
+            )}
 
           </div>
 

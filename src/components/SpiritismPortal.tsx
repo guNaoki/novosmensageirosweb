@@ -663,9 +663,29 @@ export default function SpiritismPortal({ onChangeRoute }: SpiritismPortalProps)
       <KardecQuoteReveal />
 
       {/* ========================================================= */}
-      {/* 3. OS 5 PRINCÍPIOS BÁSICOS (Arco Celestial Sticky Scroll) */}
+      {/* 3. OS 5 PRINCÍPIOS BÁSICOS — 3 VARIANTES PARA COMPARAÇÃO  */}
       {/* ========================================================= */}
-      <CelestialArcPrinciples onChangeRoute={onChangeRoute} />
+      <CelestialArcPrinciples
+        onChangeRoute={onChangeRoute}
+        variant="editorial"
+        sectionId="principios-v1"
+        variantTitle="Opção 1: Lâmina Editorial Imersiva"
+        variantNumber={1}
+      />
+      <CelestialArcPrinciples
+        onChangeRoute={onChangeRoute}
+        variant="astrolabio"
+        sectionId="principios-v2"
+        variantTitle="Opção 2: Astrolábio Celestial Vertical"
+        variantNumber={2}
+      />
+      <CelestialArcPrinciples
+        onChangeRoute={onChangeRoute}
+        variant="sagrado"
+        sectionId="principios-v3"
+        variantTitle="Opção 3: Selo Sagrado & Horizonte Orbital"
+        variantNumber={3}
+      />
 
 
       {/* ========================================================= */}
