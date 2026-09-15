@@ -198,13 +198,25 @@ function KardecQuoteReveal() {
 
   const smoothProgress = useSpring(scrollYProgress, { stiffness: 260, damping: 26 });
 
-  const words = [
-    { text: 'Fora', highlight: false },
-    { text: 'da', highlight: false },
-    { text: 'caridade', highlight: true },
-    { text: 'não', highlight: false },
-    { text: 'há', highlight: false },
-    { text: 'salvação.', highlight: true },
+  const totalWords = 6;
+  const getWordRange = (idx: number): [number, number] => {
+    const start = (idx / totalWords) * 0.7;
+    const end = Math.min(1, start + (1 / totalWords) * 0.95);
+    return [start, end];
+  };
+
+  // Linha 1 no mobile: "Fora da caridade" (17 caracteres)
+  const line1 = [
+    { text: 'Fora', highlight: false, globalIdx: 0, range: getWordRange(0) },
+    { text: 'da', highlight: false, globalIdx: 1, range: getWordRange(1) },
+    { text: 'caridade', highlight: true, globalIdx: 2, range: getWordRange(2) },
+  ];
+
+  // Linha 2 no mobile: "não há salvação." (16 caracteres)
+  const line2 = [
+    { text: 'não', highlight: false, globalIdx: 3, range: getWordRange(3) },
+    { text: 'há', highlight: false, globalIdx: 4, range: getWordRange(4) },
+    { text: 'salvação.', highlight: true, globalIdx: 5, range: getWordRange(5) },
   ];
 
   const quoteOpacity = useTransform(smoothProgress, [0, 0.25], [0.1, 0.45]);
@@ -230,20 +242,32 @@ function KardecQuoteReveal() {
             “
           </motion.span>
 
-          <blockquote className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight leading-[1.22] italic px-2 flex flex-wrap justify-center gap-x-2.5 sm:gap-x-3.5 gap-y-1 sm:gap-y-2">
-            {words.map((w, idx) => {
-              const start = (idx / words.length) * 0.7;
-              const end = Math.min(1, start + (1 / words.length) * 0.95);
-              return (
+          <blockquote className="font-serif text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-semibold tracking-tight leading-[1.26] italic px-2 flex flex-col md:flex-row md:flex-wrap items-center justify-center gap-y-1.5 md:gap-x-3.5">
+            {/* Linha 1 no mobile: "Fora da caridade" */}
+            <span className="inline-flex items-center justify-center gap-x-2 sm:gap-x-3 whitespace-nowrap">
+              {line1.map((w) => (
                 <WordReveal
-                  key={idx}
+                  key={w.globalIdx}
                   word={w.text}
                   highlight={w.highlight}
                   progress={smoothProgress}
-                  range={[start, end]}
+                  range={w.range}
                 />
-              );
-            })}
+              ))}
+            </span>
+
+            {/* Linha 2 no mobile: "não há salvação." */}
+            <span className="inline-flex items-center justify-center gap-x-2 sm:gap-x-3 whitespace-nowrap">
+              {line2.map((w) => (
+                <WordReveal
+                  key={w.globalIdx}
+                  word={w.text}
+                  highlight={w.highlight}
+                  progress={smoothProgress}
+                  range={w.range}
+                />
+              ))}
+            </span>
           </blockquote>
 
           <motion.div

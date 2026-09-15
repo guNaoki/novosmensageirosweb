@@ -392,7 +392,7 @@ export default function CelestialArcPrinciples({ onChangeRoute }: CelestialArcPr
       </div>
 
       {/* Full-Screen Canvas Container (Sticky no Desktop e Mobile, 100% visível abaixo da Navbar) */}
-      <div className="sticky top-16 h-[calc(100vh-4rem)] w-full flex flex-col justify-between z-10 px-4 sm:px-8 lg:px-16 py-3 sm:py-4 md:py-6 max-w-7xl mx-auto overflow-hidden">
+      <div className="sticky top-16 h-[calc(100dvh-4rem)] w-full flex flex-col justify-between z-10 px-4 sm:px-8 lg:px-16 py-2.5 sm:py-4 md:py-6 max-w-7xl mx-auto overflow-hidden">
 
         {/* Section Top Eyebrow */}
         <div className="flex items-center justify-between shrink-0 border-b border-slate-300/80 dark:border-slate-800/80 pb-3">
@@ -712,15 +712,15 @@ export default function CelestialArcPrinciples({ onChangeRoute }: CelestialArcPr
                 >
                   {/* Bloco Superior: Eyebrow + Título + Descrição */}
                   <div className="space-y-2">
-                    <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-2.5 flex-wrap">
                       <span
-                        className="px-2.5 py-0.5 rounded-full text-xs font-mono font-bold text-white shadow-xs"
+                        className="px-2.5 py-0.5 rounded-full text-xs font-mono font-bold text-white shadow-xs shrink-0"
                         style={{ backgroundColor: activePrinciple.colorHex }}
                       >
                         {activePrinciple.id} / 05
                       </span>
                       <span
-                        className="text-xs font-bold uppercase tracking-wider truncate max-w-[210px]"
+                        className="text-xs sm:text-sm font-bold uppercase tracking-wider leading-snug"
                         style={{ color: activePrinciple.colorHex }}
                       >
                         {activePrinciple.subtitle}
