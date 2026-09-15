@@ -367,7 +367,7 @@ export default function SpiritismPortal({ onChangeRoute }: SpiritismPortalProps)
       {/* ========================================================= */}
       <section
         id="hero"
-        className="relative min-h-[calc(100vh-4.5rem)] flex flex-col justify-center pt-24 pb-14 sm:pt-28 sm:pb-16 lg:py-20 text-slate-900 dark:text-white overflow-hidden bg-gradient-to-b from-sky-100/90 via-blue-50/70 to-slate-100/90 dark:from-[#06152e]/95 dark:via-[#081b3a]/80 dark:to-[#040d1f] transition-colors duration-300"
+        className="relative min-h-[calc(100vh-4rem)] flex flex-col justify-center pt-32 pb-16 sm:pt-36 sm:pb-20 lg:pt-44 lg:pb-24 text-slate-900 dark:text-white overflow-hidden bg-gradient-to-b from-sky-100/90 via-blue-50/70 to-slate-100/90 dark:from-[#06152e]/95 dark:via-[#081b3a]/80 dark:to-[#040d1f] transition-colors duration-300"
       >
         {/* Static Cloud Background Image com Alto Contraste no Modo Claro */}
         <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">

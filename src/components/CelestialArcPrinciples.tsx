@@ -1,5 +1,5 @@
 import { useRef, useState, useEffect } from 'react';
-import { motion, AnimatePresence, useScroll, useMotionValueEvent } from 'framer-motion';
+import { motion, AnimatePresence, useScroll, useMotionValueEvent, useSpring, useTransform } from 'framer-motion';
 import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
 import Button from './ui/Button';
 
@@ -116,7 +116,7 @@ const PRINCIPLES: PrincipleItem[] = [
     description: 'O intercâmbio entre os planos visível e invisível é uma lei natural presente em toda a história humana. A mediunidade, exercida com amor, sobriedade e desinteresse, traz consolo aos corações aflitos e esclarecimento à razão.',
     quote: 'Dai de graça o que de graça recebestes. A caridade é a alma da verdadeira mediunidade.',
     quoteAuthor: 'Allan Kardec — O Livro dos Médiuns',
-    colorHex: '#15803d',
+    colorHex: '#16a34a',
     Icon: MediunidadeVector
   },
   {
@@ -132,23 +132,96 @@ const PRINCIPLES: PrincipleItem[] = [
   }
 ];
 
-// Desktop Inverted Crescent Coordinates ) (in 260x520 SVG space)
-// Curvatura monumental para a direita: d="M 50,40 C 230,150 230,370 50,480"
+// =========================================================
+// GEOMETRIA DA CURVA DE BÉZIER E SEGMENTOS COLORIDOS
+// =========================================================
+
+// Função analítica para avaliar qualquer ponto na curva Bézier cúbica desktop (260x520)
+// P0=(50, 40), P1=(230, 150), P2=(230, 370), P3=(50, 480)
+function getDesktopBezierPoint(t: number) {
+  const c = Math.max(0, Math.min(1, t));
+  const u = 1 - c;
+  const tt = c * c;
+  const uu = u * u;
+  const uuu = uu * u;
+  const ttt = tt * c;
+
+  const x = uuu * 50 + 3 * uu * c * 230 + 3 * u * tt * 230 + ttt * 50;
+  const y = uuu * 40 + 3 * uu * c * 150 + 3 * u * tt * 370 + ttt * 480;
+  return { x, y };
+}
+
+// Função analítica para avaliar qualquer ponto na curva Bézier cúbica mobile (360x90)
+// P0=(30, 75), P1=(100, 20), P2=(260, 20), P3=(330, 75)
+function getMobileBezierPoint(t: number) {
+  const c = Math.max(0, Math.min(1, t));
+  const u = 1 - c;
+  const tt = c * c;
+  const uu = u * u;
+  const uuu = uu * u;
+  const ttt = tt * c;
+
+  const x = uuu * 30 + 3 * uu * c * 100 + 3 * u * tt * 260 + ttt * 330;
+  const y = uuu * 75 + 3 * uu * c * 20 + 3 * u * tt * 20 + ttt * 75;
+  return { x, y };
+}
+
+// 5 Marcos Exatos de Parada Desktop (t = 0, 0.25, 0.5, 0.75, 1.0)
 const DESKTOP_INVERTED_POINTS = [
-  { x: 50, y: 40 },
-  { x: 151, y: 140 },
-  { x: 185, y: 260 }, // Ápice à direita
-  { x: 151, y: 380 },
-  { x: 50, y: 480 }
+  { x: 50.0, y: 40.0 },
+  { x: 151.3, y: 139.7 },
+  { x: 185.0, y: 260.0 }, // Ápice central à direita
+  { x: 151.3, y: 380.3 },
+  { x: 50.0, y: 480.0 }
 ];
 
-// Mobile Arc Coordinates (in 360x90 SVG space)
+// 4 Segmentos Desktop com as cores exatas de cada par de bolinhas
+const DESKTOP_SEGMENTS = [
+  {
+    d: "M 50.0,40.0 C 95.0,67.5 128.8,101.9 151.3,139.7",
+    gradId: "segGrad1"
+  },
+  {
+    d: "M 151.3,139.7 C 173.8,177.5 185.0,218.8 185.0,260.0",
+    gradId: "segGrad2"
+  },
+  {
+    d: "M 185.0,260.0 C 185.0,301.3 173.8,342.5 151.3,380.3",
+    gradId: "segGrad3"
+  },
+  {
+    d: "M 151.3,380.3 C 128.8,418.1 95.0,452.5 50.0,480.0",
+    gradId: "segGrad4"
+  }
+];
+
+// 5 Marcos Exatos de Parada Mobile (t = 0, 0.25, 0.5, 0.75, 1.0)
 const MOBILE_ARC_POINTS = [
-  { x: 45, y: 68 },
-  { x: 110, y: 38 },
-  { x: 180, y: 25 }, // Ápice central
-  { x: 250, y: 38 },
-  { x: 315, y: 68 }
+  { x: 30.0, y: 75.0 },
+  { x: 96.6, y: 44.1 },
+  { x: 180.0, y: 33.8 }, // Ápice central superior
+  { x: 263.4, y: 44.1 },
+  { x: 330.0, y: 75.0 }
+];
+
+// 4 Segmentos Mobile com as cores exatas de cada par de bolinhas
+const MOBILE_SEGMENTS = [
+  {
+    d: "M 30.0,75.0 C 47.5,61.3 70.6,50.9 96.6,44.1",
+    gradId: "mobGrad1"
+  },
+  {
+    d: "M 96.6,44.1 C 122.5,37.2 151.3,33.8 180.0,33.8",
+    gradId: "mobGrad2"
+  },
+  {
+    d: "M 180.0,33.8 C 208.8,33.8 237.5,37.2 263.4,44.1",
+    gradId: "mobGrad3"
+  },
+  {
+    d: "M 263.4,44.1 C 289.4,50.9 312.5,61.3 330.0,75.0",
+    gradId: "mobGrad4"
+  }
 ];
 
 interface CelestialArcPrinciplesProps {
@@ -159,16 +232,48 @@ export default function CelestialArcPrinciples({ onChangeRoute }: CelestialArcPr
   const containerRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);
 
-  // Track scroll progress along the 400vh desktop container
+  // Track scroll progress along the 320vh / 400vh container
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ['start start', 'end end']
   });
 
-  useMotionValueEvent(scrollYProgress, 'change', (progress) => {
-    // 5 clean steps mapped com amplo dwell time (platô de permanência de 20% cada)
-    const nextIndex = Math.min(4, Math.max(0, Math.floor(progress * 4.999)));
-    setActiveIndex(nextIndex);
+  // Buttery-smooth spring progress for responsive continuous tracking
+  const smoothProgress = useSpring(scrollYProgress, {
+    stiffness: 280,
+    damping: 28,
+    restDelta: 0.001
+  });
+
+  // Continuous reactive beacon positions along the cubic bezier curves
+  const desktopBeaconX = useTransform(smoothProgress, (p) => {
+    const pt = getDesktopBezierPoint(p);
+    return `${(pt.x / 260) * 100}%`;
+  });
+  const desktopBeaconY = useTransform(smoothProgress, (p) => {
+    const pt = getDesktopBezierPoint(p);
+    return `${(pt.y / 520) * 100}%`;
+  });
+
+  const mobileBeaconX = useTransform(smoothProgress, (p) => {
+    const pt = getMobileBezierPoint(p);
+    return `${(pt.x / 360) * 100}%`;
+  });
+  const mobileBeaconY = useTransform(smoothProgress, (p) => {
+    const pt = getMobileBezierPoint(p);
+    return `${(pt.y / 90) * 100}%`;
+  });
+
+  // Step threshold detection centered around milestones 0, 0.25, 0.5, 0.75, 1.0
+  useMotionValueEvent(scrollYProgress, 'change', (p) => {
+    let idx = 0;
+    if (p >= 0.875) idx = 4;
+    else if (p >= 0.625) idx = 3;
+    else if (p >= 0.375) idx = 2;
+    else if (p >= 0.125) idx = 1;
+    else idx = 0;
+
+    setActiveIndex((prev) => (prev !== idx ? idx : prev));
   });
 
   const activePrinciple = PRINCIPLES[activeIndex];
@@ -178,13 +283,13 @@ export default function CelestialArcPrinciples({ onChangeRoute }: CelestialArcPr
     const clamped = Math.max(0, Math.min(4, index));
     setActiveIndex(clamped);
 
-    // Only scroll window on desktop where 400vh sticky scroll is active
-    if (typeof window !== 'undefined' && window.innerWidth >= 768 && containerRef.current) {
+    if (typeof window !== 'undefined' && containerRef.current) {
       const rect = containerRef.current.getBoundingClientRect();
       const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
       const containerTop = rect.top + scrollTop;
       const scrollableDistance = containerRef.current.offsetHeight - window.innerHeight;
-      const targetScroll = containerTop + (clamped / 4.2) * scrollableDistance;
+      const targetProgress = clamped / 4; // 0, 0.25, 0.5, 0.75, 1.0
+      const targetScroll = containerTop + targetProgress * scrollableDistance;
       window.scrollTo({ top: targetScroll, behavior: 'smooth' });
     }
   };
@@ -218,27 +323,49 @@ export default function CelestialArcPrinciples({ onChangeRoute }: CelestialArcPr
     <section
       ref={containerRef}
       id="principios"
-      className="relative py-14 sm:py-20 md:py-0 md:h-[400vh] bg-slate-100 dark:bg-[#030914] text-slate-900 dark:text-white transition-colors duration-500"
+      className="relative h-[320vh] md:h-[400vh] bg-slate-50 dark:bg-[#030914] text-slate-900 dark:text-white transition-colors duration-500"
     >
-      {/* Global Shared SVG Defs for High-Contrast Gradients */}
+      {/* Shared SVG Defs with Segment Gradients matching the dots */}
       <svg className="absolute w-0 h-0 pointer-events-none" aria-hidden="true">
         <defs>
-          <linearGradient id="celestialGradInverted" x1="0%" y1="0%" x2="0%" y2="100%">
+          {/* Desktop Segment Gradients: 01 Amber -> 02 Sky -> 03 Teal -> 04 Green -> 05 Indigo */}
+          <linearGradient id="segGrad1" x1="50" y1="40" x2="151.3" y2="139.7" gradientUnits="userSpaceOnUse">
             <stop offset="0%" stopColor="#d97706" />
-            <stop offset="25%" stopColor="#0284c7" />
-            <stop offset="50%" stopColor="#0d9488" />
-            <stop offset="75%" stopColor="#15803d" />
+            <stop offset="100%" stopColor="#0284c7" />
+          </linearGradient>
+          <linearGradient id="segGrad2" x1="151.3" y1="139.7" x2="185" y2="260" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stopColor="#0284c7" />
+            <stop offset="100%" stopColor="#0d9488" />
+          </linearGradient>
+          <linearGradient id="segGrad3" x1="185" y1="260" x2="151.3" y2="380.3" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stopColor="#0d9488" />
+            <stop offset="100%" stopColor="#16a34a" />
+          </linearGradient>
+          <linearGradient id="segGrad4" x1="151.3" y1="380.3" x2="50" y2="480" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stopColor="#16a34a" />
             <stop offset="100%" stopColor="#4338ca" />
           </linearGradient>
-          <linearGradient id="celestialGradH" x1="0%" y1="0%" x2="100%" y2="0%">
+
+          {/* Mobile Segment Gradients */}
+          <linearGradient id="mobGrad1" x1="30" y1="75" x2="96.6" y2="44.1" gradientUnits="userSpaceOnUse">
             <stop offset="0%" stopColor="#d97706" />
-            <stop offset="25%" stopColor="#0284c7" />
-            <stop offset="50%" stopColor="#0d9488" />
-            <stop offset="75%" stopColor="#15803d" />
+            <stop offset="100%" stopColor="#0284c7" />
+          </linearGradient>
+          <linearGradient id="mobGrad2" x1="96.6" y1="44.1" x2="180" y2="33.8" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stopColor="#0284c7" />
+            <stop offset="100%" stopColor="#0d9488" />
+          </linearGradient>
+          <linearGradient id="mobGrad3" x1="180" y1="33.8" x2="263.4" y2="44.1" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stopColor="#0d9488" />
+            <stop offset="100%" stopColor="#16a34a" />
+          </linearGradient>
+          <linearGradient id="mobGrad4" x1="263.4" y1="44.1" x2="330" y2="75" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stopColor="#16a34a" />
             <stop offset="100%" stopColor="#4338ca" />
           </linearGradient>
-          <filter id="celestialAtmosphereGlow" x="-20%" y="-20%" width="140%" height="140%">
-            <feGaussianBlur stdDeviation="4" result="blur" />
+
+          <filter id="celestialAtmosphereGlow" x="-30%" y="-30%" width="160%" height="160%">
+            <feGaussianBlur stdDeviation="3.5" result="blur" />
             <feMerge>
               <feMergeNode in="blur" />
               <feMergeNode in="SourceGraphic" />
@@ -247,18 +374,25 @@ export default function CelestialArcPrinciples({ onChangeRoute }: CelestialArcPr
         </defs>
       </svg>
 
-      {/* Background Static Sky Texture com ALTO CONTRASTE no Modo Claro (85% opacidade) */}
+      {/* Background Static Sky / Canvas Lighting */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
-        <img
-          src="/imagens-pagina/ceunuvem2.webp"
-          alt="Céu celestial nítido"
-          className="w-full h-full object-cover opacity-85 dark:opacity-25 transition-opacity duration-700"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-sky-100/85 via-blue-50/70 to-slate-100/90 dark:from-[#030914]/90 dark:via-[#071328]/85 dark:to-[#030914]/95"></div>
+        {/* Dark Mode: Fundo Cósmico com Nuvem e Estrelas */}
+        <div className="hidden dark:block absolute inset-0">
+          <img
+            src="/imagens-pagina/ceunuvem2.webp"
+            alt="Céu celestial noturno"
+            className="w-full h-full object-cover opacity-25 transition-opacity duration-700"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#030914]/90 via-[#071328]/85 to-[#030914]/95" />
+        </div>
+
+        {/* Light Mode: Canvas Editorial Límpido, Cristalino e sem manchas embaçadas */}
+        <div className="dark:hidden absolute inset-0 bg-[#f8fafc]" />
+        <div className="dark:hidden absolute top-1/2 right-1/4 -translate-y-1/2 w-[600px] h-[600px] bg-sky-100/40 rounded-full blur-3xl pointer-events-none" />
       </div>
 
-      {/* Full-Screen Canvas Container (Sticky no Desktop abaixo da Navbar fixa, Natural no Mobile) */}
-      <div className="relative md:sticky md:top-16 lg:top-[4.5rem] h-auto md:h-[calc(100vh-4rem)] lg:h-[calc(100vh-4.5rem)] w-full flex flex-col justify-between z-10 px-4 sm:px-8 lg:px-16 py-4 md:py-6 max-w-7xl mx-auto">
+      {/* Full-Screen Canvas Container (Sticky no Desktop e Mobile, 100% visível abaixo da Navbar) */}
+      <div className="sticky top-16 h-[calc(100vh-4rem)] w-full flex flex-col justify-between z-10 px-4 sm:px-8 lg:px-16 py-3 sm:py-4 md:py-6 max-w-7xl mx-auto overflow-hidden">
 
         {/* Section Top Eyebrow */}
         <div className="flex items-center justify-between shrink-0 border-b border-slate-300/80 dark:border-slate-800/80 pb-3">
@@ -280,7 +414,7 @@ export default function CelestialArcPrinciples({ onChangeRoute }: CelestialArcPr
         {/* ========================================================= */}
         {/* MAIN IMMERSIVE SHOWCASE (Zero Cards Fechados)             */}
         {/* ========================================================= */}
-        <div className="flex-grow flex items-center my-auto py-6 sm:py-8">
+        <div className="flex-grow flex items-stretch md:items-center my-auto py-2 md:py-8">
 
           {/* ------------------------------------------------------- */}
           {/* DESKTOP LAYOUT (>= md: Editorial à Esquerda, Arco à Direita) */}
@@ -355,7 +489,7 @@ export default function CelestialArcPrinciples({ onChangeRoute }: CelestialArcPr
 
             {/* Lado Direito (40%): O Grande Arco Orbital Invertido ) */}
             <div className="md:col-span-5 flex justify-center items-center relative">
-              <div className="relative w-[260px] h-[520px]">
+              <div className="relative w-[240px] lg:w-[260px] h-[480px] lg:h-[520px] max-h-[calc(100vh-10rem)] aspect-[1/2]">
                 
                 {/* SVG Crescent Inverted Arc Line ) */}
                 <svg
@@ -363,39 +497,43 @@ export default function CelestialArcPrinciples({ onChangeRoute }: CelestialArcPr
                   fill="none"
                   className="w-full h-full pointer-events-none drop-shadow-md overflow-visible"
                 >
-                  {/* Subtle outer guide track */}
-                  <path
-                    d="M 40,30 C 250,140 250,380 40,490"
-                    stroke="currentColor"
-                    strokeWidth="1"
-                    strokeDasharray="4 8"
-                    className="text-slate-400/50 dark:text-slate-700/60"
-                  />
-
-                  {/* Main solid track arc in deep navy */}
+                  {/* Subtle neutral background guide track */}
                   <path
                     d="M 50,40 C 230,150 230,370 50,480"
                     stroke="currentColor"
-                    strokeWidth="3.5"
-                    strokeLinecap="round"
+                    strokeWidth="1.5"
+                    strokeDasharray="4 6"
                     className="text-slate-300 dark:text-slate-800"
+                    strokeLinecap="round"
                   />
 
-                  {/* Main Celestial Inverted Arc (Vibrant Gradient) */}
-                  <path
-                    d="M 50,40 C 230,150 230,370 50,480"
-                    stroke="url(#celestialGradInverted)"
-                    strokeWidth="5"
-                    strokeLinecap="round"
-                    opacity="0.4"
-                    filter="url(#celestialAtmosphereGlow)"
-                  />
-                  <path
-                    d="M 50,40 C 230,150 230,370 50,480"
-                    stroke="url(#celestialGradInverted)"
-                    strokeWidth="3"
-                    strokeLinecap="round"
-                  />
+                  {/* 4 Colored Segments with the EXACT colors of the dots */}
+                  {DESKTOP_SEGMENTS.map((seg, sIdx) => {
+                    const isPassedOrCurrent = activeIndex >= sIdx;
+                    return (
+                      <g key={sIdx}>
+                        {/* Atmosphere glow on active segments */}
+                        <path
+                          d={seg.d}
+                          stroke={`url(#${seg.gradId})`}
+                          strokeWidth="5"
+                          strokeLinecap="round"
+                          opacity={isPassedOrCurrent ? 0.35 : 0.15}
+                          filter="url(#celestialAtmosphereGlow)"
+                          className="transition-opacity duration-300"
+                        />
+                        {/* Main crisp line */}
+                        <path
+                          d={seg.d}
+                          stroke={`url(#${seg.gradId})`}
+                          strokeWidth="3.5"
+                          strokeLinecap="round"
+                          opacity={isPassedOrCurrent ? 1 : 0.35}
+                          className="transition-opacity duration-300"
+                        />
+                      </g>
+                    );
+                  })}
 
                   {/* 5 Milestone Astronomy Points */}
                   {DESKTOP_INVERTED_POINTS.map((pt, idx) => {
@@ -432,17 +570,12 @@ export default function CelestialArcPrinciples({ onChangeRoute }: CelestialArcPr
                   })}
                 </svg>
 
-                {/* Animated Orbital Beacon (Astro-Guia com Porcentagem no Arco Invertido) */}
+                {/* Continuous Sliding Beacon along Desktop Bezier Curve */}
                 <motion.div
                   className="absolute w-20 h-20 -translate-x-1/2 -translate-y-1/2 rounded-full flex items-center justify-center pointer-events-none z-20"
-                  animate={{
-                    left: `${(DESKTOP_INVERTED_POINTS[activeIndex].x / 260) * 100}%`,
-                    top: `${(DESKTOP_INVERTED_POINTS[activeIndex].y / 520) * 100}%`
-                  }}
-                  transition={{
-                    type: 'spring',
-                    stiffness: 220,
-                    damping: 24
+                  style={{
+                    left: desktopBeaconX,
+                    top: desktopBeaconY
                   }}
                 >
                   {/* Atmospheric Glow */}
@@ -490,32 +623,46 @@ export default function CelestialArcPrinciples({ onChangeRoute }: CelestialArcPr
           {/* ------------------------------------------------------- */}
           {/* MOBILE LAYOUT (< md: Experiência Vertical Integrada)    */}
           {/* ------------------------------------------------------- */}
-          <div className="block md:hidden w-full max-w-lg mx-auto space-y-6">
+          <div className="block md:hidden w-full max-w-lg mx-auto flex flex-col justify-between h-full py-1">
             
             {/* Top Celestial Arch */}
-            <div className="relative w-full max-w-xs mx-auto h-[90px]">
+            <div className="relative w-full max-w-xs mx-auto h-[90px] shrink-0 pt-1">
               <svg viewBox="0 0 360 90" fill="none" className="w-full h-full pointer-events-none overflow-visible">
+                {/* Subtle base guide track */}
                 <path
                   d="M 30,75 C 100,20 260,20 330,75"
                   stroke="currentColor"
-                  strokeWidth="3"
-                  strokeLinecap="round"
+                  strokeWidth="1.5"
+                  strokeDasharray="3 5"
                   className="text-slate-300 dark:text-slate-800"
-                />
-                <path
-                  d="M 30,75 C 100,20 260,20 330,75"
-                  stroke="url(#celestialGradH)"
-                  strokeWidth="5"
-                  strokeLinecap="round"
-                  opacity="0.4"
-                  filter="url(#celestialAtmosphereGlow)"
-                />
-                <path
-                  d="M 30,75 C 100,20 260,20 330,75"
-                  stroke="url(#celestialGradH)"
-                  strokeWidth="2.5"
                   strokeLinecap="round"
                 />
+
+                {/* 4 Colored Segments matching the dots */}
+                {MOBILE_SEGMENTS.map((seg, sIdx) => {
+                  const isPassedOrCurrent = activeIndex >= sIdx;
+                  return (
+                    <g key={sIdx}>
+                      <path
+                        d={seg.d}
+                        stroke={`url(#${seg.gradId})`}
+                        strokeWidth="4"
+                        strokeLinecap="round"
+                        opacity={isPassedOrCurrent ? 0.35 : 0.15}
+                        filter="url(#celestialAtmosphereGlow)"
+                        className="transition-opacity duration-300"
+                      />
+                      <path
+                        d={seg.d}
+                        stroke={`url(#${seg.gradId})`}
+                        strokeWidth="2.5"
+                        strokeLinecap="round"
+                        opacity={isPassedOrCurrent ? 1 : 0.35}
+                        className="transition-opacity duration-300"
+                      />
+                    </g>
+                  );
+                })}
 
                 {/* Milestone Dots */}
                 {MOBILE_ARC_POINTS.map((pt, idx) => (
@@ -531,21 +678,20 @@ export default function CelestialArcPrinciples({ onChangeRoute }: CelestialArcPr
                 ))}
               </svg>
 
-              {/* Orbital Beacon (Astro-Guia Mobile) */}
+              {/* Continuous Sliding Beacon along Mobile Curve */}
               <motion.div
                 className="absolute w-12 h-12 -translate-x-1/2 -translate-y-1/2 rounded-full flex items-center justify-center pointer-events-none z-20"
-                animate={{
-                  left: `${(MOBILE_ARC_POINTS[activeIndex].x / 360) * 100}%`,
-                  top: `${(MOBILE_ARC_POINTS[activeIndex].y / 90) * 100}%`
+                style={{
+                  left: mobileBeaconX,
+                  top: mobileBeaconY
                 }}
-                transition={{ type: 'spring', stiffness: 220, damping: 22 }}
               >
                 <div
-                  className="absolute inset-0 rounded-full blur-xs opacity-70"
+                  className="absolute inset-0 rounded-full blur-xs opacity-70 transition-colors duration-300"
                   style={{ backgroundColor: activePrinciple.colorHex }}
                 />
                 <div
-                  className="relative w-10 h-10 rounded-full bg-white dark:bg-slate-900 border-2 shadow-md flex items-center justify-center p-1.5"
+                  className="relative w-9 h-9 rounded-full bg-white dark:bg-slate-900 border-2 shadow-md flex items-center justify-center p-1.5 transition-colors duration-300"
                   style={{ borderColor: activePrinciple.colorHex }}
                 >
                   <activePrinciple.Icon className="w-full h-full object-contain" />
@@ -553,28 +699,16 @@ export default function CelestialArcPrinciples({ onChangeRoute }: CelestialArcPr
               </motion.div>
             </div>
 
-            {/* Mobile Editorial Content (Touch Swipeable) */}
-            <motion.div
-              drag="x"
-              dragConstraints={{ left: 0, right: 0 }}
-              dragElastic={0.2}
-              onDragEnd={(_, info) => {
-                if (info.offset.x < -40) {
-                  goToIndex(activeIndex + 1);
-                } else if (info.offset.x > 40) {
-                  goToIndex(activeIndex - 1);
-                }
-              }}
-              className="text-left space-y-4 touch-pan-y"
-            >
+            {/* Mobile Editorial Content (Estabilizado com Altura Generosa / Sem Pulos de Layout) */}
+            <div className="flex-grow flex flex-col justify-center my-auto space-y-3.5 py-2">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={activePrinciple.id}
-                  initial={{ opacity: 0, y: 12 }}
+                  initial={{ opacity: 0, y: 8 }}
                   animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -12 }}
-                  transition={{ duration: 0.3 }}
-                  className="space-y-3"
+                  exit={{ opacity: 0, y: -8 }}
+                  transition={{ duration: 0.25 }}
+                  className="space-y-3 text-left"
                 >
                   <div className="flex items-center justify-between">
                     <span
@@ -584,79 +718,100 @@ export default function CelestialArcPrinciples({ onChangeRoute }: CelestialArcPr
                       {activePrinciple.id} / 05
                     </span>
                     <span
-                      className="text-xs font-bold uppercase tracking-wider truncate max-w-[220px]"
+                      className="text-xs font-bold uppercase tracking-wider truncate max-w-[210px]"
                       style={{ color: activePrinciple.colorHex }}
                     >
                       {activePrinciple.subtitle}
                     </span>
                   </div>
 
-                  <h3 className="font-serif text-3xl font-bold text-slate-950 dark:text-white leading-tight">
+                  <h3 className="font-serif text-3xl sm:text-4xl font-bold text-slate-950 dark:text-white leading-[1.14]">
                     {activePrinciple.title}
                   </h3>
 
-                  <p className="text-base text-slate-800 dark:text-slate-200 leading-relaxed font-normal">
+                  <p className="text-base sm:text-lg text-slate-800 dark:text-slate-200 leading-relaxed font-normal">
                     {activePrinciple.description}
                   </p>
 
-                  <div className="pt-2 border-t border-slate-300/80 dark:border-slate-800/80">
-                    <blockquote className="font-serif italic text-sm text-slate-700 dark:text-slate-300 leading-snug">
+                  <div className="pt-3 border-t border-slate-200/80 dark:border-slate-800/80">
+                    <blockquote className="font-serif italic text-sm sm:text-base text-slate-700 dark:text-slate-300 leading-snug">
                       “{activePrinciple.quote}”
                     </blockquote>
-                    <cite className="block mt-1 text-[11px] font-semibold text-slate-500 dark:text-slate-400 not-italic uppercase">
+                    <cite className="block mt-1.5 text-xs font-semibold text-slate-500 dark:text-slate-400 not-italic uppercase tracking-wider">
                       — {activePrinciple.quoteAuthor}
                     </cite>
                   </div>
                 </motion.div>
               </AnimatePresence>
+            </div>
 
-              {/* Mobile Navigation Controls */}
-              <div className="pt-4 border-t border-slate-300/80 dark:border-slate-800 flex items-center justify-between text-xs">
+            {/* Mobile Navigation Controls (Deck Unificado na Base da Seção - Ergonômico & Completo) */}
+            <div className="shrink-0 pt-3 pb-1 border-t border-slate-200/80 dark:border-slate-800/80 flex flex-col gap-2.5">
+              <div className="flex items-center justify-between">
+                <button
+                  type="button"
+                  onClick={() => goToIndex(activeIndex - 1)}
+                  disabled={activeIndex === 0}
+                  className="px-3.5 py-2 rounded-xl border border-slate-300 dark:border-slate-700 disabled:opacity-25 font-semibold cursor-pointer active:scale-95 text-xs text-slate-700 dark:text-slate-200"
+                >
+                  ← Anterior
+                </button>
+
+                {/* 5 Milestone Indicator Pills no centro do deck */}
                 <div className="flex items-center gap-2">
-                  <button
-                    type="button"
-                    onClick={() => goToIndex(activeIndex - 1)}
-                    disabled={activeIndex === 0}
-                    className="px-3 py-1.5 rounded-lg border border-slate-300 dark:border-slate-700 disabled:opacity-30 font-semibold cursor-pointer active:scale-95"
-                  >
-                    ← Anterior
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => goToIndex(activeIndex + 1)}
-                    disabled={activeIndex === 4}
-                    className="px-3 py-1.5 rounded-lg border border-slate-300 dark:border-slate-700 disabled:opacity-30 font-semibold cursor-pointer active:scale-95"
-                  >
-                    Próximo →
-                  </button>
+                  {PRINCIPLES.map((p, idx) => (
+                    <button
+                      key={idx}
+                      type="button"
+                      onClick={() => goToIndex(idx)}
+                      className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
+                        idx === activeIndex
+                          ? 'w-6 shadow-xs'
+                          : 'w-2 bg-slate-300 dark:bg-slate-700'
+                      }`}
+                      style={{
+                        backgroundColor: idx === activeIndex ? p.colorHex : undefined
+                      }}
+                      title={`Princípio ${idx + 1}`}
+                    />
+                  ))}
                 </div>
 
                 <button
                   type="button"
-                  onClick={() => onChangeRoute('/recursos')}
-                  className="text-sky-900 dark:text-sky-300 font-bold hover:underline cursor-pointer"
+                  onClick={() => goToIndex(activeIndex + 1)}
+                  disabled={activeIndex === 4}
+                  className="px-3.5 py-2 rounded-xl border border-slate-300 dark:border-slate-700 disabled:opacity-25 font-semibold cursor-pointer active:scale-95 text-xs text-slate-700 dark:text-slate-200"
                 >
-                  Recursos ➔
+                  Próximo →
                 </button>
               </div>
-            </motion.div>
+
+              {/* Secondary Action: Recursos Link */}
+              <div className="flex items-center justify-between text-xs text-slate-500 dark:text-slate-400 px-1">
+                <span className="text-[11px]">Role a página para avançar</span>
+                <button
+                  type="button"
+                  onClick={() => onChangeRoute('/recursos')}
+                  className="text-sky-900 dark:text-sky-300 font-bold hover:underline cursor-pointer flex items-center gap-1"
+                >
+                  Recursos & Obras ➔
+                </button>
+              </div>
+            </div>
 
           </div>
 
         </div>
 
-        {/* Footer Navigation Bar */}
-        <div className="shrink-0 pt-4 border-t border-slate-300/80 dark:border-slate-800/80 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-600 dark:text-slate-400">
-          <div className="hidden md:flex items-center gap-2">
+        {/* Desktop-Only Footer Navigation Bar */}
+        <div className="hidden md:flex shrink-0 pt-4 border-t border-slate-300/80 dark:border-slate-800/80 items-center justify-between gap-3 text-xs text-slate-600 dark:text-slate-400">
+          <div className="flex items-center gap-2">
             <span className="font-serif font-bold text-slate-800 dark:text-slate-200">
               {activePrinciple.title}
             </span>
             <span className="text-slate-400 dark:text-slate-600">•</span>
             <span className="text-[11px]">Role a página ou use as setas do teclado (← / →)</span>
-          </div>
-
-          <div className="flex md:hidden items-center gap-1.5 text-[11px] text-slate-500">
-            <span>Deslize na horizontal ou use os botões</span>
           </div>
 
           {/* 5 Milestone Indicator Pills */}
@@ -665,7 +820,7 @@ export default function CelestialArcPrinciples({ onChangeRoute }: CelestialArcPr
               type="button"
               onClick={() => goToIndex(activeIndex - 1)}
               disabled={activeIndex === 0}
-              className="hidden md:flex p-1.5 rounded-lg border border-slate-300/80 dark:border-slate-700 text-slate-600 dark:text-slate-300 disabled:opacity-30 disabled:cursor-not-allowed hover:bg-slate-200/60 dark:hover:bg-slate-800 transition cursor-pointer"
+              className="p-1.5 rounded-lg border border-slate-300/80 dark:border-slate-700 text-slate-600 dark:text-slate-300 disabled:opacity-30 disabled:cursor-not-allowed hover:bg-slate-200/60 dark:hover:bg-slate-800 transition cursor-pointer"
               title="Princípio Anterior"
             >
               <ChevronLeft className="w-3.5 h-3.5" />
@@ -692,7 +847,7 @@ export default function CelestialArcPrinciples({ onChangeRoute }: CelestialArcPr
               type="button"
               onClick={() => goToIndex(activeIndex + 1)}
               disabled={activeIndex === 4}
-              className="hidden md:flex p-1.5 rounded-lg border border-slate-300/80 dark:border-slate-700 text-slate-600 dark:text-slate-300 disabled:opacity-30 disabled:cursor-not-allowed hover:bg-slate-200/60 dark:hover:bg-slate-800 transition cursor-pointer"
+              className="p-1.5 rounded-lg border border-slate-300/80 dark:border-slate-700 text-slate-600 dark:text-slate-300 disabled:opacity-30 disabled:cursor-not-allowed hover:bg-slate-200/60 dark:hover:bg-slate-800 transition cursor-pointer"
               title="Próximo Princípio"
             >
               <ChevronRight className="w-3.5 h-3.5" />
