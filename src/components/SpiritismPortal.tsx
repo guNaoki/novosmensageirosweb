@@ -367,16 +367,16 @@ export default function SpiritismPortal({ onChangeRoute }: SpiritismPortalProps)
       {/* ========================================================= */}
       <section
         id="hero"
-        className="relative min-h-[calc(100vh-4.5rem)] flex flex-col justify-center pt-24 pb-14 sm:pt-28 sm:pb-16 lg:py-20 text-slate-900 dark:text-white overflow-hidden bg-gradient-to-b from-sky-100/60 via-blue-50/20 to-slate-50 dark:from-[#06152e]/90 dark:via-[#081b3a]/60 dark:to-[#040d1f] transition-colors duration-300"
+        className="relative min-h-[calc(100vh-4.5rem)] flex flex-col justify-center pt-24 pb-14 sm:pt-28 sm:pb-16 lg:py-20 text-slate-900 dark:text-white overflow-hidden bg-gradient-to-b from-sky-100/90 via-blue-50/70 to-slate-100/90 dark:from-[#06152e]/95 dark:via-[#081b3a]/80 dark:to-[#040d1f] transition-colors duration-300"
       >
-        {/* Static Cloud Background Image (Sem parallax) */}
+        {/* Static Cloud Background Image com Alto Contraste no Modo Claro */}
         <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
           <img
             src="/imagens-pagina/ceunuvem1.webp"
             alt="Fundo celestial sereno"
-            className="w-full h-full object-cover object-center opacity-20 dark:opacity-40 mix-blend-multiply dark:mix-blend-screen"
+            className="w-full h-full object-cover object-center opacity-80 dark:opacity-35 mix-blend-multiply dark:mix-blend-screen transition-opacity duration-500"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-sky-50/50 via-transparent to-slate-50 dark:from-[#06152e]/70 dark:via-transparent dark:to-[#040d1f]"></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-sky-100/40 via-transparent to-slate-100/80 dark:from-[#06152e]/70 dark:via-transparent dark:to-[#040d1f]"></div>
         </div>
 
         {/* Bespoke Artistic Light Radiance Vector */}
@@ -384,9 +384,6 @@ export default function SpiritismPortal({ onChangeRoute }: SpiritismPortalProps)
 
         {/* Ethereal Stardust Constellation Particles */}
         <PoeiraEstelarVector />
-
-        {/* Subtle grid pattern without particles */}
-        <div className="absolute inset-0 z-0 bg-grid-pattern dark:bg-grid-dark opacity-35 pointer-events-none"></div>
 
         <div className="max-w-5xl mx-auto px-4 relative z-10 text-center">
           <motion.div
@@ -565,7 +562,7 @@ export default function SpiritismPortal({ onChangeRoute }: SpiritismPortalProps)
       {/* ========================================================= */}
       <section
         id="nossa-historia"
-        className="py-14 sm:py-20 md:py-24 scroll-mt-20 sm:scroll-mt-24 bg-slate-50/70 dark:bg-slate-950 border-b border-slate-200/60 dark:border-slate-800 relative overflow-hidden bg-grid-pattern transition-colors duration-300"
+        className="py-14 sm:py-20 md:py-24 scroll-mt-20 sm:scroll-mt-24 bg-slate-50/70 dark:bg-slate-950 border-b border-slate-200/60 dark:border-slate-800 relative overflow-hidden transition-colors duration-300"
       >
         <div className="max-w-6xl mx-auto px-4">
 
@@ -693,7 +690,7 @@ export default function SpiritismPortal({ onChangeRoute }: SpiritismPortalProps)
       {/* ========================================================= */}
       <section
         id="fale-conosco"
-        className="py-14 sm:py-20 scroll-mt-20 sm:scroll-mt-24 bg-slate-50 dark:bg-slate-950 border-t border-slate-200/60 dark:border-slate-800 relative overflow-hidden bg-grid-pattern transition-colors duration-300"
+        className="py-14 sm:py-20 scroll-mt-20 sm:scroll-mt-24 bg-slate-50 dark:bg-slate-950 border-t border-slate-200/60 dark:border-slate-800 relative overflow-hidden transition-colors duration-300"
       >
         <div className="max-w-3xl mx-auto px-4">
           <div className="bg-[#FAFBFD] dark:bg-[#0B132B]/85 border border-slate-200/80 dark:border-slate-800/80 rounded-2xl shadow-sm p-6 sm:p-10 md:p-12 text-center space-y-6 relative overflow-hidden">
@@ -782,7 +779,7 @@ export default function SpiritismPortal({ onChangeRoute }: SpiritismPortalProps)
       {/* ========================================================= */}
       <section
         id="amor-ideal"
-        className="py-14 sm:py-20 scroll-mt-20 sm:scroll-mt-24 bg-white dark:bg-slate-950 border-t border-slate-200/60 dark:border-slate-800 relative overflow-hidden bg-grid-pattern transition-colors duration-300"
+        className="py-14 sm:py-20 scroll-mt-20 sm:scroll-mt-24 bg-white dark:bg-slate-950 border-t border-slate-200/60 dark:border-slate-800 relative overflow-hidden transition-colors duration-300"
       >
         <div className="max-w-5xl mx-auto px-4 text-center">
           <div className="max-w-2xl mx-auto space-y-3 mb-12">
