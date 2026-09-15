@@ -218,7 +218,7 @@ export default function CelestialArcPrinciples({ onChangeRoute }: CelestialArcPr
     <section
       ref={containerRef}
       id="principios"
-      className="relative py-14 sm:py-20 md:py-0 md:h-[400vh] bg-slate-100 dark:bg-[#030914] text-slate-900 dark:text-white transition-colors duration-500 overflow-hidden"
+      className="relative py-14 sm:py-20 md:py-0 md:h-[400vh] bg-slate-100 dark:bg-[#030914] text-slate-900 dark:text-white transition-colors duration-500"
     >
       {/* Global Shared SVG Defs for High-Contrast Gradients */}
       <svg className="absolute w-0 h-0 pointer-events-none" aria-hidden="true">
@@ -257,8 +257,8 @@ export default function CelestialArcPrinciples({ onChangeRoute }: CelestialArcPr
         <div className="absolute inset-0 bg-gradient-to-b from-sky-100/85 via-blue-50/70 to-slate-100/90 dark:from-[#030914]/90 dark:via-[#071328]/85 dark:to-[#030914]/95"></div>
       </div>
 
-      {/* Full-Screen Canvas Container (Sticky no Desktop, Natural no Mobile) */}
-      <div className="relative md:sticky md:top-0 h-auto md:h-screen w-full flex flex-col justify-between z-10 px-4 sm:px-8 lg:px-16 py-6 md:py-8 max-w-7xl mx-auto">
+      {/* Full-Screen Canvas Container (Sticky no Desktop abaixo da Navbar fixa, Natural no Mobile) */}
+      <div className="relative md:sticky md:top-16 lg:top-[4.5rem] h-auto md:h-[calc(100vh-4rem)] lg:h-[calc(100vh-4.5rem)] w-full flex flex-col justify-between z-10 px-4 sm:px-8 lg:px-16 py-4 md:py-6 max-w-7xl mx-auto">
 
         {/* Section Top Eyebrow */}
         <div className="flex items-center justify-between shrink-0 border-b border-slate-300/80 dark:border-slate-800/80 pb-3">
