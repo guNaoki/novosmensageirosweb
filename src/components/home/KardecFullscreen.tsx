@@ -8,18 +8,18 @@ interface LineWord {
   highlight?: boolean;
 }
 
-// Cada linha ocupa a largura da tela; `drift` faz a palavra entrar de um lado, convergindo ao centro.
+// Cada linha ocupa a largura da tela; `drift` sutil faz a palavra convergir suavemente ao centro.
 const LINES: LineWord[][] = [
   [
-    { text: 'Fora', drift: -90 },
-    { text: 'da', drift: 90 },
+    { text: 'Fora', drift: -45 },
+    { text: 'da', drift: 45 },
   ],
-  [{ text: 'caridade', drift: -140, highlight: true }],
+  [{ text: 'caridade', drift: -60, highlight: true }],
   [
-    { text: 'não', drift: 110 },
-    { text: 'há', drift: -110 },
+    { text: 'não', drift: 50 },
+    { text: 'há', drift: -50 },
   ],
-  [{ text: 'salvação.', drift: 140, highlight: true }],
+  [{ text: 'salvação.', drift: 60, highlight: true }],
 ];
 
 const TOTAL = LINES.flat().length;
@@ -31,7 +31,7 @@ export default function KardecFullscreen() {
   const progress = useSpring(scrollYProgress, { stiffness: 140, damping: 26 });
 
   const range = (i: number): [number, number] => {
-    const start = 0.06 + (i / TOTAL) * 0.62;
+    const start = 0.08 + (i / TOTAL) * 0.60;
     return [start, start + 0.16];
   };
 
@@ -47,7 +47,7 @@ export default function KardecFullscreen() {
     <section
       ref={ref}
       id="frase-kardec"
-      className="relative h-[280vh] bg-slate-50 dark:bg-[#040d1f] transition-colors duration-500 border-y border-slate-200/50 dark:border-slate-800/60"
+      className="relative h-[220vh] bg-slate-50 dark:bg-[#040d1f] transition-colors duration-500 border-y border-slate-200/50 dark:border-slate-800/60"
     >
       <div className="sticky top-0 h-screen overflow-hidden flex items-center justify-center">
         <motion.div

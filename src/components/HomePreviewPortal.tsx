@@ -50,15 +50,15 @@ export default function HomePreviewPortal({ onChangeRoute }: HomePreviewPortalPr
       <div className="bg-slate-50 dark:bg-slate-950 transition-colors duration-300 relative">
         <HomeHero onChangeRoute={onChangeRoute} />
 
-        <Suspense fallback={<Placeholder vh={320} />}>
+        <Suspense fallback={<Placeholder vh={240} />}>
           <ScrollStage />
         </Suspense>
 
-        <Suspense fallback={<Placeholder vh={400} />}>
-          <TeamTrack />
+        <Suspense fallback={<Placeholder vh={340} />}>
+          <TeamTrack onChangeRoute={onChangeRoute} />
         </Suspense>
 
-        <Suspense fallback={<Placeholder vh={280} />}>
+        <Suspense fallback={<Placeholder vh={220} />}>
           <KardecFullscreen />
         </Suspense>
 
