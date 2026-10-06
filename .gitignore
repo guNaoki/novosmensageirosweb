@@ -29,3 +29,11 @@ anotacoes.md
 
 # graft's local graph cache — regenerable, not committed (run `graft build`).
 /graft/
+
+# Agent / Tooling files
+.agents/
+.claude/
+.gemini/
+.ignore
+.mcp.json
+AGENTS.md

@@ -19,7 +19,6 @@
 
 /* Global HTML & Body base styling */
 html {
-  scroll-behavior: smooth;
   text-rendering: optimizeLegibility;
 }
 

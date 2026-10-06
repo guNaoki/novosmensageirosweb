@@ -22,7 +22,8 @@ Gere e mantenha a aplicação web em React 19, utilizando Tailwind CSS para a es
 - Paleta de Cores: Tons de azul (confiança, tranquilidade, espiritualidade), branco e cinza claro para as seções de texto.
 - Estilo: Interface acolhedora, limpa, humana e altamente profissional. Boa aplicação de espaçamentos (padding/margin) para evitar fadiga visual.
 
-### 📐 Estrutura das Páginas (UX Storytelling)
+### 📐 Estrutura das Páginas & UX Storytelling
+> **Diretriz de Narrativa e Animação:** Consulte e siga sempre os princípios da skill [`.agents/skills/storytelling/SKILL.md`](./.agents/skills/storytelling/SKILL.md) para qualquer proposta de copy, fluxo de usuário ou animação com propósito (Motion with Intent).
 
 #### A. Portal Novos Mensageiros (`/`)
 1. **Hero Section:** Transmitir luz, consolo e alcance social (+68,9k Instagram, +3.7M TikTok). CTA para explorar acervo ou conhecer o Projeto de Resgate.

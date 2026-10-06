@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Analytics } from '@vercel/analytics/react';
+import Lenis from 'lenis';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import SpiritismPortal from './components/SpiritismPortal';
@@ -8,6 +9,7 @@ import RescuePortal from './components/RescuePortal';
 import HistoryPortal from './components/HistoryPortal';
 import LinksPortal from './components/LinksPortal';
 import ResourcesPortal from './components/ResourcesPortal';
+import HomePreviewPortal from './components/HomePreviewPortal';
 
 function App() {
   const [route, setRoute] = useState(() => {
@@ -20,6 +22,7 @@ function App() {
       if (cleanFromHash.startsWith('/historia')) return '/historia';
       if (cleanFromHash.startsWith('/recursos')) return '/recursos';
       if (cleanFromHash.startsWith('/links') || cleanFromHash.startsWith('/bio')) return '/links';
+      if (cleanFromHash.startsWith('/preview-home') || cleanFromHash.startsWith('/preview')) return '/preview-home';
       return '/';
     }
 
@@ -29,6 +32,7 @@ function App() {
     if (path.startsWith('/historia')) return '/historia';
     if (path.startsWith('/recursos')) return '/recursos';
     if (path.startsWith('/links') || path.startsWith('/bio')) return '/links';
+    if (path.startsWith('/preview-home') || path.startsWith('/preview')) return '/preview-home';
     return '/';
   });
 
@@ -52,6 +56,23 @@ function App() {
   };
 
   useEffect(() => {
+    const lenis = new Lenis({
+      autoRaf: true,
+      anchors: true,
+      duration: 1.15,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      smoothWheel: true,
+    });
+
+    (window as unknown as { lenis?: Lenis }).lenis = lenis;
+
+    return () => {
+      lenis.destroy();
+      delete (window as unknown as { lenis?: Lenis }).lenis;
+    };
+  }, []);
+
+  useEffect(() => {
     const handlePopState = () => {
       const path = window.location.pathname;
       if (path.startsWith('/resgate')) {
@@ -62,10 +83,17 @@ function App() {
         setRoute('/recursos');
       } else if (path.startsWith('/links') || path.startsWith('/bio')) {
         setRoute('/links');
+      } else if (path.startsWith('/preview-home') || path.startsWith('/preview')) {
+        setRoute('/preview-home');
       } else {
         setRoute('/');
       }
-      window.scrollTo(0, 0);
+      const lenis = (window as unknown as { lenis?: Lenis }).lenis;
+      if (lenis) {
+        lenis.scrollTo(0, { immediate: true });
+      } else {
+        window.scrollTo(0, 0);
+      }
     };
 
     window.addEventListener('popstate', handlePopState);
@@ -85,17 +113,26 @@ function App() {
     }
     setRoute(cleanPath);
 
+    const lenis = (window as unknown as { lenis?: Lenis }).lenis;
     if (elementId) {
       setTimeout(() => {
         const el = document.getElementById(elementId);
         if (el) {
-          const navbarOffset = 80;
-          const y = el.getBoundingClientRect().top + window.pageYOffset - navbarOffset;
-          window.scrollTo({ top: Math.max(0, y), behavior: 'smooth' });
+          if (lenis) {
+            lenis.scrollTo(el, { offset: -80 });
+          } else {
+            const navbarOffset = 80;
+            const y = el.getBoundingClientRect().top + window.pageYOffset - navbarOffset;
+            window.scrollTo({ top: Math.max(0, y), behavior: 'smooth' });
+          }
         }
       }, 100);
     } else {
-      window.scrollTo(0, 0);
+      if (lenis) {
+        lenis.scrollTo(0, { immediate: true });
+      } else {
+        window.scrollTo(0, 0);
+      }
     }
   };
 
@@ -165,6 +202,18 @@ function App() {
               transition={{ duration: 0.25 }}
             >
               <ResourcesPortal onChangeRoute={handleRouteChange} />
+            </motion.div>
+          )}
+
+          {route === '/preview-home' && (
+            <motion.div
+              key="home-preview-portal"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.25 }}
+            >
+              <HomePreviewPortal onChangeRoute={handleRouteChange} />
             </motion.div>
           )}
 
