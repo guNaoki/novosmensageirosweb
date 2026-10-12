@@ -11,7 +11,7 @@ export const LightRadianceVector = () => (
     viewBox="0 0 1200 600"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
-    className="absolute inset-0 w-full h-full object-cover pointer-events-none opacity-85 dark:opacity-40 transition-opacity duration-500"
+    className="hidden sm:block absolute inset-0 w-full h-full object-cover pointer-events-none opacity-85 dark:opacity-40 transition-opacity duration-500"
   >
     <defs>
       <radialGradient id="heroLightAura" cx="50%" cy="38%" r="50%">
@@ -100,20 +100,17 @@ const STARS = [
 ];
 
 export const PoeiraEstelarVector = () => (
-  <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
+  <div className="hidden sm:block absolute inset-0 pointer-events-none overflow-hidden z-0">
     {STARS.map((star, idx) => (
-      <motion.div
+      <div
         key={idx}
-        animate={{ opacity: [0.25, 0.95, 0.25], scale: [0.8, 1.3, 0.8] }}
-        transition={{
-          duration: star.duration,
-          repeat: Infinity,
-          repeatType: 'reverse',
-          ease: 'easeInOut',
-          delay: star.delay,
+        style={{
+          left: star.x,
+          top: star.y,
+          animationDuration: `${star.duration}s`,
+          animationDelay: `${star.delay}s`,
         }}
-        style={{ left: star.x, top: star.y }}
-        className={`absolute ${star.size} rounded-full bg-sky-500 dark:bg-sky-200 shadow-[0_0_6px_rgba(2,132,199,0.7)] dark:shadow-[0_0_8px_rgba(56,189,248,0.9)]`}
+        className={`absolute ${star.size} rounded-full bg-sky-500 dark:bg-sky-200 shadow-[0_0_6px_rgba(2,132,199,0.7)] dark:shadow-[0_0_8px_rgba(56,189,248,0.9)] animate-twinkle will-change-transform`}
       />
     ))}
   </div>

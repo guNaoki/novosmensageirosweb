@@ -109,6 +109,15 @@ export default function Footer({ currentRoute, onChangeRoute }: FooterProps) {
               </button>
               <button 
                 onClick={() => {
+                  onChangeRoute('/voluntariado');
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }}
+                className={`hover:text-white transition-colors cursor-pointer ${currentRoute === '/voluntariado' ? 'text-white underline decoration-primary underline-offset-4' : ''}`}
+              >
+                Voluntariado
+              </button>
+              <button 
+                onClick={() => {
                   onChangeRoute('/links');
                   window.scrollTo({ top: 0, behavior: 'smooth' });
                 }}
@@ -153,8 +162,8 @@ export default function Footer({ currentRoute, onChangeRoute }: FooterProps) {
                 YouTube
               </a>
 
-              {/* TikTok Resgate: ONLY visible on #/resgate route */}
-              {currentRoute === '#/resgate' && (
+              {/* TikTok Resgate: ONLY visible on /resgate route */}
+              {(currentRoute === '/resgate' || currentRoute === '#/resgate') && (
                 <a 
                   href="https://www.tiktok.com/@acolhimentomensageiros?is_from_webapp=1&sender_device=pc" 
                   target="_blank" 
@@ -171,10 +180,41 @@ export default function Footer({ currentRoute, onChangeRoute }: FooterProps) {
         </div>
 
         {/* Legal & Credits */}
-        <div className="flex flex-col sm:flex-row items-center justify-between text-xs gap-4 text-center sm:text-left">
+        <div className="flex flex-col md:flex-row items-center justify-between text-xs gap-4 text-center md:text-left">
           <span>
             &copy; {new Date().getFullYear()} Novos Mensageiros. Todos os direitos reservados.
           </span>
+          <div className="flex flex-wrap items-center justify-center gap-3 text-slate-400">
+            <button 
+              onClick={() => {
+                onChangeRoute('/termos');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }}
+              className={`hover:text-white transition-colors cursor-pointer ${currentRoute === '/termos' ? 'text-white underline decoration-primary underline-offset-4' : ''}`}
+            >
+              Termos de Uso
+            </button>
+            <span className="text-slate-600">•</span>
+            <button 
+              onClick={() => {
+                onChangeRoute('/privacidade');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }}
+              className={`hover:text-white transition-colors cursor-pointer ${currentRoute === '/privacidade' ? 'text-white underline decoration-primary underline-offset-4' : ''}`}
+            >
+              Política de Privacidade
+            </button>
+            <span className="text-slate-600">•</span>
+            <button 
+              onClick={() => {
+                onChangeRoute('/voluntariado');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }}
+              className={`hover:text-white transition-colors cursor-pointer ${currentRoute === '/voluntariado' ? 'text-white underline decoration-primary underline-offset-4' : ''}`}
+            >
+              Área do Voluntariado
+            </button>
+          </div>
           <span className="text-slate-500">
             Desenvolvido com carinho para esclarecer a mente e consolar o coração.
           </span>

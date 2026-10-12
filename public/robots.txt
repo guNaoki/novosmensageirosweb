@@ -1,0 +1,7 @@
+# robots.txt - Novos Mensageiros
+# https://novosmensageiros.com.br
+
+User-agent: *
+Allow: /
+
+Sitemap: https://novosmensageiros.com.br/sitemap.xml

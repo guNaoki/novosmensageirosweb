@@ -31,8 +31,8 @@ interface TeamTrackProps {
 /** Balãozinho de fala perto do círculo do avatar */
 function AvatarBubble({ role }: { role: string }) {
   return (
-    <div className="absolute -top-3 sm:-top-4 -right-4 sm:-right-8 z-20 pointer-events-none drop-shadow-md">
-      <div className="relative bg-white/95 dark:bg-slate-900/95 border border-sky-300 dark:border-sky-400/50 text-slate-800 dark:text-slate-100 font-sans font-semibold text-xs sm:text-sm px-3 sm:px-3.5 py-1.5 rounded-2xl whitespace-nowrap flex items-center gap-1.5 shadow-sm">
+    <div className="absolute -top-3 sm:-top-4 -right-3 sm:-right-8 z-20 pointer-events-none md:drop-shadow-md">
+      <div className="relative bg-white/95 dark:bg-slate-900/95 border border-sky-300 dark:border-sky-400/50 text-slate-800 dark:text-slate-100 font-sans font-semibold text-xs sm:text-sm px-2.5 sm:px-3.5 py-1 sm:py-1.5 rounded-2xl whitespace-nowrap flex items-center gap-1.5 shadow-sm">
         <span className="w-1.5 h-1.5 rounded-full bg-sky-500 shrink-0" />
         <span>{role}</span>
         {/* Rabicho do balãozinho apontando para o círculo do avatar */}
@@ -45,7 +45,6 @@ function AvatarBubble({ role }: { role: string }) {
 function AvatarItem({
   m,
   progress,
-  index,
   isDesktop,
 }: {
   m: Member;
@@ -54,22 +53,17 @@ function AvatarItem({
   isDesktop: boolean;
 }) {
   const px = useTransform(progress, [0, 1], [(m.depth - 1) * 220, (1 - m.depth) * 220]);
-  const size = m.depth > 1.1 ? 'w-48 sm:w-64' : m.depth < 0.95 ? 'w-36 sm:w-48' : 'w-42 sm:w-56';
-  const marginTop = isDesktop ? `${m.dy}vh` : `${m.dy * 0.35}vh`;
+  const size = m.depth > 1.1 ? 'w-36 sm:w-64' : m.depth < 0.95 ? 'w-28 sm:w-48' : 'w-32 sm:w-56';
+  const marginTop = isDesktop ? `${m.dy}vh` : `${m.dy * 0.25}vh`;
 
   return (
     <motion.div
       style={{ x: isDesktop ? px : 0, marginTop }}
-      className="shrink-0 px-6 sm:px-14 flex flex-col items-center"
+      className="shrink-0 px-4 sm:px-14 flex flex-col items-center"
     >
-      <motion.div
-        animate={isDesktop ? { y: [0, -12, 0], rotate: [-1.2, 1.2, -1.2] } : undefined}
-        transition={
-          isDesktop
-            ? { duration: m.floatDuration, repeat: Infinity, ease: 'easeInOut', delay: index * 0.35 }
-            : undefined
-        }
-        className="relative flex flex-col items-center"
+      <div
+        style={{ animationDuration: `${m.floatDuration}s` }}
+        className={`relative flex flex-col items-center ${isDesktop ? 'animate-float-subtle will-change-transform' : ''}`}
       >
         {/* Balãozinho indicativo */}
         <AvatarBubble role={m.role} />
@@ -81,7 +75,7 @@ function AvatarItem({
           prop={m.prop}
           className={`${size} md:drop-shadow-[0_10px_24px_rgba(2,132,199,0.18)] dark:md:drop-shadow-[0_10px_28px_rgba(56,189,248,0.22)]`}
         />
-      </motion.div>
+      </div>
     </motion.div>
   );
 }
@@ -142,7 +136,7 @@ export default function TeamTrack({ onChangeRoute }: TeamTrackProps) {
       <div className="sticky top-0 h-screen overflow-hidden flex items-center">
         <div className="absolute inset-0 bg-gradient-to-b from-slate-50 via-sky-50/70 to-slate-50 dark:from-slate-950 dark:via-[#07172f] dark:to-slate-950" />
 
-        <motion.div ref={trackRef} style={{ x }} className="relative flex items-center w-max transform-gpu will-change-transform">
+        <motion.div ref={trackRef} style={{ x }} className="relative flex items-center w-max will-change-transform">
           {/* Linha pontilhada no desktop */}
           <svg
             className="hidden md:block absolute left-0 top-1/2 -translate-y-1/2 w-full h-[40vh] pointer-events-none text-sky-400/40 dark:text-sky-300/25"
@@ -166,7 +160,7 @@ export default function TeamTrack({ onChangeRoute }: TeamTrackProps) {
             <p className="text-xs sm:text-sm font-bold uppercase tracking-[0.25em] text-sky-600 dark:text-sky-300 mb-3">
               Quem faz acontecer
             </p>
-            <h2 className="text-4xl sm:text-6xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-[1.05] text-balance">
+            <h2 className="text-3xl sm:text-6xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-[1.08] text-balance">
               Gente de verdade,{' '}
               <span className="font-serif italic font-normal text-primary dark:text-sky-300">sem rosto e sem nome.</span>
             </h2>
@@ -184,7 +178,7 @@ export default function TeamTrack({ onChangeRoute }: TeamTrackProps) {
             <p className="text-xs sm:text-sm font-bold uppercase tracking-[0.25em] text-sky-600 dark:text-sky-300 mb-3">
               Uma só missão
             </p>
-            <h3 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-[1.08]">
+            <h3 className="text-2xl sm:text-5xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-[1.1]">
               +{SOCIAL_STATS.volunteersCount} voluntários,{' '}
               <span className="font-serif italic font-normal text-primary dark:text-sky-300">uma só missão: acolher.</span>
             </h3>

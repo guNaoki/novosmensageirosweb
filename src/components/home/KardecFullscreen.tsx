@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { motion, useScroll, useSpring, useTransform } from 'framer-motion';
 import { WordReveal } from './shared';
 
@@ -27,8 +27,19 @@ const TOTAL = LINES.flat().length;
 /** "Fora da caridade não há salvação." em tela cheia, com o mesmo blur palavra-a-palavra da Home atual. */
 export default function KardecFullscreen() {
   const ref = useRef<HTMLElement>(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768);
+    check();
+    window.addEventListener('resize', check);
+    return () => window.removeEventListener('resize', check);
+  }, []);
+
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end end'] });
-  const progress = useSpring(scrollYProgress, { stiffness: 140, damping: 26 });
+  const springProgress = useSpring(scrollYProgress, { stiffness: 140, damping: 26 });
+  // No mobile, usar scroll direto do hardware evita concorrência do solver de física na rAF
+  const progress = isMobile ? scrollYProgress : springProgress;
 
   const range = (i: number): [number, number] => {
     const start = 0.08 + (i / TOTAL) * 0.60;
@@ -71,7 +82,7 @@ export default function KardecFullscreen() {
                     progress={progress}
                     range={range(i)}
                     drift={w.drift}
-                    blur={14}
+                    blur={isMobile ? 6 : 14}
                   />
                 );
               })}

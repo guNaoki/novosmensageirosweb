@@ -126,7 +126,7 @@ export default function Navbar({ currentRoute, onChangeRoute, darkMode, onToggle
 
             {/* CTA Button */}
             <button
-              onClick={() => handleNavigate('/resgate', 'inscricao')}
+              onClick={() => handleNavigate('/voluntariado')}
               className="px-4 py-2 rounded-full text-xs font-bold bg-primary hover:bg-primary-hover text-white shadow-xs hover:shadow-md transition-all active:scale-95 whitespace-nowrap cursor-pointer"
             >
               Quero Ser Voluntário
@@ -197,11 +197,19 @@ export default function Navbar({ currentRoute, onChangeRoute, darkMode, onToggle
             >
               Projeto Resgate
             </button>
+            <button
+              onClick={() => handleNavigate('/voluntariado')}
+              className={`w-full text-left py-2.5 px-3 rounded-xl font-semibold text-xs transition-colors ${
+                currentRoute === '/voluntariado' ? 'bg-primary/10 text-primary dark:text-sky-300 font-bold' : 'text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800'
+              }`}
+            >
+              Rede de Voluntariado
+            </button>
           </div>
 
           <div className="pt-2 border-t border-slate-200/60 dark:border-slate-800/60">
             <button
-              onClick={() => handleNavigate('/resgate', 'inscricao')}
+              onClick={() => handleNavigate('/voluntariado')}
               className="w-full py-3 rounded-xl text-xs font-bold bg-primary hover:bg-primary-hover text-white shadow-xs transition-all active:scale-95 cursor-pointer"
             >
               Quero Ser Voluntário

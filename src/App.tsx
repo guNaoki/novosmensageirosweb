@@ -10,6 +10,9 @@ import HistoryPortal from './components/HistoryPortal';
 import LinksPortal from './components/LinksPortal';
 import ResourcesPortal from './components/ResourcesPortal';
 import HomePreviewPortal from './components/HomePreviewPortal';
+import PrivacyPortal from './components/PrivacyPortal';
+import TermsPortal from './components/TermsPortal';
+import VolunteerPortal from './components/VolunteerPortal';
 
 function App() {
   const [route, setRoute] = useState(() => {
@@ -21,6 +24,9 @@ function App() {
       if (cleanFromHash.startsWith('/resgate')) return '/resgate';
       if (cleanFromHash.startsWith('/historia')) return '/historia';
       if (cleanFromHash.startsWith('/recursos')) return '/recursos';
+      if (cleanFromHash.startsWith('/privacidade')) return '/privacidade';
+      if (cleanFromHash.startsWith('/termos')) return '/termos';
+      if (cleanFromHash.startsWith('/voluntariado') || cleanFromHash.startsWith('/voluntario')) return '/voluntariado';
       if (cleanFromHash.startsWith('/links') || cleanFromHash.startsWith('/bio')) return '/links';
       if (cleanFromHash.startsWith('/preview-home') || cleanFromHash.startsWith('/preview')) return '/preview-home';
       return '/';
@@ -31,6 +37,9 @@ function App() {
     if (path.startsWith('/resgate')) return '/resgate';
     if (path.startsWith('/historia')) return '/historia';
     if (path.startsWith('/recursos')) return '/recursos';
+    if (path.startsWith('/privacidade')) return '/privacidade';
+    if (path.startsWith('/termos')) return '/termos';
+    if (path.startsWith('/voluntariado') || path.startsWith('/voluntario')) return '/voluntariado';
     if (path.startsWith('/links') || path.startsWith('/bio')) return '/links';
     if (path.startsWith('/preview-home') || path.startsWith('/preview')) return '/preview-home';
     return '/';
@@ -56,6 +65,13 @@ function App() {
   };
 
   useEffect(() => {
+    // Em dispositivos touch (mobile/tablets), o navegador móvel já possui scroll inercial nativo acelerado por hardware.
+    // Desabilitar o Lenis no mobile elimina loops contínuos de rAF em segundo plano e restaura fluidez total (60/120 FPS).
+    const isTouch = window.matchMedia('(pointer: coarse)').matches;
+    if (isTouch) {
+      return;
+    }
+
     const lenis = new Lenis({
       autoRaf: true,
       anchors: true,
@@ -81,6 +97,12 @@ function App() {
         setRoute('/historia');
       } else if (path.startsWith('/recursos')) {
         setRoute('/recursos');
+      } else if (path.startsWith('/privacidade')) {
+        setRoute('/privacidade');
+      } else if (path.startsWith('/termos')) {
+        setRoute('/termos');
+      } else if (path.startsWith('/voluntariado') || path.startsWith('/voluntario')) {
+        setRoute('/voluntariado');
       } else if (path.startsWith('/links') || path.startsWith('/bio')) {
         setRoute('/links');
       } else if (path.startsWith('/preview-home') || path.startsWith('/preview')) {
@@ -202,6 +224,42 @@ function App() {
               transition={{ duration: 0.25 }}
             >
               <ResourcesPortal onChangeRoute={handleRouteChange} />
+            </motion.div>
+          )}
+
+          {route === '/privacidade' && (
+            <motion.div
+              key="privacy-portal"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.25 }}
+            >
+              <PrivacyPortal onChangeRoute={handleRouteChange} />
+            </motion.div>
+          )}
+
+          {route === '/termos' && (
+            <motion.div
+              key="terms-portal"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.25 }}
+            >
+              <TermsPortal onChangeRoute={handleRouteChange} />
+            </motion.div>
+          )}
+
+          {route === '/voluntariado' && (
+            <motion.div
+              key="volunteer-portal"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.25 }}
+            >
+              <VolunteerPortal onChangeRoute={handleRouteChange} />
             </motion.div>
           )}
 
