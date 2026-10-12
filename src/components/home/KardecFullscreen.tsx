@@ -49,7 +49,7 @@ export default function KardecFullscreen() {
       id="frase-kardec"
       className="relative h-[220vh] bg-slate-50 dark:bg-[#040d1f] transition-colors duration-500 border-y border-slate-200/50 dark:border-slate-800/60"
     >
-      <div className="sticky top-0 h-screen overflow-hidden flex items-center justify-center">
+      <div className="sticky top-0 h-screen overflow-hidden flex flex-col items-center justify-center px-4 sm:px-8 select-text">
         <motion.div
           style={{ scale: glowScale, opacity: glowOpacity }}
           className="absolute w-[90vw] h-[90vw] max-w-[1100px] max-h-[1100px] rounded-full bg-sky-300/25 dark:bg-sky-500/15 blur-[120px] pointer-events-none"
@@ -57,10 +57,10 @@ export default function KardecFullscreen() {
 
         <motion.blockquote
           style={{ scale: blockScale }}
-          className="relative w-full px-3 sm:px-8 text-center font-serif italic font-semibold tracking-tight leading-[0.95] text-[min(17vw,21vh)]"
+          className="relative w-full max-w-5xl mx-auto text-center font-serif italic font-semibold tracking-tight leading-[0.98] text-[min(14vw,11vh)] sm:text-[min(11vw,12vh)] select-text"
         >
           {LINES.map((line, li) => (
-            <span key={li} className="flex items-center justify-center gap-x-[0.22em] whitespace-nowrap">
+            <span key={li} className="flex items-center justify-center gap-x-[0.22em] whitespace-nowrap select-text">
               {line.map((w) => {
                 const i = idx++;
                 return (
@@ -79,12 +79,13 @@ export default function KardecFullscreen() {
           ))}
         </motion.blockquote>
 
+        {/* Citação no fluxo vertical natural (nunca sobrepõe a frase em nenhum tamanho de tela) */}
         <motion.div
           style={{ opacity: citeOpacity }}
-          className="absolute bottom-[7vh] left-0 right-0 flex items-center justify-center gap-3 text-slate-500 dark:text-slate-400"
+          className="mt-6 sm:mt-10 flex items-center justify-center gap-3 text-slate-500 dark:text-slate-400 select-text z-10"
         >
           <motion.span style={{ scaleX: lineScale }} className="h-px w-10 sm:w-16 bg-slate-300 dark:bg-slate-700 origin-right" />
-          <cite className="text-xs sm:text-sm font-bold tracking-[0.25em] uppercase not-italic text-slate-700 dark:text-slate-300">
+          <cite className="text-xs sm:text-sm font-bold tracking-[0.25em] uppercase not-italic text-slate-700 dark:text-slate-300 select-text">
             Allan Kardec
           </cite>
           <motion.span style={{ scaleX: lineScale }} className="h-px w-10 sm:w-16 bg-slate-300 dark:bg-slate-700 origin-left" />

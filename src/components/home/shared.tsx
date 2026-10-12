@@ -184,7 +184,7 @@ export function WordReveal({ word, highlight, progress, range, drift = 0, blur =
   return (
     <motion.span
       style={{ opacity, y, x, filter, scale }}
-      className={`inline-block select-none will-change-transform ${
+      className={`inline-block select-text will-change-transform ${
         highlight
           ? 'text-primary dark:text-sky-300 font-bold drop-shadow-[0_2px_12px_rgba(2,132,199,0.2)] dark:drop-shadow-[0_2px_18px_rgba(56,189,248,0.4)]'
           : 'text-slate-900 dark:text-slate-100'

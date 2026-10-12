@@ -6,8 +6,6 @@ import Button from '../ui/Button';
 
 interface Member {
   role: string;
-  badge: string;
-  description: string;
   hair: AvatarHair;
   glasses?: boolean;
   prop: AvatarProp;
@@ -16,78 +14,35 @@ interface Member {
   floatDuration: number;
 }
 
-// Papéis humanizados com descrição de propósito e acolhimento
+// Papéis ultra objetivos: comunicam a função exata no primeiro olhar
 const MEMBERS: Member[] = [
-  {
-    role: 'A Voz dos Vídeos',
-    badge: 'Gravação Diária',
-    description: 'Grava diariamente mensagens consoladoras para quem acorda sem esperança no peito.',
-    hair: 'short',
-    glasses: true,
-    prop: 'mic',
-    dy: -3,
-    depth: 1.1,
-    floatDuration: 6.5,
-  },
-  {
-    role: 'Plantão Fraterno',
-    badge: 'Madrugada',
-    description: 'Atende no WhatsApp com escuta atenta, ouvindo angústias sem pressa e sem julgamento.',
-    hair: 'long',
-    prop: 'chat',
-    dy: 4,
-    depth: 1.05,
-    floatDuration: 7.1,
-  },
-  {
-    role: 'Curadoria Espírita',
-    badge: 'Estudo & Obras',
-    description: 'Garimpa palestras e textos de Kardec para transformar a filosofia em alívio prático.',
-    hair: 'cap',
-    prop: 'headphones',
-    dy: -4,
-    depth: 0.95,
-    floatDuration: 8,
-  },
-  {
-    role: 'Edição & Ritmo',
-    badge: 'Audiovisual',
-    description: 'Dá harmonia, música e sensibilidade aos cortes para que a mensagem toque a alma.',
-    hair: 'bun',
-    glasses: true,
-    prop: 'play',
-    dy: 3,
-    depth: 1.15,
-    floatDuration: 6.9,
-  },
-  {
-    role: 'Arte & Poesia Visual',
-    badge: 'Feed & Mensagens',
-    description: 'Desenha ilustrações e frases de luz para alimentar a fé de quem rola o feed apressadamente.',
-    hair: 'long',
-    prop: 'pencil',
-    dy: -3,
-    depth: 0.9,
-    floatDuration: 7.4,
-  },
-  {
-    role: 'Código & Refúgio',
-    badge: 'Infraestrutura',
-    description: 'Mantém este portal seguro, rápido e com livros gratuitos para qualquer pessoa baixar.',
-    hair: 'short',
-    glasses: true,
-    prop: 'laptop',
-    dy: 3,
-    depth: 1.0,
-    floatDuration: 7.8,
-  },
+  { role: 'Voz dos vídeos', hair: 'short', glasses: true, prop: 'mic', dy: -10, depth: 1.15, floatDuration: 6.5 },
+  { role: 'Acolhimento no WhatsApp', hair: 'long', prop: 'chat', dy: 12, depth: 1.1, floatDuration: 7.1 },
+  { role: 'Edição dos vídeos', hair: 'bun', glasses: true, prop: 'play', dy: -12, depth: 1.2, floatDuration: 6.9 },
+  { role: 'Cortes de palestras', hair: 'cap', prop: 'headphones', dy: 10, depth: 1.0, floatDuration: 8.0 },
+  { role: 'Criação dos posts', hair: 'long', prop: 'pencil', dy: -8, depth: 0.9, floatDuration: 7.4 },
+  { role: 'Site e tecnologia', hair: 'short', glasses: true, prop: 'laptop', dy: 11, depth: 0.95, floatDuration: 7.8 },
 ];
 
 interface TeamTrackProps {
   onChangeRoute?: (route: string) => void;
 }
 
-function AvatarCardItem({
+/** Balãozinho de fala perto do círculo do avatar */
+function AvatarBubble({ role }: { role: string }) {
+  return (
+    <div className="absolute -top-3 sm:-top-4 -right-4 sm:-right-8 z-20 pointer-events-none drop-shadow-md">
+      <div className="relative bg-white/95 dark:bg-slate-900/95 border border-sky-300 dark:border-sky-400/50 text-slate-800 dark:text-slate-100 font-sans font-semibold text-xs sm:text-sm px-3 sm:px-3.5 py-1.5 rounded-2xl whitespace-nowrap flex items-center gap-1.5 shadow-sm">
+        <span className="w-1.5 h-1.5 rounded-full bg-sky-500 shrink-0" />
+        <span>{role}</span>
+        {/* Rabicho do balãozinho apontando para o círculo do avatar */}
+        <div className="absolute -bottom-1 left-4 w-2 h-2 bg-white dark:bg-slate-900 border-b border-r border-sky-300 dark:border-sky-400/50 rotate-45" />
+      </div>
+    </div>
+  );
+}
+
+function AvatarItem({
   m,
   progress,
   index,
@@ -98,58 +53,34 @@ function AvatarCardItem({
   index: number;
   isDesktop: boolean;
 }) {
-  // Parallax suave apenas em telas maiores para preservar FPS em celulares
-  const px = useTransform(progress, [0, 1], [(m.depth - 1) * 120, (1 - m.depth) * 120]);
-  const marginTop = isDesktop ? `${m.dy}vh` : `${m.dy * 0.25}vh`;
+  const px = useTransform(progress, [0, 1], [(m.depth - 1) * 220, (1 - m.depth) * 220]);
+  const size = m.depth > 1.1 ? 'w-48 sm:w-64' : m.depth < 0.95 ? 'w-36 sm:w-48' : 'w-42 sm:w-56';
+  const marginTop = isDesktop ? `${m.dy}vh` : `${m.dy * 0.35}vh`;
 
   return (
     <motion.div
       style={{ x: isDesktop ? px : 0, marginTop }}
-      className="shrink-0 px-3 sm:px-5 flex flex-col items-center"
+      className="shrink-0 px-6 sm:px-14 flex flex-col items-center"
     >
       <motion.div
-        animate={isDesktop ? { y: [0, -8, 0] } : undefined}
+        animate={isDesktop ? { y: [0, -12, 0], rotate: [-1.2, 1.2, -1.2] } : undefined}
         transition={
           isDesktop
             ? { duration: m.floatDuration, repeat: Infinity, ease: 'easeInOut', delay: index * 0.35 }
             : undefined
         }
-        className="w-[78vw] max-w-[285px] sm:max-w-[310px] sm:w-[310px] p-6 sm:p-7 rounded-3xl bg-white/90 dark:bg-slate-900/85 backdrop-blur-xl border border-slate-200/90 dark:border-sky-500/20 shadow-xl shadow-sky-950/5 dark:shadow-black/40 hover:border-sky-400/60 transition-all duration-300 flex flex-col items-center text-center group"
+        className="relative flex flex-col items-center"
       >
-        {/* Topo do Card */}
-        <div className="w-full flex items-center justify-between text-[11px] font-semibold text-slate-400 dark:text-slate-400 mb-4">
-          <span className="uppercase tracking-wider text-sky-600 dark:text-sky-400 font-bold">
-            0{index + 1} • {m.badge}
-          </span>
-          <span className="inline-flex items-center gap-1 text-[10px] text-emerald-600 dark:text-emerald-400 font-medium">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" /> Ativo
-          </span>
-        </div>
+        {/* Balãozinho indicativo */}
+        <AvatarBubble role={m.role} />
 
-        {/* Avatar com Halo Lúmico */}
-        <div className="relative w-28 h-28 sm:w-32 sm:h-32 rounded-2xl bg-gradient-to-b from-sky-100/80 via-blue-50/40 to-white/40 dark:from-sky-950/70 dark:via-slate-900/60 dark:to-slate-950/40 border border-sky-200/70 dark:border-sky-400/20 flex items-center justify-center p-2 mb-4 group-hover:scale-105 transition-transform duration-300 shadow-inner">
-          <HandDrawnAvatar
-            hair={m.hair}
-            glasses={m.glasses}
-            prop={m.prop}
-            className="w-full h-full text-sky-500 dark:text-sky-300"
-          />
-        </div>
-
-        {/* Papel do Voluntário */}
-        <h4 className="font-serif italic font-bold text-lg sm:text-xl text-slate-900 dark:text-white leading-tight">
-          {m.role}
-        </h4>
-
-        {/* Descrição Humana */}
-        <p className="mt-2 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-normal min-h-[3rem]">
-          {m.description}
-        </p>
-
-        {/* Rodapé do Card */}
-        <div className="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800/80 w-full text-[11px] text-slate-400 dark:text-slate-400 flex items-center justify-center gap-1 italic">
-          <span>✦ Sem vaidade, só amor</span>
-        </div>
+        {/* Círculo do avatar solto */}
+        <HandDrawnAvatar
+          hair={m.hair}
+          glasses={m.glasses}
+          prop={m.prop}
+          className={`${size} md:drop-shadow-[0_10px_24px_rgba(2,132,199,0.18)] dark:md:drop-shadow-[0_10px_28px_rgba(56,189,248,0.22)]`}
+        />
       </motion.div>
     </motion.div>
   );
@@ -187,14 +118,13 @@ export default function TeamTrack({ onChangeRoute }: TeamTrackProps) {
     return (
       <section className="py-20 px-4 bg-slate-50 dark:bg-slate-950 text-center">
         <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-slate-900 dark:text-white">
-          Sem holofotes. <span className="font-serif italic font-normal text-primary dark:text-sky-300">Só caridade.</span>
+          Gente de verdade, <span className="font-serif italic font-normal text-primary dark:text-sky-300">sem rosto e sem nome.</span>
         </h2>
-        <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-4xl mx-auto">
+        <div className="mt-12 grid grid-cols-2 sm:grid-cols-3 gap-8 max-w-3xl mx-auto">
           {MEMBERS.map((m) => (
-            <div key={m.role} className="p-6 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex flex-col items-center">
-              <HandDrawnAvatar hair={m.hair} glasses={m.glasses} prop={m.prop} className="w-24 mb-3" />
-              <h4 className="font-serif italic text-lg font-bold text-slate-900 dark:text-white">{m.role}</h4>
-              <p className="mt-2 text-xs text-slate-600 dark:text-slate-300 text-center">{m.description}</p>
+            <div key={m.role} className="flex flex-col items-center relative">
+              <AvatarBubble role={m.role} />
+              <HandDrawnAvatar hair={m.hair} glasses={m.glasses} prop={m.prop} className="w-32" />
             </div>
           ))}
         </div>
@@ -213,7 +143,7 @@ export default function TeamTrack({ onChangeRoute }: TeamTrackProps) {
         <div className="absolute inset-0 bg-gradient-to-b from-slate-50 via-sky-50/70 to-slate-50 dark:from-slate-950 dark:via-[#07172f] dark:to-slate-950" />
 
         <motion.div ref={trackRef} style={{ x }} className="relative flex items-center w-max transform-gpu will-change-transform">
-          {/* Linha orgânica no desktop */}
+          {/* Linha pontilhada no desktop */}
           <svg
             className="hidden md:block absolute left-0 top-1/2 -translate-y-1/2 w-full h-[40vh] pointer-events-none text-sky-400/40 dark:text-sky-300/25"
             viewBox="0 0 1000 100"
@@ -232,21 +162,21 @@ export default function TeamTrack({ onChangeRoute }: TeamTrackProps) {
           </svg>
 
           {/* Abertura */}
-          <div className="shrink-0 w-[84vw] sm:w-[46vw] px-5 sm:px-16 relative">
+          <div className="shrink-0 w-[84vw] sm:w-[48vw] px-5 sm:px-16 relative">
             <p className="text-xs sm:text-sm font-bold uppercase tracking-[0.25em] text-sky-600 dark:text-sky-300 mb-3">
-              O amor em ação
+              Quem faz acontecer
             </p>
             <h2 className="text-4xl sm:text-6xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-[1.05] text-balance">
-              Sem holofotes.{' '}
-              <span className="font-serif italic font-normal text-primary dark:text-sky-300">Só caridade.</span>
+              Gente de verdade,{' '}
+              <span className="font-serif italic font-normal text-primary dark:text-sky-300">sem rosto e sem nome.</span>
             </h2>
             <p className="mt-4 text-sm sm:text-base text-slate-600 dark:text-slate-300 max-w-md leading-relaxed">
-              Por trás das redes, dezenas de voluntários doam suas madrugadas, dons e tempo para acolher dores reais. Não exibimos rostos porque o que cura não é o mensageiro — é a mensagem.
+              Por segurança e discrição, ficamos no anonimato. O que importa é a mensagem de esperança chegar a quem precisa.
             </p>
           </div>
 
           {MEMBERS.map((m, i) => (
-            <AvatarCardItem key={m.role} m={m} index={i} progress={scrollYProgress} isDesktop={isDesktop} />
+            <AvatarItem key={m.role} m={m} index={i} progress={scrollYProgress} isDesktop={isDesktop} />
           ))}
 
           {/* Encerramento com CTA de Voluntariado */}
