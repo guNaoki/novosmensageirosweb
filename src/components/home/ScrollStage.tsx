@@ -101,17 +101,34 @@ export default function ScrollStage() {
 
   const videos = STAGE_VIDEOS.slice(0, SLOTS.length);
 
-  // 1. Mensagem inicial: começa borrada, se revela e sai antes da próxima
-  const titleOpacity = useTransform(scrollYProgress, [0, 0.18, 0.44, 0.54], [0.25, 1, 1, 0]);
-  const titleBlur = useTransform(scrollYProgress, [0, 0.18, 0.44, 0.54], ['blur(16px)', 'blur(0px)', 'blur(0px)', 'blur(14px)']);
-  const titleScale = useTransform(scrollYProgress, [0, 0.18, 0.44, 0.54], [0.94, 1, 1, 1.05]);
-  const titleY = useTransform(scrollYProgress, [0.44, 0.54], [0, -25]);
+  // 1. Mensagem inicial: foco rápido (0.00 -> 0.04) e 100% NÍTIDA por muito tempo (0.04 -> 0.45)
+  const titleOpacity = useTransform(scrollYProgress, [0, 0.04, 0.45, 0.52], [0.5, 1, 1, 0]);
+  const titleScale = useTransform(scrollYProgress, [0, 0.04, 0.45, 0.52], [0.96, 1, 1, 1.04]);
+  const titleY = useTransform(scrollYProgress, [0.45, 0.52], [0, -20]);
+  const titleFilter = useTransform(scrollYProgress, (v) => {
+    if (v < 0.04) {
+      const b = ((0.04 - v) / 0.04) * 6;
+      return `blur(${b.toFixed(1)}px)`;
+    }
+    if (v > 0.48) {
+      const b = ((v - 0.48) / 0.04) * 6;
+      return `blur(${b.toFixed(1)}px)`;
+    }
+    return 'none';
+  });
 
-  // 2. Frase final: surge com clareza somente após o primeiro texto sumir por completo
-  const closingOpacity = useTransform(scrollYProgress, [0.60, 0.72, 0.92, 1], [0, 1, 1, 0.3]);
-  const closingBlur = useTransform(scrollYProgress, [0.60, 0.72], ['blur(14px)', 'blur(0px)']);
-  const closingScale = useTransform(scrollYProgress, [0.60, 0.72], [0.94, 1]);
-  const closingY = useTransform(scrollYProgress, [0.60, 0.72], [20, 0]);
+  // 2. Frase final: foco rápido (0.54 -> 0.57) e 100% NÍTIDA por muito tempo (0.57 -> 0.93)
+  const closingOpacity = useTransform(scrollYProgress, [0.54, 0.57, 0.93, 0.99], [0, 1, 1, 0.3]);
+  const closingScale = useTransform(scrollYProgress, [0.54, 0.57], [0.96, 1]);
+  const closingY = useTransform(scrollYProgress, [0.54, 0.57], [16, 0]);
+  const closingFilter = useTransform(scrollYProgress, (v) => {
+    if (v < 0.54) return 'none';
+    if (v < 0.57) {
+      const b = ((0.57 - v) / 0.03) * 6;
+      return `blur(${b.toFixed(1)}px)`;
+    }
+    return 'none';
+  });
 
   if (reduce) {
     return (
@@ -135,9 +152,9 @@ export default function ScrollStage() {
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[70vw] h-[70vw] max-w-[820px] max-h-[820px] rounded-full bg-sky-300/20 dark:bg-sky-500/10 blur-[110px] pointer-events-none" />
         <PoeiraEstelarVector />
 
-        {/* Mensagem inicial: começa borrada e com o scroll se revela */}
+        {/* Mensagem inicial: revela instantaneamente e permanece 100% nítida */}
         <motion.div
-          style={{ opacity: titleOpacity, scale: titleScale, y: titleY, filter: titleBlur }}
+          style={{ opacity: titleOpacity, scale: titleScale, y: titleY, filter: titleFilter }}
           className="absolute inset-0 flex flex-col items-center justify-center text-center px-6 pointer-events-none z-20 select-text"
         >
           <h2 className="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-[1.08] text-balance max-w-4xl select-text">
@@ -153,9 +170,9 @@ export default function ScrollStage() {
           ))}
         </div>
 
-        {/* Frase final: surge com clareza somente após o primeiro texto sumir por completo */}
+        {/* Frase final: revela rapidamente e permanece 100% nítida por muito tempo */}
         <motion.div
-          style={{ opacity: closingOpacity, y: closingY, scale: closingScale, filter: closingBlur }}
+          style={{ opacity: closingOpacity, y: closingY, scale: closingScale, filter: closingFilter }}
           className="absolute inset-0 flex flex-col items-center justify-center text-center px-6 pointer-events-none z-20 select-text space-y-3"
         >
           <span className="text-sky-500 dark:text-sky-300 text-2xl select-none">✦</span>
