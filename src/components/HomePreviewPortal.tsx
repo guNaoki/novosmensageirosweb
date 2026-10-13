@@ -1,6 +1,7 @@
 import { lazy, Suspense, useEffect } from 'react';
 import { MotionConfig } from 'framer-motion';
 import HomeHero from './home/HomeHero';
+import { getLenis } from '../utils/lenis';
 
 // Hero é eager (LCP). O resto vira chunk separado e só baixa depois que a primeira dobra está pintada.
 const loadScrollStage = () => import('./home/ScrollStage');
@@ -24,7 +25,7 @@ const Placeholder = ({ vh }: { vh: number }) => (
 
 export default function HomePreviewPortal({ onChangeRoute }: HomePreviewPortalProps) {
   useEffect(() => {
-    const lenis = (window as unknown as { lenis?: { scrollTo: (target: number, opts?: { immediate?: boolean }) => void } }).lenis;
+    const lenis = getLenis();
     if (lenis) {
       lenis.scrollTo(0, { immediate: true });
     } else {

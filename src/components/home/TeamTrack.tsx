@@ -3,6 +3,7 @@ import { motion, useReducedMotion, useScroll, useTransform, type MotionValue } f
 import { SOCIAL_STATS } from '../../data/stats';
 import HandDrawnAvatar, { type AvatarHair, type AvatarProp } from '../ui/HandDrawnAvatar';
 import Button from '../ui/Button';
+import { useIsMobile } from '../../hooks/useMediaQuery';
 
 interface Member {
   role: string;
@@ -84,7 +85,8 @@ export default function TeamTrack({ onChangeRoute }: TeamTrackProps) {
   const sectionRef = useRef<HTMLElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
   const [dist, setDist] = useState(0);
-  const [isDesktop, setIsDesktop] = useState(false);
+  const isMobile = useIsMobile(768);
+  const isDesktop = !isMobile;
   const reduce = useReducedMotion();
 
   const { scrollYProgress } = useScroll({ target: sectionRef, offset: ['start start', 'end end'] });
@@ -94,15 +96,22 @@ export default function TeamTrack({ onChangeRoute }: TeamTrackProps) {
   useEffect(() => {
     const el = trackRef.current;
     if (!el) return;
+
+    let rafId: number | null = null;
     const measure = () => {
-      setDist(Math.max(0, el.scrollWidth - window.innerWidth));
-      setIsDesktop(window.innerWidth >= 768);
+      if (rafId) cancelAnimationFrame(rafId);
+      rafId = requestAnimationFrame(() => {
+        setDist(Math.max(0, el.scrollWidth - window.innerWidth));
+      });
     };
+
     measure();
     const ro = new ResizeObserver(measure);
     ro.observe(el);
     window.addEventListener('resize', measure);
+
     return () => {
+      if (rafId) cancelAnimationFrame(rafId);
       ro.disconnect();
       window.removeEventListener('resize', measure);
     };

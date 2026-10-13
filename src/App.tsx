@@ -1,18 +1,26 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, lazy, Suspense } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Analytics } from '@vercel/analytics/react';
 import Lenis from 'lenis';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
-import SpiritismPortal from './components/SpiritismPortal';
-import RescuePortal from './components/RescuePortal';
-import HistoryPortal from './components/HistoryPortal';
-import LinksPortal from './components/LinksPortal';
-import ResourcesPortal from './components/ResourcesPortal';
-import HomePreviewPortal from './components/HomePreviewPortal';
-import PrivacyPortal from './components/PrivacyPortal';
-import TermsPortal from './components/TermsPortal';
-import VolunteerPortal from './components/VolunteerPortal';
+import { getLenis, setLenis } from './utils/lenis';
+
+const SpiritismPortal = lazy(() => import('./components/SpiritismPortal'));
+const RescuePortal = lazy(() => import('./components/RescuePortal'));
+const HistoryPortal = lazy(() => import('./components/HistoryPortal'));
+const LinksPortal = lazy(() => import('./components/LinksPortal'));
+const ResourcesPortal = lazy(() => import('./components/ResourcesPortal'));
+const HomePreviewPortal = lazy(() => import('./components/HomePreviewPortal'));
+const PrivacyPortal = lazy(() => import('./components/PrivacyPortal'));
+const TermsPortal = lazy(() => import('./components/TermsPortal'));
+const VolunteerPortal = lazy(() => import('./components/VolunteerPortal'));
+
+const RouteLoadingFallback = () => (
+  <div className="min-h-[50vh] flex items-center justify-center bg-transparent py-16">
+    <div className="w-8 h-8 rounded-full border-2 border-sky-500 border-t-transparent animate-spin" />
+  </div>
+);
 
 function App() {
   const [route, setRoute] = useState(() => {
@@ -80,11 +88,11 @@ function App() {
       smoothWheel: true,
     });
 
-    (window as unknown as { lenis?: Lenis }).lenis = lenis;
+    setLenis(lenis);
 
     return () => {
       lenis.destroy();
-      delete (window as unknown as { lenis?: Lenis }).lenis;
+      setLenis(null);
     };
   }, []);
 
@@ -110,9 +118,10 @@ function App() {
       } else {
         setRoute('/');
       }
-      const lenis = (window as unknown as { lenis?: Lenis }).lenis;
-      if (lenis) {
-        lenis.scrollTo(0, { immediate: true });
+
+      const activeLenis = getLenis();
+      if (activeLenis) {
+        activeLenis.scrollTo(0, { immediate: true });
       } else {
         window.scrollTo(0, 0);
       }
@@ -135,23 +144,23 @@ function App() {
     }
     setRoute(cleanPath);
 
-    const lenis = (window as unknown as { lenis?: Lenis }).lenis;
+    const activeLenis = getLenis();
     if (elementId) {
       setTimeout(() => {
         const el = document.getElementById(elementId);
         if (el) {
-          if (lenis) {
-            lenis.scrollTo(el, { offset: -80 });
+          if (activeLenis) {
+            activeLenis.scrollTo(el, { offset: -80 });
           } else {
             const navbarOffset = 80;
-            const y = el.getBoundingClientRect().top + window.pageYOffset - navbarOffset;
+            const y = el.getBoundingClientRect().top + window.scrollY - navbarOffset;
             window.scrollTo({ top: Math.max(0, y), behavior: 'smooth' });
           }
         }
       }, 100);
     } else {
-      if (lenis) {
-        lenis.scrollTo(0, { immediate: true });
+      if (activeLenis) {
+        activeLenis.scrollTo(0, { immediate: true });
       } else {
         window.scrollTo(0, 0);
       }
@@ -175,117 +184,119 @@ function App() {
       {/* Main Portals Content with smooth page transition animations */}
       <main className="flex-grow relative">
         <AnimatePresence mode="wait">
-          {route === '/links' && (
-            <motion.div
-              key="links-portal"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.25 }}
-            >
-              <LinksPortal 
-                onChangeRoute={handleRouteChange}
-                darkMode={darkMode}
-                onToggleDarkMode={toggleDarkMode}
-              />
-            </motion.div>
-          )}
+          <Suspense fallback={<RouteLoadingFallback />}>
+            {route === '/links' && (
+              <motion.div
+                key="links-portal"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.25 }}
+              >
+                <LinksPortal 
+                  onChangeRoute={handleRouteChange}
+                  darkMode={darkMode}
+                  onToggleDarkMode={toggleDarkMode}
+                />
+              </motion.div>
+            )}
 
-          {route === '/resgate' && (
-            <motion.div
-              key="rescue-portal"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.25 }}
-            >
-              <RescuePortal onChangeRoute={handleRouteChange} />
-            </motion.div>
-          )}
+            {route === '/resgate' && (
+              <motion.div
+                key="rescue-portal"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.25 }}
+              >
+                <RescuePortal onChangeRoute={handleRouteChange} />
+              </motion.div>
+            )}
 
-          {route === '/historia' && (
-            <motion.div
-              key="history-portal"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.25 }}
-            >
-              <HistoryPortal onChangeRoute={handleRouteChange} />
-            </motion.div>
-          )}
+            {route === '/historia' && (
+              <motion.div
+                key="history-portal"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.25 }}
+              >
+                <HistoryPortal onChangeRoute={handleRouteChange} />
+              </motion.div>
+            )}
 
-          {route === '/recursos' && (
-            <motion.div
-              key="resources-portal"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.25 }}
-            >
-              <ResourcesPortal onChangeRoute={handleRouteChange} />
-            </motion.div>
-          )}
+            {route === '/recursos' && (
+              <motion.div
+                key="resources-portal"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.25 }}
+              >
+                <ResourcesPortal onChangeRoute={handleRouteChange} />
+              </motion.div>
+            )}
 
-          {route === '/privacidade' && (
-            <motion.div
-              key="privacy-portal"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.25 }}
-            >
-              <PrivacyPortal onChangeRoute={handleRouteChange} />
-            </motion.div>
-          )}
+            {route === '/privacidade' && (
+              <motion.div
+                key="privacy-portal"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.25 }}
+              >
+                <PrivacyPortal onChangeRoute={handleRouteChange} />
+              </motion.div>
+            )}
 
-          {route === '/termos' && (
-            <motion.div
-              key="terms-portal"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.25 }}
-            >
-              <TermsPortal onChangeRoute={handleRouteChange} />
-            </motion.div>
-          )}
+            {route === '/termos' && (
+              <motion.div
+                key="terms-portal"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.25 }}
+              >
+                <TermsPortal onChangeRoute={handleRouteChange} />
+              </motion.div>
+            )}
 
-          {route === '/voluntariado' && (
-            <motion.div
-              key="volunteer-portal"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.25 }}
-            >
-              <VolunteerPortal onChangeRoute={handleRouteChange} />
-            </motion.div>
-          )}
+            {route === '/voluntariado' && (
+              <motion.div
+                key="volunteer-portal"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.25 }}
+              >
+                <VolunteerPortal onChangeRoute={handleRouteChange} />
+              </motion.div>
+            )}
 
-          {route === '/preview-home' && (
-            <motion.div
-              key="home-preview-portal"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.25 }}
-            >
-              <HomePreviewPortal onChangeRoute={handleRouteChange} />
-            </motion.div>
-          )}
+            {route === '/preview-home' && (
+              <motion.div
+                key="home-preview-portal"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.25 }}
+              >
+                <HomePreviewPortal onChangeRoute={handleRouteChange} />
+              </motion.div>
+            )}
 
-          {route === '/' && (
-            <motion.div
-              key="spiritism-portal"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.25 }}
-            >
-              <SpiritismPortal onChangeRoute={handleRouteChange} />
-            </motion.div>
-          )}
+            {route === '/' && (
+              <motion.div
+                key="spiritism-portal"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.25 }}
+              >
+                <SpiritismPortal onChangeRoute={handleRouteChange} />
+              </motion.div>
+            )}
+          </Suspense>
         </AnimatePresence>
       </main>
 

@@ -1,8 +1,9 @@
-import { useEffect, useRef, useState } from 'react';
+import { useRef } from 'react';
 import { motion, useReducedMotion, useScroll, useTransform, type MotionValue } from 'framer-motion';
 import { SOCIAL_STATS } from '../../data/stats';
 import { STAGE_VIDEOS, type StageVideo } from '../../data/stageVideos';
 import { InstagramIcon, TikTokIcon, YouTubeIcon, PoeiraEstelarVector } from './shared';
+import { useIsMobile } from '../../hooks/useMediaQuery';
 
 // Posições no perímetro: no mobile apenas 4 cards nos cantos extremos deixando o centro livre.
 // No desktop, 8 cards espalhados pelas bordas externas.
@@ -65,7 +66,7 @@ function StageCard({ video, slot, index, total, progress, isMobile }: StageCardP
         className="w-full h-full animate-float-subtle will-change-transform"
       >
         <div className="relative w-full h-full rounded-2xl overflow-hidden shadow-xl sm:shadow-2xl shadow-sky-900/20 dark:shadow-black/50 border border-white/60 dark:border-sky-400/20 bg-slate-200 dark:bg-slate-800">
-          <img src={video.src} alt={video.alt} loading="lazy" decoding="async" className="w-full h-full object-cover" />
+          <img src={video.src} alt={video.alt} width={225} height={400} loading="lazy" decoding="async" className="w-full h-full object-cover" />
         </div>
       </div>
     </motion.div>
@@ -105,14 +106,7 @@ export default function ScrollStage() {
   const ref = useRef<HTMLElement>(null);
   const reduce = useReducedMotion();
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end end'] });
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const check = () => setIsMobile(window.innerWidth < 640);
-    check();
-    window.addEventListener('resize', check);
-    return () => window.removeEventListener('resize', check);
-  }, []);
+  const isMobile = useIsMobile(640);
 
   const videos = STAGE_VIDEOS.slice(0, SLOTS.length);
 

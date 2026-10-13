@@ -1,6 +1,7 @@
-import { useEffect, useRef, useState } from 'react';
+import { useRef } from 'react';
 import { motion, useScroll, useSpring, useTransform } from 'framer-motion';
 import { WordReveal } from './shared';
+import { useIsMobile } from '../../hooks/useMediaQuery';
 
 interface LineWord {
   text: string;
@@ -27,14 +28,7 @@ const TOTAL = LINES.flat().length;
 /** "Fora da caridade não há salvação." em tela cheia, com o mesmo blur palavra-a-palavra da Home atual. */
 export default function KardecFullscreen() {
   const ref = useRef<HTMLElement>(null);
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const check = () => setIsMobile(window.innerWidth < 768);
-    check();
-    window.addEventListener('resize', check);
-    return () => window.removeEventListener('resize', check);
-  }, []);
+  const isMobile = useIsMobile(768);
 
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end end'] });
   const springProgress = useSpring(scrollYProgress, { stiffness: 140, damping: 26 });
