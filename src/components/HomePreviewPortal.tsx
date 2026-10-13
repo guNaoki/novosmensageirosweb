@@ -59,7 +59,7 @@ export default function HomePreviewPortal({ onChangeRoute }: HomePreviewPortalPr
           <TeamTrack onChangeRoute={onChangeRoute} />
         </Suspense>
 
-        <Suspense fallback={<Placeholder vh={220} />}>
+        <Suspense fallback={<div aria-hidden className="h-[135vh] sm:h-[220vh] bg-slate-50 dark:bg-[#040d1f]" />}>
           <KardecFullscreen />
         </Suspense>
 

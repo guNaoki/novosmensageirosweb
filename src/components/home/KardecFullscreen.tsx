@@ -25,7 +25,7 @@ const LINES: LineWord[][] = [
 
 const TOTAL = LINES.flat().length;
 
-/** "Fora da caridade não há salvação." em tela cheia, com o mesmo blur palavra-a-palavra da Home atual. */
+/** "Fora da caridade não há salvação." em tela cheia, com revelação rápida e foco 100% nítido. */
 export default function KardecFullscreen() {
   const ref = useRef<HTMLElement>(null);
   const isMobile = useIsMobile(768);
@@ -36,15 +36,23 @@ export default function KardecFullscreen() {
   const progress = isMobile ? scrollYProgress : springProgress;
 
   const range = (i: number): [number, number] => {
-    const start = 0.08 + (i / TOTAL) * 0.60;
-    return [start, start + 0.16];
+    // No mobile: revela muito mais rápido (entre 0.04 e 0.38) para que a frase fique 100% nítida
+    // e legível por mais de 60% do tempo de scroll da seção
+    if (isMobile) {
+      const start = 0.04 + (i / TOTAL) * 0.24;
+      return [start, start + 0.10];
+    }
+    const start = 0.06 + (i / TOTAL) * 0.44;
+    return [start, start + 0.14];
   };
 
   const blockScale = useTransform(progress, [0, 1], [0.94, 1.06]);
   const glowScale = useTransform(progress, [0, 1], [0.7, 1.5]);
   const glowOpacity = useTransform(progress, [0, 0.7], [0.25, 0.9]);
-  const citeOpacity = useTransform(progress, [0.78, 0.92], [0, 1]);
-  const lineScale = useTransform(progress, [0.78, 0.92], [0, 1]);
+
+  const citeRange: [number, number] = isMobile ? [0.38, 0.50] : [0.65, 0.82];
+  const citeOpacity = useTransform(progress, citeRange, [0, 1]);
+  const lineScale = useTransform(progress, citeRange, [0, 1]);
 
   let idx = 0;
 
@@ -52,17 +60,17 @@ export default function KardecFullscreen() {
     <section
       ref={ref}
       id="frase-kardec"
-      className="relative h-[220vh] bg-slate-50 dark:bg-[#040d1f] transition-colors duration-500 border-y border-slate-200/50 dark:border-slate-800/60"
+      className="relative h-[135vh] sm:h-[220vh] bg-slate-50 dark:bg-[#040d1f] transition-colors duration-500 border-y border-slate-200/50 dark:border-slate-800/60"
     >
-      <div className="sticky top-0 h-screen overflow-hidden flex flex-col items-center justify-center px-4 sm:px-8 select-text">
+      <div className="sticky top-0 h-screen overflow-hidden flex flex-col items-center justify-center px-6 sm:px-8 select-text">
         <motion.div
           style={{ scale: glowScale, opacity: glowOpacity }}
-          className="absolute w-[90vw] h-[90vw] max-w-[1100px] max-h-[1100px] rounded-full bg-sky-300/25 dark:bg-sky-500/15 blur-[120px] pointer-events-none"
+          className="absolute w-[80vw] h-[80vw] max-w-[420px] max-h-[420px] sm:max-w-[1100px] sm:max-h-[1100px] rounded-full bg-sky-300/25 dark:bg-sky-500/15 blur-[60px] sm:blur-[120px] pointer-events-none"
         />
 
         <motion.blockquote
           style={{ scale: blockScale }}
-          className="relative w-full max-w-5xl mx-auto text-center font-serif italic font-semibold tracking-tight leading-[0.98] text-[min(14vw,11vh)] sm:text-[min(11vw,12vh)] select-text"
+          className="relative w-full max-w-5xl mx-auto text-center font-serif italic font-semibold tracking-tight leading-[1.08] sm:leading-[0.98] text-[min(12.5vw,7.5vh)] sm:text-[min(11vw,12vh)] select-text space-y-1 sm:space-y-0"
         >
           {LINES.map((line, li) => (
             <span key={li} className="flex items-center justify-center gap-x-[0.22em] whitespace-nowrap select-text">
@@ -76,7 +84,8 @@ export default function KardecFullscreen() {
                     progress={progress}
                     range={range(i)}
                     drift={w.drift}
-                    blur={isMobile ? 6 : 14}
+                    blur={isMobile ? 3 : 10}
+                    isMobile={isMobile}
                   />
                 );
               })}
@@ -84,10 +93,10 @@ export default function KardecFullscreen() {
           ))}
         </motion.blockquote>
 
-        {/* Citação no fluxo vertical natural (nunca sobrepõe a frase em nenhum tamanho de tela) */}
+        {/* Citação no fluxo vertical natural (revela logo em seguida e permanece 100% nítida) */}
         <motion.div
           style={{ opacity: citeOpacity }}
-          className="mt-6 sm:mt-10 flex items-center justify-center gap-3 text-slate-500 dark:text-slate-400 select-text z-10"
+          className="mt-8 sm:mt-10 flex items-center justify-center gap-3 text-slate-500 dark:text-slate-400 select-text z-10"
         >
           <motion.span style={{ scaleX: lineScale }} className="h-px w-10 sm:w-16 bg-slate-300 dark:bg-slate-700 origin-right" />
           <cite className="text-xs sm:text-sm font-bold tracking-[0.25em] uppercase not-italic text-slate-700 dark:text-slate-300 select-text">

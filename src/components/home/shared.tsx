@@ -169,14 +169,34 @@ interface WordRevealProps {
   /** blur inicial em px */
   blur?: number;
   className?: string;
+  isMobile?: boolean;
 }
 
-export function WordReveal({ word, highlight, progress, range, drift = 0, blur = 4, className = '' }: WordRevealProps) {
-  const opacity = useTransform(progress, range, [0.12, 1]);
-  const y = useTransform(progress, range, [24, 0]);
-  const x = useTransform(progress, range, [drift, 0]);
-  const filter = useTransform(progress, range, [`blur(${blur}px)`, 'blur(0px)']);
-  const scale = useTransform(progress, range, [0.9, 1]);
+export function WordReveal({
+  word,
+  highlight,
+  progress,
+  range,
+  drift = 0,
+  blur = 4,
+  className = '',
+  isMobile = false,
+}: WordRevealProps) {
+  const [start, end] = range;
+  const opacity = useTransform(progress, range, [0.15, 1]);
+  const y = useTransform(progress, range, [isMobile ? 12 : 24, 0]);
+  const x = useTransform(progress, range, [isMobile ? drift * 0.35 : drift, 0]);
+  const scale = useTransform(progress, range, [0.94, 1]);
+
+  // Remove o filtro blur completamente ('none') após a revelação, garantindo que o WebKit/Safari
+  // descarte o buffer de rasterização e renderize texto vetorial 100% nítido
+  const filter = useTransform(progress, (v) => {
+    if (v >= end) return 'none';
+    if (v <= start) return blur > 0 ? `blur(${blur}px)` : 'none';
+    const pct = (end - v) / (end - start);
+    const b = pct * blur;
+    return b <= 0.3 ? 'none' : `blur(${b.toFixed(1)}px)`;
+  });
 
   return (
     <motion.span
